@@ -4,6 +4,7 @@ import csv
 import html
 import json
 import os
+import re
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -38,6 +39,64 @@ GROUPS = {
     "financial": "Tiền tệ - tài chính",
     "sector": "Ngành - cấu phần",
     "global": "Bối cảnh toàn cầu",
+}
+
+VIP_FREQUENCIES = {
+    "cpi": "monthly",
+    "pmi_manufacturing": "monthly",
+    "iip": "monthly",
+    "trade_balance": "monthly",
+    "exports": "monthly",
+    "imports": "monthly",
+    "fdi_disbursed": "monthly",
+    "fdi_registered": "monthly",
+    "retail": "monthly",
+    "business_new": "monthly",
+    "business_exited": "monthly",
+    "international_visitors": "monthly",
+    "state_investment": "monthly",
+    "state_budget": "monthly",
+    "interbank_rate": "weekly_snapshot",
+    "fx_central_rate": "daily",
+    "fx_market_usd_vnd": "daily",
+    "stock_market": "daily",
+    "govt_bond_yield": "weekly_snapshot",
+    "gold_world": "daily",
+    "credit": "monthly",
+    "deposit_rate": "monthly",
+    "lending_rate": "monthly",
+    "dxy": "daily",
+    "corporate_bond_issuance": "monthly",
+    "govt_bond_issuance": "weekly_snapshot",
+    "pmi_sub_indices": "monthly",
+    "trade_by_sector": "monthly",
+    "trade_by_market": "monthly",
+    "trade_by_commodity": "monthly",
+    "fdi_by_sector": "monthly",
+    "agriculture_snapshot": "monthly",
+    "industrial_exports": "monthly",
+    "energy_snapshot": "monthly",
+    "real_estate_context": "monthly",
+    "banking_liquidity": "weekly_snapshot",
+    "fed_policy": "meeting",
+    "us_economy": "monthly",
+    "oil_prices": "daily",
+    "geopolitical_risk": "daily_monitor",
+    "us_10y_yield": "daily",
+    "ecb_eurozone": "meeting",
+    "boj_japan": "meeting",
+    "china_economy": "monthly",
+    "policy_actions_vn": "event",
+    "global_equities": "daily",
+}
+
+SOURCE_REGISTRY = {
+    "pmi": {"name": "S&P Global PMI", "url": "https://www.pmi.spglobal.com/", "role": "PMI và cấu phần sản xuất", "release_lag": "M+1 ngày 1"},
+    "nso": {"name": "NSO/GSO Việt Nam", "url": "https://www.nso.gov.vn/", "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch", "release_lag": "M+1 ngày 3-7"},
+    "customs": {"name": "Tổng cục Hải quan", "url": "https://www.customs.gov.vn/", "role": "Xuất nhập khẩu chính thức", "release_lag": "M+1 ngày 10-15"},
+    "vbma": {"name": "VBMA", "url": "https://vbma.org.vn/vi/reports/weekly", "role": "Liên ngân hàng, TPCP, TPDN tuần", "release_lag": "hàng tuần"},
+    "vnba": {"name": "VNBA", "url": "https://vnba.org.vn/", "role": "Bản tin tiền tệ tài chính tháng", "release_lag": "M+1 ngày 11-13"},
+    "market": {"name": "Public market APIs", "url": "https://query1.finance.yahoo.com/", "role": "Tỷ giá, vàng, dầu, DXY, US10Y", "release_lag": "daily"},
 }
 
 
@@ -100,6 +159,135 @@ def fetch_text(url: str, timeout: int = 20) -> str:
 def fetch_json(url: str) -> Any:
     return json.loads(fetch_text(url))
 
+def strip_tags(text: str) -> str:
+    text = re.sub(r"<script.*?</script>", " ", text, flags=re.S | re.I)
+    text = re.sub(r"<style.*?</style>", " ", text, flags=re.S | re.I)
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = html.unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def parse_vietnamese_number(raw: str) -> float:
+    raw = raw.strip().replace("\xa0", " ")
+    raw = raw.replace(".", "").replace(",", ".")
+    return float(re.sub(r"[^0-9.\-]", "", raw))
+
+
+def first_percent_after(text: str, markers: list[str]) -> float | None:
+    lower = text.lower()
+    for marker in markers:
+        pos = lower.find(marker.lower())
+        if pos == -1:
+            continue
+        window = text[pos : pos + 650]
+        match = re.search(r"(\d{1,3}(?:[,.]\d{1,3})?)\s*%", window)
+        if match:
+            try:
+                return parse_vietnamese_number(match.group(1))
+            except ValueError:
+                return None
+    return None
+
+
+def first_percent_with_context(text: str, markers: list[str], contexts: list[str]) -> float | None:
+    lower = text.lower()
+    for marker in markers:
+        start = lower.find(marker.lower())
+        if start == -1:
+            continue
+        area = text[start : start + 1800]
+        area_l = area.lower()
+        for context in contexts:
+            pos = area_l.find(context.lower())
+            if pos == -1:
+                continue
+            window = area[max(0, pos - 220) : pos + 280]
+            matches = re.findall(r"(\d{1,3}(?:[,.]\d{1,3})?)\s*%", window)
+            if matches:
+                try:
+                    return parse_vietnamese_number(matches[-1])
+                except ValueError:
+                    return None
+    return None
+
+
+def first_number_after(text: str, markers: list[str]) -> float | None:
+    lower = text.lower()
+    for marker in markers:
+        pos = lower.find(marker.lower())
+        if pos == -1:
+            continue
+        window = text[pos : pos + 700]
+        match = re.search(r"(\d{1,3}(?:[,.]\d{1,3})?)", window)
+        if match:
+            try:
+                return parse_vietnamese_number(match.group(1))
+            except ValueError:
+                return None
+    return None
+
+
+def fetch_nso_snapshot() -> dict[str, dict[str, Any]]:
+    values: dict[str, dict[str, Any]] = {}
+    try:
+        posts = fetch_json(
+            "https://www.nso.gov.vn/wp-json/wp/v2/posts?search=bao%20cao%20tinh%20hinh%20kinh%20te%20xa%20hoi%20thang&per_page=20"
+        )
+    except (URLError, TimeoutError, OSError, json.JSONDecodeError):
+        return values
+
+    selected = None
+    for post in posts:
+        title = strip_tags(post.get("title", {}).get("rendered", ""))
+        title_l = title.lower()
+        if "báo cáo tình hình kinh tế" in title_l and "tháng" in title_l:
+            selected = post
+            break
+    if not selected:
+        return values
+
+    text = strip_tags(selected.get("content", {}).get("rendered", ""))
+    as_of = selected.get("date_gmt") or selected.get("date")
+    link = selected.get("link")
+    candidates = {
+        # CPI sits near gold/USD price-index paragraphs in NSO articles; keep it manual until a stricter parser is added.
+        "iip": first_percent_with_context(text, ["Chỉ số sản xuất công nghiệp", "IIP"], ["so với cùng kỳ", "tăng"]),
+        "retail": first_percent_with_context(text, ["Tổng mức bán lẻ", "doanh thu dịch vụ tiêu dùng"], ["so với cùng kỳ", "tăng"]),
+        "international_visitors": first_number_after(text, ["khách quốc tế đến Việt Nam", "khách quốc tế"]),
+    }
+    for key, value in candidates.items():
+        if value is None:
+            continue
+        values[key] = {
+            "value": round(value, 4),
+            "as_of": as_of,
+            "source_quality": "AUTO_NSO_PARSE",
+            "source_live": "NSO",
+            "source_url": link,
+        }
+    return values
+
+
+def source_health() -> dict[str, Any]:
+    health = {}
+    for key, source in SOURCE_REGISTRY.items():
+        try:
+            text = fetch_text(source["url"], timeout=12)
+            health[key] = {
+                **source,
+                "available": True,
+                "checked_at": datetime.now(timezone.utc).isoformat(),
+                "bytes": len(text.encode("utf-8", errors="ignore")),
+            }
+        except Exception as exc:
+            health[key] = {
+                **source,
+                "available": False,
+                "checked_at": datetime.now(timezone.utc).isoformat(),
+                "error": str(exc)[:180],
+            }
+    return health
+
 
 def latest_stooq(symbol: str) -> tuple[float | None, str | None]:
     url = f"https://stooq.com/q/l/?s={symbol}&f=sd2t2ohlcv&h&e=csv"
@@ -139,6 +327,7 @@ def latest_yahoo(symbol: str) -> tuple[float | None, str | None]:
 
 def live_values() -> dict[str, dict[str, Any]]:
     values: dict[str, dict[str, Any]] = {}
+    values.update(fetch_nso_snapshot())
 
     try:
         rates = fetch_json("https://open.er-api.com/v6/latest/USD")
@@ -221,9 +410,11 @@ def build_cards(now: datetime) -> list[dict[str, Any]]:
             "status": "available" if available else "awaiting_official_source",
             "signal": signal_for(spec.key, value),
             "source_primary": live.get("source_live", spec.source_primary),
-            "source_url": spec.source_url,
+            "source_url": live.get("source_url", spec.source_url),
             "source_quality": live.get("source_quality", "SOURCE_MONITOR"),
             "as_of": live.get("as_of", now.date().isoformat()),
+            "frequency": VIP_FREQUENCIES.get(spec.key, "monitor"),
+            "vip": VIP_FREQUENCIES.get(spec.key) in {"monthly", "yearly"},
             "narrative": (
                 f"{spec.name_vi} hiện có dữ liệu tự động từ {spec.source_primary}. "
                 f"Giá trị mới nhất là {value} {spec.unit}, dùng để theo dõi {spec.why_it_matters.lower()}"
@@ -272,12 +463,13 @@ def render_html(payload: dict[str, Any]) -> str:
         for card in group_cards:
             value = "Chờ nguồn" if card["value"] is None else f'{card["value"]} {html.escape(card["unit"])}'
             status = "pending" if card["value"] is None else "ok"
+            vip = '<b class="vip">VIP</b>' if card.get("vip") else ""
             card_html.append(
                 f"""
         <article class="card {status}">
           <div class="card-top">
-            <h3>{html.escape(card["name_vi"])}</h3>
-            <span>{html.escape(card["source_quality"])}</span>
+            <h3>{html.escape(card["name_vi"])} {vip}</h3>
+            <span>{html.escape(card["frequency"])} · {html.escape(card["source_quality"])}</span>
           </div>
           <p class="value">{value}</p>
           <p>{html.escape(card["narrative"])}</p>
@@ -285,6 +477,15 @@ def render_html(payload: dict[str, Any]) -> str:
         </article>"""
             )
         sections.append(f'<section id="{group_key}" class="panel{active}">' + "\n".join(card_html) + "</section>")
+
+    source_rows = []
+    for key, source in payload["source_health"].items():
+        badge = "OK" if source["available"] else "CHECK"
+        cls = "source-ok" if source["available"] else "source-warn"
+        source_rows.append(
+            f'<tr><td>{html.escape(source["name"])}</td><td>{html.escape(source["role"])}</td><td>{html.escape(source["release_lag"])}</td><td class="{cls}">{badge}</td></tr>'
+        )
+    source_table = "<table><thead><tr><th>Nguồn</th><th>Vai trò</th><th>Lịch</th><th>Health</th></tr></thead><tbody>" + "".join(source_rows) + "</tbody></table>"
 
     return f"""<!doctype html>
 <html lang="vi">
@@ -316,9 +517,17 @@ def render_html(payload: dict[str, Any]) -> str:
     .card-top {{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }}
     h3 {{ margin:0; font-size:16px; }}
     .card-top span {{ font-size:12px; color:var(--muted); white-space:nowrap; }}
+    .vip {{ display:inline-block; margin-left:6px; color:#7c2d12; background:#ffedd5; border:1px solid #fed7aa; border-radius:4px; padding:1px 5px; font-size:11px; vertical-align:middle; }}
     .value {{ font-size:24px; font-weight:700; margin:16px 0 10px; }}
     p {{ line-height:1.45; }}
     a {{ color:#1d4ed8; text-decoration:none; font-size:13px; }}
+    .sources {{ margin-top:22px; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; }}
+    .sources h2 {{ margin:0; padding:14px 16px; font-size:18px; border-bottom:1px solid var(--line); }}
+    table {{ width:100%; border-collapse:collapse; font-size:14px; }}
+    th,td {{ text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }}
+    th {{ color:var(--muted); font-weight:600; background:#f9fbfd; }}
+    .source-ok {{ color:var(--ok); font-weight:700; }}
+    .source-warn {{ color:var(--warn); font-weight:700; }}
     @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} }}
   </style>
 </head>
@@ -335,7 +544,7 @@ def render_html(payload: dict[str, Any]) -> str:
     </div>
   </header>
   <nav class="wrap">{"".join(tabs)}</nav>
-  <main class="wrap">{"".join(sections)}</main>
+  <main class="wrap">{"".join(sections)}<section class="sources"><h2>Nguồn độc lập đang theo dõi</h2>{source_table}</section></main>
   <script>
     const tabs = document.querySelectorAll('.tab');
     const panels = document.querySelectorAll('.panel');
@@ -356,6 +565,7 @@ def main() -> None:
     OUTPUT_DIR.mkdir(exist_ok=True)
     DOCS_DIR.mkdir(exist_ok=True)
     cards = build_cards(now)
+    sources = source_health()
     history = update_history(cards, now)
     available = sum(1 for card in cards if card["value"] is not None)
     payload = {
@@ -367,8 +577,11 @@ def main() -> None:
             "available_cards": available,
             "total_cards": len(cards),
             "source_count": len({card["source_primary"] for card in cards}),
+            "vip_cards": sum(1 for card in cards if card.get("vip")),
+            "vip_available": sum(1 for card in cards if card.get("vip") and card["value"] is not None),
             "note": "Macro cards without a reliable machine-readable source are marked awaiting_official_source instead of using guessed values.",
         },
+        "source_health": sources,
         "cards": cards,
     }
 
@@ -376,7 +589,9 @@ def main() -> None:
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_DIR / "index.html").write_text(render_html(payload), encoding="utf-8")
 
-    summary = f"vimo-VN updated: {available}/{len(cards)} cards have automatic values."
+    vip_available = payload["coverage"]["vip_available"]
+    vip_cards = payload["coverage"]["vip_cards"]
+    summary = f"vimo-VN updated: {available}/{len(cards)} cards have automatic values; VIP {vip_available}/{vip_cards}."
     (OUTPUT_DIR / "telegram_summary.txt").write_text(summary + "\n", encoding="utf-8")
     print(summary)
 
