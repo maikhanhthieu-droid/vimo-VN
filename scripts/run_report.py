@@ -100,6 +100,30 @@ SOURCE_REGISTRY = {
     "market": {"name": "Public market APIs", "url": "https://query1.finance.yahoo.com/", "role": "Tỷ giá, vàng, dầu, DXY, US10Y", "release_lag": "daily"},
 }
 
+HISTORY_IMPORTANT_KEYS = {
+    "cpi",
+    "pmi_manufacturing",
+    "iip",
+    "trade_balance",
+    "exports",
+    "imports",
+    "fdi_disbursed",
+    "retail",
+    "interbank_rate",
+    "fx_market_usd_vnd",
+    "fx_central_rate",
+    "stock_market",
+    "govt_bond_yield",
+    "gold_world",
+    "credit",
+    "dxy",
+    "oil_prices",
+    "us_10y_yield",
+    "global_equities",
+}
+
+HISTORY_LIMIT = 100
+
 
 SPECS: list[IndicatorSpec] = [
     IndicatorSpec("cpi", "CPI", "real_economy", "% YoY", "NSO", "Chỉ số giá tiêu dùng so với cùng kỳ.", "Lạm phát là biến số nền cho lãi suất, tỷ giá và sức mua.", 1, "https://www.nso.gov.vn/"),
@@ -456,14 +480,37 @@ def update_history(cards: list[dict[str, Any]], now: datetime) -> dict[str, Any]
 
     series = history.setdefault("series", {})
     stamp = now.isoformat()
+    active_keys = {card["key"] for card in cards if card["key"] in HISTORY_IMPORTANT_KEYS and card["value"] is not None}
+    for key in list(series.keys()):
+        if key not in active_keys:
+            series.pop(key, None)
     for card in cards:
-        if card["value"] is None:
+        if card["key"] not in HISTORY_IMPORTANT_KEYS or card["value"] is None:
             continue
         points = series.setdefault(card["key"], [])
-        if not points or points[-1].get("value") != card["value"]:
+        points = compact_daily_points(points)
+        if points and points[-1].get("date", "")[:10] == stamp[:10]:
+            points[-1] = {"date": stamp, "value": card["value"], "unit": card["unit"]}
+        else:
             points.append({"date": stamp, "value": card["value"], "unit": card["unit"]})
-        series[card["key"]] = points[-60:]
+        series[card["key"]] = points[-HISTORY_LIMIT:]
+    history["policy"] = {
+        "retention_max_points": HISTORY_LIMIT,
+        "retention_min_target_points": 30,
+        "stored_keys": sorted(HISTORY_IMPORTANT_KEYS),
+        "note": "Only important indicators keep history. Normal snapshot data is not retained to avoid duplicate/noisy storage.",
+    }
     return history
+
+
+def compact_daily_points(points: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_day: dict[str, dict[str, Any]] = {}
+    for point in points:
+        day = str(point.get("date", ""))[:10]
+        if not day:
+            continue
+        by_day[day] = point
+    return [by_day[day] for day in sorted(by_day)]
 
 def build_frontend_api(payload: dict[str, Any], history: dict[str, Any]) -> None:
     DOCS_API_DIR.mkdir(exist_ok=True)
@@ -498,6 +545,7 @@ def render_html(payload: dict[str, Any]) -> str:
     generated = html.escape(payload["generated_at_bkk"])
     tabs = []
     sections = []
+    history = payload.get("history", {}).get("series", {})
     for group_key, group_name in GROUPS.items():
         active = " active" if not tabs else ""
         group_cards = [c for c in cards if c["group"] == group_key]
@@ -512,9 +560,13 @@ def render_html(payload: dict[str, Any]) -> str:
             vip = '<b class="vip">VIP</b>' if card.get("vip") else ""
             health = "OK" if card["value"] is not None else "CHECK"
             icon = "↗" if card["direction"] == "up" else "↘" if card["direction"] == "down" else "–"
+            has_chart = card["key"] in history and len(history[card["key"]]) >= 2
+            chart_attr = f' data-key="{html.escape(card["key"])}"' if has_chart else ""
+            chart_class = " chartable" if has_chart else ""
+            chart_hint = '<span class="chart-hint">Bấm để xem biểu đồ</span>' if has_chart else '<span class="chart-hint muted">Snapshot</span>'
             card_html.append(
                 f"""
-        <article class="card {status}">
+        <article class="card {status}{chart_class}"{chart_attr}>
           <div class="card-top">
             <span class="group-label">{html.escape(card["group_name"])}</span>
             <span class="health">{health}</span>
@@ -522,6 +574,7 @@ def render_html(payload: dict[str, Any]) -> str:
           <h3>{html.escape(card["name_vi"])} {vip}</h3>
           <p class="value">{value}</p>
           <p class="change"><span>{icon}</span>{html.escape(card_change_label(card))}</p>
+          {chart_hint}
           <p class="source">Nguồn: <a href="{html.escape(card["source_url"])}">{html.escape(card["source_primary"])}</a></p>
         </article>"""
             )
@@ -535,6 +588,17 @@ def render_html(payload: dict[str, Any]) -> str:
             f'<tr><td>{html.escape(source["name"])}</td><td>{html.escape(source["role"])}</td><td>{html.escape(source["release_lag"])}</td><td class="{cls}">{badge}</td></tr>'
         )
     source_table = "<table><thead><tr><th>Nguồn</th><th>Vai trò</th><th>Lịch</th><th>Health</th></tr></thead><tbody>" + "".join(source_rows) + "</tbody></table>"
+
+    chart_data = {
+        card["key"]: {
+            "name": card["name_vi"],
+            "unit": card["unit"],
+            "points": history.get(card["key"], []),
+        }
+        for card in cards
+        if history.get(card["key"])
+    }
+    chart_data_json = json.dumps(chart_data, ensure_ascii=False).replace("</", "<\\/")
 
     return f"""<!doctype html>
 <html lang="vi">
@@ -564,6 +628,7 @@ def render_html(payload: dict[str, Any]) -> str:
     .panel.active {{ display:grid; }}
     .card {{ text-align:left; background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:8px; padding:18px; min-height:178px; transition:background .2s,border-color .2s; }}
     .card:hover {{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); }}
+    .card.chartable {{ cursor:pointer; }}
     .card-top {{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }}
     .group-label {{ font-size:11px; text-transform:uppercase; color:#94a3b8; font-weight:700; }}
     .health {{ color:#34d399; background:rgba(52,211,153,.1); border-radius:999px; padding:2px 7px; font-size:10px; font-weight:700; }}
@@ -571,6 +636,8 @@ def render_html(payload: dict[str, Any]) -> str:
     .vip {{ display:inline-block; margin-left:6px; color:#fde68a; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.35); border-radius:4px; padding:1px 5px; font-size:10px; vertical-align:middle; }}
     .value {{ font-size:25px; font-weight:700; margin:0 0 8px; color:#fff; }}
     .change {{ display:flex; gap:6px; align-items:flex-start; color:#94a3b8; font-size:12px; line-height:1.35; }}
+    .chart-hint {{ display:inline-block; margin-top:10px; color:#a5b4fc; font-size:12px; }}
+    .chart-hint.muted {{ color:#64748b; }}
     .source {{ color:#64748b; font-size:12px; margin-top:16px; }}
     p {{ line-height:1.45; }}
     a {{ color:#93c5fd; text-decoration:none; font-size:13px; }}
@@ -582,6 +649,14 @@ def render_html(payload: dict[str, Any]) -> str:
     th {{ color:var(--muted); font-weight:600; background:rgba(255,255,255,.03); }}
     .source-ok {{ color:var(--ok); font-weight:700; }}
     .source-warn {{ color:var(--warn); font-weight:700; }}
+    .modal {{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.72); padding:18px; z-index:50; }}
+    .modal.open {{ display:flex; }}
+    .modal-box {{ width:min(760px,100%); background:#0f1119; border:1px solid var(--line); border-radius:8px; padding:18px; box-shadow:0 22px 80px rgba(0,0,0,.45); }}
+    .modal-head {{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:12px; }}
+    .modal-title {{ margin:0; font-size:18px; }}
+    .modal-close {{ background:rgba(255,255,255,.06); color:#fff; border:1px solid var(--line); border-radius:6px; padding:7px 10px; cursor:pointer; }}
+    .chart-svg {{ width:100%; height:300px; display:block; background:rgba(255,255,255,.025); border:1px solid var(--line); border-radius:8px; }}
+    .chart-meta {{ color:#94a3b8; font-size:12px; margin-top:10px; }}
     @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} }}
   </style>
 </head>
@@ -600,7 +675,21 @@ def render_html(payload: dict[str, Any]) -> str:
   </header>
   <nav class="wrap">{"".join(tabs)}</nav>
   <main class="wrap">{"".join(sections)}<section class="sources"><h2>Nguồn độc lập đang theo dõi</h2>{source_table}</section></main>
+  <div class="modal" id="chartModal" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div>
+          <p class="group-label">Lịch sử tối đa {HISTORY_LIMIT} điểm</p>
+          <h2 class="modal-title" id="chartTitle">Biểu đồ</h2>
+        </div>
+        <button class="modal-close" id="chartClose" type="button">Đóng</button>
+      </div>
+      <svg class="chart-svg" id="chartSvg" viewBox="0 0 720 300" role="img"></svg>
+      <p class="chart-meta" id="chartMeta"></p>
+    </div>
+  </div>
   <script>
+    const chartData = {chart_data_json};
     const tabs = document.querySelectorAll('.tab');
     const panels = document.querySelectorAll('.panel');
     tabs.forEach(tab => tab.addEventListener('click', () => {{
@@ -609,6 +698,40 @@ def render_html(payload: dict[str, Any]) -> str:
       tab.classList.add('active');
       document.getElementById(tab.dataset.tab).classList.add('active');
     }}));
+    const modal = document.getElementById('chartModal');
+    const closeBtn = document.getElementById('chartClose');
+    const title = document.getElementById('chartTitle');
+    const svg = document.getElementById('chartSvg');
+    const meta = document.getElementById('chartMeta');
+    function drawChart(key) {{
+      const item = chartData[key];
+      if (!item || !item.points || item.points.length < 2) return;
+      const pts = item.points.slice(-{HISTORY_LIMIT});
+      const values = pts.map(p => Number(p.value));
+      const min = Math.min(...values);
+      const max = Math.max(...values);
+      const pad = max === min ? Math.max(1, Math.abs(max) * 0.02) : (max - min) * 0.08;
+      const lo = min - pad, hi = max + pad;
+      const x = i => 42 + i * (636 / Math.max(1, pts.length - 1));
+      const y = v => 252 - ((v - lo) / Math.max(0.000001, hi - lo)) * 204;
+      const line = pts.map((p, i) => `${{x(i).toFixed(1)}},${{y(Number(p.value)).toFixed(1)}}`).join(' ');
+      const first = pts[0], last = pts[pts.length - 1];
+      svg.innerHTML = `
+        <line x1="42" y1="252" x2="678" y2="252" stroke="rgba(255,255,255,.16)" />
+        <line x1="42" y1="48" x2="42" y2="252" stroke="rgba(255,255,255,.16)" />
+        <text x="44" y="38" fill="#94a3b8" font-size="12">${{hi.toFixed(2)}}</text>
+        <text x="44" y="276" fill="#94a3b8" font-size="12">${{lo.toFixed(2)}}</text>
+        <polyline points="${{line}}" fill="none" stroke="#818cf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="${{x(pts.length - 1).toFixed(1)}}" cy="${{y(Number(last.value)).toFixed(1)}}" r="4" fill="#34d399" />
+      `;
+      title.textContent = item.name;
+      meta.textContent = `${{pts.length}} điểm · mới nhất: ${{last.value}} ${{item.unit || ''}} · từ ${{first.date.slice(0,10)}} đến ${{last.date.slice(0,10)}}`;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }}
+    document.querySelectorAll('.card.chartable').forEach(card => card.addEventListener('click', () => drawChart(card.dataset.key)));
+    closeBtn.addEventListener('click', () => {{ modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); }});
+    modal.addEventListener('click', event => {{ if (event.target === modal) closeBtn.click(); }});
   </script>
 </body>
 </html>
@@ -637,6 +760,7 @@ def main() -> None:
             "note": "Macro cards without a reliable machine-readable source are marked awaiting_official_source instead of using guessed values.",
         },
         "source_health": sources,
+        "history": history,
         "cards": cards,
     }
 
