@@ -148,6 +148,7 @@ def live_values() -> dict[str, dict[str, Any]]:
                 "value": round(float(vnd), 2),
                 "as_of": rates.get("time_last_update_utc"),
                 "source_quality": "AUTO",
+                "source_live": "Open ER API",
             }
     except (URLError, TimeoutError, OSError, json.JSONDecodeError):
         pass
@@ -160,12 +161,14 @@ def live_values() -> dict[str, dict[str, Any]]:
     }.items():
         value, as_of = latest_stooq(symbol)
         if value is not None:
-            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO"}
+            if key == "us_10y_yield" and value < 1:
+                value = value * 10
+            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO", "source_live": "Stooq"}
 
     for key, symbol in {"gold_world": "xauusd", "fed_policy": "fedfunds"}.items():
         value, as_of = latest_stooq(symbol)
         if value is not None:
-            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO"}
+            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO", "source_live": "Stooq"}
 
     for key, symbol in {
         "gold_world": "GC=F",
@@ -179,9 +182,9 @@ def live_values() -> dict[str, dict[str, Any]]:
             continue
         value, as_of = latest_yahoo(symbol)
         if value is not None:
-            if key == "us_10y_yield":
+            if key == "us_10y_yield" and value > 20:
                 value = value / 10
-            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO"}
+            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO", "source_live": "Yahoo Finance"}
 
     return values
 
@@ -217,7 +220,7 @@ def build_cards(now: datetime) -> list[dict[str, Any]]:
             "unit": spec.unit,
             "status": "available" if available else "awaiting_official_source",
             "signal": signal_for(spec.key, value),
-            "source_primary": spec.source_primary,
+            "source_primary": live.get("source_live", spec.source_primary),
             "source_url": spec.source_url,
             "source_quality": live.get("source_quality", "SOURCE_MONITOR"),
             "as_of": live.get("as_of", now.date().isoformat()),
