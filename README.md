@@ -7,6 +7,9 @@ Auto runner for Vietnamese macro reports.
 - Runs on GitHub Actions every day at 07:30 Asia/Bangkok.
 - Tracks 46 macro and market cards based on the 41-indicator `vimovietnam` structure, with extra market context.
 - Fetches machine-readable daily values for USD/VND, gold, oil, DXY, US 10Y, S&P 500, and VN-Index when public APIs are available.
+- Adds `VIP` labels to monthly/yearly macro indicators.
+- Monitors the five official/free macro sources used by the reference project: PMI, NSO, Customs, VBMA, and VNBA.
+- Parses the first strict NSO monthly indicators automatically, then leaves uncertain indicators as pending rather than guessing.
 - Keeps official macro indicators in `awaiting_official_source` until a reliable parser/source is added, instead of inventing numbers.
 - Generates output files into `output/` and `docs/`.
 - Commits changed output back to the repository.
