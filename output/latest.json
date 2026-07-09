@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-09T20:27:35.854690+00:00",
-  "generated_at_bkk": "2026-07-10T03:27:35.854690+07:00",
+  "generated_at_utc": "2026-07-09T20:35:26.591452+00:00",
+  "generated_at_bkk": "2026-07-10T03:35:26.591452+07:00",
   "coverage": {
     "available_cards": 6,
     "total_cards": 46,
@@ -18,7 +18,7 @@
       "role": "PMI và cấu phần sản xuất",
       "release_lag": "M+1 ngày 1",
       "available": false,
-      "checked_at": "2026-07-09T20:27:41.512934+00:00",
+      "checked_at": "2026-07-09T20:35:31.137156+00:00",
       "error": "HTTP Error 403: Forbidden"
     },
     "nso": {
@@ -27,7 +27,7 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": false,
-      "checked_at": "2026-07-09T20:27:42.578039+00:00",
+      "checked_at": "2026-07-09T20:35:32.451491+00:00",
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
     },
     "customs": {
@@ -36,7 +36,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-07-09T20:27:45.406198+00:00",
+      "checked_at": "2026-07-09T20:35:34.067826+00:00",
       "bytes": 12004
     },
     "vbma": {
@@ -45,7 +45,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-07-09T20:27:47.034774+00:00",
+      "checked_at": "2026-07-09T20:35:35.728718+00:00",
       "bytes": 39667
     },
     "vnba": {
@@ -54,8 +54,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-07-09T20:27:49.611024+00:00",
-      "bytes": 222280
+      "checked_at": "2026-07-09T20:35:38.116988+00:00",
+      "bytes": 211193
     },
     "market": {
       "name": "Public market APIs",
@@ -63,8 +63,80 @@
       "role": "Tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": false,
-      "checked_at": "2026-07-09T20:27:49.733903+00:00",
+      "checked_at": "2026-07-09T20:35:38.205730+00:00",
       "error": "HTTP Error 500: Cannot find server."
+    }
+  },
+  "history": {
+    "series": {
+      "fx_market_usd_vnd": [
+        {
+          "date": "2026-07-09T20:35:26.591452+00:00",
+          "value": 26221.66,
+          "unit": "VND/USD"
+        }
+      ],
+      "gold_world": [
+        {
+          "date": "2026-07-09T20:35:26.591452+00:00",
+          "value": 4131.2998,
+          "unit": "USD/oz"
+        }
+      ],
+      "dxy": [
+        {
+          "date": "2026-07-09T20:35:26.591452+00:00",
+          "value": 100.932,
+          "unit": "điểm"
+        }
+      ],
+      "oil_prices": [
+        {
+          "date": "2026-07-09T20:35:26.591452+00:00",
+          "value": 71.79,
+          "unit": "USD/thùng"
+        }
+      ],
+      "us_10y_yield": [
+        {
+          "date": "2026-07-09T20:35:26.591452+00:00",
+          "value": 4.539,
+          "unit": "%"
+        }
+      ],
+      "global_equities": [
+        {
+          "date": "2026-07-09T20:35:26.591452+00:00",
+          "value": 7543.6401,
+          "unit": "điểm"
+        }
+      ]
+    },
+    "policy": {
+      "retention_max_points": 100,
+      "retention_min_target_points": 30,
+      "stored_keys": [
+        "cpi",
+        "credit",
+        "dxy",
+        "exports",
+        "fdi_disbursed",
+        "fx_central_rate",
+        "fx_market_usd_vnd",
+        "global_equities",
+        "gold_world",
+        "govt_bond_yield",
+        "iip",
+        "imports",
+        "interbank_rate",
+        "oil_prices",
+        "pmi_manufacturing",
+        "retail",
+        "stock_market",
+        "trade_balance",
+        "us_10y_yield"
+      ],
+      "note": "Only important indicators keep history. Normal snapshot data is not retained to avoid duplicate/noisy storage."
     }
   },
   "cards": [
@@ -181,7 +253,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4131.1001,
+      "value": 4131.2998,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -192,7 +264,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4131.1001 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4131.2998 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -265,7 +337,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 100.933,
+      "value": 100.932,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -276,7 +348,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.933 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.932 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
