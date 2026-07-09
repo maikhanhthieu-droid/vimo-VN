@@ -5,6 +5,7 @@ import html
 import json
 import os
 import re
+import ssl
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -177,8 +178,15 @@ SPECS: list[IndicatorSpec] = [
 
 def fetch_text(url: str, timeout: int = 20) -> str:
     request = Request(url, headers={"User-Agent": "vimo-VN/1.0"})
-    with urlopen(request, timeout=timeout) as response:
-        return response.read().decode("utf-8", errors="replace")
+    try:
+        with urlopen(request, timeout=timeout) as response:
+            return response.read().decode("utf-8", errors="replace")
+    except ssl.SSLError:
+        if ".gov.vn" not in url and "vbma.org.vn" not in url and "vnba.org.vn" not in url:
+            raise
+        context = ssl._create_unverified_context()
+        with urlopen(request, timeout=timeout, context=context) as response:
+            return response.read().decode("utf-8", errors="replace")
 
 
 def fetch_json(url: str) -> Any:
@@ -488,29 +496,71 @@ def update_history(cards: list[dict[str, Any]], now: datetime) -> dict[str, Any]
         if card["key"] not in HISTORY_IMPORTANT_KEYS or card["value"] is None:
             continue
         points = series.setdefault(card["key"], [])
-        points = compact_daily_points(points)
-        if points and points[-1].get("date", "")[:10] == stamp[:10]:
-            points[-1] = {"date": stamp, "value": card["value"], "unit": card["unit"]}
+        bucket = history_bucket(card, now)
+        points = compact_bucket_points(points, card)
+        if points and points[-1].get("bucket") == bucket:
+            points[-1] = {"date": stamp, "bucket": bucket, "value": card["value"], "unit": card["unit"]}
         else:
-            points.append({"date": stamp, "value": card["value"], "unit": card["unit"]})
+            points.append({"date": stamp, "bucket": bucket, "value": card["value"], "unit": card["unit"]})
         series[card["key"]] = points[-HISTORY_LIMIT:]
     history["policy"] = {
         "retention_max_points": HISTORY_LIMIT,
         "retention_min_target_points": 30,
         "stored_keys": sorted(HISTORY_IMPORTANT_KEYS),
+        "frequency_rule": {
+            "daily": "one point per day",
+            "monthly_or_yearly_vip": "one point per month/period, not one duplicate point every day",
+            "weekly_snapshot": "one point per ISO week",
+            "event_or_meeting": "one point only when the value changes",
+        },
         "note": "Only important indicators keep history. Normal snapshot data is not retained to avoid duplicate/noisy storage.",
     }
     return history
 
 
-def compact_daily_points(points: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def history_bucket(card: dict[str, Any], now: datetime) -> str:
+    frequency = card.get("frequency", "daily")
+    if frequency in {"monthly", "yearly"} or card.get("vip"):
+        as_of = str(card.get("as_of") or now.date().isoformat())
+        match = re.search(r"(20\d{2})[-/](\d{1,2})", as_of)
+        if match:
+            return f"{match.group(1)}-{int(match.group(2)):02d}"
+        return now.strftime("%Y-%m")
+    if frequency == "weekly_snapshot":
+        year, week, _ = now.isocalendar()
+        return f"{year}-W{week:02d}"
+    if frequency in {"event", "meeting", "daily_monitor"}:
+        return f"value-{card.get('value')}"
+    return now.date().isoformat()
+
+
+def compact_bucket_points(points: list[dict[str, Any]], card: dict[str, Any]) -> list[dict[str, Any]]:
     by_day: dict[str, dict[str, Any]] = {}
     for point in points:
-        day = str(point.get("date", ""))[:10]
-        if not day:
+        bucket = bucket_from_existing_point(point, card)
+        if not bucket:
             continue
-        by_day[day] = point
+        normalized = dict(point)
+        normalized["bucket"] = bucket
+        by_day[bucket] = normalized
     return [by_day[day] for day in sorted(by_day)]
+
+
+def bucket_from_existing_point(point: dict[str, Any], card: dict[str, Any]) -> str:
+    date = str(point.get("date", ""))
+    frequency = card.get("frequency", "daily")
+    if (frequency in {"monthly", "yearly"} or card.get("vip")) and len(date) >= 7:
+        return date[:7]
+    if frequency == "weekly_snapshot" and len(date) >= 10:
+        try:
+            parsed = datetime.fromisoformat(date.replace("Z", "+00:00"))
+            year, week, _ = parsed.isocalendar()
+            return f"{year}-W{week:02d}"
+        except ValueError:
+            return date[:10]
+    if frequency in {"event", "meeting", "daily_monitor"}:
+        return f"value-{point.get('value')}"
+    return date[:10]
 
 def build_frontend_api(payload: dict[str, Any], history: dict[str, Any]) -> None:
     DOCS_API_DIR.mkdir(exist_ok=True)
