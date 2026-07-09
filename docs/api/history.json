@@ -2,42 +2,48 @@
   "series": {
     "fx_market_usd_vnd": [
       {
-        "date": "2026-07-09T20:35:26.591452+00:00",
+        "date": "2026-07-09T20:51:44.770399+00:00",
+        "bucket": "2026-07-09",
         "value": 26221.66,
         "unit": "VND/USD"
       }
     ],
     "gold_world": [
       {
-        "date": "2026-07-09T20:35:26.591452+00:00",
-        "value": 4131.2998,
+        "date": "2026-07-09T20:51:44.770399+00:00",
+        "bucket": "2026-07-09",
+        "value": 4133.7998,
         "unit": "USD/oz"
       }
     ],
     "dxy": [
       {
-        "date": "2026-07-09T20:35:26.591452+00:00",
-        "value": 100.932,
+        "date": "2026-07-09T20:51:44.770399+00:00",
+        "bucket": "2026-07-09",
+        "value": 100.936,
         "unit": "điểm"
       }
     ],
     "oil_prices": [
       {
-        "date": "2026-07-09T20:35:26.591452+00:00",
-        "value": 71.79,
+        "date": "2026-07-09T20:51:44.770399+00:00",
+        "bucket": "2026-07-09",
+        "value": 71.82,
         "unit": "USD/thùng"
       }
     ],
     "us_10y_yield": [
       {
-        "date": "2026-07-09T20:35:26.591452+00:00",
+        "date": "2026-07-09T20:51:44.770399+00:00",
+        "bucket": "2026-07-09",
         "value": 4.539,
         "unit": "%"
       }
     ],
     "global_equities": [
       {
-        "date": "2026-07-09T20:35:26.591452+00:00",
+        "date": "2026-07-09T20:51:44.770399+00:00",
+        "bucket": "2026-07-09",
         "value": 7543.6401,
         "unit": "điểm"
       }
@@ -67,6 +73,12 @@
       "trade_balance",
       "us_10y_yield"
     ],
+    "frequency_rule": {
+      "daily": "one point per day",
+      "monthly_or_yearly_vip": "one point per month/period, not one duplicate point every day",
+      "weekly_snapshot": "one point per ISO week",
+      "event_or_meeting": "one point only when the value changes"
+    },
     "note": "Only important indicators keep history. Normal snapshot data is not retained to avoid duplicate/noisy storage."
   }
 }

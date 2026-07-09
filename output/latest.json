@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-09T20:35:26.591452+00:00",
-  "generated_at_bkk": "2026-07-10T03:35:26.591452+07:00",
+  "generated_at_utc": "2026-07-09T20:51:44.770399+00:00",
+  "generated_at_bkk": "2026-07-10T03:51:44.770399+07:00",
   "coverage": {
     "available_cards": 6,
     "total_cards": 46,
@@ -18,7 +18,7 @@
       "role": "PMI và cấu phần sản xuất",
       "release_lag": "M+1 ngày 1",
       "available": false,
-      "checked_at": "2026-07-09T20:35:31.137156+00:00",
+      "checked_at": "2026-07-09T20:51:50.856382+00:00",
       "error": "HTTP Error 403: Forbidden"
     },
     "nso": {
@@ -27,7 +27,7 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": false,
-      "checked_at": "2026-07-09T20:35:32.451491+00:00",
+      "checked_at": "2026-07-09T20:51:51.744046+00:00",
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
     },
     "customs": {
@@ -36,7 +36,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-07-09T20:35:34.067826+00:00",
+      "checked_at": "2026-07-09T20:51:52.873064+00:00",
       "bytes": 12004
     },
     "vbma": {
@@ -45,7 +45,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-07-09T20:35:35.728718+00:00",
+      "checked_at": "2026-07-09T20:51:53.847251+00:00",
       "bytes": 39667
     },
     "vnba": {
@@ -54,8 +54,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-07-09T20:35:38.116988+00:00",
-      "bytes": 211193
+      "checked_at": "2026-07-09T20:51:56.271899+00:00",
+      "bytes": 222280
     },
     "market": {
       "name": "Public market APIs",
@@ -63,7 +63,7 @@
       "role": "Tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": false,
-      "checked_at": "2026-07-09T20:35:38.205730+00:00",
+      "checked_at": "2026-07-09T20:51:56.359600+00:00",
       "error": "HTTP Error 500: Cannot find server."
     }
   },
@@ -71,42 +71,48 @@
     "series": {
       "fx_market_usd_vnd": [
         {
-          "date": "2026-07-09T20:35:26.591452+00:00",
+          "date": "2026-07-09T20:51:44.770399+00:00",
+          "bucket": "2026-07-09",
           "value": 26221.66,
           "unit": "VND/USD"
         }
       ],
       "gold_world": [
         {
-          "date": "2026-07-09T20:35:26.591452+00:00",
-          "value": 4131.2998,
+          "date": "2026-07-09T20:51:44.770399+00:00",
+          "bucket": "2026-07-09",
+          "value": 4133.7998,
           "unit": "USD/oz"
         }
       ],
       "dxy": [
         {
-          "date": "2026-07-09T20:35:26.591452+00:00",
-          "value": 100.932,
+          "date": "2026-07-09T20:51:44.770399+00:00",
+          "bucket": "2026-07-09",
+          "value": 100.936,
           "unit": "điểm"
         }
       ],
       "oil_prices": [
         {
-          "date": "2026-07-09T20:35:26.591452+00:00",
-          "value": 71.79,
+          "date": "2026-07-09T20:51:44.770399+00:00",
+          "bucket": "2026-07-09",
+          "value": 71.82,
           "unit": "USD/thùng"
         }
       ],
       "us_10y_yield": [
         {
-          "date": "2026-07-09T20:35:26.591452+00:00",
+          "date": "2026-07-09T20:51:44.770399+00:00",
+          "bucket": "2026-07-09",
           "value": 4.539,
           "unit": "%"
         }
       ],
       "global_equities": [
         {
-          "date": "2026-07-09T20:35:26.591452+00:00",
+          "date": "2026-07-09T20:51:44.770399+00:00",
+          "bucket": "2026-07-09",
           "value": 7543.6401,
           "unit": "điểm"
         }
@@ -136,6 +142,12 @@
         "trade_balance",
         "us_10y_yield"
       ],
+      "frequency_rule": {
+        "daily": "one point per day",
+        "monthly_or_yearly_vip": "one point per month/period, not one duplicate point every day",
+        "weekly_snapshot": "one point per ISO week",
+        "event_or_meeting": "one point only when the value changes"
+      },
       "note": "Only important indicators keep history. Normal snapshot data is not retained to avoid duplicate/noisy storage."
     }
   },
@@ -253,7 +265,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4131.2998,
+      "value": 4133.7998,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -264,7 +276,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4131.2998 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4133.7998 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -337,7 +349,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 100.932,
+      "value": 100.936,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -348,7 +360,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.932 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.936 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -442,7 +454,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 71.79,
+      "value": 71.82,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -453,7 +465,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 71.79 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 71.82 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
