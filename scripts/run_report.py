@@ -18,6 +18,7 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "output"
 DOCS_DIR = ROOT / "docs"
+DOCS_API_DIR = DOCS_DIR / "api"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
 
 
@@ -389,6 +390,22 @@ def signal_for(key: str, value: Any) -> str:
         return "YELLOW"
     return "GREEN"
 
+def direction_for(key: str, value: Any) -> str:
+    if value is None:
+        return "flat"
+    if key in {"dxy", "oil_prices", "us_10y_yield", "interbank_rate"}:
+        return "up"
+    if key in {"cpi"}:
+        return "down"
+    return "flat"
+
+
+def card_change_label(card: dict[str, Any]) -> str:
+    health = "OK" if card["value"] is not None else "CHECK"
+    if card.get("vip"):
+        return f'VIP · {card["frequency"]} · {card["source_quality"]} · {health}'
+    return f'{card["frequency"]} · {card["source_quality"]} · {health}'
+
 
 def build_cards(now: datetime) -> list[dict[str, Any]]:
     values = live_values()
@@ -415,6 +432,7 @@ def build_cards(now: datetime) -> list[dict[str, Any]]:
             "as_of": live.get("as_of", now.date().isoformat()),
             "frequency": VIP_FREQUENCIES.get(spec.key, "monitor"),
             "vip": VIP_FREQUENCIES.get(spec.key) in {"monthly", "yearly"},
+            "direction": direction_for(spec.key, value),
             "narrative": (
                 f"{spec.name_vi} hiện có dữ liệu tự động từ {spec.source_primary}. "
                 f"Giá trị mới nhất là {value} {spec.unit}, dùng để theo dõi {spec.why_it_matters.lower()}"
@@ -447,6 +465,31 @@ def update_history(cards: list[dict[str, Any]], now: datetime) -> dict[str, Any]
         series[card["key"]] = points[-60:]
     return history
 
+def build_frontend_api(payload: dict[str, Any], history: dict[str, Any]) -> None:
+    DOCS_API_DIR.mkdir(exist_ok=True)
+    indicators = []
+    for card in payload["cards"]:
+        if card["value"] is None:
+            continue
+        indicators.append(
+            {
+                "id": card["key"],
+                "group": card["group"],
+                "name": card["name_vi"],
+                "value": card["value"],
+                "unit": card["unit"],
+                "change_label": card_change_label(card),
+                "direction": card["direction"],
+                "source": card["source_primary"],
+                "schedule": card["frequency"],
+                "health": "OK",
+                "vip": card["vip"],
+                "updated_at": card["as_of"],
+            }
+        )
+    (DOCS_API_DIR / "indicators.json").write_text(json.dumps(indicators, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (DOCS_API_DIR / "history.json").write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
 
 def render_html(payload: dict[str, Any]) -> str:
     cards = payload["cards"]
@@ -460,20 +503,26 @@ def render_html(payload: dict[str, Any]) -> str:
         group_cards = [c for c in cards if c["group"] == group_key]
         tabs.append(f'<button class="tab{active}" data-tab="{group_key}">{html.escape(group_name)} <span>{len(group_cards)}</span></button>')
         card_html = []
-        for card in group_cards:
+        visible_cards = [c for c in group_cards if c["value"] is not None]
+        if not visible_cards:
+            card_html.append('<div class="empty">Chưa có dữ liệu tự động chắc chắn cho nhóm này. Nguồn vẫn được kiểm tra mỗi sáng.</div>')
+        for card in visible_cards:
             value = "Chờ nguồn" if card["value"] is None else f'{card["value"]} {html.escape(card["unit"])}'
-            status = "pending" if card["value"] is None else "ok"
+            status = "ok"
             vip = '<b class="vip">VIP</b>' if card.get("vip") else ""
+            health = "OK" if card["value"] is not None else "CHECK"
+            icon = "↗" if card["direction"] == "up" else "↘" if card["direction"] == "down" else "–"
             card_html.append(
                 f"""
         <article class="card {status}">
           <div class="card-top">
-            <h3>{html.escape(card["name_vi"])} {vip}</h3>
-            <span>{html.escape(card["frequency"])} · {html.escape(card["source_quality"])}</span>
+            <span class="group-label">{html.escape(card["group_name"])}</span>
+            <span class="health">{health}</span>
           </div>
+          <h3>{html.escape(card["name_vi"])} {vip}</h3>
           <p class="value">{value}</p>
-          <p>{html.escape(card["narrative"])}</p>
-          <a href="{html.escape(card["source_url"])}">Nguồn: {html.escape(card["source_primary"])}</a>
+          <p class="change"><span>{icon}</span>{html.escape(card_change_label(card))}</p>
+          <p class="source">Nguồn: <a href="{html.escape(card["source_url"])}">{html.escape(card["source_primary"])}</a></p>
         </article>"""
             )
         sections.append(f'<section id="{group_key}" class="panel{active}">' + "\n".join(card_html) + "</section>")
@@ -494,38 +543,43 @@ def render_html(payload: dict[str, Any]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>vimo-VN Macro Monitor</title>
   <style>
-    :root {{ color-scheme: light; --ink:#172033; --muted:#667085; --line:#d8dee8; --ok:#0f8b6f; --warn:#b7791f; --bg:#f6f8fb; }}
+    :root {{ color-scheme: dark; --ink:#f8fafc; --muted:#94a3b8; --line:rgba(255,255,255,.09); --ok:#34d399; --warn:#f59e0b; --bg:#090b10; --panel:#0f1119; }}
     * {{ box-sizing: border-box; }}
-    body {{ margin:0; font-family: Arial, sans-serif; background:var(--bg); color:var(--ink); }}
-    header {{ padding:28px 20px 18px; background:#ffffff; border-bottom:1px solid var(--line); }}
-    .wrap {{ max-width:1180px; margin:0 auto; }}
+    body {{ margin:0; font-family: Arial, sans-serif; background:radial-gradient(circle at 20% 0%, rgba(79,70,229,.2), transparent 28%), var(--bg); color:var(--ink); }}
+    header {{ padding:30px 20px 10px; }}
+    .wrap {{ max-width:1060px; margin:0 auto; }}
+    .eyebrow {{ display:inline-flex; gap:8px; align-items:center; margin-bottom:10px; }}
+    .pill {{ font-size:11px; font-weight:700; color:#c7d2fe; background:rgba(99,102,241,.16); border:1px solid rgba(129,140,248,.28); border-radius:999px; padding:5px 9px; }}
     h1 {{ margin:0 0 8px; font-size:28px; letter-spacing:0; }}
     .meta {{ color:var(--muted); margin:0; }}
     .summary {{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:18px; }}
-    .metric {{ background:#f9fbfd; border:1px solid var(--line); border-radius:8px; padding:14px; }}
-    .metric strong {{ display:block; font-size:24px; }}
-    nav {{ display:flex; gap:8px; flex-wrap:wrap; padding:16px 20px; background:#fff; border-bottom:1px solid var(--line); }}
-    .tab {{ border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:6px; padding:9px 12px; cursor:pointer; }}
-    .tab.active {{ border-color:#2563eb; color:#1d4ed8; }}
+    .metric {{ background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:8px; padding:14px; }}
+    .metric strong {{ display:block; font-size:24px; color:#fff; }}
+    nav {{ display:flex; gap:8px; flex-wrap:wrap; padding:16px 20px; }}
+    .tab {{ border:1px solid var(--line); background:rgba(255,255,255,.03); color:var(--muted); border-radius:8px; padding:9px 12px; cursor:pointer; }}
+    .tab.active {{ border-color:rgba(129,140,248,.65); color:#fff; background:rgba(99,102,241,.16); }}
     .tab span {{ color:var(--muted); }}
     main {{ padding:20px; }}
     .panel {{ display:none; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }}
     .panel.active {{ display:grid; }}
-    .card {{ background:#fff; border:1px solid var(--line); border-radius:8px; padding:16px; min-height:210px; }}
-    .card.ok {{ border-top:4px solid var(--ok); }}
-    .card.pending {{ border-top:4px solid var(--warn); }}
+    .card {{ text-align:left; background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:8px; padding:18px; min-height:178px; transition:background .2s,border-color .2s; }}
+    .card:hover {{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); }}
     .card-top {{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }}
-    h3 {{ margin:0; font-size:16px; }}
-    .card-top span {{ font-size:12px; color:var(--muted); white-space:nowrap; }}
-    .vip {{ display:inline-block; margin-left:6px; color:#7c2d12; background:#ffedd5; border:1px solid #fed7aa; border-radius:4px; padding:1px 5px; font-size:11px; vertical-align:middle; }}
-    .value {{ font-size:24px; font-weight:700; margin:16px 0 10px; }}
+    .group-label {{ font-size:11px; text-transform:uppercase; color:#94a3b8; font-weight:700; }}
+    .health {{ color:#34d399; background:rgba(52,211,153,.1); border-radius:999px; padding:2px 7px; font-size:10px; font-weight:700; }}
+    h3 {{ margin:14px 0 6px; font-size:15px; color:#cbd5e1; font-weight:600; }}
+    .vip {{ display:inline-block; margin-left:6px; color:#fde68a; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.35); border-radius:4px; padding:1px 5px; font-size:10px; vertical-align:middle; }}
+    .value {{ font-size:25px; font-weight:700; margin:0 0 8px; color:#fff; }}
+    .change {{ display:flex; gap:6px; align-items:flex-start; color:#94a3b8; font-size:12px; line-height:1.35; }}
+    .source {{ color:#64748b; font-size:12px; margin-top:16px; }}
     p {{ line-height:1.45; }}
-    a {{ color:#1d4ed8; text-decoration:none; font-size:13px; }}
-    .sources {{ margin-top:22px; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; }}
+    a {{ color:#93c5fd; text-decoration:none; font-size:13px; }}
+    .empty {{ grid-column:1/-1; color:#94a3b8; border:1px dashed var(--line); border-radius:8px; padding:18px; background:rgba(255,255,255,.025); }}
+    .sources {{ margin-top:22px; background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:8px; overflow:hidden; }}
     .sources h2 {{ margin:0; padding:14px 16px; font-size:18px; border-bottom:1px solid var(--line); }}
     table {{ width:100%; border-collapse:collapse; font-size:14px; }}
     th,td {{ text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }}
-    th {{ color:var(--muted); font-weight:600; background:#f9fbfd; }}
+    th {{ color:var(--muted); font-weight:600; background:rgba(255,255,255,.03); }}
     .source-ok {{ color:var(--ok); font-weight:700; }}
     .source-warn {{ color:var(--warn); font-weight:700; }}
     @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} }}
@@ -534,8 +588,9 @@ def render_html(payload: dict[str, Any]) -> str:
 <body>
   <header>
     <div class="wrap">
-      <h1>vimo-VN Macro Monitor</h1>
-      <p class="meta">Cập nhật: {generated}. Tự động chạy mỗi sáng qua GitHub Actions.</p>
+      <div class="eyebrow"><span class="pill">Báo cáo vĩ mô Việt Nam</span><span class="meta">Cập nhật: {generated}</span></div>
+      <h1>Tình hình Kinh tế · Tiền tệ · Tài chính</h1>
+      <p class="meta">Tự động quét mỗi sáng qua GitHub Actions. Card chỉ hiện khi có số liệu máy đọc được.</p>
       <div class="summary">
         <div class="metric"><strong>{available}/{total}</strong><span>card có dữ liệu tự động</span></div>
         <div class="metric"><strong>{payload["coverage"]["source_count"]}</strong><span>nguồn theo dõi</span></div>
@@ -587,6 +642,7 @@ def main() -> None:
 
     (OUTPUT_DIR / "latest.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    build_frontend_api(payload, history)
     (DOCS_DIR / "index.html").write_text(render_html(payload), encoding="utf-8")
 
     vip_available = payload["coverage"]["vip_available"]
