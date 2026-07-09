@@ -46,7 +46,8 @@ jobs:
             exit 0
           fi
 
-          MESSAGE="vimo-VN GitHub Actions: ${JOB_STATUS}%0AReport: ${PAGES_URL}%0ARun: ${RUN_URL}"
+          SUMMARY="$(cat output/telegram_summary.txt 2>/dev/null || echo "vimo-VN run finished.")"
+          MESSAGE="${SUMMARY}%0AStatus: ${JOB_STATUS}%0AReport: ${PAGES_URL}%0ARun: ${RUN_URL}"
           curl -sS -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
             -d chat_id="${TELEGRAM_CHAT_ID}" \
             -d text="${MESSAGE}" \
