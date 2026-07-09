@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-09T19:24:57.543760+00:00",
-  "generated_at_bkk": "2026-07-10T02:24:57.543760+07:00",
+  "generated_at_utc": "2026-07-09T20:26:17.977367+00:00",
+  "generated_at_bkk": "2026-07-10T03:26:17.977367+07:00",
   "coverage": {
     "available_cards": 6,
     "total_cards": 46,
@@ -18,7 +18,7 @@
       "role": "PMI và cấu phần sản xuất",
       "release_lag": "M+1 ngày 1",
       "available": false,
-      "checked_at": "2026-07-09T19:25:01.724511+00:00",
+      "checked_at": "2026-07-09T20:26:23.166108+00:00",
       "error": "HTTP Error 403: Forbidden"
     },
     "nso": {
@@ -27,7 +27,7 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": false,
-      "checked_at": "2026-07-09T19:25:03.015947+00:00",
+      "checked_at": "2026-07-09T20:26:24.600087+00:00",
       "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1010)>"
     },
     "customs": {
@@ -36,7 +36,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-07-09T19:25:04.602436+00:00",
+      "checked_at": "2026-07-09T20:26:30.160352+00:00",
       "bytes": 12004
     },
     "vbma": {
@@ -45,7 +45,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-07-09T19:25:06.063582+00:00",
+      "checked_at": "2026-07-09T20:26:31.398931+00:00",
       "bytes": 39667
     },
     "vnba": {
@@ -54,7 +54,7 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-07-09T19:25:13.009560+00:00",
+      "checked_at": "2026-07-09T20:26:33.351520+00:00",
       "bytes": 222280
     },
     "market": {
@@ -63,7 +63,7 @@
       "role": "Tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": false,
-      "checked_at": "2026-07-09T19:25:13.092044+00:00",
+      "checked_at": "2026-07-09T20:26:33.437626+00:00",
       "error": "HTTP Error 500: Cannot find server."
     }
   },
@@ -86,6 +86,7 @@
       "as_of": "2026-07-09",
       "frequency": "weekly_snapshot",
       "vip": false,
+      "direction": "flat",
       "narrative": "Lãi suất liên ngân hàng qua đêm đang chờ bản công bố chính thức từ VBMA/VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -106,6 +107,7 @@
       "as_of": "2026-07-09",
       "frequency": "daily",
       "vip": false,
+      "direction": "flat",
       "narrative": "Tỷ giá trung tâm đang chờ bản công bố chính thức từ SBV. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -126,6 +128,7 @@
       "as_of": "Thu, 09 Jul 2026 00:02:32 +0000",
       "frequency": "daily",
       "vip": false,
+      "direction": "flat",
       "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 26221.66 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
     },
     {
@@ -146,6 +149,7 @@
       "as_of": "2026-07-09",
       "frequency": "daily",
       "vip": false,
+      "direction": "flat",
       "narrative": "VN-Index đang chờ bản công bố chính thức từ Stooq/Yahoo. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -166,6 +170,7 @@
       "as_of": "2026-07-09",
       "frequency": "weekly_snapshot",
       "vip": false,
+      "direction": "flat",
       "narrative": "Lợi suất TPCP Việt Nam 10Y đang chờ bản công bố chính thức từ VBMA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -176,7 +181,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4134.1001,
+      "value": 4130.7002,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -186,7 +191,8 @@
       "as_of": "2026-07-09",
       "frequency": "daily",
       "vip": false,
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4134.1001 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "direction": "flat",
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4130.7002 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -206,6 +212,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Tăng trưởng tín dụng đang chờ bản công bố chính thức từ SBV/VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -226,6 +233,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Lãi suất huy động đang chờ bản công bố chính thức từ VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -246,6 +254,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Lãi suất cho vay đang chờ bản công bố chính thức từ VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -256,7 +265,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 100.921,
+      "value": 100.941,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -266,7 +275,8 @@
       "as_of": "2026-07-09",
       "frequency": "daily",
       "vip": false,
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.921 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "direction": "up",
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.941 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -286,6 +296,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Phát hành TPDN đang chờ bản công bố chính thức từ VBMA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -306,6 +317,7 @@
       "as_of": "2026-07-09",
       "frequency": "weekly_snapshot",
       "vip": false,
+      "direction": "flat",
       "narrative": "Phát hành TPCP đang chờ bản công bố chính thức từ VBMA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -326,6 +338,7 @@
       "as_of": "2026-07-09",
       "frequency": "meeting",
       "vip": false,
+      "direction": "flat",
       "narrative": "Fed policy rate đang chờ bản công bố chính thức từ FRED. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -346,6 +359,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Kinh tế Mỹ đang chờ bản công bố chính thức từ FRED/BEA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -356,7 +370,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 71.61,
+      "value": 71.78,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -366,7 +380,8 @@
       "as_of": "2026-07-09",
       "frequency": "daily",
       "vip": false,
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 71.61 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "direction": "up",
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 71.78 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
@@ -386,6 +401,7 @@
       "as_of": "2026-07-09",
       "frequency": "daily_monitor",
       "vip": false,
+      "direction": "flat",
       "narrative": "Rủi ro địa chính trị đang chờ bản công bố chính thức từ News. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -406,6 +422,7 @@
       "as_of": "2026-07-09",
       "frequency": "daily",
       "vip": false,
+      "direction": "up",
       "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.539 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
     },
     {
@@ -426,6 +443,7 @@
       "as_of": "2026-07-09",
       "frequency": "meeting",
       "vip": false,
+      "direction": "flat",
       "narrative": "ECB/Eurozone đang chờ bản công bố chính thức từ ECB. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -446,6 +464,7 @@
       "as_of": "2026-07-09",
       "frequency": "meeting",
       "vip": false,
+      "direction": "flat",
       "narrative": "BOJ/Japan đang chờ bản công bố chính thức từ BOJ. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -466,6 +485,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Kinh tế Trung Quốc đang chờ bản công bố chính thức từ NBS China. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -486,6 +506,7 @@
       "as_of": "2026-07-09",
       "frequency": "event",
       "vip": false,
+      "direction": "flat",
       "narrative": "Chính sách Việt Nam đang chờ bản công bố chính thức từ Government/SBV. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -496,7 +517,7 @@
       "priority": 10,
       "definition": "S&P 500 hoặc chỉ số chứng khoán lớn.",
       "why_it_matters": "Thị trường toàn cầu ảnh hưởng khẩu vị rủi ro.",
-      "value": 7538.7798,
+      "value": 7543.6401,
       "unit": "điểm",
       "status": "available",
       "signal": "GREEN",
@@ -506,7 +527,8 @@
       "as_of": "2026-07-09",
       "frequency": "daily",
       "vip": false,
-      "narrative": "Chứng khoán toàn cầu hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 7538.7798 điểm, dùng để theo dõi thị trường toàn cầu ảnh hưởng khẩu vị rủi ro."
+      "direction": "flat",
+      "narrative": "Chứng khoán toàn cầu hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 7543.6401 điểm, dùng để theo dõi thị trường toàn cầu ảnh hưởng khẩu vị rủi ro."
     },
     {
       "key": "cpi",
@@ -526,6 +548,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "CPI đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -546,6 +569,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "PMI sản xuất đang chờ bản công bố chính thức từ S&P Global. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -566,6 +590,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "IIP đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -586,6 +611,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Cán cân thương mại đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -606,6 +632,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Xuất khẩu đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -626,6 +653,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Nhập khẩu đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -646,6 +674,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "FDI giải ngân đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -666,6 +695,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "FDI đăng ký đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -686,6 +716,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Bán lẻ hàng hóa và dịch vụ đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -706,6 +737,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Doanh nghiệp thành lập mới đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -726,6 +758,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Doanh nghiệp rút lui đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -746,6 +779,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Khách quốc tế đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -766,6 +800,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Đầu tư công đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -786,6 +821,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Ngân sách nhà nước đang chờ bản công bố chính thức từ MOF/NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -806,6 +842,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "PMI cấu phần đang chờ bản công bố chính thức từ S&P Global. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -826,6 +863,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "XNK theo khu vực đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -846,6 +884,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "XNK theo thị trường đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -866,6 +905,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "XNK theo mặt hàng đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -886,6 +926,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "FDI theo ngành đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -906,6 +947,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Nông nghiệp đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -926,6 +968,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Xuất khẩu công nghiệp đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -946,6 +989,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Năng lượng trong nước đang chờ bản công bố chính thức từ NSO/MOIT. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -966,6 +1010,7 @@
       "as_of": "2026-07-09",
       "frequency": "monthly",
       "vip": true,
+      "direction": "flat",
       "narrative": "Bất động sản đang chờ bản công bố chính thức từ NSO/VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     },
     {
@@ -986,6 +1031,7 @@
       "as_of": "2026-07-09",
       "frequency": "weekly_snapshot",
       "vip": false,
+      "direction": "flat",
       "narrative": "Thanh khoản ngân hàng đang chờ bản công bố chính thức từ VNBA/VBMA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
     }
   ]

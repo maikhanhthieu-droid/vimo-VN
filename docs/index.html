@@ -5,38 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>vimo-VN Macro Monitor</title>
   <style>
-    :root { color-scheme: light; --ink:#172033; --muted:#667085; --line:#d8dee8; --ok:#0f8b6f; --warn:#b7791f; --bg:#f6f8fb; }
+    :root { color-scheme: dark; --ink:#f8fafc; --muted:#94a3b8; --line:rgba(255,255,255,.09); --ok:#34d399; --warn:#f59e0b; --bg:#090b10; --panel:#0f1119; }
     * { box-sizing: border-box; }
-    body { margin:0; font-family: Arial, sans-serif; background:var(--bg); color:var(--ink); }
-    header { padding:28px 20px 18px; background:#ffffff; border-bottom:1px solid var(--line); }
-    .wrap { max-width:1180px; margin:0 auto; }
+    body { margin:0; font-family: Arial, sans-serif; background:radial-gradient(circle at 20% 0%, rgba(79,70,229,.2), transparent 28%), var(--bg); color:var(--ink); }
+    header { padding:30px 20px 10px; }
+    .wrap { max-width:1060px; margin:0 auto; }
+    .eyebrow { display:inline-flex; gap:8px; align-items:center; margin-bottom:10px; }
+    .pill { font-size:11px; font-weight:700; color:#c7d2fe; background:rgba(99,102,241,.16); border:1px solid rgba(129,140,248,.28); border-radius:999px; padding:5px 9px; }
     h1 { margin:0 0 8px; font-size:28px; letter-spacing:0; }
     .meta { color:var(--muted); margin:0; }
     .summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:18px; }
-    .metric { background:#f9fbfd; border:1px solid var(--line); border-radius:8px; padding:14px; }
-    .metric strong { display:block; font-size:24px; }
-    nav { display:flex; gap:8px; flex-wrap:wrap; padding:16px 20px; background:#fff; border-bottom:1px solid var(--line); }
-    .tab { border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:6px; padding:9px 12px; cursor:pointer; }
-    .tab.active { border-color:#2563eb; color:#1d4ed8; }
+    .metric { background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:8px; padding:14px; }
+    .metric strong { display:block; font-size:24px; color:#fff; }
+    nav { display:flex; gap:8px; flex-wrap:wrap; padding:16px 20px; }
+    .tab { border:1px solid var(--line); background:rgba(255,255,255,.03); color:var(--muted); border-radius:8px; padding:9px 12px; cursor:pointer; }
+    .tab.active { border-color:rgba(129,140,248,.65); color:#fff; background:rgba(99,102,241,.16); }
     .tab span { color:var(--muted); }
     main { padding:20px; }
     .panel { display:none; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
     .panel.active { display:grid; }
-    .card { background:#fff; border:1px solid var(--line); border-radius:8px; padding:16px; min-height:210px; }
-    .card.ok { border-top:4px solid var(--ok); }
-    .card.pending { border-top:4px solid var(--warn); }
+    .card { text-align:left; background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:8px; padding:18px; min-height:178px; transition:background .2s,border-color .2s; }
+    .card:hover { background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); }
     .card-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
-    h3 { margin:0; font-size:16px; }
-    .card-top span { font-size:12px; color:var(--muted); white-space:nowrap; }
-    .vip { display:inline-block; margin-left:6px; color:#7c2d12; background:#ffedd5; border:1px solid #fed7aa; border-radius:4px; padding:1px 5px; font-size:11px; vertical-align:middle; }
-    .value { font-size:24px; font-weight:700; margin:16px 0 10px; }
+    .group-label { font-size:11px; text-transform:uppercase; color:#94a3b8; font-weight:700; }
+    .health { color:#34d399; background:rgba(52,211,153,.1); border-radius:999px; padding:2px 7px; font-size:10px; font-weight:700; }
+    h3 { margin:14px 0 6px; font-size:15px; color:#cbd5e1; font-weight:600; }
+    .vip { display:inline-block; margin-left:6px; color:#fde68a; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.35); border-radius:4px; padding:1px 5px; font-size:10px; vertical-align:middle; }
+    .value { font-size:25px; font-weight:700; margin:0 0 8px; color:#fff; }
+    .change { display:flex; gap:6px; align-items:flex-start; color:#94a3b8; font-size:12px; line-height:1.35; }
+    .source { color:#64748b; font-size:12px; margin-top:16px; }
     p { line-height:1.45; }
-    a { color:#1d4ed8; text-decoration:none; font-size:13px; }
-    .sources { margin-top:22px; background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+    a { color:#93c5fd; text-decoration:none; font-size:13px; }
+    .empty { grid-column:1/-1; color:#94a3b8; border:1px dashed var(--line); border-radius:8px; padding:18px; background:rgba(255,255,255,.025); }
+    .sources { margin-top:22px; background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
     .sources h2 { margin:0; padding:14px 16px; font-size:18px; border-bottom:1px solid var(--line); }
     table { width:100%; border-collapse:collapse; font-size:14px; }
     th,td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
-    th { color:var(--muted); font-weight:600; background:#f9fbfd; }
+    th { color:var(--muted); font-weight:600; background:rgba(255,255,255,.03); }
     .source-ok { color:var(--ok); font-weight:700; }
     .source-warn { color:var(--warn); font-weight:700; }
     @media (max-width:720px) { .summary { grid-template-columns:1fr; } h1 { font-size:23px; } }
@@ -45,8 +50,9 @@
 <body>
   <header>
     <div class="wrap">
-      <h1>vimo-VN Macro Monitor</h1>
-      <p class="meta">Cập nhật: 2026-07-10T02:24:57.543760+07:00. Tự động chạy mỗi sáng qua GitHub Actions.</p>
+      <div class="eyebrow"><span class="pill">Báo cáo vĩ mô Việt Nam</span><span class="meta">Cập nhật: 2026-07-10T03:26:17.977367+07:00</span></div>
+      <h1>Tình hình Kinh tế · Tiền tệ · Tài chính</h1>
+      <p class="meta">Tự động quét mỗi sáng qua GitHub Actions. Card chỉ hiện khi có số liệu máy đọc được.</p>
       <div class="summary">
         <div class="metric"><strong>6/46</strong><span>card có dữ liệu tự động</span></div>
         <div class="metric"><strong>22</strong><span>nguồn theo dõi</span></div>
@@ -55,462 +61,70 @@
     </div>
   </header>
   <nav class="wrap"><button class="tab active" data-tab="real_economy">Kinh tế thực <span>14</span></button><button class="tab" data-tab="financial">Tiền tệ - tài chính <span>12</span></button><button class="tab" data-tab="sector">Ngành - cấu phần <span>10</span></button><button class="tab" data-tab="global">Bối cảnh toàn cầu <span>10</span></button></nav>
-  <main class="wrap"><section id="real_economy" class="panel active">
-        <article class="card pending">
-          <div class="card-top">
-            <h3>CPI <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>CPI đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>PMI sản xuất <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>PMI sản xuất đang chờ bản công bố chính thức từ S&amp;P Global. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.pmi.spglobal.com/">Nguồn: S&amp;P Global</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>IIP <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>IIP đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Cán cân thương mại <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Cán cân thương mại đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.customs.gov.vn/">Nguồn: Customs</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Xuất khẩu <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Xuất khẩu đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.customs.gov.vn/">Nguồn: Customs</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Nhập khẩu <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Nhập khẩu đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.customs.gov.vn/">Nguồn: Customs</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>FDI giải ngân <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>FDI giải ngân đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>FDI đăng ký <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>FDI đăng ký đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Bán lẻ hàng hóa và dịch vụ <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Bán lẻ hàng hóa và dịch vụ đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Doanh nghiệp thành lập mới <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Doanh nghiệp thành lập mới đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Doanh nghiệp rút lui <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Doanh nghiệp rút lui đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Khách quốc tế <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Khách quốc tế đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Đầu tư công <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Đầu tư công đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Ngân sách nhà nước <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Ngân sách nhà nước đang chờ bản công bố chính thức từ MOF/NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.mof.gov.vn/">Nguồn: MOF/NSO</a>
-        </article></section><section id="financial" class="panel">
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Lãi suất liên ngân hàng qua đêm </h3>
-            <span>weekly_snapshot · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Lãi suất liên ngân hàng qua đêm đang chờ bản công bố chính thức từ VBMA/VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://vbma.org.vn/">Nguồn: VBMA/VNBA</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Tỷ giá trung tâm </h3>
-            <span>daily · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Tỷ giá trung tâm đang chờ bản công bố chính thức từ SBV. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.sbv.gov.vn/">Nguồn: SBV</a>
-        </article>
-
+  <main class="wrap"><section id="real_economy" class="panel active"><div class="empty">Chưa có dữ liệu tự động chắc chắn cho nhóm này. Nguồn vẫn được kiểm tra mỗi sáng.</div></section><section id="financial" class="panel">
         <article class="card ok">
           <div class="card-top">
-            <h3>USD/VND thị trường </h3>
-            <span>daily · AUTO</span>
+            <span class="group-label">Tiền tệ - tài chính</span>
+            <span class="health">OK</span>
           </div>
+          <h3>USD/VND thị trường </h3>
           <p class="value">26221.66 VND/USD</p>
-          <p>USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 26221.66 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày.</p>
-          <a href="https://open.er-api.com/">Nguồn: Open ER API</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>VN-Index </h3>
-            <span>daily · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>VN-Index đang chờ bản công bố chính thức từ Stooq/Yahoo. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://stooq.com/">Nguồn: Stooq/Yahoo</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Lợi suất TPCP Việt Nam 10Y </h3>
-            <span>weekly_snapshot · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Lợi suất TPCP Việt Nam 10Y đang chờ bản công bố chính thức từ VBMA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://vbma.org.vn/">Nguồn: VBMA</a>
+          <p class="change"><span>–</span>daily · AUTO · OK</p>
+          <p class="source">Nguồn: <a href="https://open.er-api.com/">Open ER API</a></p>
         </article>
 
         <article class="card ok">
           <div class="card-top">
-            <h3>Vàng thế giới </h3>
-            <span>daily · AUTO</span>
+            <span class="group-label">Tiền tệ - tài chính</span>
+            <span class="health">OK</span>
           </div>
-          <p class="value">4134.1001 USD/oz</p>
-          <p>Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4134.1001 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.</p>
-          <a href="https://api.metals.live/">Nguồn: Yahoo Finance</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Tăng trưởng tín dụng <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Tăng trưởng tín dụng đang chờ bản công bố chính thức từ SBV/VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.sbv.gov.vn/">Nguồn: SBV/VNBA</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Lãi suất huy động <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Lãi suất huy động đang chờ bản công bố chính thức từ VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://vnba.org.vn/">Nguồn: VNBA</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Lãi suất cho vay <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Lãi suất cho vay đang chờ bản công bố chính thức từ VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://vnba.org.vn/">Nguồn: VNBA</a>
+          <h3>Vàng thế giới </h3>
+          <p class="value">4130.7002 USD/oz</p>
+          <p class="change"><span>–</span>daily · AUTO · OK</p>
+          <p class="source">Nguồn: <a href="https://api.metals.live/">Yahoo Finance</a></p>
         </article>
 
         <article class="card ok">
           <div class="card-top">
-            <h3>DXY </h3>
-            <span>daily · AUTO</span>
+            <span class="group-label">Tiền tệ - tài chính</span>
+            <span class="health">OK</span>
           </div>
-          <p class="value">100.921 điểm</p>
-          <p>DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.921 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá.</p>
-          <a href="https://stooq.com/">Nguồn: Yahoo Finance</a>
-        </article>
-
-        <article class="card pending">
+          <h3>DXY </h3>
+          <p class="value">100.941 điểm</p>
+          <p class="change"><span>↗</span>daily · AUTO · OK</p>
+          <p class="source">Nguồn: <a href="https://stooq.com/">Yahoo Finance</a></p>
+        </article></section><section id="sector" class="panel"><div class="empty">Chưa có dữ liệu tự động chắc chắn cho nhóm này. Nguồn vẫn được kiểm tra mỗi sáng.</div></section><section id="global" class="panel">
+        <article class="card ok">
           <div class="card-top">
-            <h3>Phát hành TPDN <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
           </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Phát hành TPDN đang chờ bản công bố chính thức từ VBMA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://vbma.org.vn/">Nguồn: VBMA</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Phát hành TPCP </h3>
-            <span>weekly_snapshot · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Phát hành TPCP đang chờ bản công bố chính thức từ VBMA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://vbma.org.vn/">Nguồn: VBMA</a>
-        </article></section><section id="sector" class="panel">
-        <article class="card pending">
-          <div class="card-top">
-            <h3>PMI cấu phần <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>PMI cấu phần đang chờ bản công bố chính thức từ S&amp;P Global. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.pmi.spglobal.com/">Nguồn: S&amp;P Global</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>XNK theo khu vực <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>XNK theo khu vực đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.customs.gov.vn/">Nguồn: Customs</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>XNK theo thị trường <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>XNK theo thị trường đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.customs.gov.vn/">Nguồn: Customs</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>XNK theo mặt hàng <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>XNK theo mặt hàng đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.customs.gov.vn/">Nguồn: Customs</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>FDI theo ngành <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>FDI theo ngành đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Nông nghiệp <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Nông nghiệp đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.nso.gov.vn/">Nguồn: NSO</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Xuất khẩu công nghiệp <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Xuất khẩu công nghiệp đang chờ bản công bố chính thức từ Customs. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.customs.gov.vn/">Nguồn: Customs</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Năng lượng trong nước <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Năng lượng trong nước đang chờ bản công bố chính thức từ NSO/MOIT. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://moit.gov.vn/">Nguồn: NSO/MOIT</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Bất động sản <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Bất động sản đang chờ bản công bố chính thức từ NSO/VNBA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://vnba.org.vn/">Nguồn: NSO/VNBA</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Thanh khoản ngân hàng </h3>
-            <span>weekly_snapshot · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Thanh khoản ngân hàng đang chờ bản công bố chính thức từ VNBA/VBMA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://vnba.org.vn/">Nguồn: VNBA/VBMA</a>
-        </article></section><section id="global" class="panel">
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Fed policy rate </h3>
-            <span>meeting · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Fed policy rate đang chờ bản công bố chính thức từ FRED. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://fred.stlouisfed.org/">Nguồn: FRED</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Kinh tế Mỹ <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Kinh tế Mỹ đang chờ bản công bố chính thức từ FRED/BEA. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://fred.stlouisfed.org/">Nguồn: FRED/BEA</a>
+          <h3>Giá dầu WTI </h3>
+          <p class="value">71.78 USD/thùng</p>
+          <p class="change"><span>↗</span>daily · AUTO · OK</p>
+          <p class="source">Nguồn: <a href="https://stooq.com/">Yahoo Finance</a></p>
         </article>
 
         <article class="card ok">
           <div class="card-top">
-            <h3>Giá dầu WTI </h3>
-            <span>daily · AUTO</span>
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
           </div>
-          <p class="value">71.61 USD/thùng</p>
-          <p>Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 71.61 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát.</p>
-          <a href="https://stooq.com/">Nguồn: Yahoo Finance</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Rủi ro địa chính trị </h3>
-            <span>daily_monitor · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Rủi ro địa chính trị đang chờ bản công bố chính thức từ News. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.reuters.com/">Nguồn: News</a>
-        </article>
-
-        <article class="card ok">
-          <div class="card-top">
-            <h3>US 10Y yield </h3>
-            <span>daily · AUTO</span>
-          </div>
+          <h3>US 10Y yield </h3>
           <p class="value">4.539 %</p>
-          <p>US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.539 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu.</p>
-          <a href="https://stooq.com/">Nguồn: Yahoo Finance</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>ECB/Eurozone </h3>
-            <span>meeting · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>ECB/Eurozone đang chờ bản công bố chính thức từ ECB. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.ecb.europa.eu/">Nguồn: ECB</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>BOJ/Japan </h3>
-            <span>meeting · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>BOJ/Japan đang chờ bản công bố chính thức từ BOJ. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.boj.or.jp/">Nguồn: BOJ</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Kinh tế Trung Quốc <b class="vip">VIP</b></h3>
-            <span>monthly · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Kinh tế Trung Quốc đang chờ bản công bố chính thức từ NBS China. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://www.stats.gov.cn/">Nguồn: NBS China</a>
-        </article>
-
-        <article class="card pending">
-          <div class="card-top">
-            <h3>Chính sách Việt Nam </h3>
-            <span>event · SOURCE_MONITOR</span>
-          </div>
-          <p class="value">Chờ nguồn</p>
-          <p>Chính sách Việt Nam đang chờ bản công bố chính thức từ Government/SBV. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn.</p>
-          <a href="https://chinhphu.vn/">Nguồn: Government/SBV</a>
+          <p class="change"><span>↗</span>daily · AUTO · OK</p>
+          <p class="source">Nguồn: <a href="https://stooq.com/">Yahoo Finance</a></p>
         </article>
 
         <article class="card ok">
           <div class="card-top">
-            <h3>Chứng khoán toàn cầu </h3>
-            <span>daily · AUTO</span>
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
           </div>
-          <p class="value">7538.7798 điểm</p>
-          <p>Chứng khoán toàn cầu hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 7538.7798 điểm, dùng để theo dõi thị trường toàn cầu ảnh hưởng khẩu vị rủi ro.</p>
-          <a href="https://stooq.com/">Nguồn: Yahoo Finance</a>
+          <h3>Chứng khoán toàn cầu </h3>
+          <p class="value">7543.6401 điểm</p>
+          <p class="change"><span>–</span>daily · AUTO · OK</p>
+          <p class="source">Nguồn: <a href="https://stooq.com/">Yahoo Finance</a></p>
         </article></section><section class="sources"><h2>Nguồn độc lập đang theo dõi</h2><table><thead><tr><th>Nguồn</th><th>Vai trò</th><th>Lịch</th><th>Health</th></tr></thead><tbody><tr><td>S&amp;P Global PMI</td><td>PMI và cấu phần sản xuất</td><td>M+1 ngày 1</td><td class="source-warn">CHECK</td></tr><tr><td>NSO/GSO Việt Nam</td><td>CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch</td><td>M+1 ngày 3-7</td><td class="source-warn">CHECK</td></tr><tr><td>Tổng cục Hải quan</td><td>Xuất nhập khẩu chính thức</td><td>M+1 ngày 10-15</td><td class="source-ok">OK</td></tr><tr><td>VBMA</td><td>Liên ngân hàng, TPCP, TPDN tuần</td><td>hàng tuần</td><td class="source-ok">OK</td></tr><tr><td>VNBA</td><td>Bản tin tiền tệ tài chính tháng</td><td>M+1 ngày 11-13</td><td class="source-ok">OK</td></tr><tr><td>Public market APIs</td><td>Tỷ giá, vàng, dầu, DXY, US10Y</td><td>daily</td><td class="source-warn">CHECK</td></tr></tbody></table></section></main>
   <script>
     const tabs = document.querySelectorAll('.tab');
