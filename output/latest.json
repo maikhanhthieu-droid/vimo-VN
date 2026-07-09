@@ -1,12 +1,12 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-09T19:11:50.303933+00:00",
-  "generated_at_bkk": "2026-07-10T02:11:50.303933+07:00",
+  "generated_at_utc": "2026-07-09T19:13:41.024550+00:00",
+  "generated_at_bkk": "2026-07-10T02:13:41.024550+07:00",
   "coverage": {
     "available_cards": 6,
     "total_cards": 46,
-    "source_count": 23,
+    "source_count": 22,
     "note": "Macro cards without a reliable machine-readable source are marked awaiting_official_source instead of using guessed values."
   },
   "cards": [
@@ -108,15 +108,15 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4135.2002,
+      "value": 4134.5,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
-      "source_primary": "Metals.live",
+      "source_primary": "Yahoo Finance",
       "source_url": "https://api.metals.live/",
       "source_quality": "AUTO",
       "as_of": "2026-07-09",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4135.2002 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4134.5 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -180,15 +180,15 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 100.906,
+      "value": 100.91,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
-      "source_primary": "Stooq",
+      "source_primary": "Yahoo Finance",
       "source_url": "https://stooq.com/",
       "source_quality": "AUTO",
       "as_of": "2026-07-09",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.906 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.91 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -274,7 +274,7 @@
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
-      "source_primary": "Stooq",
+      "source_primary": "Yahoo Finance",
       "source_url": "https://stooq.com/",
       "source_quality": "AUTO",
       "as_of": "2026-07-09",
@@ -306,15 +306,15 @@
       "priority": 5,
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
       "why_it_matters": "US10Y là benchmark định giá tài sản toàn cầu.",
-      "value": 0.4537,
+      "value": 4.537,
       "unit": "%",
       "status": "available",
       "signal": "YELLOW",
-      "source_primary": "Stooq",
+      "source_primary": "Yahoo Finance",
       "source_url": "https://stooq.com/",
       "source_quality": "AUTO",
       "as_of": "2026-07-09",
-      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 0.4537 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
+      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.537 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
     },
     {
       "key": "ecb_eurozone",
@@ -396,15 +396,15 @@
       "priority": 10,
       "definition": "S&P 500 hoặc chỉ số chứng khoán lớn.",
       "why_it_matters": "Thị trường toàn cầu ảnh hưởng khẩu vị rủi ro.",
-      "value": 7535.6201,
+      "value": 7535.8198,
       "unit": "điểm",
       "status": "available",
       "signal": "GREEN",
-      "source_primary": "Stooq",
+      "source_primary": "Yahoo Finance",
       "source_url": "https://stooq.com/",
       "source_quality": "AUTO",
       "as_of": "2026-07-09",
-      "narrative": "Chứng khoán toàn cầu hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 7535.6201 điểm, dùng để theo dõi thị trường toàn cầu ảnh hưởng khẩu vị rủi ro."
+      "narrative": "Chứng khoán toàn cầu hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 7535.8198 điểm, dùng để theo dõi thị trường toàn cầu ảnh hưởng khẩu vị rủi ro."
     },
     {
       "key": "cpi",
