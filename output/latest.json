@@ -2,6 +2,6 @@
   "project": "vimo-VN",
   "status": "ok",
   "data_found": true,
-  "generated_at_utc": "2026-07-09T18:59:18.968914+00:00",
+  "generated_at_utc": "2026-07-09T19:02:45.109578+00:00",
   "note": "This is the first automated GitHub Actions output. Replace scripts/run_report.py with the real macro-data pipeline when ready."
 }
