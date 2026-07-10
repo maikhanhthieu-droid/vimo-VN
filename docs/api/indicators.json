@@ -17,7 +17,7 @@
     "id": "gold_world",
     "group": "financial",
     "name": "Vàng thế giới",
-    "value": 4129.1001,
+    "value": 4107.7998,
     "unit": "USD/oz",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -31,7 +31,7 @@
     "id": "dxy",
     "group": "financial",
     "name": "DXY",
-    "value": 100.724,
+    "value": 100.882,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -45,7 +45,7 @@
     "id": "oil_prices",
     "group": "global",
     "name": "Giá dầu WTI",
-    "value": 72.5,
+    "value": 71.68,
     "unit": "USD/thùng",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -59,7 +59,7 @@
     "id": "us_10y_yield",
     "group": "global",
     "name": "US 10Y yield",
-    "value": 4.539,
+    "value": 4.549,
     "unit": "%",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -67,13 +67,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-09"
+    "updated_at": "2026-07-10"
   },
   {
     "id": "global_equities",
     "group": "global",
     "name": "Chứng khoán toàn cầu",
-    "value": 7543.6401,
+    "value": 7553.23,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -81,6 +81,6 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-09"
+    "updated_at": "2026-07-10"
   }
 ]
