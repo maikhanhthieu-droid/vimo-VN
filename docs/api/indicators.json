@@ -3,7 +3,7 @@
     "id": "fx_market_usd_vnd",
     "group": "financial",
     "name": "USD/VND thị trường",
-    "value": 26214.47,
+    "value": 26191.27,
     "unit": "VND/USD",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -11,13 +11,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "Sun, 12 Jul 2026 00:02:31 +0000"
+    "updated_at": "Mon, 13 Jul 2026 00:02:31 +0000"
   },
   {
     "id": "gold_world",
     "group": "financial",
     "name": "Vàng thế giới",
-    "value": 4113.7002,
+    "value": 4104.1001,
     "unit": "USD/oz",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
