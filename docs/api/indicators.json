@@ -3,7 +3,7 @@
     "id": "fx_market_usd_vnd",
     "group": "financial",
     "name": "USD/VND thị trường",
-    "value": 26205.97,
+    "value": 26176.94,
     "unit": "VND/USD",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -11,13 +11,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "Wed, 15 Jul 2026 00:02:32 +0000"
+    "updated_at": "Thu, 16 Jul 2026 00:02:31 +0000"
   },
   {
     "id": "gold_world",
     "group": "financial",
     "name": "Vàng thế giới",
-    "value": 4035.8,
+    "value": 4039.3,
     "unit": "USD/oz",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -25,13 +25,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-15"
+    "updated_at": "2026-07-16"
   },
   {
     "id": "dxy",
     "group": "financial",
     "name": "DXY",
-    "value": 100.827,
+    "value": 100.486,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -39,13 +39,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-15"
+    "updated_at": "2026-07-16"
   },
   {
     "id": "oil_prices",
     "group": "global",
     "name": "Giá dầu WTI",
-    "value": 80.08,
+    "value": 79.39,
     "unit": "USD/thùng",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -53,13 +53,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-15"
+    "updated_at": "2026-07-16"
   },
   {
     "id": "us_10y_yield",
     "group": "global",
     "name": "US 10Y yield",
-    "value": 4.585,
+    "value": 4.545,
     "unit": "%",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -67,13 +67,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-14"
+    "updated_at": "2026-07-15"
   },
   {
     "id": "global_equities",
     "group": "global",
     "name": "Chứng khoán toàn cầu",
-    "value": 7543.5898,
+    "value": 7572.3999,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -81,6 +81,6 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-14"
+    "updated_at": "2026-07-15"
   }
 ]
