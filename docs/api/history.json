@@ -168,7 +168,7 @@
       {
         "date": "2026-07-16",
         "bucket": "2026-07-16",
-        "value": 4009.0,
+        "value": 4003.7,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -194,7 +194,7 @@
         "unit": "% YTD",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -268,7 +268,7 @@
       {
         "date": "2026-07-16",
         "bucket": "2026-07-16",
-        "value": 100.7,
+        "value": 100.729,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -380,7 +380,7 @@
       {
         "date": "2026-07-16",
         "bucket": "2026-07-16",
-        "value": 78.82,
+        "value": 79.06,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -446,7 +446,7 @@
       {
         "date": "2026-07-16",
         "bucket": "2026-07-16",
-        "value": 4.571,
+        "value": 4.573,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
@@ -530,7 +530,7 @@
         "unit": "% YoY khu vực I",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -552,7 +552,7 @@
         "unit": "% YoY",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -596,7 +596,7 @@
         "unit": "% YoY",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -618,7 +618,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": "Nhập siêu mang dấu âm; xuất siêu mang dấu dương."
       }
     ],
@@ -640,7 +640,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -662,7 +662,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -684,7 +684,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -706,7 +706,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -728,7 +728,7 @@
         "unit": "% YoY lũy kế kỳ báo cáo",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -740,7 +740,7 @@
         "unit": "doanh nghiệp (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -784,7 +784,7 @@
         "unit": "triệu lượt (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
@@ -806,7 +806,7 @@
         "unit": "% YoY vốn khu vực Nhà nước",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch."
       }
     ],
@@ -828,7 +828,7 @@
         "unit": "nghìn tỷ VND thu NSNN",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null
       }
     ],
