@@ -214,6 +214,7 @@ class RunReportTests(unittest.TestCase):
                 "cpi": {
                     "value": 3.2,
                     "unit": "% YoY",
+                    "as_of": "2026-06-30",
                     "first_seen_at": "2026-06-01T00:00:00+00:00",
                     "last_changed_at": "2026-06-01T00:00:00+00:00",
                 }
@@ -243,6 +244,111 @@ class RunReportTests(unittest.TestCase):
             analysis = run_report.analyze_indicator_changes(memory, cards, now)
         self.assertEqual(analysis["status"], "waiting_for_api_key")
         self.assertEqual(memory["events"][0]["ai_status"], "pending")
+
+    def test_memory_does_not_send_same_period_corrections_to_ai(self) -> None:
+        original = {
+            "version": 1,
+            "states": {
+                "cpi": {
+                    "value": 4.69,
+                    "unit": "% YoY",
+                    "as_of": "2026-06-30",
+                    "first_seen_at": "2026-07-01T00:00:00+00:00",
+                    "last_changed_at": "2026-07-01T00:00:00+00:00",
+                }
+            },
+            "events": [],
+        }
+        cards = [
+            {
+                "key": "cpi",
+                "name_vi": "CPI",
+                "value": 4.7,
+                "unit": "% YoY",
+                "as_of": "2026-06-30",
+                "source_primary": "NSO",
+                "source_url": "https://www.nso.gov.vn/",
+                "source_quality": "AUTO_NSO_PARSE",
+            }
+        ]
+        memory = run_report.update_indicator_memory(cards, datetime(2026, 7, 17, tzinfo=timezone.utc), original)
+        self.assertEqual(memory["events"], [])
+        self.assertEqual(memory["states"]["cpi"]["value"], 4.7)
+        self.assertIn("last_same_period_correction_at", memory["states"]["cpi"])
+
+    def test_memory_keeps_latest_value_when_a_source_falls_back_to_an_older_period(self) -> None:
+        original = {
+            "version": 1,
+            "states": {
+                "cpi": {
+                    "value": 4.69,
+                    "unit": "% YoY",
+                    "as_of": "2026-06-30",
+                    "first_seen_at": "2026-07-01T00:00:00+00:00",
+                    "last_changed_at": "2026-07-01T00:00:00+00:00",
+                }
+            },
+            "events": [],
+        }
+        cards = [
+            {
+                "key": "cpi",
+                "name_vi": "CPI",
+                "value": 5.6,
+                "unit": "% YoY",
+                "as_of": "2026-05-31",
+                "source_primary": "NSO",
+                "source_url": "https://www.nso.gov.vn/",
+                "source_quality": "STALE_CACHE",
+            }
+        ]
+        memory = run_report.update_indicator_memory(cards, datetime(2026, 7, 17, tzinfo=timezone.utc), original)
+        self.assertEqual(memory["events"], [])
+        self.assertEqual(memory["states"]["cpi"]["value"], 4.69)
+        self.assertEqual(memory["states"]["cpi"]["as_of"], "2026-06-30")
+
+    def test_memory_detects_a_new_period_even_when_value_is_unchanged(self) -> None:
+        original = {
+            "version": 1,
+            "states": {
+                "cpi": {
+                    "value": 4.69,
+                    "unit": "% YoY",
+                    "as_of": "2026-06-30",
+                    "first_seen_at": "2026-07-01T00:00:00+00:00",
+                    "last_changed_at": "2026-07-01T00:00:00+00:00",
+                }
+            },
+            "events": [],
+        }
+        cards = [
+            {
+                "key": "cpi",
+                "name_vi": "CPI",
+                "value": 4.69,
+                "unit": "% YoY",
+                "as_of": "2026-07-31",
+                "source_primary": "NSO",
+                "source_url": "https://www.nso.gov.vn/",
+                "source_quality": "AUTO_NSO_PARSE",
+            }
+        ]
+        memory = run_report.update_indicator_memory(cards, datetime(2026, 8, 3, tzinfo=timezone.utc), original)
+        self.assertEqual(memory["events"][0]["event_type"], "new_period_same_value")
+        self.assertEqual(memory["events"][0]["previous_as_of"], "2026-06-30")
+
+    def test_ai_queue_keeps_only_the_latest_pending_event_per_indicator(self) -> None:
+        memory = {
+            "events": [
+                {"id": "cpi:1", "key": "cpi", "detected_at": "2026-07-01", "ai_status": "pending"},
+                {"id": "cpi:2", "key": "cpi", "detected_at": "2026-08-01", "ai_status": "pending"},
+                {"id": "pmi:1", "key": "pmi_manufacturing", "detected_at": "2026-08-01", "ai_status": "pending"},
+            ]
+        }
+        pending = run_report.latest_pending_events(memory)
+        self.assertEqual({event["id"] for event in pending}, {"cpi:2", "pmi:1"})
+        self.assertEqual(memory["events"][0]["ai_status"], "superseded")
+        self.assertEqual(memory["events"][0]["superseded_by"], "cpi:2")
 
     def test_history_is_preserved_while_an_official_source_is_unavailable(self) -> None:
         original_history_file = run_report.HISTORY_FILE
@@ -323,9 +429,10 @@ class RunReportTests(unittest.TestCase):
             {"key": "oil_prices", "value": 100.0},
         ]
         strategy = run_report.build_macro_strategy(cards, {"status": "waiting_for_api_key"})
-        self.assertEqual(strategy["stance"], "NẮM GIỮ / TÍCH LŨY CHỌN LỌC")
+        self.assertEqual(strategy["stance"], "NẮM GIỮ / CHỜ XÁC NHẬN")
         self.assertIn("không phải khuyến nghị", strategy["disclaimer"].lower())
         self.assertTrue(strategy["base_case"])
+        self.assertIn("PMI 51.8", strategy["neutral_drivers"][0])
 
     def test_render_exposes_all_inspectable_cards_and_strategy_tab(self) -> None:
         cards = [
@@ -442,15 +549,22 @@ class RunReportTests(unittest.TestCase):
             ],
         }
         now = datetime(2026, 8, 3, tzinfo=timezone.utc)
+        cards = [
+            {"key": "cpi", "name_vi": "CPI", "value": 3.5, "unit": "% YoY", "as_of": "2026-07-31"},
+            {"key": "pmi_manufacturing", "name_vi": "PMI", "value": 51.8, "unit": "điểm", "as_of": "2026-07-31"},
+        ]
         with patch.dict(os.environ, {"GEMINI_API_KEY": "test-secret"}, clear=True):
             with patch.dict(sys.modules, {"google": fake_google}):
-                analysis = run_report.analyze_indicator_changes(memory, [], now)
+                analysis = run_report.analyze_indicator_changes(memory, cards, now)
 
         self.assertEqual(analysis["status"], "success")
         self.assertEqual(memory["events"][0]["ai_status"], "analyzed")
         self.assertEqual(analysis["analysis_data"]["indicators"][0]["forecast_1m"], 3.4)
         self.assertEqual(calls[0]["tools"], [{"type": "google_search"}])
         self.assertEqual(calls[0]["generation_config"]["thinking_level"], "high")
+        self.assertEqual(calls[0]["generation_config"]["max_output_tokens"], 4096)
+        self.assertIn('"key": "cpi"', calls[0]["input"])
+        self.assertNotIn('"key": "pmi_manufacturing"', calls[0]["input"])
 
 
 if __name__ == "__main__":

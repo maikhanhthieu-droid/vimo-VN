@@ -111,7 +111,7 @@ SOURCE_REGISTRY = {
 
 HISTORY_LIMIT = 100
 MEMORY_EVENT_LIMIT = 500
-GEMINI_EVENT_BATCH_LIMIT = 20
+GEMINI_EVENT_BATCH_LIMIT = 8
 NON_CACHEABLE_FREQUENCIES = {"daily", "daily_monitor"}
 TLS_FALLBACK_HOSTS = {"nso.gov.vn", "www.nso.gov.vn", "vbma.org.vn", "www.vbma.org.vn"}
 HOST_REFERERS = {
@@ -1228,6 +1228,49 @@ def memory_state_from_card(card: dict[str, Any], now_iso: str, previous: dict[st
     }
 
 
+def is_newer_data_period(previous_as_of: Any, current_as_of: Any) -> bool:
+    if not previous_as_of or not current_as_of:
+        return False
+    return normalized_data_date(current_as_of) > normalized_data_date(previous_as_of)
+
+
+def memory_change_event(
+    card: dict[str, Any],
+    previous: dict[str, Any] | None,
+    now_iso: str,
+    event_type: str,
+) -> dict[str, Any]:
+    old_value = previous.get("value") if previous else None
+    new_value = card.get("value")
+    same_basis = previous is None or str(previous.get("unit") or "") == str(card.get("unit") or "")
+    absolute_change = None
+    percent_change = None
+    if same_basis and numeric_value(old_value) is not None and numeric_value(new_value) is not None:
+        absolute_change = round(float(new_value) - float(old_value), 8)
+        if float(old_value) != 0:
+            percent_change = round(absolute_change / abs(float(old_value)) * 100, 6)
+    return {
+        "id": f'{card["key"]}:{now_iso}',
+        "key": str(card["key"]),
+        "name_vi": card.get("name_vi"),
+        "event_type": event_type,
+        "detected_at": now_iso,
+        "previous_value": old_value,
+        "current_value": new_value,
+        "absolute_change": absolute_change,
+        "percent_change": percent_change,
+        "previous_unit": previous.get("unit") if previous else None,
+        "unit": card.get("unit"),
+        "previous_as_of": previous.get("as_of") if previous else None,
+        "as_of": card.get("as_of"),
+        "source_primary": card.get("source_primary"),
+        "source_url": card.get("source_url"),
+        "source_quality": card.get("source_quality"),
+        "source_note": card.get("source_note"),
+        "ai_status": "pending",
+    }
+
+
 def update_indicator_memory(
     cards: list[dict[str, Any]],
     now: datetime,
@@ -1252,59 +1295,23 @@ def update_indicator_memory(
         previous = states.get(key)
         current = memory_state_from_card(card, now_iso, previous)
 
-        if previous is not None and not values_equal(previous.get("value"), card["value"]):
+        value_changed = previous is not None and not values_equal(previous.get("value"), card["value"])
+        period_advanced = previous is not None and is_newer_data_period(previous.get("as_of"), card.get("as_of"))
+
+        if value_changed and period_advanced:
             current["last_changed_at"] = now_iso
-            old_value = previous.get("value")
-            new_value = card["value"]
             same_basis = str(previous.get("unit") or "") == str(card.get("unit") or "")
-            absolute_change = None
-            percent_change = None
-            if same_basis and isinstance(old_value, (int, float)) and isinstance(new_value, (int, float)):
-                absolute_change = round(float(new_value) - float(old_value), 8)
-                if float(old_value) != 0:
-                    percent_change = round(absolute_change / abs(float(old_value)) * 100, 6)
-            events.append(
-                {
-                    "id": f"{key}:{now_iso}",
-                    "key": key,
-                    "name_vi": card.get("name_vi"),
-                    "event_type": "change" if same_basis else "measurement_basis_change",
-                    "detected_at": now_iso,
-                    "previous_value": old_value,
-                    "current_value": new_value,
-                    "absolute_change": absolute_change,
-                    "percent_change": percent_change,
-                    "previous_unit": previous.get("unit"),
-                    "unit": card.get("unit"),
-                    "as_of": card.get("as_of"),
-                    "source_primary": card.get("source_primary"),
-                    "source_url": card.get("source_url"),
-                    "source_quality": card.get("source_quality"),
-                    "source_note": card.get("source_note"),
-                    "ai_status": "pending",
-                }
-            )
+            events.append(memory_change_event(card, previous, now_iso, "change" if same_basis else "measurement_basis_change"))
+        elif value_changed:
+            if previous.get("as_of") and card.get("as_of") and normalized_data_date(card.get("as_of")) < normalized_data_date(previous.get("as_of")):
+                current = {**previous, "last_seen_at": now_iso}
+            else:
+                current["last_changed_at"] = now_iso
+                current["last_same_period_correction_at"] = now_iso
+        elif period_advanced:
+            events.append(memory_change_event(card, previous, now_iso, "new_period_same_value"))
         elif previous is None and not bootstrap:
-            events.append(
-                {
-                    "id": f"{key}:{now_iso}",
-                    "key": key,
-                    "name_vi": card.get("name_vi"),
-                    "event_type": "new_data",
-                    "detected_at": now_iso,
-                    "previous_value": None,
-                    "current_value": card["value"],
-                    "absolute_change": None,
-                    "percent_change": None,
-                    "unit": card.get("unit"),
-                    "as_of": card.get("as_of"),
-                    "source_primary": card.get("source_primary"),
-                    "source_url": card.get("source_url"),
-                    "source_quality": card.get("source_quality"),
-                    "source_note": card.get("source_note"),
-                    "ai_status": "pending",
-                }
-            )
+            events.append(memory_change_event(card, None, now_iso, "new_data"))
         states[key] = current
 
     memory["events"] = events[-MEMORY_EVENT_LIMIT:]
@@ -1339,12 +1346,28 @@ def extract_json_object(text: str) -> dict[str, Any] | None:
     return parsed if isinstance(parsed, dict) else None
 
 
+def latest_pending_events(memory: dict[str, Any]) -> list[dict[str, Any]]:
+    latest_by_key: dict[str, dict[str, Any]] = {}
+    for event in memory.get("events", []):
+        if event.get("ai_status") != "pending":
+            continue
+        key = str(event.get("key") or "")
+        if not key:
+            continue
+        previous_pending = latest_by_key.get(key)
+        if previous_pending is not None:
+            previous_pending["ai_status"] = "superseded"
+            previous_pending["superseded_by"] = event.get("id")
+        latest_by_key[key] = event
+    return sorted(latest_by_key.values(), key=lambda event: str(event.get("detected_at") or ""))
+
+
 def analyze_indicator_changes(
     memory: dict[str, Any],
     cards: list[dict[str, Any]],
     now: datetime,
 ) -> dict[str, Any]:
-    pending = [event for event in memory.get("events", []) if event.get("ai_status") == "pending"]
+    pending = latest_pending_events(memory)
     model = os.environ.get("GEMINI_MODEL") or "models/gemini-3-flash-preview"
     if not pending:
         previous = load_previous_gemini_analysis()
@@ -1369,6 +1392,7 @@ def analyze_indicator_changes(
         }
 
     selected = pending[:GEMINI_EVENT_BATCH_LIMIT]
+    selected_keys = {str(event.get("key")) for event in selected}
     context = [
         {
             "key": card["key"],
@@ -1382,24 +1406,22 @@ def analyze_indicator_changes(
             "source_note": card.get("source_note"),
         }
         for card in cards
-        if card.get("value") is not None
+        if card.get("value") is not None and str(card.get("key")) in selected_keys
     ]
     prompt = f"""
 Bạn là chuyên gia phân tích kinh tế Việt Nam. Dữ liệu trong CHANGE_EVENTS và CURRENT_CONTEXT là
 dữ liệu đầu vào đã được hệ thống thu thập; không được sửa số, tự điền số, hay biến kịch bản thành sự thật.
 Hãy dùng Google Search để tìm nguyên nhân từ nguồn chính thống hoặc báo chí uy tín.
 
+Yêu cầu giọng điệu đầu tư trung lập và thận trọng:
+- Không dùng ngôn ngữ hô hào, giật gân hoặc mặc định chỉ số tăng là tốt cho cổ phiếu.
+- Nêu cả tác động thuận lợi và bất lợi; ưu tiên rủi ro, độ trễ và điều kiện cần xác nhận.
+- Không suy rộng từ một chỉ số sang toàn thị trường. Không đưa nhận định mua/bán tổng thể.
+- Chỉ phân tích các key có trong CHANGE_EVENTS. Dữ liệu không đổi đã được hệ thống giữ lại và không gửi lại để tiết kiệm token.
+
 Chỉ trả về một JSON object hợp lệ, không dùng Markdown, theo đúng cấu trúc:
 {{
   "summary_vi": "tóm tắt tối đa 80 từ",
-  "portfolio_note": {{
-    "stance": "một trong: TÍCH LŨY TỪNG PHẦN | NẮM GIỮ / TÍCH LŨY CHỌN LỌC | NẮM GIỮ / HẠN CHẾ MUA ĐUỔI | GIẢM TỶ TRỌNG RỦI RO",
-    "reason_short": "lý do tối đa 60 từ",
-    "base_case": "kịch bản cơ sở 1-3 tháng",
-    "bull_case": "kịch bản tích cực 1-3 tháng",
-    "bear_case": "kịch bản tiêu cực 1-3 tháng",
-    "confidence": "LOW | MEDIUM | HIGH"
-  }},
   "indicators": [
     {{
       "key": "đúng key đầu vào",
@@ -1415,7 +1437,8 @@ Chỉ trả về một JSON object hợp lệ, không dùng Markdown, theo đún
 
 forecast_1m và forecast_3m chỉ được là số hoặc null. Mỗi biến động phải nhắc đúng giá trị cũ/mới trong
 reason_short, tách suy luận khỏi sự kiện, và có URL nguồn trực tiếp. Không có bằng chứng thì dùng null và
-nói rõ "chưa đủ bằng chứng". Đây là phân tích tham khảo chung, không phải lời khuyên đầu tư cá nhân.
+nói rõ "chưa đủ bằng chứng". Dự báo phải có thiên kiến trung lập, không lạc quan hóa. Đây là phân tích
+tham khảo chung, không phải lời khuyên đầu tư cá nhân.
 
 CHANGE_EVENTS:
 {json.dumps(selected, ensure_ascii=False, indent=2)}
@@ -1433,9 +1456,9 @@ CURRENT_CONTEXT:
             input=prompt,
             tools=[{"type": "google_search"}],
             generation_config={
-                "temperature": 0.2,
-                "max_output_tokens": 8192,
-                "top_p": 0.95,
+                "temperature": 0.1,
+                "max_output_tokens": 4096,
+                "top_p": 0.9,
                 "thinking_level": "high",
             },
         )
@@ -1676,26 +1699,50 @@ def build_macro_strategy(cards: list[dict[str, Any]], gemini_analysis: dict[str,
     values = {str(card["key"]): numeric_value(card.get("value")) for card in cards}
     positive: list[str] = []
     negative: list[str] = []
+    neutral: list[str] = []
     score = 0
 
-    if values.get("pmi_manufacturing") is not None and values["pmi_manufacturing"] >= 50:
-        score += 1
-        positive.append(f"PMI {values['pmi_manufacturing']:g} trên ngưỡng mở rộng 50")
-    if values.get("iip") is not None and values["iip"] > 0:
-        score += 1
-        positive.append(f"IIP tăng {values['iip']:g}% YoY")
-    if values.get("retail") is not None and values["retail"] > 0:
-        score += 1
-        positive.append(f"Bán lẻ tăng {values['retail']:g}% YoY")
-    if values.get("credit") is not None and 4 <= values["credit"] <= 12:
-        score += 1
-        positive.append(f"Tín dụng tăng {values['credit']:g}% YTD, hỗ trợ thanh khoản kinh tế")
+    if values.get("pmi_manufacturing") is not None:
+        if values["pmi_manufacturing"] >= 52:
+            score += 1
+            positive.append(f"PMI {values['pmi_manufacturing']:g} cho thấy mở rộng tương đối rõ")
+        elif values["pmi_manufacturing"] < 50:
+            score -= 1
+            negative.append(f"PMI {values['pmi_manufacturing']:g} dưới ngưỡng 50")
+        else:
+            neutral.append(f"PMI {values['pmi_manufacturing']:g} chỉ nhỉnh hơn ngưỡng 50, cần thêm kỳ xác nhận")
+    if values.get("iip") is not None:
+        if values["iip"] >= 8:
+            score += 1
+            positive.append(f"IIP tăng {values['iip']:g}% YoY")
+        elif values["iip"] < 4:
+            score -= 1
+            negative.append(f"IIP chỉ tăng {values['iip']:g}% YoY")
+    if values.get("retail") is not None:
+        if values["retail"] >= 10:
+            score += 1
+            positive.append(f"Bán lẻ tăng {values['retail']:g}% YoY")
+        elif values["retail"] < 5:
+            score -= 1
+            negative.append(f"Bán lẻ chỉ tăng {values['retail']:g}% YoY")
+    if values.get("credit") is not None:
+        if 4 <= values["credit"] <= 10:
+            neutral.append(f"Tín dụng tăng {values['credit']:g}% YTD; chưa đủ để kết luận chất lượng dòng vốn")
+        elif values["credit"] > 14:
+            score -= 1
+            negative.append(f"Tín dụng tăng nhanh {values['credit']:g}% YTD, cần theo dõi chất lượng tài sản")
+        else:
+            score -= 1
+            negative.append(f"Tín dụng tăng thấp {values['credit']:g}% YTD")
     if values.get("cpi") is not None and values["cpi"] > 4.5:
         score -= 2
         negative.append(f"CPI {values['cpi']:g}% YoY tạo áp lực lãi suất")
     if values.get("trade_balance") is not None and values["trade_balance"] < 0:
         score -= 1
         negative.append(f"Cán cân thương mại âm {abs(values['trade_balance']):g} tỷ USD")
+    elif values.get("trade_balance") is not None and values["trade_balance"] > 5:
+        score += 1
+        positive.append(f"Cán cân thương mại dương {values['trade_balance']:g} tỷ USD")
     if values.get("interbank_rate") is not None and values["interbank_rate"] > 6:
         score -= 1
         negative.append(f"Lãi suất liên ngân hàng {values['interbank_rate']:g}% còn cao")
@@ -1709,37 +1756,32 @@ def build_macro_strategy(cards: list[dict[str, Any]], gemini_analysis: dict[str,
         score -= 1
         negative.append(f"Dầu {values['oil_prices']:g} USD/thùng làm tăng rủi ro chi phí")
 
-    if score >= 3:
-        stance = "TÍCH LŨY TỪNG PHẦN"
-    elif score >= 0:
-        stance = "NẮM GIỮ / TÍCH LŨY CHỌN LỌC"
-    elif score > -3:
-        stance = "NẮM GIỮ / HẠN CHẾ MUA ĐUỔI"
+    if score >= 4:
+        stance = "CÓ THỂ TÍCH LŨY TỪNG PHẦN / KHÔNG MUA ĐUỔI"
+    elif score >= 1:
+        stance = "NẮM GIỮ / TÍCH LŨY RẤT CHỌN LỌC"
+    elif score >= -2:
+        stance = "NẮM GIỮ / CHỜ XÁC NHẬN"
+    elif score >= -4:
+        stance = "PHÒNG THỦ / HẠN CHẾ TĂNG TỶ TRỌNG"
     else:
         stance = "GIẢM TỶ TRỌNG RỦI RO"
 
     strategy = {
         "stance": stance,
         "score": score,
-        "reason_short": "Tín hiệu tăng trưởng vẫn hiện diện nhưng cần cân bằng với lạm phát, tỷ giá và chi phí vốn.",
+        "reason_short": "Tín hiệu thuận và bất lợi đang đan xen; chưa đủ cơ sở để nâng tỷ trọng trên diện rộng.",
         "positive_drivers": positive,
         "risk_drivers": negative,
-        "base_case": "Giữ vị thế lõi và tích lũy từng phần ở doanh nghiệp cơ bản tốt; tránh mua đuổi khi thị trường tăng nóng.",
-        "bull_case": "Nếu CPI hạ, thanh khoản dịu và PMI tiếp tục trên 50, có thể nâng dần tỷ trọng theo kỷ luật giải ngân.",
-        "bear_case": "Nếu lạm phát, dầu hoặc lãi suất tăng lại, ưu tiên tiền mặt và giảm các vị thế nhạy với chi phí vốn.",
+        "neutral_drivers": neutral,
+        "base_case": "Nắm giữ vị thế đã qua sàng lọc, ưu tiên biên an toàn và chờ 2-3 chỉ báo cùng xác nhận trước khi tăng tỷ trọng.",
+        "bull_case": "Kịch bản chỉ cải thiện khi CPI hạ, thanh khoản dịu và PMI duy trì trên 52 qua nhiều kỳ; vẫn tránh mua đuổi.",
+        "bear_case": "Nếu lạm phát, dầu, tỷ giá hoặc lãi suất tăng lại, ưu tiên tiền mặt và giảm các vị thế nhạy với chi phí vốn.",
         "confidence": "LOW",
-        "method": "Thang điểm vĩ mô minh bạch từ 9 chỉ báo; không dùng dữ liệu cá nhân hay định giá từng cổ phiếu.",
+        "method": "Thang điểm vĩ mô bất đối xứng: bằng chứng thuận lợi cần ngưỡng xác nhận cao hơn, còn rủi ro được ghi nhận sớm hơn.",
         "gemini_status": gemini_analysis.get("status", "unknown"),
         "disclaimer": "Quan điểm chung cho 1-3 tháng, chỉ để tham khảo. Không phải khuyến nghị mua/bán cho cá nhân hoặc mã cổ phiếu cụ thể.",
     }
-
-    analysis_data = gemini_analysis.get("analysis_data", {})
-    ai_note = analysis_data.get("portfolio_note") if isinstance(analysis_data, dict) else None
-    if isinstance(ai_note, dict) and ai_note.get("stance"):
-        for key in ("stance", "reason_short", "base_case", "bull_case", "bear_case", "confidence"):
-            if ai_note.get(key):
-                strategy[key] = ai_note[key]
-        strategy["method"] = "Gemini phân tích biến động với Google Search, kết hợp các tín hiệu vĩ mô đang hiển thị."
     return strategy
 
 
@@ -1834,10 +1876,13 @@ def render_html(payload: dict[str, Any]) -> str:
     tabs.append('<button class="tab" data-tab="strategy">Ghi chú 1–3 tháng</button>')
     positive_items = "".join(f"<li>{html.escape(str(item))}</li>" for item in strategy.get("positive_drivers", []))
     risk_items = "".join(f"<li>{html.escape(str(item))}</li>" for item in strategy.get("risk_drivers", []))
+    neutral_items = "".join(f"<li>{html.escape(str(item))}</li>" for item in strategy.get("neutral_drivers", []))
     if not positive_items:
         positive_items = "<li>Chưa có đủ tín hiệu thuận lợi rõ ràng.</li>"
     if not risk_items:
         risk_items = "<li>Chưa có tín hiệu rủi ro vượt ngưỡng của mô hình.</li>"
+    if not neutral_items:
+        neutral_items = "<li>Không có chỉ báo nào nằm trong vùng trung tính.</li>"
     gemini_status = html.escape(str(strategy.get("gemini_status") or "unknown"))
     strategy_html = f"""
       <section id="strategy" class="panel strategy-panel">
@@ -1849,12 +1894,13 @@ def render_html(payload: dict[str, Any]) -> str:
         </div>
         <div class="driver-grid">
           <div><h3>Tín hiệu hỗ trợ</h3><ul>{positive_items}</ul></div>
+          <div><h3>Chưa đủ xác nhận</h3><ul>{neutral_items}</ul></div>
           <div><h3>Rủi ro cần theo dõi</h3><ul>{risk_items}</ul></div>
         </div>
         <div class="scenario-grid">
           <div><span>Cơ sở</span><p>{html.escape(str(strategy.get('base_case') or ''))}</p></div>
-          <div><span>Tích cực</span><p>{html.escape(str(strategy.get('bull_case') or ''))}</p></div>
-          <div><span>Tiêu cực</span><p>{html.escape(str(strategy.get('bear_case') or ''))}</p></div>
+          <div><span>Thuận lợi</span><p>{html.escape(str(strategy.get('bull_case') or ''))}</p></div>
+          <div><span>Bất lợi</span><p>{html.escape(str(strategy.get('bear_case') or ''))}</p></div>
         </div>
         <p class="strategy-method">{html.escape(str(strategy.get('method') or ''))}</p>
         <p class="disclaimer">{html.escape(str(strategy.get('disclaimer') or ''))}</p>
@@ -1941,7 +1987,7 @@ def render_html(payload: dict[str, Any]) -> str:
     .strategy-head > p:not(.group-label) {{ max-width:760px; color:#cbd5e1; }}
     .strategy-meta {{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }}
     .strategy-meta span {{ border:1px solid var(--line); border-radius:6px; padding:7px 9px; color:#a5b4fc; font-size:12px; }}
-    .driver-grid {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; padding:24px 0; border-bottom:1px solid var(--line); }}
+    .driver-grid {{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; padding:24px 0; border-bottom:1px solid var(--line); }}
     .driver-grid h3 {{ margin:0 0 10px; color:#e2e8f0; }}
     .driver-grid ul {{ margin:0; padding-left:20px; color:#cbd5e1; }}
     .driver-grid li {{ margin:8px 0; line-height:1.45; }}
