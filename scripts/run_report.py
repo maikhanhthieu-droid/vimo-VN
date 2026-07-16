@@ -131,6 +131,17 @@ HISTORY_IMPORTANT_KEYS = {
 }
 
 HISTORY_LIMIT = 100
+STALE_FALLBACK_KEYS = {
+    "cpi",
+    "pmi_manufacturing",
+    "iip",
+    "retail",
+    "international_visitors",
+    "interbank_rate",
+    "govt_bond_yield",
+    "corporate_bond_issuance",
+    "govt_bond_issuance",
+}
 TLS_FALLBACK_HOSTS = {"nso.gov.vn", "www.nso.gov.vn", "vbma.org.vn", "www.vbma.org.vn"}
 HOST_REFERERS = {
     "nso.gov.vn": "https://www.nso.gov.vn/",
@@ -589,6 +600,35 @@ def fetch_vbma_snapshot() -> dict[str, dict[str, Any]]:
         return {}
 
 
+def cached_values_from_payload(payload: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    values: dict[str, dict[str, Any]] = {}
+    for card in payload.get("cards", []):
+        key = card.get("key")
+        if key not in STALE_FALLBACK_KEYS or card.get("value") is None:
+            continue
+        quality = str(card.get("source_quality") or "AUTO")
+        if quality.startswith("STALE_CACHE_"):
+            quality = quality.removeprefix("STALE_CACHE_")
+        values[key] = {
+            "value": card["value"],
+            "as_of": card.get("as_of"),
+            "source_quality": f"STALE_CACHE_{quality}",
+            "source_live": card.get("source_primary"),
+            "source_url": card.get("source_url"),
+        }
+    return values
+
+
+def load_cached_official_values() -> dict[str, dict[str, Any]]:
+    path = OUTPUT_DIR / "latest.json"
+    if not path.exists():
+        return {}
+    try:
+        return cached_values_from_payload(json.loads(path.read_text(encoding="utf-8")))
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+
 def source_health() -> dict[str, Any]:
     health = {}
     for key, source in SOURCE_REGISTRY.items():
@@ -683,6 +723,7 @@ def latest_yahoo(symbol: str) -> tuple[float | None, str | None]:
 
 
 def live_values() -> dict[str, dict[str, Any]]:
+    cached_values = load_cached_official_values()
     values: dict[str, dict[str, Any]] = {}
     values.update(fetch_nso_snapshot())
     values.update(fetch_pmi_snapshot())
@@ -744,6 +785,8 @@ def live_values() -> dict[str, dict[str, Any]]:
                 value = value / 10
             values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO", "source_live": "Yahoo Finance"}
 
+    for key, cached in cached_values.items():
+        values.setdefault(key, cached)
     return values
 
 

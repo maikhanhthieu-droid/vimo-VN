@@ -74,6 +74,25 @@ class RunReportTests(unittest.TestCase):
         self.assertEqual(result["govt_bond_issuance"]["value"], 185.401)
         self.assertEqual(result["corporate_bond_issuance"]["value"], 0.1)
 
+    def test_cached_official_values_are_marked_stale(self) -> None:
+        payload = {
+            "cards": [
+                {
+                    "key": "cpi",
+                    "value": 4.69,
+                    "as_of": "2026-07-03",
+                    "source_primary": "NSO",
+                    "source_quality": "AUTO_NSO_PARSE",
+                    "source_url": "https://www.nso.gov.vn/report",
+                },
+                {"key": "stock_market", "value": 1804.24, "source_quality": "AUTO"},
+            ]
+        }
+        result = run_report.cached_values_from_payload(payload)
+        self.assertEqual(result["cpi"]["value"], 4.69)
+        self.assertEqual(result["cpi"]["source_quality"], "STALE_CACHE_AUTO_NSO_PARSE")
+        self.assertNotIn("stock_market", result)
+
 
 if __name__ == "__main__":
     unittest.main()

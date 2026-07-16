@@ -1,14 +1,14 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-16T12:14:58.201847+00:00",
-  "generated_at_bkk": "2026-07-16T19:14:58.201847+07:00",
+  "generated_at_utc": "2026-07-16T12:18:33.191442+00:00",
+  "generated_at_bkk": "2026-07-16T19:18:33.191442+07:00",
   "coverage": {
-    "available_cards": 12,
+    "available_cards": 16,
     "total_cards": 46,
     "source_count": 22,
     "vip_cards": 29,
-    "vip_available": 2,
+    "vip_available": 6,
     "note": "Macro cards without a reliable machine-readable source are marked awaiting_official_source instead of using guessed values."
   },
   "source_health": {
@@ -18,7 +18,7 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-07-16T12:15:39.018933+00:00",
+      "checked_at": "2026-07-16T12:18:43.234961+00:00",
       "bytes": 94488
     },
     "nso": {
@@ -26,9 +26,9 @@
       "url": "https://www.nso.gov.vn/",
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
-      "available": false,
-      "checked_at": "2026-07-16T12:15:49.571360+00:00",
-      "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      "available": true,
+      "checked_at": "2026-07-16T12:18:44.788266+00:00",
+      "bytes": 114615
     },
     "customs": {
       "name": "Tổng cục Hải quan",
@@ -36,7 +36,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-07-16T12:15:51.140482+00:00",
+      "checked_at": "2026-07-16T12:18:44.856050+00:00",
       "bytes": 12013
     },
     "vbma": {
@@ -45,7 +45,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-07-16T12:15:51.976043+00:00",
+      "checked_at": "2026-07-16T12:18:45.521271+00:00",
       "bytes": 39804
     },
     "vnba": {
@@ -54,7 +54,7 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-07-16T12:15:54.501170+00:00",
+      "checked_at": "2026-07-16T12:18:45.694195+00:00",
       "bytes": 224117
     },
     "market": {
@@ -63,7 +63,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-07-16T12:15:56.218793+00:00",
+      "checked_at": "2026-07-16T12:18:46.129968+00:00",
       "bytes": 8036
     }
   },
@@ -113,7 +113,7 @@
           "unit": "VND/USD"
         },
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-07-16",
           "value": 26176.94,
           "unit": "VND/USD"
@@ -163,9 +163,9 @@
           "unit": "USD/oz"
         },
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-07-16",
-          "value": 4045.8999,
+          "value": 4039.5,
           "unit": "USD/oz"
         }
       ],
@@ -213,9 +213,9 @@
           "unit": "điểm"
         },
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-07-16",
-          "value": 100.506,
+          "value": 100.521,
           "unit": "điểm"
         }
       ],
@@ -263,9 +263,9 @@
           "unit": "USD/thùng"
         },
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-07-16",
-          "value": 79.95,
+          "value": 80.04,
           "unit": "USD/thùng"
         }
       ],
@@ -313,7 +313,7 @@
           "unit": "%"
         },
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-07-16",
           "value": 4.545,
           "unit": "%"
@@ -363,7 +363,7 @@
           "unit": "điểm"
         },
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-07-16",
           "value": 7572.3999,
           "unit": "điểm"
@@ -371,7 +371,7 @@
       ],
       "stock_market": [
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-07-16",
           "value": 1804.24,
           "unit": "điểm"
@@ -379,7 +379,7 @@
       ],
       "interbank_rate": [
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-W29",
           "value": 4.28,
           "unit": "%"
@@ -387,7 +387,7 @@
       ],
       "govt_bond_yield": [
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-W29",
           "value": 4.4,
           "unit": "%"
@@ -395,10 +395,34 @@
       ],
       "pmi_manufacturing": [
         {
-          "date": "2026-07-16T12:14:58.201847+00:00",
+          "date": "2026-07-16T12:18:33.191442+00:00",
           "bucket": "2026-07",
           "value": 51.8,
           "unit": "điểm"
+        }
+      ],
+      "cpi": [
+        {
+          "date": "2026-07-16T12:18:33.191442+00:00",
+          "bucket": "2026-07",
+          "value": 4.69,
+          "unit": "% YoY"
+        }
+      ],
+      "iip": [
+        {
+          "date": "2026-07-16T12:18:33.191442+00:00",
+          "bucket": "2026-07",
+          "value": 10.5,
+          "unit": "% YoY"
+        }
+      ],
+      "retail": [
+        {
+          "date": "2026-07-16T12:18:33.191442+00:00",
+          "bucket": "2026-07",
+          "value": 13.9,
+          "unit": "% YoY"
         }
       ]
     },
@@ -549,7 +573,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4045.8999,
+      "value": 4039.5,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -560,7 +584,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4045.8999 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4039.5 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -633,7 +657,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 100.506,
+      "value": 100.521,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -644,7 +668,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.506 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.521 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -738,7 +762,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 79.95,
+      "value": 80.04,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -749,7 +773,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 79.95 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 80.04 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
@@ -906,18 +930,18 @@
       "priority": 1,
       "definition": "Chỉ số giá tiêu dùng so với cùng kỳ.",
       "why_it_matters": "Lạm phát là biến số nền cho lãi suất, tỷ giá và sức mua.",
-      "value": null,
+      "value": 4.69,
       "unit": "% YoY",
-      "status": "awaiting_official_source",
-      "signal": "PENDING",
+      "status": "available",
+      "signal": "YELLOW",
       "source_primary": "NSO",
-      "source_url": "https://www.nso.gov.vn/",
-      "source_quality": "SOURCE_MONITOR",
-      "as_of": "2026-07-16",
+      "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
+      "as_of": "2026-07-03T01:56:25",
       "frequency": "monthly",
       "vip": true,
-      "direction": "flat",
-      "narrative": "CPI đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
+      "direction": "down",
+      "narrative": "CPI hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 4.69 % YoY, dùng để theo dõi lạm phát là biến số nền cho lãi suất, tỷ giá và sức mua."
     },
     {
       "key": "pmi_manufacturing",
@@ -948,18 +972,18 @@
       "priority": 3,
       "definition": "Chỉ số sản xuất công nghiệp.",
       "why_it_matters": "IIP cho thấy nhịp sản xuất chính thức.",
-      "value": null,
+      "value": 10.5,
       "unit": "% YoY",
-      "status": "awaiting_official_source",
-      "signal": "PENDING",
+      "status": "available",
+      "signal": "GREEN",
       "source_primary": "NSO",
-      "source_url": "https://www.nso.gov.vn/",
-      "source_quality": "SOURCE_MONITOR",
-      "as_of": "2026-07-16",
+      "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
+      "as_of": "2026-07-03T01:56:25",
       "frequency": "monthly",
       "vip": true,
       "direction": "flat",
-      "narrative": "IIP đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
+      "narrative": "IIP hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 10.5 % YoY, dùng để theo dõi iip cho thấy nhịp sản xuất chính thức."
     },
     {
       "key": "trade_balance",
@@ -1074,18 +1098,18 @@
       "priority": 9,
       "definition": "Tổng mức bán lẻ hàng hóa và doanh thu dịch vụ tiêu dùng.",
       "why_it_matters": "Bán lẻ là nhiệt kế tiêu dùng nội địa.",
-      "value": null,
+      "value": 13.9,
       "unit": "% YoY",
-      "status": "awaiting_official_source",
-      "signal": "PENDING",
+      "status": "available",
+      "signal": "GREEN",
       "source_primary": "NSO",
-      "source_url": "https://www.nso.gov.vn/",
-      "source_quality": "SOURCE_MONITOR",
-      "as_of": "2026-07-16",
+      "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
+      "as_of": "2026-07-03T01:56:25",
       "frequency": "monthly",
       "vip": true,
       "direction": "flat",
-      "narrative": "Bán lẻ hàng hóa và dịch vụ đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
+      "narrative": "Bán lẻ hàng hóa và dịch vụ hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 13.9 % YoY, dùng để theo dõi bán lẻ là nhiệt kế tiêu dùng nội địa."
     },
     {
       "key": "business_new",
@@ -1137,18 +1161,18 @@
       "priority": 12,
       "definition": "Lượt khách quốc tế đến Việt Nam.",
       "why_it_matters": "Du lịch là cấu phần quan trọng của dịch vụ và ngoại tệ.",
-      "value": null,
+      "value": 1.68,
       "unit": "triệu lượt",
-      "status": "awaiting_official_source",
-      "signal": "PENDING",
+      "status": "available",
+      "signal": "GREEN",
       "source_primary": "NSO",
-      "source_url": "https://www.nso.gov.vn/",
-      "source_quality": "SOURCE_MONITOR",
-      "as_of": "2026-07-16",
+      "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
+      "as_of": "2026-07-03T01:56:25",
       "frequency": "monthly",
       "vip": true,
       "direction": "flat",
-      "narrative": "Khách quốc tế đang chờ bản công bố chính thức từ NSO. Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
+      "narrative": "Khách quốc tế hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 1.68 triệu lượt, dùng để theo dõi du lịch là cấu phần quan trọng của dịch vụ và ngoại tệ."
     },
     {
       "key": "state_investment",

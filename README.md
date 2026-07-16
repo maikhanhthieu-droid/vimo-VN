@@ -12,6 +12,7 @@ Auto runner for Vietnamese macro reports.
 - Reads the latest S&P Global Vietnam manufacturing PMI from Viet Nam Government News.
 - Parses strict NSO CPI, IIP, retail, and tourism indicators automatically, with API/RSS fallback and transient-network retries.
 - Extracts interbank rates, 10-year government-bond yield, and bond issuance from the latest VBMA weekly PDF.
+- Preserves the last verified monthly/weekly official values with a `STALE_CACHE` label when a source is temporarily unreachable.
 - Keeps official macro indicators in `awaiting_official_source` until a reliable parser/source is added, instead of inventing numbers.
 - Generates output files into `output/` and `docs/`.
 - Commits changed output back to the repository.

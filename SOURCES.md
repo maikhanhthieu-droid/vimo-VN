@@ -23,6 +23,8 @@ VIP indicators include CPI, PMI, IIP, trade, FDI, retail, business creation/exit
 
 The pipeline does not invent values. If a source is available but a reliable parser is not yet implemented, the card is marked `awaiting_official_source`.
 
+For parsed monthly and weekly official indicators, a temporary network failure reuses the last verified value with a `STALE_CACHE` quality label and its original publication date. Daily market values are never reused this way.
+
 ## Parser Roadmap
 
 1. NSO: expand strict regex/parser for FDI, state budget, state investment, and business counts.
