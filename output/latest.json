@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-16T14:08:51.837787+00:00",
-  "generated_at_bkk": "2026-07-16T21:08:51.837787+07:00",
+  "generated_at_utc": "2026-07-16T14:09:52.669845+00:00",
+  "generated_at_bkk": "2026-07-16T21:09:52.669845+07:00",
   "coverage": {
     "available_cards": 16,
     "total_cards": 46,
@@ -13,14 +13,14 @@
   },
   "change_memory": {
     "state_count": 16,
-    "event_count": 0,
-    "pending_ai_events": 0
+    "event_count": 5,
+    "pending_ai_events": 5
   },
   "gemini_analysis": {
-    "status": "no_change",
+    "status": "waiting_for_api_key",
     "model": "models/gemini-3-flash-preview",
-    "generated_at": "2026-07-16T14:08:51.837787+00:00",
-    "event_count": 0,
+    "generated_at": "2026-07-16T14:09:52.669845+00:00",
+    "event_count": 5,
     "api_url": "api/gemini_analysis.json"
   },
   "source_health": {
@@ -30,7 +30,7 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-07-16T14:09:02.372770+00:00",
+      "checked_at": "2026-07-16T14:10:33.323324+00:00",
       "bytes": 94488
     },
     "nso": {
@@ -38,9 +38,9 @@
       "url": "https://www.nso.gov.vn/",
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
-      "available": true,
-      "checked_at": "2026-07-16T14:09:03.825887+00:00",
-      "bytes": 114615
+      "available": false,
+      "checked_at": "2026-07-16T14:10:43.582286+00:00",
+      "error": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     "customs": {
       "name": "Tổng cục Hải quan",
@@ -48,7 +48,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-07-16T14:09:03.935589+00:00",
+      "checked_at": "2026-07-16T14:10:45.023812+00:00",
       "bytes": 12013
     },
     "vbma": {
@@ -57,7 +57,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-07-16T14:09:04.607826+00:00",
+      "checked_at": "2026-07-16T14:10:45.837222+00:00",
       "bytes": 39804
     },
     "vnba": {
@@ -66,7 +66,7 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-07-16T14:09:04.747418+00:00",
+      "checked_at": "2026-07-16T14:10:48.644736+00:00",
       "bytes": 219416
     },
     "market": {
@@ -75,7 +75,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-07-16T14:09:04.947885+00:00",
+      "checked_at": "2026-07-16T14:10:50.005238+00:00",
       "bytes": 8036
     }
   },
@@ -125,7 +125,7 @@
           "unit": "VND/USD"
         },
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07-16",
           "value": 26176.94,
           "unit": "VND/USD"
@@ -175,9 +175,9 @@
           "unit": "USD/oz"
         },
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07-16",
-          "value": 3994.6001,
+          "value": 3999.3999,
           "unit": "USD/oz"
         }
       ],
@@ -225,9 +225,9 @@
           "unit": "điểm"
         },
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07-16",
-          "value": 100.634,
+          "value": 100.638,
           "unit": "điểm"
         }
       ],
@@ -275,9 +275,9 @@
           "unit": "USD/thùng"
         },
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07-16",
-          "value": 80.05,
+          "value": 80.03,
           "unit": "USD/thùng"
         }
       ],
@@ -325,9 +325,9 @@
           "unit": "%"
         },
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07-16",
-          "value": 4.586,
+          "value": 4.583,
           "unit": "%"
         }
       ],
@@ -375,15 +375,15 @@
           "unit": "điểm"
         },
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07-16",
-          "value": 7558.5,
+          "value": 7561.6602,
           "unit": "điểm"
         }
       ],
       "stock_market": [
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07-16",
           "value": 1804.24,
           "unit": "điểm"
@@ -391,7 +391,7 @@
       ],
       "interbank_rate": [
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-W29",
           "value": 4.28,
           "unit": "%"
@@ -399,7 +399,7 @@
       ],
       "govt_bond_yield": [
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-W29",
           "value": 4.4,
           "unit": "%"
@@ -407,7 +407,7 @@
       ],
       "pmi_manufacturing": [
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07",
           "value": 51.8,
           "unit": "điểm"
@@ -415,7 +415,7 @@
       ],
       "cpi": [
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07",
           "value": 4.69,
           "unit": "% YoY"
@@ -423,7 +423,7 @@
       ],
       "iip": [
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07",
           "value": 10.5,
           "unit": "% YoY"
@@ -431,7 +431,7 @@
       ],
       "retail": [
         {
-          "date": "2026-07-16T14:08:51.837787+00:00",
+          "date": "2026-07-16T14:09:52.669845+00:00",
           "bucket": "2026-07",
           "value": 13.9,
           "unit": "% YoY"
@@ -585,7 +585,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 3994.6001,
+      "value": 3999.3999,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -596,7 +596,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 3994.6001 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 3999.3999 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -669,7 +669,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 100.634,
+      "value": 100.638,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -680,7 +680,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.634 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.638 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -774,7 +774,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 80.05,
+      "value": 80.03,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -785,7 +785,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 80.05 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 80.03 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
@@ -816,7 +816,7 @@
       "priority": 5,
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
       "why_it_matters": "US10Y là benchmark định giá tài sản toàn cầu.",
-      "value": 4.586,
+      "value": 4.583,
       "unit": "%",
       "status": "available",
       "signal": "YELLOW",
@@ -827,7 +827,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.586 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
+      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.583 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
     },
     {
       "key": "ecb_eurozone",
@@ -921,7 +921,7 @@
       "priority": 10,
       "definition": "S&P 500 hoặc chỉ số chứng khoán lớn.",
       "why_it_matters": "Thị trường toàn cầu ảnh hưởng khẩu vị rủi ro.",
-      "value": 7558.5,
+      "value": 7561.6602,
       "unit": "điểm",
       "status": "available",
       "signal": "GREEN",
@@ -932,7 +932,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "Chứng khoán toàn cầu hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 7558.5 điểm, dùng để theo dõi thị trường toàn cầu ảnh hưởng khẩu vị rủi ro."
+      "narrative": "Chứng khoán toàn cầu hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 7561.6602 điểm, dùng để theo dõi thị trường toàn cầu ảnh hưởng khẩu vị rủi ro."
     },
     {
       "key": "cpi",
@@ -948,7 +948,7 @@
       "signal": "YELLOW",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "as_of": "2026-07-03T01:56:25",
       "frequency": "monthly",
       "vip": true,
@@ -990,7 +990,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "as_of": "2026-07-03T01:56:25",
       "frequency": "monthly",
       "vip": true,
@@ -1116,7 +1116,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "as_of": "2026-07-03T01:56:25",
       "frequency": "monthly",
       "vip": true,
@@ -1179,7 +1179,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "as_of": "2026-07-03T01:56:25",
       "frequency": "monthly",
       "vip": true,
