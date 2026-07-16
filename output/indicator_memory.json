@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "states": {
+    "interbank_rate": {
+      "value": 4.28,
+      "as_of": "2026-07-10",
+      "unit": "%",
+      "source_primary": "VBMA",
+      "source_url": "https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+      "source_quality": "AUTO_VBMA_PDF",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "fx_market_usd_vnd": {
+      "value": 26176.94,
+      "as_of": "Thu, 16 Jul 2026 00:02:31 +0000",
+      "unit": "VND/USD",
+      "source_primary": "Open ER API",
+      "source_url": "https://open.er-api.com/",
+      "source_quality": "AUTO",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "stock_market": {
+      "value": 1804.24,
+      "as_of": "2026-07-16",
+      "unit": "điểm",
+      "source_primary": "Vietcap",
+      "source_url": "https://trading.vietcap.com.vn/",
+      "source_quality": "AUTO",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "govt_bond_yield": {
+      "value": 4.4,
+      "as_of": "2026-07-10",
+      "unit": "%",
+      "source_primary": "VBMA",
+      "source_url": "https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+      "source_quality": "AUTO_VBMA_PDF",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "gold_world": {
+      "value": 3994.6001,
+      "as_of": "2026-07-16",
+      "unit": "USD/oz",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+      "source_quality": "AUTO",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "dxy": {
+      "value": 100.634,
+      "as_of": "2026-07-16",
+      "unit": "điểm",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+      "source_quality": "AUTO",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "corporate_bond_issuance": {
+      "value": 0.1,
+      "as_of": "2026-07-10",
+      "unit": "nghìn tỷ VND",
+      "source_primary": "VBMA",
+      "source_url": "https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+      "source_quality": "AUTO_VBMA_PDF",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "govt_bond_issuance": {
+      "value": 185.401,
+      "as_of": "2026-07-10",
+      "unit": "nghìn tỷ VND",
+      "source_primary": "VBMA",
+      "source_url": "https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+      "source_quality": "AUTO_VBMA_PDF",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "oil_prices": {
+      "value": 80.05,
+      "as_of": "2026-07-16",
+      "unit": "USD/thùng",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+      "source_quality": "AUTO",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "us_10y_yield": {
+      "value": 4.586,
+      "as_of": "2026-07-16",
+      "unit": "%",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+      "source_quality": "AUTO",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "global_equities": {
+      "value": 7558.5,
+      "as_of": "2026-07-16",
+      "unit": "điểm",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/%5EGSPC",
+      "source_quality": "AUTO",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "cpi": {
+      "value": 4.69,
+      "as_of": "2026-07-03T01:56:25",
+      "unit": "% YoY",
+      "source_primary": "NSO",
+      "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "pmi_manufacturing": {
+      "value": 51.8,
+      "as_of": "2026-07-03",
+      "unit": "điểm",
+      "source_primary": "VGP / S&P Global",
+      "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
+      "source_quality": "AUTO_VGP_SPGLOBAL",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "iip": {
+      "value": 10.5,
+      "as_of": "2026-07-03T01:56:25",
+      "unit": "% YoY",
+      "source_primary": "NSO",
+      "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "retail": {
+      "value": 13.9,
+      "as_of": "2026-07-03T01:56:25",
+      "unit": "% YoY",
+      "source_primary": "NSO",
+      "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    },
+    "international_visitors": {
+      "value": 1.68,
+      "as_of": "2026-07-03T01:56:25",
+      "unit": "triệu lượt",
+      "source_primary": "NSO",
+      "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
+      "first_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_seen_at": "2026-07-16T14:08:51.837787+00:00",
+      "last_changed_at": "2026-07-16T14:08:51.837787+00:00"
+    }
+  },
+  "events": [],
+  "updated_at": "2026-07-16T14:08:51.837787+00:00"
+}

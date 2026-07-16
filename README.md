@@ -12,8 +12,10 @@ Auto runner for Vietnamese macro reports.
 - Reads the latest S&P Global Vietnam manufacturing PMI from Viet Nam Government News.
 - Parses strict NSO CPI, IIP, retail, and tourism indicators automatically, with API/RSS fallback and transient-network retries.
 - Extracts interbank rates, 10-year government-bond yield, and bond issuance from the latest VBMA weekly PDF.
-- Preserves the last verified monthly/weekly official values with a `STALE_CACHE` label when a source is temporarily unreachable.
+- Preserves the last observed non-daily values with a `STALE_CACHE` label when a source is temporarily unreachable; daily market values are never frozen as a fallback.
 - Keeps official macro indicators in `awaiting_official_source` until a reliable parser/source is added, instead of inventing numbers.
+- Stores indicator state and value-change events in `output/indicator_memory.json`.
+- Sends only pending value changes to Gemini with Google Search for source-backed cause analysis and 1-3 month scenarios.
 - Generates output files into `output/` and `docs/`.
 - Commits changed output back to the repository.
 - Sends a Telegram message when `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` are configured.
@@ -30,3 +32,9 @@ Repository secrets:
 - `TELEGRAM_CHAT_ID`
 
 Do not commit the bot token into files.
+
+## Gemini setup
+
+Add `GEMINI_API_KEY` as a repository secret. The optional repository variable `GEMINI_MODEL` can override the default `models/gemini-3-flash-preview`.
+
+When the key is absent or Gemini is unavailable, report generation continues and pending events remain in the memory file for a later run. Gemini output is published to `output/gemini_analysis.json` and `docs/api/gemini_analysis.json`; forecasts are stored as scenarios, not observed facts.

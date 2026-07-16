@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import html
 import json
+import math
 import os
 import re
 import ssl
@@ -28,6 +29,8 @@ OUTPUT_DIR = ROOT / "output"
 DOCS_DIR = ROOT / "docs"
 DOCS_API_DIR = DOCS_DIR / "api"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
+MEMORY_FILE = OUTPUT_DIR / "indicator_memory.json"
+GEMINI_ANALYSIS_FILE = OUTPUT_DIR / "gemini_analysis.json"
 
 
 @dataclass(frozen=True)
@@ -131,17 +134,9 @@ HISTORY_IMPORTANT_KEYS = {
 }
 
 HISTORY_LIMIT = 100
-STALE_FALLBACK_KEYS = {
-    "cpi",
-    "pmi_manufacturing",
-    "iip",
-    "retail",
-    "international_visitors",
-    "interbank_rate",
-    "govt_bond_yield",
-    "corporate_bond_issuance",
-    "govt_bond_issuance",
-}
+MEMORY_EVENT_LIMIT = 500
+GEMINI_EVENT_BATCH_LIMIT = 20
+NON_CACHEABLE_FREQUENCIES = {"daily", "daily_monitor"}
 TLS_FALLBACK_HOSTS = {"nso.gov.vn", "www.nso.gov.vn", "vbma.org.vn", "www.vbma.org.vn"}
 HOST_REFERERS = {
     "nso.gov.vn": "https://www.nso.gov.vn/",
@@ -604,9 +599,15 @@ def cached_values_from_payload(payload: dict[str, Any]) -> dict[str, dict[str, A
     values: dict[str, dict[str, Any]] = {}
     for card in payload.get("cards", []):
         key = card.get("key")
-        if key not in STALE_FALLBACK_KEYS or card.get("value") is None:
+        frequency = card.get("frequency", VIP_FREQUENCIES.get(str(key), "monitor"))
+        quality = str(card.get("source_quality") or "")
+        if (
+            not key
+            or card.get("value") is None
+            or frequency in NON_CACHEABLE_FREQUENCIES
+            or quality == "SOURCE_MONITOR"
+        ):
             continue
-        quality = str(card.get("source_quality") or "AUTO")
         if quality.startswith("STALE_CACHE_"):
             quality = quality.removeprefix("STALE_CACHE_")
         values[key] = {
@@ -619,14 +620,42 @@ def cached_values_from_payload(payload: dict[str, Any]) -> dict[str, dict[str, A
     return values
 
 
+def cached_values_from_memory(memory: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    values: dict[str, dict[str, Any]] = {}
+    for key, state in memory.get("states", {}).items():
+        quality = str(state.get("source_quality") or "")
+        frequency = VIP_FREQUENCIES.get(str(key), "monitor")
+        if (
+            state.get("value") is None
+            or frequency in NON_CACHEABLE_FREQUENCIES
+            or not quality
+            or quality == "SOURCE_MONITOR"
+        ):
+            continue
+        if quality.startswith("STALE_CACHE_"):
+            quality = quality.removeprefix("STALE_CACHE_")
+        values[str(key)] = {
+            "value": state["value"],
+            "as_of": state.get("as_of"),
+            "source_quality": f"STALE_CACHE_{quality}",
+            "source_live": state.get("source_primary"),
+            "source_url": state.get("source_url"),
+        }
+    return values
+
+
 def load_cached_official_values() -> dict[str, dict[str, Any]]:
     path = OUTPUT_DIR / "latest.json"
-    if not path.exists():
-        return {}
-    try:
-        return cached_values_from_payload(json.loads(path.read_text(encoding="utf-8")))
-    except (OSError, json.JSONDecodeError):
-        return {}
+    values: dict[str, dict[str, Any]] = {}
+    if path.exists():
+        try:
+            values.update(cached_values_from_payload(json.loads(path.read_text(encoding="utf-8"))))
+        except (OSError, json.JSONDecodeError):
+            pass
+    memory = load_indicator_memory()
+    for key, cached in cached_values_from_memory(memory).items():
+        values.setdefault(key, cached)
+    return values
 
 
 def source_health() -> dict[str, Any]:
@@ -752,12 +781,24 @@ def live_values() -> dict[str, dict[str, Any]]:
         if value is not None:
             if key == "us_10y_yield" and value < 1:
                 value = value * 10
-            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO", "source_live": "Stooq"}
+            values[key] = {
+                "value": round(value, 4),
+                "as_of": as_of,
+                "source_quality": "AUTO",
+                "source_live": "Stooq",
+                "source_url": f"https://stooq.com/q/?s={quote(symbol)}",
+            }
 
     for key, symbol in {"gold_world": "xauusd", "fed_policy": "fedfunds"}.items():
         value, as_of = latest_stooq(symbol)
         if value is not None:
-            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO", "source_live": "Stooq"}
+            values[key] = {
+                "value": round(value, 4),
+                "as_of": as_of,
+                "source_quality": "AUTO",
+                "source_live": "Stooq",
+                "source_url": f"https://stooq.com/q/?s={quote(symbol)}",
+            }
 
     value, as_of = latest_vietcap_index()
     if value is not None:
@@ -783,7 +824,13 @@ def live_values() -> dict[str, dict[str, Any]]:
         if value is not None:
             if key == "us_10y_yield" and value > 20:
                 value = value / 10
-            values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO", "source_live": "Yahoo Finance"}
+            values[key] = {
+                "value": round(value, 4),
+                "as_of": as_of,
+                "source_quality": "AUTO",
+                "source_live": "Yahoo Finance",
+                "source_url": f"https://finance.yahoo.com/quote/{quote(symbol)}",
+            }
 
     for key, cached in cached_values.items():
         values.setdefault(key, cached)
@@ -867,9 +914,8 @@ def update_history(cards: list[dict[str, Any]], now: datetime) -> dict[str, Any]
 
     series = history.setdefault("series", {})
     stamp = now.isoformat()
-    active_keys = {card["key"] for card in cards if card["key"] in HISTORY_IMPORTANT_KEYS and card["value"] is not None}
     for key in list(series.keys()):
-        if key not in active_keys:
+        if key not in HISTORY_IMPORTANT_KEYS:
             series.pop(key, None)
     for card in cards:
         if card["key"] not in HISTORY_IMPORTANT_KEYS or card["value"] is None:
@@ -941,7 +987,257 @@ def bucket_from_existing_point(point: dict[str, Any], card: dict[str, Any]) -> s
         return f"value-{point.get('value')}"
     return date[:10]
 
-def build_frontend_api(payload: dict[str, Any], history: dict[str, Any]) -> None:
+
+def load_indicator_memory() -> dict[str, Any]:
+    if not MEMORY_FILE.exists():
+        return {"version": 1, "states": {}, "events": []}
+    try:
+        data = json.loads(MEMORY_FILE.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            raise ValueError("invalid memory payload")
+        data.setdefault("version", 1)
+        data.setdefault("states", {})
+        data.setdefault("events", [])
+        return data
+    except (OSError, ValueError, json.JSONDecodeError):
+        return {"version": 1, "states": {}, "events": []}
+
+
+def values_equal(previous: Any, current: Any) -> bool:
+    if (
+        isinstance(previous, (int, float))
+        and not isinstance(previous, bool)
+        and isinstance(current, (int, float))
+        and not isinstance(current, bool)
+    ):
+        return math.isclose(float(previous), float(current), rel_tol=1e-9, abs_tol=1e-9)
+    return previous == current
+
+
+def memory_state_from_card(card: dict[str, Any], now_iso: str, previous: dict[str, Any] | None = None) -> dict[str, Any]:
+    changed_at = now_iso if previous is None else previous.get("last_changed_at", now_iso)
+    return {
+        "value": card["value"],
+        "as_of": card.get("as_of"),
+        "unit": card.get("unit"),
+        "source_primary": card.get("source_primary"),
+        "source_url": card.get("source_url"),
+        "source_quality": card.get("source_quality"),
+        "first_seen_at": previous.get("first_seen_at", now_iso) if previous else now_iso,
+        "last_seen_at": now_iso,
+        "last_changed_at": changed_at,
+    }
+
+
+def update_indicator_memory(
+    cards: list[dict[str, Any]],
+    now: datetime,
+    previous_memory: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    memory = previous_memory if previous_memory is not None else load_indicator_memory()
+    states = memory.setdefault("states", {})
+    events = memory.setdefault("events", [])
+    now_iso = now.isoformat()
+    bootstrap = not states
+
+    for card in cards:
+        if card.get("value") is None:
+            continue
+        key = str(card["key"])
+        previous = states.get(key)
+        current = memory_state_from_card(card, now_iso, previous)
+
+        if previous is not None and not values_equal(previous.get("value"), card["value"]):
+            current["last_changed_at"] = now_iso
+            old_value = previous.get("value")
+            new_value = card["value"]
+            absolute_change = None
+            percent_change = None
+            if isinstance(old_value, (int, float)) and isinstance(new_value, (int, float)):
+                absolute_change = round(float(new_value) - float(old_value), 8)
+                if float(old_value) != 0:
+                    percent_change = round(absolute_change / abs(float(old_value)) * 100, 6)
+            events.append(
+                {
+                    "id": f"{key}:{now_iso}",
+                    "key": key,
+                    "name_vi": card.get("name_vi"),
+                    "event_type": "change",
+                    "detected_at": now_iso,
+                    "previous_value": old_value,
+                    "current_value": new_value,
+                    "absolute_change": absolute_change,
+                    "percent_change": percent_change,
+                    "unit": card.get("unit"),
+                    "as_of": card.get("as_of"),
+                    "source_primary": card.get("source_primary"),
+                    "source_url": card.get("source_url"),
+                    "source_quality": card.get("source_quality"),
+                    "ai_status": "pending",
+                }
+            )
+        elif previous is None and not bootstrap:
+            events.append(
+                {
+                    "id": f"{key}:{now_iso}",
+                    "key": key,
+                    "name_vi": card.get("name_vi"),
+                    "event_type": "new_data",
+                    "detected_at": now_iso,
+                    "previous_value": None,
+                    "current_value": card["value"],
+                    "absolute_change": None,
+                    "percent_change": None,
+                    "unit": card.get("unit"),
+                    "as_of": card.get("as_of"),
+                    "source_primary": card.get("source_primary"),
+                    "source_url": card.get("source_url"),
+                    "source_quality": card.get("source_quality"),
+                    "ai_status": "pending",
+                }
+            )
+        states[key] = current
+
+    memory["events"] = events[-MEMORY_EVENT_LIMIT:]
+    memory["updated_at"] = now_iso
+    memory["version"] = 1
+    return memory
+
+
+def load_previous_gemini_analysis() -> dict[str, Any] | None:
+    if not GEMINI_ANALYSIS_FILE.exists():
+        return None
+    try:
+        data = json.loads(GEMINI_ANALYSIS_FILE.read_text(encoding="utf-8"))
+        return data if isinstance(data, dict) else None
+    except (OSError, json.JSONDecodeError):
+        return None
+
+
+def analyze_indicator_changes(
+    memory: dict[str, Any],
+    cards: list[dict[str, Any]],
+    now: datetime,
+) -> dict[str, Any]:
+    pending = [event for event in memory.get("events", []) if event.get("ai_status") == "pending"]
+    model = os.environ.get("GEMINI_MODEL") or "models/gemini-3-flash-preview"
+    if not pending:
+        previous = load_previous_gemini_analysis()
+        if previous and previous.get("status") == "success":
+            return previous
+        return {
+            "status": "no_change",
+            "model": model,
+            "generated_at": now.isoformat(),
+            "event_count": 0,
+            "analysis_vi": "Chua phat hien bien dong moi de phan tich.",
+        }
+
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        return {
+            "status": "waiting_for_api_key",
+            "model": model,
+            "generated_at": now.isoformat(),
+            "event_count": len(pending),
+            "analysis_vi": "Da luu bien dong; dang cho GEMINI_API_KEY de phan tich.",
+        }
+
+    selected = pending[:GEMINI_EVENT_BATCH_LIMIT]
+    context = [
+        {
+            "key": card["key"],
+            "name_vi": card["name_vi"],
+            "value": card["value"],
+            "unit": card["unit"],
+            "as_of": card.get("as_of"),
+            "source": card.get("source_primary"),
+            "source_url": card.get("source_url"),
+            "source_quality": card.get("source_quality"),
+        }
+        for card in cards
+        if card.get("value") is not None
+    ]
+    prompt = f"""
+Ban la chuyen gia phan tich kinh te Viet Nam. Du lieu trong CHANGE_EVENTS va CURRENT_CONTEXT la
+du lieu dau vao da duoc he thong thu thap; khong duoc sua so, tu dien so, hay bien kich ban thanh su that.
+Hay dung Google Search de tim nguyen nhan tu nguon chinh thong hoac bao chi uy tin.
+
+Tra loi bang tieng Viet, ro rang va ngan gon. Voi tung bien dong:
+1. Nhac lai dung gia tri cu, gia tri moi, don vi va ky du lieu.
+2. Tach bach: su kien da kiem chung, suy luan hop ly, va diem chua chac chan.
+3. Phan tich cac nguyen nhan co the gay thay doi, kem URL nguon truc tiep.
+4. Dua ra kich ban co so/tich cuc/tieu cuc cho 1-3 thang toi, kem do tin cay; day khong phai loi khuyen dau tu.
+5. Neu khong tim duoc bang chung du manh, noi ro "chua du bang chung", khong bia ly do.
+
+CHANGE_EVENTS:
+{json.dumps(selected, ensure_ascii=False, indent=2)}
+
+CURRENT_CONTEXT:
+{json.dumps(context, ensure_ascii=False, indent=2)}
+""".strip()
+
+    try:
+        from google import genai
+
+        client = genai.Client(api_key=api_key)
+        interaction = client.interactions.create(
+            model=model,
+            input=prompt,
+            tools=[{"type": "google_search"}],
+            generation_config={
+                "temperature": 0.2,
+                "max_output_tokens": 8192,
+                "top_p": 0.95,
+                "thinking_level": "high",
+            },
+        )
+        output_text = getattr(interaction, "output_text", None)
+        if not output_text:
+            steps = getattr(interaction, "steps", [])
+            output_text = str(steps[-1]) if steps else ""
+        if not output_text.strip():
+            raise ValueError("Gemini returned an empty analysis")
+        selected_ids = {event["id"] for event in selected}
+        for event in memory.get("events", []):
+            if event.get("id") in selected_ids:
+                event["ai_status"] = "analyzed"
+                event["ai_analyzed_at"] = now.isoformat()
+        return {
+            "status": "success",
+            "model": model,
+            "generated_at": now.isoformat(),
+            "event_count": len(selected),
+            "event_ids": sorted(selected_ids),
+            "analysis_vi": output_text.strip(),
+        }
+    except Exception as exc:
+        safe_error = str(exc).replace(api_key, "[REDACTED]")[:500]
+        return {
+            "status": "error",
+            "model": model,
+            "generated_at": now.isoformat(),
+            "event_count": len(selected),
+            "error": safe_error,
+            "analysis_vi": "Gemini chua phan tich duoc; bien dong van duoc giu trong hang doi.",
+        }
+
+
+def change_memory_summary(memory: dict[str, Any]) -> dict[str, int]:
+    events = memory.get("events", [])
+    return {
+        "state_count": len(memory.get("states", {})),
+        "event_count": len(events),
+        "pending_ai_events": sum(1 for event in events if event.get("ai_status") == "pending"),
+    }
+
+
+def build_frontend_api(
+    payload: dict[str, Any],
+    history: dict[str, Any],
+    memory: dict[str, Any],
+    gemini_analysis: dict[str, Any],
+) -> None:
     DOCS_API_DIR.mkdir(exist_ok=True)
     indicators = []
     for card in payload["cards"]:
@@ -965,6 +1261,8 @@ def build_frontend_api(payload: dict[str, Any], history: dict[str, Any]) -> None
         )
     (DOCS_API_DIR / "indicators.json").write_text(json.dumps(indicators, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "history.json").write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (DOCS_API_DIR / "indicator_memory.json").write_text(json.dumps(memory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (DOCS_API_DIR / "gemini_analysis.json").write_text(json.dumps(gemini_analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def render_html(payload: dict[str, Any]) -> str:
@@ -1174,6 +1472,9 @@ def main() -> None:
     cards = build_cards(now)
     sources = source_health()
     history = update_history(cards, now)
+    memory = update_indicator_memory(cards, now)
+    gemini_analysis = analyze_indicator_changes(memory, cards, now)
+    memory_summary = change_memory_summary(memory)
     available = sum(1 for card in cards if card["value"] is not None)
     payload = {
         "project": "vimo-VN",
@@ -1186,7 +1487,15 @@ def main() -> None:
             "source_count": len({card["source_primary"] for card in cards}),
             "vip_cards": sum(1 for card in cards if card.get("vip")),
             "vip_available": sum(1 for card in cards if card.get("vip") and card["value"] is not None),
-            "note": "Macro cards without a reliable machine-readable source are marked awaiting_official_source instead of using guessed values.",
+            "note": "Missing non-daily cards reuse only their last observed value and are marked STALE_CACHE; values are never guessed.",
+        },
+        "change_memory": memory_summary,
+        "gemini_analysis": {
+            "status": gemini_analysis["status"],
+            "model": gemini_analysis["model"],
+            "generated_at": gemini_analysis["generated_at"],
+            "event_count": gemini_analysis["event_count"],
+            "api_url": "api/gemini_analysis.json",
         },
         "source_health": sources,
         "history": history,
@@ -1195,12 +1504,18 @@ def main() -> None:
 
     (OUTPUT_DIR / "latest.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    build_frontend_api(payload, history)
+    MEMORY_FILE.write_text(json.dumps(memory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    GEMINI_ANALYSIS_FILE.write_text(json.dumps(gemini_analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    build_frontend_api(payload, history, memory, gemini_analysis)
     (DOCS_DIR / "index.html").write_text(render_html(payload), encoding="utf-8")
 
     vip_available = payload["coverage"]["vip_available"]
     vip_cards = payload["coverage"]["vip_cards"]
-    summary = f"vimo-VN updated: {available}/{len(cards)} cards have automatic values; VIP {vip_available}/{vip_cards}."
+    summary = (
+        f"vimo-VN updated: {available}/{len(cards)} cards have observed values; "
+        f"VIP {vip_available}/{vip_cards}; Gemini {gemini_analysis['status']}; "
+        f"pending changes {memory_summary['pending_ai_events']}."
+    )
     (OUTPUT_DIR / "telegram_summary.txt").write_text(summary + "\n", encoding="utf-8")
     print(summary)
 
