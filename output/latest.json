@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-16T16:25:52.682575+00:00",
-  "generated_at_bkk": "2026-07-16T23:25:52.682575+07:00",
+  "generated_at_utc": "2026-07-16T16:28:43.825740+00:00",
+  "generated_at_bkk": "2026-07-16T23:28:43.825740+07:00",
   "coverage": {
     "available_cards": 41,
     "total_cards": 41,
@@ -19,7 +19,7 @@
   "gemini_analysis": {
     "status": "waiting_for_api_key",
     "model": "models/gemini-3-flash-preview",
-    "generated_at": "2026-07-16T16:25:52.682575+00:00",
+    "generated_at": "2026-07-16T16:28:43.825740+00:00",
     "event_count": 4,
     "api_url": "api/gemini_analysis.json"
   },
@@ -193,7 +193,7 @@
       "key": "gold_world",
       "name_vi": "Vàng thế giới",
       "current": {
-        "value": 3995.5,
+        "value": 3991.5,
         "unit": "USD/oz",
         "date": "2026-07-16",
         "source": "Yahoo Finance",
@@ -206,23 +206,23 @@
         "unit": "USD/oz"
       },
       "change": {
-        "absolute": -40.3,
-        "percent": -0.9986,
+        "absolute": -44.3,
+        "percent": -1.0977,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 3595.0,
-        "low": 3515.0,
-        "high": 3675.0,
+        "value": 3579.0,
+        "low": 3499.0,
+        "high": 3659.0,
         "as_of": "2026-08-16"
       },
       "forecast_3m": {
-        "value": 3155.0,
-        "low": 3027.0,
-        "high": 3283.0,
+        "value": 3126.0,
+        "low": 2998.0,
+        "high": 3254.0,
         "as_of": "2026-10-16"
       },
-      "reason_short": "Giá trị giảm 40.3 USD/oz so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 44.3 USD/oz so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -315,7 +315,7 @@
       "key": "dxy",
       "name_vi": "DXY",
       "current": {
-        "value": 100.742,
+        "value": 100.748,
         "unit": "điểm",
         "date": "2026-07-16",
         "source": "Yahoo Finance",
@@ -328,8 +328,8 @@
         "unit": "điểm"
       },
       "change": {
-        "absolute": -0.085,
-        "percent": -0.0843,
+        "absolute": -0.079,
+        "percent": -0.0784,
         "direction": "down"
       },
       "forecast_1m": {
@@ -339,12 +339,12 @@
         "as_of": "2026-08-16"
       },
       "forecast_3m": {
-        "value": 99.3,
-        "low": 96.1,
+        "value": 99.4,
+        "low": 96.2,
         "high": 102.6,
         "as_of": "2026-10-16"
       },
-      "reason_short": "Giá trị giảm 0.085 điểm so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 0.079 điểm so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -443,7 +443,7 @@
       "key": "oil_prices",
       "name_vi": "Giá dầu WTI",
       "current": {
-        "value": 78.86,
+        "value": 78.95,
         "unit": "USD/thùng",
         "date": "2026-07-16",
         "source": "Yahoo Finance",
@@ -456,23 +456,23 @@
         "unit": "USD/thùng"
       },
       "change": {
-        "absolute": -1.22,
-        "percent": -1.5235,
+        "absolute": -1.13,
+        "percent": -1.4111,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 90.69,
-        "low": 89.11,
-        "high": 92.27,
+        "value": 90.79,
+        "low": 89.21,
+        "high": 92.37,
         "as_of": "2026-08-16"
       },
       "forecast_3m": {
-        "value": 102.52,
-        "low": 99.99,
-        "high": 105.04,
+        "value": 102.64,
+        "low": 100.11,
+        "high": 105.16,
         "as_of": "2026-10-16"
       },
-      "reason_short": "Giá trị giảm 1.22 USD/thùng so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 1.13 USD/thùng so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -502,7 +502,7 @@
       "key": "us_10y_yield",
       "name_vi": "US 10Y yield",
       "current": {
-        "value": 4.575,
+        "value": 4.573,
         "unit": "%",
         "date": "2026-07-16",
         "source": "Yahoo Finance",
@@ -515,23 +515,23 @@
         "unit": "%"
       },
       "change": {
-        "absolute": -0.01,
-        "percent": -0.2181,
+        "absolute": -0.012,
+        "percent": -0.2617,
         "direction": "down"
       },
       "forecast_1m": {
         "value": 4.59,
-        "low": 4.5,
+        "low": 4.49,
         "high": 4.68,
         "as_of": "2026-08-16"
       },
       "forecast_3m": {
-        "value": 4.61,
-        "low": 4.47,
-        "high": 4.76,
+        "value": 4.6,
+        "low": 4.45,
+        "high": 4.74,
         "as_of": "2026-10-16"
       },
-      "reason_short": "Giá trị giảm 0.01 % so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 0.012 % so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -1383,7 +1383,7 @@
     "risk_drivers": [
       "CPI 4.69% YoY tạo áp lực lãi suất",
       "Cán cân thương mại âm 16.65 tỷ USD",
-      "Lợi suất Mỹ 10Y 4.575% làm tăng chi phí vốn toàn cầu"
+      "Lợi suất Mỹ 10Y 4.573% làm tăng chi phí vốn toàn cầu"
     ],
     "neutral_drivers": [
       "PMI 51.8 chỉ nhỉnh hơn ngưỡng 50, cần thêm kỳ xác nhận",
@@ -1404,7 +1404,7 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-07-16T16:26:07.654146+00:00",
+      "checked_at": "2026-07-16T16:29:24.646285+00:00",
       "bytes": 94488
     },
     "nso": {
@@ -1412,9 +1412,9 @@
       "url": "https://www.nso.gov.vn/",
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
-      "available": true,
-      "checked_at": "2026-07-16T16:26:09.266884+00:00",
-      "bytes": 114615
+      "available": false,
+      "checked_at": "2026-07-16T16:29:35.362672+00:00",
+      "error": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     "customs": {
       "name": "Tổng cục Hải quan",
@@ -1422,7 +1422,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-07-16T16:26:09.553886+00:00",
+      "checked_at": "2026-07-16T16:29:37.383615+00:00",
       "bytes": 12013
     },
     "vbma": {
@@ -1431,7 +1431,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-07-16T16:26:10.459692+00:00",
+      "checked_at": "2026-07-16T16:29:38.246243+00:00",
       "bytes": 39804
     },
     "vnba": {
@@ -1440,8 +1440,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-07-16T16:26:10.941418+00:00",
-      "bytes": 224117
+      "checked_at": "2026-07-16T16:29:41.257165+00:00",
+      "bytes": 208612
     },
     "market": {
       "name": "Public market APIs / Vietcap",
@@ -1449,7 +1449,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-07-16T16:26:11.250939+00:00",
+      "checked_at": "2026-07-16T16:29:43.246023+00:00",
       "bytes": 8036
     }
   },
@@ -1623,7 +1623,7 @@
         {
           "date": "2026-07-16",
           "bucket": "2026-07-16",
-          "value": 3995.5,
+          "value": 3991.5,
           "unit": "USD/oz",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -1649,7 +1649,7 @@
           "unit": "% YTD",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -1723,7 +1723,7 @@
         {
           "date": "2026-07-16",
           "bucket": "2026-07-16",
-          "value": 100.742,
+          "value": 100.748,
           "unit": "điểm",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -1835,7 +1835,7 @@
         {
           "date": "2026-07-16",
           "bucket": "2026-07-16",
-          "value": 78.86,
+          "value": 78.95,
           "unit": "USD/thùng",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -1901,7 +1901,7 @@
         {
           "date": "2026-07-16",
           "bucket": "2026-07-16",
-          "value": 4.575,
+          "value": 4.573,
           "unit": "%",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/%5ETNX",
@@ -1985,7 +1985,7 @@
           "unit": "% YoY khu vực I",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2007,7 +2007,7 @@
           "unit": "% YoY",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2051,7 +2051,7 @@
           "unit": "% YoY",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2073,7 +2073,7 @@
           "unit": "tỷ USD (lũy kế kỳ báo cáo)",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": "Nhập siêu mang dấu âm; xuất siêu mang dấu dương."
         }
       ],
@@ -2095,7 +2095,7 @@
           "unit": "tỷ USD (lũy kế kỳ báo cáo)",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2117,7 +2117,7 @@
           "unit": "tỷ USD (lũy kế kỳ báo cáo)",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2139,7 +2139,7 @@
           "unit": "tỷ USD (lũy kế kỳ báo cáo)",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2161,7 +2161,7 @@
           "unit": "tỷ USD (lũy kế kỳ báo cáo)",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2183,7 +2183,7 @@
           "unit": "% YoY lũy kế kỳ báo cáo",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2195,7 +2195,7 @@
           "unit": "doanh nghiệp (lũy kế kỳ báo cáo)",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2239,7 +2239,7 @@
           "unit": "triệu lượt (lũy kế kỳ báo cáo)",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2261,7 +2261,7 @@
           "unit": "% YoY vốn khu vực Nhà nước",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch."
         }
       ],
@@ -2283,7 +2283,7 @@
           "unit": "nghìn tỷ VND thu NSNN",
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "source_quality": "AUTO_NSO_PARSE",
+          "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null
         }
       ],
@@ -2532,7 +2532,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 3995.5,
+      "value": 3991.5,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -2544,7 +2544,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 3995.5 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 3991.5 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -2560,7 +2560,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-26",
       "frequency": "monthly",
@@ -2620,7 +2620,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 100.742,
+      "value": 100.748,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -2632,7 +2632,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.742 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.748 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -2730,7 +2730,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 78.86,
+      "value": 78.95,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -2742,7 +2742,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 78.86 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 78.95 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
@@ -2774,7 +2774,7 @@
       "priority": 5,
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
       "why_it_matters": "US10Y là benchmark định giá tài sản toàn cầu.",
-      "value": 4.575,
+      "value": 4.573,
       "unit": "%",
       "status": "available",
       "signal": "YELLOW",
@@ -2786,7 +2786,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.575 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
+      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.573 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
     },
     {
       "key": "ecb_eurozone",
@@ -2890,7 +2890,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -2912,7 +2912,7 @@
       "signal": "YELLOW",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -2956,7 +2956,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -2978,7 +2978,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": "Nhập siêu mang dấu âm; xuất siêu mang dấu dương.",
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3000,7 +3000,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3022,7 +3022,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3044,7 +3044,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3066,7 +3066,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3088,7 +3088,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3110,7 +3110,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3154,7 +3154,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3176,7 +3176,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch.",
       "as_of": "2026-06-30",
       "frequency": "monthly",
@@ -3198,7 +3198,7 @@
       "signal": "GREEN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "as_of": "2026-06-30",
       "frequency": "monthly",
