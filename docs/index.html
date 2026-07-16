@@ -33,10 +33,15 @@
     h3 { margin:14px 0 6px; font-size:15px; color:#cbd5e1; font-weight:600; }
     .vip { display:inline-block; margin-left:6px; color:#fde68a; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.35); border-radius:4px; padding:1px 5px; font-size:10px; vertical-align:middle; }
     .value { font-size:25px; font-weight:700; margin:0 0 8px; color:#fff; }
+    .value-text { font-size:18px; line-height:1.35; overflow-wrap:anywhere; }
+    .value-unit { display:block; margin-top:4px; color:#94a3b8; font-size:12px; font-weight:500; line-height:1.35; overflow-wrap:anywhere; }
     .change { display:flex; gap:6px; align-items:flex-start; color:#94a3b8; font-size:12px; line-height:1.35; }
     .chart-hint { display:inline-block; margin-top:10px; color:#a5b4fc; font-size:12px; }
     .chart-hint.muted { color:#64748b; }
-    .source { color:#64748b; font-size:12px; margin-top:16px; }
+    .data-date { color:#94a3b8; font-size:12px; margin:12px 0 0; }
+    .data-date strong { color:#cbd5e1; }
+    .source { color:#64748b; font-size:12px; margin:6px 0 0; }
+    .source-note { color:#64748b; font-size:11px; margin:6px 0 0; }
     p { line-height:1.45; }
     a { color:#93c5fd; text-decoration:none; font-size:13px; }
     .empty { grid-column:1/-1; color:#94a3b8; border:1px dashed var(--line); border-radius:8px; padding:18px; background:rgba(255,255,255,.025); }
@@ -61,28 +66,29 @@
 <body>
   <header>
     <div class="wrap">
-      <div class="eyebrow"><span class="pill">Báo cáo vĩ mô Việt Nam</span><span class="meta">Cập nhật: 2026-07-16T21:09:52.669845+07:00</span></div>
+      <div class="eyebrow"><span class="pill">Báo cáo vĩ mô Việt Nam</span><span class="meta">Cập nhật: 2026-07-16T21:34:38.853607+07:00</span></div>
       <h1>Tình hình Kinh tế · Tiền tệ · Tài chính</h1>
-      <p class="meta">Tự động quét mỗi sáng qua GitHub Actions. Card chỉ hiện khi có số liệu máy đọc được.</p>
+      <p class="meta">Tự động quét mỗi sáng qua GitHub Actions. Khi nguồn mới chưa đọc được, card dùng số gần nhất đã xác minh và ghi rõ ngày dữ liệu.</p>
       <div class="summary">
-        <div class="metric"><strong>16/46</strong><span>card có dữ liệu tự động</span></div>
-        <div class="metric"><strong>22</strong><span>nguồn theo dõi</span></div>
+        <div class="metric"><strong>41/41</strong><span>card có dữ liệu có nguồn</span></div>
+        <div class="metric"><strong>13</strong><span>nguồn theo dõi</span></div>
         <div class="metric"><strong>ok</strong><span>trạng thái pipeline</span></div>
       </div>
     </div>
   </header>
-  <nav class="wrap"><button class="tab active" data-tab="real_economy">Kinh tế thực <span>14</span></button><button class="tab" data-tab="financial">Tiền tệ - tài chính <span>12</span></button><button class="tab" data-tab="sector">Ngành - cấu phần <span>10</span></button><button class="tab" data-tab="global">Bối cảnh toàn cầu <span>10</span></button></nav>
+  <nav class="wrap"><button class="tab active" data-tab="real_economy">Kinh tế thực <span>14</span></button><button class="tab" data-tab="financial">Tiền tệ - tài chính <span>12</span></button><button class="tab" data-tab="sector">Ngành - cấu phần <span>5</span></button><button class="tab" data-tab="global">Bối cảnh toàn cầu <span>10</span></button></nav>
   <main class="wrap"><section id="real_economy" class="panel active">
-        <article class="card ok">
+        <article class="card ok chartable" data-key="cpi">
           <div class="card-top">
             <span class="group-label">Kinh tế thực</span>
             <span class="health">OK</span>
           </div>
           <h3>CPI <b class="vip">VIP</b></h3>
-          <p class="value">4.69 % YoY</p>
-          <p class="change"><span>↘</span>VIP · monthly · STALE_CACHE_AUTO_NSO_PARSE · OK</p>
-          <span class="chart-hint muted">Snapshot</span>
-          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="value">4.69<span class="value-unit">% YoY</span></p>
+          <p class="change"><span>↘</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
         </article>
 
         <article class="card ok">
@@ -91,22 +97,77 @@
             <span class="health">OK</span>
           </div>
           <h3>PMI sản xuất <b class="vip">VIP</b></h3>
-          <p class="value">51.8 điểm</p>
+          <p class="value">51.8<span class="value-unit">điểm</span></p>
           <p class="change"><span>–</span>VIP · monthly · AUTO_VGP_SPGLOBAL · OK</p>
           <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-03</strong></p>
           <p class="source">Nguồn: <a href="https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm">VGP / S&amp;P Global</a></p>
         </article>
 
-        <article class="card ok">
+        <article class="card ok chartable" data-key="iip">
           <div class="card-top">
             <span class="group-label">Kinh tế thực</span>
             <span class="health">OK</span>
           </div>
           <h3>IIP <b class="vip">VIP</b></h3>
-          <p class="value">10.5 % YoY</p>
-          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_AUTO_NSO_PARSE · OK</p>
-          <span class="chart-hint muted">Snapshot</span>
-          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="value">10.8<span class="value-unit">% YoY</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article>
+
+        <article class="card ok chartable" data-key="trade_balance">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Cán cân thương mại <b class="vip">VIP</b></h3>
+          <p class="value">-16.65<span class="value-unit">tỷ USD (lũy kế kỳ báo cáo)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="source-note">Nhập siêu mang dấu âm; xuất siêu mang dấu dương.</p>
+        </article>
+
+        <article class="card ok chartable" data-key="exports">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Xuất khẩu <b class="vip">VIP</b></h3>
+          <p class="value">266.52<span class="value-unit">tỷ USD (lũy kế kỳ báo cáo)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article>
+
+        <article class="card ok chartable" data-key="imports">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Nhập khẩu <b class="vip">VIP</b></h3>
+          <p class="value">283.17<span class="value-unit">tỷ USD (lũy kế kỳ báo cáo)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article>
+
+        <article class="card ok chartable" data-key="fdi_disbursed">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>FDI giải ngân <b class="vip">VIP</b></h3>
+          <p class="value">13.03<span class="value-unit">tỷ USD (lũy kế kỳ báo cáo)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
         </article>
 
         <article class="card ok">
@@ -114,11 +175,52 @@
             <span class="group-label">Kinh tế thực</span>
             <span class="health">OK</span>
           </div>
-          <h3>Bán lẻ hàng hóa và dịch vụ <b class="vip">VIP</b></h3>
-          <p class="value">13.9 % YoY</p>
-          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_AUTO_NSO_PARSE · OK</p>
+          <h3>FDI đăng ký <b class="vip">VIP</b></h3>
+          <p class="value">34.65<span class="value-unit">tỷ USD (lũy kế kỳ báo cáo)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
           <span class="chart-hint muted">Snapshot</span>
-          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article>
+
+        <article class="card ok chartable" data-key="retail">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Bán lẻ hàng hóa và dịch vụ <b class="vip">VIP</b></h3>
+          <p class="value">12.9<span class="value-unit">% YoY lũy kế kỳ báo cáo</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Doanh nghiệp thành lập mới <b class="vip">VIP</b></h3>
+          <p class="value">111700.0<span class="value-unit">doanh nghiệp (lũy kế kỳ báo cáo)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Doanh nghiệp rút lui <b class="vip">VIP</b></h3>
+          <p class="value">151100<span class="value-unit">doanh nghiệp (6T/2026)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="source-note">Tổng doanh nghiệp tạm ngừng, chờ giải thể và hoàn tất giải thể.</p>
         </article>
 
         <article class="card ok">
@@ -127,10 +229,38 @@
             <span class="health">OK</span>
           </div>
           <h3>Khách quốc tế <b class="vip">VIP</b></h3>
-          <p class="value">1.68 triệu lượt</p>
-          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_AUTO_NSO_PARSE · OK</p>
+          <p class="value">12.3<span class="value-unit">triệu lượt (lũy kế kỳ báo cáo)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
           <span class="chart-hint muted">Snapshot</span>
-          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Đầu tư công <b class="vip">VIP</b></h3>
+          <p class="value">12.5<span class="value-unit">% YoY vốn khu vực Nhà nước</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="source-note">Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Kinh tế thực</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Ngân sách nhà nước <b class="vip">VIP</b></h3>
+          <p class="value">1568.2<span class="value-unit">nghìn tỷ VND thu NSNN</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
         </article></section><section id="financial" class="panel">
         <article class="card ok">
           <div class="card-top">
@@ -138,10 +268,25 @@
             <span class="health">OK</span>
           </div>
           <h3>Lãi suất liên ngân hàng qua đêm </h3>
-          <p class="value">4.28 %</p>
+          <p class="value">4.28<span class="value-unit">%</span></p>
           <p class="change"><span>↗</span>weekly_snapshot · AUTO_VBMA_PDF · OK</p>
           <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-10</strong></p>
           <p class="source">Nguồn: <a href="https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf">VBMA</a></p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Tiền tệ - tài chính</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Tỷ giá trung tâm </h3>
+          <p class="value">25139<span class="value-unit">VND/USD</span></p>
+          <p class="change"><span>–</span>daily · VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-05-29</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA / NHNN</a></p>
+          <p class="source-note">Tỷ giá trung tâm chốt tuần cuối tháng 5 theo bản tin VNBA tổng hợp từ NHNN.</p>
         </article>
 
         <article class="card ok chartable" data-key="fx_market_usd_vnd">
@@ -150,9 +295,10 @@
             <span class="health">OK</span>
           </div>
           <h3>USD/VND thị trường </h3>
-          <p class="value">26176.94 VND/USD</p>
+          <p class="value">26176.94<span class="value-unit">VND/USD</span></p>
           <p class="change"><span>–</span>daily · AUTO · OK</p>
           <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>Thu, 16 Jul 2026 00:02:31 +0000</strong></p>
           <p class="source">Nguồn: <a href="https://open.er-api.com/">Open ER API</a></p>
         </article>
 
@@ -162,9 +308,10 @@
             <span class="health">OK</span>
           </div>
           <h3>VN-Index </h3>
-          <p class="value">1804.24 điểm</p>
+          <p class="value">1804.24<span class="value-unit">điểm</span></p>
           <p class="change"><span>–</span>daily · AUTO · OK</p>
           <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-16</strong></p>
           <p class="source">Nguồn: <a href="https://trading.vietcap.com.vn/">Vietcap</a></p>
         </article>
 
@@ -174,9 +321,10 @@
             <span class="health">OK</span>
           </div>
           <h3>Lợi suất TPCP Việt Nam 10Y </h3>
-          <p class="value">4.4 %</p>
+          <p class="value">4.4<span class="value-unit">%</span></p>
           <p class="change"><span>–</span>weekly_snapshot · AUTO_VBMA_PDF · OK</p>
           <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-10</strong></p>
           <p class="source">Nguồn: <a href="https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf">VBMA</a></p>
         </article>
 
@@ -186,10 +334,52 @@
             <span class="health">OK</span>
           </div>
           <h3>Vàng thế giới </h3>
-          <p class="value">3999.3999 USD/oz</p>
+          <p class="value">3997.0<span class="value-unit">USD/oz</span></p>
           <p class="change"><span>–</span>daily · AUTO · OK</p>
           <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-16</strong></p>
           <p class="source">Nguồn: <a href="https://finance.yahoo.com/quote/GC%3DF">Yahoo Finance</a></p>
+        </article>
+
+        <article class="card ok chartable" data-key="credit">
+          <div class="card-top">
+            <span class="group-label">Tiền tệ - tài chính</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Tăng trưởng tín dụng <b class="vip">VIP</b></h3>
+          <p class="value">7.41<span class="value-unit">% YTD</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-26</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Tiền tệ - tài chính</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Lãi suất huy động <b class="vip">VIP</b></h3>
+          <p class="value value-text">5,9-6,0<span class="value-unit">%/năm Big4 kỳ hạn 12T</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-05-31</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA</a></p>
+          <p class="source-note">Dải lãi suất huy động thông thường của Big4 cho kỳ hạn từ 12 tháng; giữ dạng khoảng, không lấy trung bình giả.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Tiền tệ - tài chính</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Lãi suất cho vay <b class="vip">VIP</b></h3>
+          <p class="value value-text">7,1-9,4<span class="value-unit">%/năm bình quân VND</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-05-31</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA / NHNN</a></p>
+          <p class="source-note">Dải lãi suất cho vay bình quân đối với dư nợ cũ và mới.</p>
         </article>
 
         <article class="card ok chartable" data-key="dxy">
@@ -198,9 +388,10 @@
             <span class="health">OK</span>
           </div>
           <h3>DXY </h3>
-          <p class="value">100.638 điểm</p>
+          <p class="value">100.645<span class="value-unit">điểm</span></p>
           <p class="change"><span>↗</span>daily · AUTO · OK</p>
           <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-16</strong></p>
           <p class="source">Nguồn: <a href="https://finance.yahoo.com/quote/DX-Y.NYB">Yahoo Finance</a></p>
         </article>
 
@@ -210,9 +401,10 @@
             <span class="health">OK</span>
           </div>
           <h3>Phát hành TPDN <b class="vip">VIP</b></h3>
-          <p class="value">0.1 nghìn tỷ VND</p>
+          <p class="value">0.1<span class="value-unit">nghìn tỷ VND</span></p>
           <p class="change"><span>–</span>VIP · monthly · AUTO_VBMA_PDF · OK</p>
           <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-10</strong></p>
           <p class="source">Nguồn: <a href="https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf">VBMA</a></p>
         </article>
 
@@ -222,21 +414,134 @@
             <span class="health">OK</span>
           </div>
           <h3>Phát hành TPCP </h3>
-          <p class="value">185.401 nghìn tỷ VND</p>
+          <p class="value">185.401<span class="value-unit">nghìn tỷ VND</span></p>
           <p class="change"><span>–</span>weekly_snapshot · AUTO_VBMA_PDF · OK</p>
           <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-10</strong></p>
           <p class="source">Nguồn: <a href="https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf">VBMA</a></p>
-        </article></section><section id="sector" class="panel"><div class="empty">Chưa có dữ liệu tự động chắc chắn cho nhóm này. Nguồn vẫn được kiểm tra mỗi sáng.</div></section><section id="global" class="panel">
+        </article></section><section id="sector" class="panel">
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Ngành - cấu phần</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>PMI cấu phần <b class="vip">VIP</b></h3>
+          <p class="value value-text">Đơn hàng và sản lượng tăng; việc làm giảm<span class="value-unit">ghi nhận tháng 6/2026</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm">VGP / S&amp;P Global</a></p>
+          <p class="source-note">S&amp;P không công bố điểm số từng cấu phần miễn phí; lưu đúng mô tả hướng biến động, không tự gán điểm.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Ngành - cấu phần</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>XNK theo khu vực <b class="vip">VIP</b></h3>
+          <p class="value">79.9<span class="value-unit">% xuất khẩu thuộc khu vực FDI (6T/2026)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="source-note">Tỷ trọng xuất khẩu của khu vực có vốn đầu tư nước ngoài, kể cả dầu thô.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Ngành - cấu phần</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>XNK theo thị trường <b class="vip">VIP</b></h3>
+          <p class="value value-text">Mỹ XK 86,5; Trung Quốc NK 115,2<span class="value-unit">tỷ USD (6T/2026)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+          <p class="source-note">Mỹ là thị trường xuất khẩu lớn nhất; Trung Quốc là thị trường nhập khẩu lớn nhất.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Ngành - cấu phần</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>XNK theo mặt hàng <b class="vip">VIP</b></h3>
+          <p class="value">22.5<span class="value-unit">tỷ USD điện tử sang Mỹ (5T/2026)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_MEDQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-05-31</strong></p>
+          <p class="source">Nguồn: <a href="https://en.baochinhphu.vn/viet-nams-exports-to-us-up-nearly-22-in-five-months-111260616101850643.htm">VGP / số liệu thương mại</a></p>
+          <p class="source-note">Máy tính, sản phẩm điện tử và linh kiện xuất sang Mỹ; nguồn Chính phủ dẫn số liệu thương mại.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Ngành - cấu phần</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>FDI theo ngành <b class="vip">VIP</b></h3>
+          <p class="value">21.01<span class="value-unit">tỷ USD chế biến, chế tạo (2025)</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2025-12-31</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/nganh-cong-nghiep-che-bien-che-tao-thu-hut-manh-me-nhat-dong-von-dau-tu-truc-tiep-nuoc-ngoai-nam-2025/">NSO</a></p>
+          <p class="source-note">Tổng FDI đăng ký vào ngành chế biến, chế tạo năm 2025; dùng số cũ gần nhất có phân ngành rõ.</p>
+        </article></section><section id="global" class="panel">
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Fed policy rate </h3>
+          <p class="value value-text">3,50-3,75<span class="value-unit">% lãi suất hiện áp dụng</span></p>
+          <p class="change"><span>–</span>meeting · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-06</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA / Fed</a></p>
+          <p class="source-note">Dải lãi suất Fed trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Kinh tế Mỹ <b class="vip">VIP</b></h3>
+          <p class="value">1.6<span class="value-unit">% GDP YoY</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-05-31</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA</a></p>
+          <p class="source-note">Tăng trưởng kinh tế Mỹ được VNBA ghi nhận trong bản tin tháng 5.</p>
+        </article>
+
         <article class="card ok chartable" data-key="oil_prices">
           <div class="card-top">
             <span class="group-label">Bối cảnh toàn cầu</span>
             <span class="health">OK</span>
           </div>
           <h3>Giá dầu WTI </h3>
-          <p class="value">80.03 USD/thùng</p>
+          <p class="value">80.19<span class="value-unit">USD/thùng</span></p>
           <p class="change"><span>↗</span>daily · AUTO · OK</p>
           <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-16</strong></p>
           <p class="source">Nguồn: <a href="https://finance.yahoo.com/quote/CL%3DF">Yahoo Finance</a></p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Rủi ro địa chính trị </h3>
+          <p class="value value-text">Trung Đông/Hormuz: cú sốc năng lượng<span class="value-unit">ghi nhận tháng 5/2026</span></p>
+          <p class="change"><span>–</span>daily_monitor · VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-05-31</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA</a></p>
+          <p class="source-note">Bản tin ghi nhận xung đột Trung Đông và gián đoạn tại Hormuz gây cú sốc năng lượng.</p>
         </article>
 
         <article class="card ok chartable" data-key="us_10y_yield">
@@ -245,23 +550,81 @@
             <span class="health">OK</span>
           </div>
           <h3>US 10Y yield </h3>
-          <p class="value">4.583 %</p>
+          <p class="value">4.577<span class="value-unit">%</span></p>
           <p class="change"><span>↗</span>daily · AUTO · OK</p>
           <span class="chart-hint">Bấm để xem biểu đồ</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-07-16</strong></p>
           <p class="source">Nguồn: <a href="https://finance.yahoo.com/quote/%5ETNX">Yahoo Finance</a></p>
         </article>
 
-        <article class="card ok chartable" data-key="global_equities">
+        <article class="card ok">
           <div class="card-top">
             <span class="group-label">Bối cảnh toàn cầu</span>
             <span class="health">OK</span>
           </div>
-          <h3>Chứng khoán toàn cầu </h3>
-          <p class="value">7561.6602 điểm</p>
-          <p class="change"><span>–</span>daily · AUTO · OK</p>
-          <span class="chart-hint">Bấm để xem biểu đồ</span>
-          <p class="source">Nguồn: <a href="https://finance.yahoo.com/quote/%5EGSPC">Yahoo Finance</a></p>
-        </article></section><section class="sources"><h2>Nguồn độc lập đang theo dõi</h2><table><thead><tr><th>Nguồn</th><th>Vai trò</th><th>Lịch</th><th>Health</th></tr></thead><tbody><tr><td>S&amp;P Global PMI via VGP</td><td>PMI sản xuất do S&amp;P Global công bố</td><td>M+1 ngày 1-3</td><td class="source-ok">OK</td></tr><tr><td>NSO/GSO Việt Nam</td><td>CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch</td><td>M+1 ngày 3-7</td><td class="source-warn">CHECK</td></tr><tr><td>Tổng cục Hải quan</td><td>Xuất nhập khẩu chính thức</td><td>M+1 ngày 10-15</td><td class="source-ok">OK</td></tr><tr><td>VBMA</td><td>Liên ngân hàng, TPCP, TPDN tuần</td><td>hàng tuần</td><td class="source-ok">OK</td></tr><tr><td>VNBA</td><td>Bản tin tiền tệ tài chính tháng</td><td>M+1 ngày 11-13</td><td class="source-ok">OK</td></tr><tr><td>Public market APIs / Vietcap</td><td>VN-Index, tỷ giá, vàng, dầu, DXY, US10Y</td><td>daily</td><td class="source-ok">OK</td></tr></tbody></table></section></main>
+          <h3>ECB/Eurozone </h3>
+          <p class="value">2.0<span class="value-unit">% lãi suất hiện áp dụng</span></p>
+          <p class="change"><span>–</span>meeting · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-06</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA / ECB</a></p>
+          <p class="source-note">Lãi suất ECB trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>BOJ/Japan </h3>
+          <p class="value">0.75<span class="value-unit">% lãi suất hiện áp dụng</span></p>
+          <p class="change"><span>–</span>meeting · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-06</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA / BOJ</a></p>
+          <p class="source-note">Lãi suất BOJ trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Kinh tế Trung Quốc <b class="vip">VIP</b></h3>
+          <p class="value">5.0<span class="value-unit">% tăng trưởng YoY</span></p>
+          <p class="change"><span>–</span>VIP · monthly · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-05-31</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA / NBS China</a></p>
+          <p class="source-note">Tăng trưởng Trung Quốc được VNBA tổng hợp trong bản tin tháng 5.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Chính sách Việt Nam </h3>
+          <p class="value value-text">Thông tư NHNN 11-21/2026<span class="value-unit">ban hành trong tháng 5/2026</span></p>
+          <p class="change"><span>–</span>event · STALE_CACHE_VERIFIED_BASELINE_HIGHQ · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-05-31</strong></p>
+          <p class="source">Nguồn: <a href="https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm">VNBA / NHNN</a></p>
+          <p class="source-note">Bản tin VNBA liệt kê chuỗi Thông tư 11-21/2026 do NHNN ban hành trong tháng 5.</p>
+        </article>
+
+        <article class="card ok">
+          <div class="card-top">
+            <span class="group-label">Bối cảnh toàn cầu</span>
+            <span class="health">OK</span>
+          </div>
+          <h3>Nông nghiệp <b class="vip">VIP</b></h3>
+          <p class="value">3.87<span class="value-unit">% YoY khu vực I</span></p>
+          <p class="change"><span>–</span>VIP · monthly · AUTO_NSO_PARSE · OK</p>
+          <span class="chart-hint muted">Snapshot</span>
+          <p class="data-date">Ngày dữ liệu: <strong>2026-06-30</strong></p>
+          <p class="source">Nguồn: <a href="https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/">NSO</a></p>
+        </article></section><section class="sources"><h2>Nguồn độc lập đang theo dõi</h2><table><thead><tr><th>Nguồn</th><th>Vai trò</th><th>Lịch</th><th>Health</th></tr></thead><tbody><tr><td>S&amp;P Global PMI via VGP</td><td>PMI sản xuất do S&amp;P Global công bố</td><td>M+1 ngày 1-3</td><td class="source-ok">OK</td></tr><tr><td>NSO/GSO Việt Nam</td><td>CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch</td><td>M+1 ngày 3-7</td><td class="source-ok">OK</td></tr><tr><td>Tổng cục Hải quan</td><td>Xuất nhập khẩu chính thức</td><td>M+1 ngày 10-15</td><td class="source-ok">OK</td></tr><tr><td>VBMA</td><td>Liên ngân hàng, TPCP, TPDN tuần</td><td>hàng tuần</td><td class="source-ok">OK</td></tr><tr><td>VNBA</td><td>Bản tin tiền tệ tài chính tháng</td><td>M+1 ngày 11-13</td><td class="source-ok">OK</td></tr><tr><td>Public market APIs / Vietcap</td><td>VN-Index, tỷ giá, vàng, dầu, DXY, US10Y</td><td>daily</td><td class="source-ok">OK</td></tr></tbody></table></section></main>
   <div class="modal" id="chartModal" aria-hidden="true">
     <div class="modal-box">
       <div class="modal-head">
@@ -276,7 +639,7 @@
     </div>
   </div>
   <script>
-    const chartData = {"interbank_rate": {"name": "Lãi suất liên ngân hàng qua đêm", "unit": "%", "points": [{"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-W29", "value": 4.28, "unit": "%"}]}, "fx_market_usd_vnd": {"name": "USD/VND thị trường", "unit": "VND/USD", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 26221.66, "unit": "VND/USD"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 26230.03, "unit": "VND/USD"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 26240.86, "unit": "VND/USD"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 26214.47, "unit": "VND/USD"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 26191.27, "unit": "VND/USD"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 26190.52, "unit": "VND/USD"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 26205.97, "unit": "VND/USD"}, {"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07-16", "value": 26176.94, "unit": "VND/USD"}]}, "stock_market": {"name": "VN-Index", "unit": "điểm", "points": [{"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07-16", "value": 1804.24, "unit": "điểm"}]}, "govt_bond_yield": {"name": "Lợi suất TPCP Việt Nam 10Y", "unit": "%", "points": [{"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-W29", "value": 4.4, "unit": "%"}]}, "gold_world": {"name": "Vàng thế giới", "unit": "USD/oz", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 4133.7998, "unit": "USD/oz"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 4107.7998, "unit": "USD/oz"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 4128.8999, "unit": "USD/oz"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 4113.7002, "unit": "USD/oz"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 4104.1001, "unit": "USD/oz"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 4023.7, "unit": "USD/oz"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 4035.8, "unit": "USD/oz"}, {"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07-16", "value": 3999.3999, "unit": "USD/oz"}]}, "dxy": {"name": "DXY", "unit": "điểm", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 100.936, "unit": "điểm"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 100.882, "unit": "điểm"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 100.965, "unit": "điểm"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 100.97, "unit": "điểm"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 100.97, "unit": "điểm"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 101.179, "unit": "điểm"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 100.827, "unit": "điểm"}, {"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07-16", "value": 100.638, "unit": "điểm"}]}, "oil_prices": {"name": "Giá dầu WTI", "unit": "USD/thùng", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 71.82, "unit": "USD/thùng"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 71.68, "unit": "USD/thùng"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 71.51, "unit": "USD/thùng"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 71.41, "unit": "USD/thùng"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 71.41, "unit": "USD/thùng"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 79.72, "unit": "USD/thùng"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 80.08, "unit": "USD/thùng"}, {"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07-16", "value": 80.03, "unit": "USD/thùng"}]}, "us_10y_yield": {"name": "US 10Y yield", "unit": "%", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 4.539, "unit": "%"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 4.549, "unit": "%"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 4.569, "unit": "%"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 4.569, "unit": "%"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 4.569, "unit": "%"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 4.609, "unit": "%"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 4.585, "unit": "%"}, {"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07-16", "value": 4.583, "unit": "%"}]}, "global_equities": {"name": "Chứng khoán toàn cầu", "unit": "điểm", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 7543.6401, "unit": "điểm"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 7553.23, "unit": "điểm"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 7575.3901, "unit": "điểm"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 7575.3901, "unit": "điểm"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 7575.3901, "unit": "điểm"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 7515.3398, "unit": "điểm"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 7543.5898, "unit": "điểm"}, {"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07-16", "value": 7561.6602, "unit": "điểm"}]}, "cpi": {"name": "CPI", "unit": "% YoY", "points": [{"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07", "value": 4.69, "unit": "% YoY"}]}, "pmi_manufacturing": {"name": "PMI sản xuất", "unit": "điểm", "points": [{"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07", "value": 51.8, "unit": "điểm"}]}, "iip": {"name": "IIP", "unit": "% YoY", "points": [{"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07", "value": 10.5, "unit": "% YoY"}]}, "retail": {"name": "Bán lẻ hàng hóa và dịch vụ", "unit": "% YoY", "points": [{"date": "2026-07-16T14:09:52.669845+00:00", "bucket": "2026-07", "value": 13.9, "unit": "% YoY"}]}};
+    const chartData = {"interbank_rate": {"name": "Lãi suất liên ngân hàng qua đêm", "unit": "%", "points": [{"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-W29", "value": 4.28, "unit": "%"}]}, "fx_central_rate": {"name": "Tỷ giá trung tâm", "unit": "VND/USD", "points": [{"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-07-16", "value": 25139, "unit": "VND/USD"}]}, "fx_market_usd_vnd": {"name": "USD/VND thị trường", "unit": "VND/USD", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 26221.66, "unit": "VND/USD"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 26230.03, "unit": "VND/USD"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 26240.86, "unit": "VND/USD"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 26214.47, "unit": "VND/USD"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 26191.27, "unit": "VND/USD"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 26190.52, "unit": "VND/USD"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 26205.97, "unit": "VND/USD"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-07-16", "value": 26176.94, "unit": "VND/USD"}]}, "stock_market": {"name": "VN-Index", "unit": "điểm", "points": [{"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-07-16", "value": 1804.24, "unit": "điểm"}]}, "govt_bond_yield": {"name": "Lợi suất TPCP Việt Nam 10Y", "unit": "%", "points": [{"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-W29", "value": 4.4, "unit": "%"}]}, "gold_world": {"name": "Vàng thế giới", "unit": "USD/oz", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 4133.7998, "unit": "USD/oz"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 4107.7998, "unit": "USD/oz"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 4128.8999, "unit": "USD/oz"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 4113.7002, "unit": "USD/oz"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 4104.1001, "unit": "USD/oz"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 4023.7, "unit": "USD/oz"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 4035.8, "unit": "USD/oz"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-07-16", "value": 3997.0, "unit": "USD/oz"}]}, "credit": {"name": "Tăng trưởng tín dụng", "unit": "% YTD", "points": [{"date": "2026-07-16T14:32:02.571378+00:00", "bucket": "2026-07", "value": 7.41, "unit": "% YTD"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-06", "value": 7.41, "unit": "% YTD"}]}, "dxy": {"name": "DXY", "unit": "điểm", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 100.936, "unit": "điểm"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 100.882, "unit": "điểm"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 100.965, "unit": "điểm"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 100.97, "unit": "điểm"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 100.97, "unit": "điểm"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 101.179, "unit": "điểm"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 100.827, "unit": "điểm"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-07-16", "value": 100.645, "unit": "điểm"}]}, "oil_prices": {"name": "Giá dầu WTI", "unit": "USD/thùng", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 71.82, "unit": "USD/thùng"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 71.68, "unit": "USD/thùng"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 71.51, "unit": "USD/thùng"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 71.41, "unit": "USD/thùng"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 71.41, "unit": "USD/thùng"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 79.72, "unit": "USD/thùng"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 80.08, "unit": "USD/thùng"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-07-16", "value": 80.19, "unit": "USD/thùng"}]}, "us_10y_yield": {"name": "US 10Y yield", "unit": "%", "points": [{"date": "2026-07-09T20:51:44.770399+00:00", "bucket": "2026-07-09", "value": 4.539, "unit": "%"}, {"date": "2026-07-10T13:55:03.926260+00:00", "bucket": "2026-07-10", "value": 4.549, "unit": "%"}, {"date": "2026-07-11T03:48:50.928597+00:00", "bucket": "2026-07-11", "value": 4.569, "unit": "%"}, {"date": "2026-07-12T04:04:46.389839+00:00", "bucket": "2026-07-12", "value": 4.569, "unit": "%"}, {"date": "2026-07-13T04:06:38.476836+00:00", "bucket": "2026-07-13", "value": 4.569, "unit": "%"}, {"date": "2026-07-14T03:41:42.419513+00:00", "bucket": "2026-07-14", "value": 4.609, "unit": "%"}, {"date": "2026-07-15T03:41:50.896906+00:00", "bucket": "2026-07-15", "value": 4.585, "unit": "%"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-07-16", "value": 4.577, "unit": "%"}]}, "cpi": {"name": "CPI", "unit": "% YoY", "points": [{"date": "2026-07-16T14:32:02.571378+00:00", "bucket": "2026-07", "value": 4.69, "unit": "% YoY"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-06", "value": 4.69, "unit": "% YoY"}]}, "pmi_manufacturing": {"name": "PMI sản xuất", "unit": "điểm", "points": [{"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-07", "value": 51.8, "unit": "điểm"}]}, "iip": {"name": "IIP", "unit": "% YoY", "points": [{"date": "2026-07-16T14:32:02.571378+00:00", "bucket": "2026-07", "value": 10.8, "unit": "% YoY"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-06", "value": 10.8, "unit": "% YoY"}]}, "trade_balance": {"name": "Cán cân thương mại", "unit": "tỷ USD (lũy kế kỳ báo cáo)", "points": [{"date": "2026-07-16T14:32:02.571378+00:00", "bucket": "2026-07", "value": -16.65, "unit": "tỷ USD (lũy kế kỳ báo cáo)"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-06", "value": -16.65, "unit": "tỷ USD (lũy kế kỳ báo cáo)"}]}, "exports": {"name": "Xuất khẩu", "unit": "tỷ USD (lũy kế kỳ báo cáo)", "points": [{"date": "2026-07-16T14:32:02.571378+00:00", "bucket": "2026-07", "value": 266.52, "unit": "tỷ USD (lũy kế kỳ báo cáo)"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-06", "value": 266.52, "unit": "tỷ USD (lũy kế kỳ báo cáo)"}]}, "imports": {"name": "Nhập khẩu", "unit": "tỷ USD (lũy kế kỳ báo cáo)", "points": [{"date": "2026-07-16T14:32:02.571378+00:00", "bucket": "2026-07", "value": 283.17, "unit": "tỷ USD (lũy kế kỳ báo cáo)"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-06", "value": 283.17, "unit": "tỷ USD (lũy kế kỳ báo cáo)"}]}, "fdi_disbursed": {"name": "FDI giải ngân", "unit": "tỷ USD (lũy kế kỳ báo cáo)", "points": [{"date": "2026-07-16T14:32:02.571378+00:00", "bucket": "2026-07", "value": 13.03, "unit": "tỷ USD (lũy kế kỳ báo cáo)"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-06", "value": 13.03, "unit": "tỷ USD (lũy kế kỳ báo cáo)"}]}, "retail": {"name": "Bán lẻ hàng hóa và dịch vụ", "unit": "% YoY lũy kế kỳ báo cáo", "points": [{"date": "2026-07-16T14:32:02.571378+00:00", "bucket": "2026-07", "value": 12.9, "unit": "% YoY lũy kế kỳ báo cáo"}, {"date": "2026-07-16T14:34:38.853607+00:00", "bucket": "2026-06", "value": 12.9, "unit": "% YoY lũy kế kỳ báo cáo"}]}};
     const tabs = document.querySelectorAll('.tab');
     const panels = document.querySelectorAll('.panel');
     tabs.forEach(tab => tab.addEventListener('click', () => {

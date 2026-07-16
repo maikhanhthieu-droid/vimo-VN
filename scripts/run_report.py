@@ -10,6 +10,7 @@ import ssl
 import sys
 import time
 import xml.etree.ElementTree as ET
+from calendar import monthrange
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from http.client import RemoteDisconnected
@@ -31,6 +32,7 @@ DOCS_API_DIR = DOCS_DIR / "api"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
 MEMORY_FILE = OUTPUT_DIR / "indicator_memory.json"
 GEMINI_ANALYSIS_FILE = OUTPUT_DIR / "gemini_analysis.json"
+VERIFIED_BASELINE_FILE = ROOT / "data" / "verified_baseline.json"
 
 
 @dataclass(frozen=True)
@@ -86,10 +88,6 @@ VIP_FREQUENCIES = {
     "trade_by_commodity": "monthly",
     "fdi_by_sector": "monthly",
     "agriculture_snapshot": "monthly",
-    "industrial_exports": "monthly",
-    "energy_snapshot": "monthly",
-    "real_estate_context": "monthly",
-    "banking_liquidity": "weekly_snapshot",
     "fed_policy": "meeting",
     "us_economy": "monthly",
     "oil_prices": "daily",
@@ -99,7 +97,6 @@ VIP_FREQUENCIES = {
     "boj_japan": "meeting",
     "china_economy": "monthly",
     "policy_actions_vn": "event",
-    "global_equities": "daily",
 }
 
 SOURCE_REGISTRY = {
@@ -130,7 +127,6 @@ HISTORY_IMPORTANT_KEYS = {
     "dxy",
     "oil_prices",
     "us_10y_yield",
-    "global_equities",
 }
 
 HISTORY_LIMIT = 100
@@ -196,11 +192,6 @@ SPECS: list[IndicatorSpec] = [
     IndicatorSpec("trade_by_market", "XNK theo thị trường", "sector", "tỷ USD", "Customs", "Top thị trường xuất nhập khẩu.", "Thị trường lớn cho thấy rủi ro tập trung thương mại.", 3, "https://www.customs.gov.vn/"),
     IndicatorSpec("trade_by_commodity", "XNK theo mặt hàng", "sector", "tỷ USD", "Customs", "Nhóm hàng xuất nhập khẩu chủ lực.", "Mặt hàng chủ lực cho thấy chu kỳ ngành.", 4, "https://www.customs.gov.vn/"),
     IndicatorSpec("fdi_by_sector", "FDI theo ngành", "sector", "tỷ USD", "NSO", "FDI đăng ký theo ngành.", "FDI theo ngành cho thấy vốn đang chọn khu vực nào.", 5, "https://www.nso.gov.vn/"),
-    IndicatorSpec("agriculture_snapshot", "Nông nghiệp", "sector", "% YoY", "NSO", "Tổng quan khu vực nông lâm thủy sản.", "Nông nghiệp ảnh hưởng lương thực, xuất khẩu và CPI.", 6, "https://www.nso.gov.vn/"),
-    IndicatorSpec("industrial_exports", "Xuất khẩu công nghiệp", "sector", "tỷ USD", "Customs", "Xuất khẩu nhóm công nghiệp chế biến.", "Nhóm công nghiệp là lõi xuất khẩu.", 7, "https://www.customs.gov.vn/"),
-    IndicatorSpec("energy_snapshot", "Năng lượng trong nước", "sector", "% YoY", "NSO/MOIT", "Sản xuất điện, than, dầu khí.", "Năng lượng là nền cho sản xuất và giá đầu vào.", 8, "https://moit.gov.vn/"),
-    IndicatorSpec("real_estate_context", "Bất động sản", "sector", "ghi nhận", "NSO/VNBA", "Tín hiệu BĐS, xây dựng và TPDN liên quan.", "BĐS nối giữa tín dụng, trái phiếu và tài sản hộ gia đình.", 9, "https://vnba.org.vn/"),
-    IndicatorSpec("banking_liquidity", "Thanh khoản ngân hàng", "sector", "ghi nhận", "VNBA/VBMA", "Tổng hợp LNH, OMO, tín phiếu.", "Thanh khoản ngân hàng dẫn dắt lãi suất ngắn hạn.", 10, "https://vnba.org.vn/"),
     IndicatorSpec("fed_policy", "Fed policy rate", "global", "%", "FRED", "Biên trên lãi suất mục tiêu Fed Funds.", "Fed là neo lãi suất USD và dòng vốn toàn cầu.", 1, "https://fred.stlouisfed.org/"),
     IndicatorSpec("us_economy", "Kinh tế Mỹ", "global", "ghi nhận", "FRED/BEA", "Tăng trưởng, lạm phát, lao động Mỹ.", "Mỹ là thị trường xuất khẩu lớn và neo USD.", 2, "https://fred.stlouisfed.org/"),
     IndicatorSpec("oil_prices", "Giá dầu WTI", "global", "USD/thùng", "Stooq", "Giá dầu WTI.", "Dầu ảnh hưởng chi phí năng lượng và lạm phát.", 3, "https://stooq.com/"),
@@ -210,7 +201,7 @@ SPECS: list[IndicatorSpec] = [
     IndicatorSpec("boj_japan", "BOJ/Japan", "global", "ghi nhận", "BOJ", "Chính sách BOJ và kinh tế Nhật.", "Nhật là nguồn FDI và đối tác tài chính lớn.", 7, "https://www.boj.or.jp/"),
     IndicatorSpec("china_economy", "Kinh tế Trung Quốc", "global", "ghi nhận", "NBS China", "PMI, tăng trưởng và thương mại Trung Quốc.", "Trung Quốc là đối tác thương mại lớn nhất của Việt Nam.", 8, "https://www.stats.gov.cn/"),
     IndicatorSpec("policy_actions_vn", "Chính sách Việt Nam", "global", "ghi nhận", "Government/SBV", "Chỉ đạo điều hành, thông tư, quyết định mới.", "Chính sách nội địa là biến số trực tiếp cho thị trường.", 9, "https://chinhphu.vn/"),
-    IndicatorSpec("global_equities", "Chứng khoán toàn cầu", "global", "điểm", "Stooq", "S&P 500 hoặc chỉ số chứng khoán lớn.", "Thị trường toàn cầu ảnh hưởng khẩu vị rủi ro.", 10, "https://stooq.com/"),
+    IndicatorSpec("agriculture_snapshot", "Nông nghiệp", "global", "% YoY", "NSO", "Tổng quan khu vực nông lâm thủy sản.", "Nông nghiệp ảnh hưởng lương thực, xuất khẩu và CPI.", 10, "https://www.nso.gov.vn/"),
 ]
 
 
@@ -410,6 +401,179 @@ def first_number_after(text: str, markers: list[str]) -> float | None:
     return None
 
 
+def nso_report_period_end(title: str, published: Any) -> str | None:
+    title_l = title.lower()
+    year_match = re.search(r"20\d{2}", title_l)
+    year = int(year_match.group(0)) if year_match else None
+    month = None
+    month_words = {
+        "một": 1,
+        "hai": 2,
+        "ba": 3,
+        "tư": 4,
+        "bốn": 4,
+        "năm": 5,
+        "sáu": 6,
+        "bảy": 7,
+        "tám": 8,
+        "chín": 9,
+        "mười": 10,
+        "mười một": 11,
+        "mười hai": 12,
+    }
+    numeric_period = re.search(r"(?:^|\s)(1[0-2]|[1-9])\s*tháng", title_l)
+    if numeric_period:
+        month = int(numeric_period.group(1))
+    else:
+        for word, number in sorted(month_words.items(), key=lambda item: len(item[0]), reverse=True):
+            if f"{word} tháng" in title_l or f"tháng {word}" in title_l:
+                month = number
+                break
+    if year and month:
+        return f"{year:04d}-{month:02d}-{monthrange(year, month)[1]:02d}"
+    if published:
+        published_match = re.search(r"20\d{2}-\d{2}-\d{2}", str(published))
+        if published_match:
+            return published_match.group(0)
+    return None
+
+
+def first_regex_number(text: str, pattern: str, flags: int = re.I | re.S) -> float | None:
+    match = re.search(pattern, text, flags=flags)
+    if not match:
+        return None
+    try:
+        return parse_vietnamese_number(match.group(1))
+    except (IndexError, ValueError):
+        return None
+
+
+def parse_nso_economic_report(text: str, as_of: str | None, source_url: str | None) -> dict[str, dict[str, Any]]:
+    metadata = {
+        "as_of": as_of,
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_live": "NSO",
+        "source_url": source_url,
+    }
+    values: dict[str, dict[str, Any]] = {}
+
+    def add(key: str, value: Any, unit: str | None = None, source_note: str | None = None) -> None:
+        if value is None:
+            return
+        normalized = round(value, 4) if isinstance(value, float) else value
+        values[key] = {"value": normalized, **metadata}
+        if unit:
+            values[key]["unit"] = unit
+        if source_note:
+            values[key]["source_note"] = source_note
+
+    add("cpi", first_cpi_yoy(text))
+    add("iip", first_percent_with_context(text, ["Chỉ số sản xuất công nghiệp", "IIP"], ["so với cùng kỳ", "tăng"]))
+    add(
+        "retail",
+        first_regex_number(
+            text,
+            r"Tính chung[^.]{0,100}tổng mức bán lẻ hàng hóa và doanh thu dịch vụ tiêu dùng.{0,180}?tăng\s+([\d,.]+)%\s+so với cùng kỳ",
+        ),
+        "% YoY lũy kế kỳ báo cáo",
+    )
+    add(
+        "international_visitors",
+        first_regex_number(
+            text,
+            r"Khách quốc tế đến Việt Nam[^.]{0,80}?sáu tháng[^.]{0,80}?đạt\s+([\d,.]+)\s+triệu lượt",
+        ),
+        "triệu lượt (lũy kế kỳ báo cáo)",
+    )
+    add(
+        "exports",
+        first_regex_number(text, r"Tính chung[^.]{0,120}kim ngạch xuất khẩu hàng hóa (?:ước )?đạt\s+([\d,.]+)\s+tỷ USD"),
+        "tỷ USD (lũy kế kỳ báo cáo)",
+    )
+    add(
+        "imports",
+        first_regex_number(text, r"Tính chung[^.]{0,120}kim ngạch nhập khẩu hàng hóa (?:ước )?đạt\s+([\d,.]+)\s+tỷ USD"),
+        "tỷ USD (lũy kế kỳ báo cáo)",
+    )
+    trade_match = re.search(
+        r"Tính chung[^.]{0,120}cán cân thương mại hàng hóa (?:ước )?(nhập siêu|xuất siêu)\s+([\d,.]+)\s+tỷ USD",
+        text,
+        flags=re.I | re.S,
+    )
+    if trade_match:
+        trade_value = parse_vietnamese_number(trade_match.group(2))
+        if trade_match.group(1).lower() == "nhập siêu":
+            trade_value = -trade_value
+        add("trade_balance", trade_value, "tỷ USD (lũy kế kỳ báo cáo)", "Nhập siêu mang dấu âm; xuất siêu mang dấu dương.")
+
+    add(
+        "fdi_registered",
+        first_regex_number(text, r"Tổng vốn đầu tư nước ngoài đăng ký vào Việt Nam.{0,500}?đạt\s+([\d,.]+)\s+tỷ USD"),
+        "tỷ USD (lũy kế kỳ báo cáo)",
+    )
+    add(
+        "fdi_disbursed",
+        first_regex_number(text, r"Vốn đầu tư trực tiếp nước ngoài thực hiện tại Việt Nam.{0,220}?(?:ước )?đạt\s+([\d,.]+)\s+tỷ USD"),
+        "tỷ USD (lũy kế kỳ báo cáo)",
+    )
+    business_new = first_regex_number(
+        text,
+        r"Tính chung[^.]{0,120}cả nước có (?:gần|hơn)?\s*([\d,.]+)\s*nghìn doanh nghiệp đăng ký thành lập mới",
+    )
+    add("business_new", business_new * 1000 if business_new is not None else None, "doanh nghiệp (lũy kế kỳ báo cáo)")
+    business_exited = first_regex_number(
+        text,
+        r"[Ss]ố doanh nghiệp rút lui khỏi thị trường (?:là|đạt)\s*([\d,.]+)\s*nghìn doanh nghiệp",
+    )
+    add("business_exited", business_exited * 1000 if business_exited is not None else None, "doanh nghiệp (lũy kế kỳ báo cáo)")
+    add(
+        "state_investment",
+        first_regex_number(text, r"Vốn khu vực Nhà nước đạt.{0,180}?tăng\s+([\d,.]+)%\s+so với cùng kỳ"),
+        "% YoY vốn khu vực Nhà nước",
+        "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch.",
+    )
+    add(
+        "state_budget",
+        first_regex_number(text, r"Lũy kế tổng thu ngân sách Nhà nước.{0,100}?(?:ước )?đạt\s+([\d,.]+)\s*nghìn tỷ đồng"),
+        "nghìn tỷ VND thu NSNN",
+    )
+    credit_match = re.search(
+        r"Tính đến (?:thời điểm )?(\d{1,2})/(\d{1,2})/(20\d{2}).{0,260}?tăng trưởng tín dụng của nền kinh tế đạt\s+([\d,.]+)%",
+        text,
+        flags=re.I | re.S,
+    )
+    if credit_match:
+        credit_as_of = f"{int(credit_match.group(3)):04d}-{int(credit_match.group(2)):02d}-{int(credit_match.group(1)):02d}"
+        add("credit", parse_vietnamese_number(credit_match.group(4)), "% YTD")
+        values["credit"]["as_of"] = credit_as_of
+    add(
+        "agriculture_snapshot",
+        first_regex_number(text, r"GDP sáu tháng.{0,700}?khu vực nông, lâm nghiệp và thủy sản tăng\s+([\d,.]+)%"),
+        "% YoY khu vực I",
+    )
+    fdi_export_match = re.search(
+        r"khu vực có vốn đầu tư nước ngoài \(kể cả dầu thô\) đạt\s+[\d,.]+\s+tỷ USD.{0,100}?chiếm\s+([\d,.]+)%",
+        text,
+        flags=re.I | re.S,
+    )
+    if fdi_export_match:
+        add("trade_by_sector", parse_vietnamese_number(fdi_export_match.group(1)), "% xuất khẩu thuộc khu vực FDI")
+    market_match = re.search(
+        r"Hoa Kỳ là thị trường xuất khẩu lớn nhất.{0,100}?đạt\s+([\d,.]+)\s+tỷ USD.{0,180}?Trung Quốc là thị trường nhập khẩu lớn nhất.{0,100}?đạt\s+([\d,.]+)\s+tỷ USD",
+        text,
+        flags=re.I | re.S,
+    )
+    if market_match:
+        us_exports = parse_vietnamese_number(market_match.group(1))
+        china_imports = parse_vietnamese_number(market_match.group(2))
+        add(
+            "trade_by_market",
+            f"Mỹ XK {us_exports:g}; Trung Quốc NK {china_imports:g}",
+            "tỷ USD (lũy kế kỳ báo cáo)",
+        )
+    return values
+
+
 def fetch_nso_posts() -> list[dict[str, Any]]:
     try:
         posts = fetch_json(NSO_API_URL)
@@ -441,39 +605,22 @@ def fetch_nso_posts() -> list[dict[str, Any]]:
 
 
 def fetch_nso_snapshot() -> dict[str, dict[str, Any]]:
-    values: dict[str, dict[str, Any]] = {}
     posts = fetch_nso_posts()
-
-    selected = None
+    candidates = []
     for post in posts:
         title = strip_tags(post.get("title", {}).get("rendered", ""))
         title_l = title.lower()
-        if "báo cáo tình hình kinh tế" in title_l and "tháng" in title_l:
-            selected = post
-            break
-    if not selected:
-        return values
+        content = post.get("content", {}).get("rendered", "")
+        if "tình hình kinh tế" in title_l and "tháng" in title_l and content:
+            candidates.append((len(content), title, post))
+    if not candidates:
+        return {}
 
+    _, title, selected = max(candidates, key=lambda item: item[0])
     text = strip_tags(selected.get("content", {}).get("rendered", ""))
-    as_of = selected.get("date_gmt") or selected.get("date")
-    link = selected.get("link")
-    candidates = {
-        "cpi": first_cpi_yoy(text),
-        "iip": first_percent_with_context(text, ["Chỉ số sản xuất công nghiệp", "IIP"], ["so với cùng kỳ", "tăng"]),
-        "retail": first_percent_with_context(text, ["Tổng mức bán lẻ", "doanh thu dịch vụ tiêu dùng"], ["so với cùng kỳ", "tăng"]),
-        "international_visitors": first_number_after(text, ["khách quốc tế đến Việt Nam", "khách quốc tế"]),
-    }
-    for key, value in candidates.items():
-        if value is None:
-            continue
-        values[key] = {
-            "value": round(value, 4),
-            "as_of": as_of,
-            "source_quality": "AUTO_NSO_PARSE",
-            "source_live": "NSO",
-            "source_url": link,
-        }
-    return values
+    published = selected.get("date_gmt") or selected.get("date")
+    as_of = nso_report_period_end(title, published)
+    return parse_nso_economic_report(text, as_of, selected.get("link"))
 
 
 def fetch_pmi_snapshot() -> dict[str, dict[str, Any]]:
@@ -612,10 +759,12 @@ def cached_values_from_payload(payload: dict[str, Any]) -> dict[str, dict[str, A
             quality = quality.removeprefix("STALE_CACHE_")
         values[key] = {
             "value": card["value"],
+            "unit": card.get("unit"),
             "as_of": card.get("as_of"),
             "source_quality": f"STALE_CACHE_{quality}",
             "source_live": card.get("source_primary"),
             "source_url": card.get("source_url"),
+            "source_note": card.get("source_note"),
         }
     return values
 
@@ -636,12 +785,27 @@ def cached_values_from_memory(memory: dict[str, Any]) -> dict[str, dict[str, Any
             quality = quality.removeprefix("STALE_CACHE_")
         values[str(key)] = {
             "value": state["value"],
+            "unit": state.get("unit"),
             "as_of": state.get("as_of"),
             "source_quality": f"STALE_CACHE_{quality}",
             "source_live": state.get("source_primary"),
             "source_url": state.get("source_url"),
+            "source_note": state.get("source_note"),
         }
     return values
+
+
+def load_verified_baselines() -> dict[str, dict[str, Any]]:
+    try:
+        data = json.loads(VERIFIED_BASELINE_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    active_keys = {spec.key for spec in SPECS}
+    return {
+        str(key): value
+        for key, value in data.items()
+        if key in active_keys and isinstance(value, dict) and value.get("value") is not None
+    }
 
 
 def load_cached_official_values() -> dict[str, dict[str, Any]]:
@@ -775,7 +939,6 @@ def live_values() -> dict[str, dict[str, Any]]:
         "dxy": "dx.f",
         "oil_prices": "cl.f",
         "us_10y_yield": "10usy.b",
-        "global_equities": "^spx",
     }.items():
         value, as_of = latest_stooq(symbol)
         if value is not None:
@@ -789,7 +952,7 @@ def live_values() -> dict[str, dict[str, Any]]:
                 "source_url": f"https://stooq.com/q/?s={quote(symbol)}",
             }
 
-    for key, symbol in {"gold_world": "xauusd", "fed_policy": "fedfunds"}.items():
+    for key, symbol in {"gold_world": "xauusd"}.items():
         value, as_of = latest_stooq(symbol)
         if value is not None:
             values[key] = {
@@ -815,7 +978,6 @@ def live_values() -> dict[str, dict[str, Any]]:
         "oil_prices": "CL=F",
         "dxy": "DX-Y.NYB",
         "us_10y_yield": "^TNX",
-        "global_equities": "^GSPC",
         "stock_market": "^VNINDEX",
     }.items():
         if key in values:
@@ -834,6 +996,8 @@ def live_values() -> dict[str, dict[str, Any]]:
 
     for key, cached in cached_values.items():
         values.setdefault(key, cached)
+    for key, baseline in load_verified_baselines().items():
+        values.setdefault(key, baseline)
     return values
 
 
@@ -871,6 +1035,7 @@ def build_cards(now: datetime) -> list[dict[str, Any]]:
     for spec in SPECS:
         live = values.get(spec.key, {})
         value = live.get("value")
+        unit = live.get("unit", spec.unit)
         available = value is not None
         card = {
             "key": spec.key,
@@ -881,19 +1046,20 @@ def build_cards(now: datetime) -> list[dict[str, Any]]:
             "definition": spec.definition,
             "why_it_matters": spec.why_it_matters,
             "value": value,
-            "unit": spec.unit,
+            "unit": unit,
             "status": "available" if available else "awaiting_official_source",
             "signal": signal_for(spec.key, value),
             "source_primary": live.get("source_live", spec.source_primary),
             "source_url": live.get("source_url", spec.source_url),
             "source_quality": live.get("source_quality", "SOURCE_MONITOR"),
+            "source_note": live.get("source_note"),
             "as_of": live.get("as_of", now.date().isoformat()),
             "frequency": VIP_FREQUENCIES.get(spec.key, "monitor"),
             "vip": VIP_FREQUENCIES.get(spec.key) in {"monthly", "yearly"},
             "direction": direction_for(spec.key, value),
             "narrative": (
                 f"{spec.name_vi} hiện có dữ liệu tự động từ {spec.source_primary}. "
-                f"Giá trị mới nhất là {value} {spec.unit}, dùng để theo dõi {spec.why_it_matters.lower()}"
+                f"Giá trị mới nhất là {value} {unit}, dùng để theo dõi {spec.why_it_matters.lower()}"
                 if available
                 else f"{spec.name_vi} đang chờ bản công bố chính thức từ {spec.source_primary}. "
                 "Dashboard vẫn giữ card theo dõi nguồn, nhưng không dựng số thay thế khi chưa có dữ liệu chắc chắn."
@@ -1023,6 +1189,7 @@ def memory_state_from_card(card: dict[str, Any], now_iso: str, previous: dict[st
         "source_primary": card.get("source_primary"),
         "source_url": card.get("source_url"),
         "source_quality": card.get("source_quality"),
+        "source_note": card.get("source_note"),
         "first_seen_at": previous.get("first_seen_at", now_iso) if previous else now_iso,
         "last_seen_at": now_iso,
         "last_changed_at": changed_at,
@@ -1037,6 +1204,12 @@ def update_indicator_memory(
     memory = previous_memory if previous_memory is not None else load_indicator_memory()
     states = memory.setdefault("states", {})
     events = memory.setdefault("events", [])
+    active_keys = {str(card["key"]) for card in cards}
+    for key in list(states):
+        if key not in active_keys:
+            states.pop(key, None)
+    events = [event for event in events if str(event.get("key")) in active_keys]
+    memory["events"] = events
     now_iso = now.isoformat()
     bootstrap = not states
 
@@ -1051,9 +1224,10 @@ def update_indicator_memory(
             current["last_changed_at"] = now_iso
             old_value = previous.get("value")
             new_value = card["value"]
+            same_basis = str(previous.get("unit") or "") == str(card.get("unit") or "")
             absolute_change = None
             percent_change = None
-            if isinstance(old_value, (int, float)) and isinstance(new_value, (int, float)):
+            if same_basis and isinstance(old_value, (int, float)) and isinstance(new_value, (int, float)):
                 absolute_change = round(float(new_value) - float(old_value), 8)
                 if float(old_value) != 0:
                     percent_change = round(absolute_change / abs(float(old_value)) * 100, 6)
@@ -1062,17 +1236,19 @@ def update_indicator_memory(
                     "id": f"{key}:{now_iso}",
                     "key": key,
                     "name_vi": card.get("name_vi"),
-                    "event_type": "change",
+                    "event_type": "change" if same_basis else "measurement_basis_change",
                     "detected_at": now_iso,
                     "previous_value": old_value,
                     "current_value": new_value,
                     "absolute_change": absolute_change,
                     "percent_change": percent_change,
+                    "previous_unit": previous.get("unit"),
                     "unit": card.get("unit"),
                     "as_of": card.get("as_of"),
                     "source_primary": card.get("source_primary"),
                     "source_url": card.get("source_url"),
                     "source_quality": card.get("source_quality"),
+                    "source_note": card.get("source_note"),
                     "ai_status": "pending",
                 }
             )
@@ -1093,6 +1269,7 @@ def update_indicator_memory(
                     "source_primary": card.get("source_primary"),
                     "source_url": card.get("source_url"),
                     "source_quality": card.get("source_quality"),
+                    "source_note": card.get("source_note"),
                     "ai_status": "pending",
                 }
             )
@@ -1154,6 +1331,7 @@ def analyze_indicator_changes(
             "source": card.get("source_primary"),
             "source_url": card.get("source_url"),
             "source_quality": card.get("source_quality"),
+            "source_note": card.get("source_note"),
         }
         for card in cards
         if card.get("value") is not None
@@ -1253,6 +1431,9 @@ def build_frontend_api(
                 "change_label": card_change_label(card),
                 "direction": card["direction"],
                 "source": card["source_primary"],
+                "source_url": card.get("source_url"),
+                "source_quality": card.get("source_quality"),
+                "source_note": card.get("source_note"),
                 "schedule": card["frequency"],
                 "health": "OK",
                 "vip": card["vip"],
@@ -1282,7 +1463,12 @@ def render_html(payload: dict[str, Any]) -> str:
         if not visible_cards:
             card_html.append('<div class="empty">Chưa có dữ liệu tự động chắc chắn cho nhóm này. Nguồn vẫn được kiểm tra mỗi sáng.</div>')
         for card in visible_cards:
-            value = "Chờ nguồn" if card["value"] is None else f'{card["value"]} {html.escape(card["unit"])}'
+            value_text = "Chờ nguồn" if card["value"] is None else html.escape(str(card["value"]))
+            unit_text = html.escape(str(card.get("unit") or ""))
+            value_class = " value-text" if isinstance(card["value"], str) else ""
+            data_date = html.escape(str(card.get("as_of") or "không rõ"))
+            source_note = html.escape(str(card.get("source_note") or ""))
+            source_note_html = f'\n          <p class="source-note">{source_note}</p>' if source_note else ""
             status = "ok"
             vip = '<b class="vip">VIP</b>' if card.get("vip") else ""
             health = "OK" if card["value"] is not None else "CHECK"
@@ -1299,10 +1485,11 @@ def render_html(payload: dict[str, Any]) -> str:
             <span class="health">{health}</span>
           </div>
           <h3>{html.escape(card["name_vi"])} {vip}</h3>
-          <p class="value">{value}</p>
+          <p class="value{value_class}">{value_text}<span class="value-unit">{unit_text}</span></p>
           <p class="change"><span>{icon}</span>{html.escape(card_change_label(card))}</p>
           {chart_hint}
-          <p class="source">Nguồn: <a href="{html.escape(card["source_url"])}">{html.escape(card["source_primary"])}</a></p>
+          <p class="data-date">Ngày dữ liệu: <strong>{data_date}</strong></p>
+          <p class="source">Nguồn: <a href="{html.escape(card["source_url"])}">{html.escape(card["source_primary"])}</a></p>{source_note_html}
         </article>"""
             )
         sections.append(f'<section id="{group_key}" class="panel{active}">' + "\n".join(card_html) + "</section>")
@@ -1362,10 +1549,15 @@ def render_html(payload: dict[str, Any]) -> str:
     h3 {{ margin:14px 0 6px; font-size:15px; color:#cbd5e1; font-weight:600; }}
     .vip {{ display:inline-block; margin-left:6px; color:#fde68a; background:rgba(245,158,11,.12); border:1px solid rgba(245,158,11,.35); border-radius:4px; padding:1px 5px; font-size:10px; vertical-align:middle; }}
     .value {{ font-size:25px; font-weight:700; margin:0 0 8px; color:#fff; }}
+    .value-text {{ font-size:18px; line-height:1.35; overflow-wrap:anywhere; }}
+    .value-unit {{ display:block; margin-top:4px; color:#94a3b8; font-size:12px; font-weight:500; line-height:1.35; overflow-wrap:anywhere; }}
     .change {{ display:flex; gap:6px; align-items:flex-start; color:#94a3b8; font-size:12px; line-height:1.35; }}
     .chart-hint {{ display:inline-block; margin-top:10px; color:#a5b4fc; font-size:12px; }}
     .chart-hint.muted {{ color:#64748b; }}
-    .source {{ color:#64748b; font-size:12px; margin-top:16px; }}
+    .data-date {{ color:#94a3b8; font-size:12px; margin:12px 0 0; }}
+    .data-date strong {{ color:#cbd5e1; }}
+    .source {{ color:#64748b; font-size:12px; margin:6px 0 0; }}
+    .source-note {{ color:#64748b; font-size:11px; margin:6px 0 0; }}
     p {{ line-height:1.45; }}
     a {{ color:#93c5fd; text-decoration:none; font-size:13px; }}
     .empty {{ grid-column:1/-1; color:#94a3b8; border:1px dashed var(--line); border-radius:8px; padding:18px; background:rgba(255,255,255,.025); }}
@@ -1392,9 +1584,9 @@ def render_html(payload: dict[str, Any]) -> str:
     <div class="wrap">
       <div class="eyebrow"><span class="pill">Báo cáo vĩ mô Việt Nam</span><span class="meta">Cập nhật: {generated}</span></div>
       <h1>Tình hình Kinh tế · Tiền tệ · Tài chính</h1>
-      <p class="meta">Tự động quét mỗi sáng qua GitHub Actions. Card chỉ hiện khi có số liệu máy đọc được.</p>
+      <p class="meta">Tự động quét mỗi sáng qua GitHub Actions. Khi nguồn mới chưa đọc được, card dùng số gần nhất đã xác minh và ghi rõ ngày dữ liệu.</p>
       <div class="summary">
-        <div class="metric"><strong>{available}/{total}</strong><span>card có dữ liệu tự động</span></div>
+        <div class="metric"><strong>{available}/{total}</strong><span>card có dữ liệu có nguồn</span></div>
         <div class="metric"><strong>{payload["coverage"]["source_count"]}</strong><span>nguồn theo dõi</span></div>
         <div class="metric"><strong>{html.escape(payload["status"])}</strong><span>trạng thái pipeline</span></div>
       </div>
@@ -1487,7 +1679,7 @@ def main() -> None:
             "source_count": len({card["source_primary"] for card in cards}),
             "vip_cards": sum(1 for card in cards if card.get("vip")),
             "vip_available": sum(1 for card in cards if card.get("vip") and card["value"] is not None),
-            "note": "Missing non-daily cards reuse only their last observed value and are marked STALE_CACHE; values are never guessed.",
+            "note": "Priority is live parser, then dated cache, then sourced verified baseline. Values are never guessed.",
         },
         "change_memory": memory_summary,
         "gemini_analysis": {

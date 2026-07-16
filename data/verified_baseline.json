@@ -1,0 +1,236 @@
+{
+  "trade_balance": {
+    "value": -16.65,
+    "unit": "tỷ USD (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Cán cân hàng hóa lũy kế sáu tháng, nhập siêu nên mang dấu âm."
+  },
+  "exports": {
+    "value": 266.52,
+    "unit": "tỷ USD (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Kim ngạch xuất khẩu hàng hóa lũy kế sáu tháng."
+  },
+  "imports": {
+    "value": 283.17,
+    "unit": "tỷ USD (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Kim ngạch nhập khẩu hàng hóa lũy kế sáu tháng."
+  },
+  "fdi_disbursed": {
+    "value": 13.03,
+    "unit": "tỷ USD (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Vốn FDI thực hiện tại Việt Nam trong sáu tháng."
+  },
+  "fdi_registered": {
+    "value": 34.65,
+    "unit": "tỷ USD (đến 30/06/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Tổng vốn đăng ký mới, điều chỉnh và góp vốn/mua cổ phần."
+  },
+  "business_new": {
+    "value": 111700,
+    "unit": "doanh nghiệp (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Doanh nghiệp đăng ký thành lập mới, không gồm doanh nghiệp quay lại hoạt động."
+  },
+  "business_exited": {
+    "value": 151100,
+    "unit": "doanh nghiệp (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Tổng doanh nghiệp tạm ngừng, chờ giải thể và hoàn tất giải thể."
+  },
+  "state_investment": {
+    "value": 12.5,
+    "unit": "% YoY vốn khu vực Nhà nước (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Tốc độ tăng vốn đầu tư thực hiện của khu vực Nhà nước; không phải tỷ lệ giải ngân kế hoạch."
+  },
+  "state_budget": {
+    "value": 1568.2,
+    "unit": "nghìn tỷ VND thu NSNN (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Lũy kế tổng thu ngân sách Nhà nước sáu tháng."
+  },
+  "fx_central_rate": {
+    "value": 25139,
+    "unit": "VND/USD",
+    "as_of": "2026-05-29",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA / NHNN",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Tỷ giá trung tâm chốt tuần cuối tháng 5 theo bản tin VNBA tổng hợp từ NHNN."
+  },
+  "credit": {
+    "value": 7.41,
+    "unit": "% YTD (đến 26/06/2026)",
+    "as_of": "2026-06-26",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO / NHNN",
+    "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Tăng trưởng tín dụng của nền kinh tế so với cuối năm 2025."
+  },
+  "deposit_rate": {
+    "value": "5,9-6,0",
+    "unit": "%/năm Big4 kỳ hạn 12T",
+    "as_of": "2026-05-31",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Dải lãi suất huy động thông thường của Big4 cho kỳ hạn từ 12 tháng; giữ dạng khoảng, không lấy trung bình giả."
+  },
+  "lending_rate": {
+    "value": "7,1-9,4",
+    "unit": "%/năm bình quân VND",
+    "as_of": "2026-05-31",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA / NHNN",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Dải lãi suất cho vay bình quân đối với dư nợ cũ và mới."
+  },
+  "pmi_sub_indices": {
+    "value": "Đơn hàng và sản lượng tăng; việc làm giảm",
+    "unit": "ghi nhận tháng 6/2026",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VGP / S&P Global",
+    "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
+    "source_note": "S&P không công bố điểm số từng cấu phần miễn phí; lưu đúng mô tả hướng biến động, không tự gán điểm."
+  },
+  "trade_by_sector": {
+    "value": 79.9,
+    "unit": "% xuất khẩu thuộc khu vực FDI (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Tỷ trọng xuất khẩu của khu vực có vốn đầu tư nước ngoài, kể cả dầu thô."
+  },
+  "trade_by_market": {
+    "value": "Mỹ XK 86,5; Trung Quốc NK 115,2",
+    "unit": "tỷ USD (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Mỹ là thị trường xuất khẩu lớn nhất; Trung Quốc là thị trường nhập khẩu lớn nhất."
+  },
+  "trade_by_commodity": {
+    "value": 22.5,
+    "unit": "tỷ USD điện tử sang Mỹ (5T/2026)",
+    "as_of": "2026-05-31",
+    "source_quality": "VERIFIED_BASELINE_MEDQ",
+    "source_live": "VGP / số liệu thương mại",
+    "source_url": "https://en.baochinhphu.vn/viet-nams-exports-to-us-up-nearly-22-in-five-months-111260616101850643.htm",
+    "source_note": "Máy tính, sản phẩm điện tử và linh kiện xuất sang Mỹ; nguồn Chính phủ dẫn số liệu thương mại."
+  },
+  "fdi_by_sector": {
+    "value": 21.01,
+    "unit": "tỷ USD chế biến, chế tạo (2025)",
+    "as_of": "2025-12-31",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/nganh-cong-nghiep-che-bien-che-tao-thu-hut-manh-me-nhat-dong-von-dau-tu-truc-tiep-nuoc-ngoai-nam-2025/",
+    "source_note": "Tổng FDI đăng ký vào ngành chế biến, chế tạo năm 2025; dùng số cũ gần nhất có phân ngành rõ."
+  },
+  "fed_policy": {
+    "value": "3,50-3,75",
+    "unit": "% lãi suất hiện áp dụng",
+    "as_of": "2026-06-06",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA / Fed",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Dải lãi suất Fed trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
+  },
+  "us_economy": {
+    "value": 1.6,
+    "unit": "% GDP YoY",
+    "as_of": "2026-05-31",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Tăng trưởng kinh tế Mỹ được VNBA ghi nhận trong bản tin tháng 5."
+  },
+  "geopolitical_risk": {
+    "value": "Trung Đông/Hormuz: cú sốc năng lượng",
+    "unit": "ghi nhận tháng 5/2026",
+    "as_of": "2026-05-31",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Bản tin ghi nhận xung đột Trung Đông và gián đoạn tại Hormuz gây cú sốc năng lượng."
+  },
+  "ecb_eurozone": {
+    "value": 2.0,
+    "unit": "% lãi suất hiện áp dụng",
+    "as_of": "2026-06-06",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA / ECB",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Lãi suất ECB trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
+  },
+  "boj_japan": {
+    "value": 0.75,
+    "unit": "% lãi suất hiện áp dụng",
+    "as_of": "2026-06-06",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA / BOJ",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Lãi suất BOJ trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
+  },
+  "china_economy": {
+    "value": 5.0,
+    "unit": "% tăng trưởng YoY",
+    "as_of": "2026-05-31",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA / NBS China",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Tăng trưởng Trung Quốc được VNBA tổng hợp trong bản tin tháng 5."
+  },
+  "policy_actions_vn": {
+    "value": "Thông tư NHNN 11-21/2026",
+    "unit": "ban hành trong tháng 5/2026",
+    "as_of": "2026-05-31",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "VNBA / NHNN",
+    "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+    "source_note": "Bản tin VNBA liệt kê chuỗi Thông tư 11-21/2026 do NHNN ban hành trong tháng 5."
+  },
+  "agriculture_snapshot": {
+    "value": 3.87,
+    "unit": "% YoY khu vực I (6T/2026)",
+    "as_of": "2026-06-30",
+    "source_quality": "VERIFIED_BASELINE_HIGHQ",
+    "source_live": "NSO",
+    "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+    "source_note": "Tăng trưởng giá trị tăng thêm khu vực nông, lâm nghiệp và thủy sản sáu tháng."
+  }
+}

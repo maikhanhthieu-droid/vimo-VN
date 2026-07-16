@@ -19,6 +19,23 @@ SPEC.loader.exec_module(run_report)
 
 
 class RunReportTests(unittest.TestCase):
+    def test_scope_matches_original_41_indicators(self) -> None:
+        keys = {spec.key for spec in run_report.SPECS}
+        self.assertEqual(len(keys), 41)
+        self.assertIn("agriculture_snapshot", keys)
+        self.assertNotIn("global_equities", keys)
+        self.assertNotIn("banking_liquidity", keys)
+
+    def test_verified_baseline_has_a_source_and_date_for_every_entry(self) -> None:
+        baselines = run_report.load_verified_baselines()
+        self.assertEqual(len(baselines), 26)
+        for key, baseline in baselines.items():
+            with self.subTest(key=key):
+                self.assertIsNotNone(baseline.get("value"))
+                self.assertRegex(baseline.get("as_of", ""), r"^20\d{2}-\d{2}-\d{2}$")
+                self.assertTrue(str(baseline.get("source_url", "")).startswith("https://"))
+                self.assertTrue(str(baseline.get("source_quality", "")).startswith("VERIFIED_BASELINE_"))
+
     def test_number_parser_supports_vietnamese_and_international_formats(self) -> None:
         self.assertEqual(run_report.parse_vietnamese_number("4,69"), 4.69)
         self.assertEqual(run_report.parse_vietnamese_number("51.8"), 51.8)
@@ -36,6 +53,43 @@ class RunReportTests(unittest.TestCase):
     def test_cpi_yoy_preserves_decrease_direction(self) -> None:
         text = "Chỉ số giá tiêu dùng tháng này giảm 0,2% so với cùng kỳ năm trước."
         self.assertEqual(run_report.first_cpi_yoy(text), -0.2)
+
+    def test_nso_extended_parser_keeps_periods_units_and_trade_sign(self) -> None:
+        text = " ".join(
+            [
+                "Tính chung sáu tháng đầu năm 2026, tổng mức bán lẻ hàng hóa và doanh thu dịch vụ tiêu dùng theo giá hiện hành ước đạt 3.889,5 nghìn tỷ đồng, tăng 12,9% so với cùng kỳ.",
+                "Khách quốc tế đến Việt Nam sáu tháng đầu năm nay đạt 12,3 triệu lượt người, tăng 14,9%.",
+                "Tính chung sáu tháng đầu năm 2026, kim ngạch xuất khẩu hàng hóa đạt 266,52 tỷ USD.",
+                "Tính chung sáu tháng đầu năm 2026, kim ngạch nhập khẩu hàng hóa đạt 283,17 tỷ USD.",
+                "Tính chung sáu tháng đầu năm 2026, cán cân thương mại hàng hóa nhập siêu 16,65 tỷ USD.",
+                "Tổng vốn đầu tư nước ngoài đăng ký vào Việt Nam tính đến ngày 30/6/2026 đạt 34,65 tỷ USD.",
+                "Vốn đầu tư trực tiếp nước ngoài thực hiện tại Việt Nam sáu tháng đầu năm 2026 ước đạt 13,03 tỷ USD.",
+                "Tính chung sáu tháng đầu năm 2026, cả nước có gần 111,7 nghìn doanh nghiệp đăng ký thành lập mới.",
+                "Số doanh nghiệp rút lui khỏi thị trường là 151,1 nghìn doanh nghiệp.",
+                "Vốn khu vực Nhà nước đạt 508,3 nghìn tỷ đồng, chiếm 28,1% tổng vốn và tăng 12,5% so với cùng kỳ.",
+                "Lũy kế tổng thu ngân sách Nhà nước sáu tháng đầu năm 2026 ước đạt 1.568,2 nghìn tỷ đồng.",
+                "Tính đến thời điểm 26/6/2026, huy động vốn tăng 5,02%; tăng trưởng tín dụng của nền kinh tế đạt 7,41%.",
+                "GDP sáu tháng đầu năm 2026 tăng 8,18%; khu vực nông, lâm nghiệp và thủy sản tăng 3,87%.",
+                "Khu vực có vốn đầu tư nước ngoài (kể cả dầu thô) đạt 213,01 tỷ USD, tăng 26,0%, chiếm 79,9%.",
+                "Hoa Kỳ là thị trường xuất khẩu lớn nhất đạt 86,5 tỷ USD. Trung Quốc là thị trường nhập khẩu lớn nhất đạt 115,2 tỷ USD.",
+            ]
+        )
+        result = run_report.parse_nso_economic_report(text, "2026-06-30", "https://www.nso.gov.vn/report")
+        self.assertEqual(result["retail"]["value"], 12.9)
+        self.assertEqual(result["international_visitors"]["value"], 12.3)
+        self.assertEqual(result["trade_balance"]["value"], -16.65)
+        self.assertEqual(result["business_new"]["value"], 111700.0)
+        self.assertEqual(result["business_exited"]["value"], 151100.0)
+        self.assertEqual(result["credit"]["as_of"], "2026-06-26")
+        self.assertEqual(result["trade_by_sector"]["value"], 79.9)
+        self.assertEqual(result["trade_by_market"]["value"], "Mỹ XK 86.5; Trung Quốc NK 115.2")
+
+    def test_nso_period_end_uses_the_report_period_not_publish_date(self) -> None:
+        result = run_report.nso_report_period_end(
+            "Thông cáo tình hình kinh tế quý II và sáu tháng đầu năm 2026",
+            "2026-07-03T01:59:25",
+        )
+        self.assertEqual(result, "2026-06-30")
 
     def test_tls_fallback_is_limited_to_nso_certificate_errors(self) -> None:
         error = URLError("[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed")
@@ -147,6 +201,7 @@ class RunReportTests(unittest.TestCase):
             "states": {
                 "cpi": {
                     "value": 3.2,
+                    "unit": "% YoY",
                     "first_seen_at": "2026-06-01T00:00:00+00:00",
                     "last_changed_at": "2026-06-01T00:00:00+00:00",
                 }
