@@ -7,13 +7,20 @@ import os
 import re
 import ssl
 import sys
+import time
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from http.client import RemoteDisconnected
+from io import BytesIO
 from pathlib import Path
 from typing import Any
-from urllib.error import URLError
+from urllib.error import HTTPError, URLError
+from urllib.parse import quote, urljoin, urlparse
 from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
+
+from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -93,12 +100,12 @@ VIP_FREQUENCIES = {
 }
 
 SOURCE_REGISTRY = {
-    "pmi": {"name": "S&P Global PMI", "url": "https://www.pmi.spglobal.com/", "role": "PMI và cấu phần sản xuất", "release_lag": "M+1 ngày 1"},
+    "pmi": {"name": "S&P Global PMI via VGP", "url": "https://en.baochinhphu.vn/search.htm?keywords=PMI", "role": "PMI sản xuất do S&P Global công bố", "release_lag": "M+1 ngày 1-3"},
     "nso": {"name": "NSO/GSO Việt Nam", "url": "https://www.nso.gov.vn/", "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch", "release_lag": "M+1 ngày 3-7"},
     "customs": {"name": "Tổng cục Hải quan", "url": "https://www.customs.gov.vn/", "role": "Xuất nhập khẩu chính thức", "release_lag": "M+1 ngày 10-15"},
     "vbma": {"name": "VBMA", "url": "https://vbma.org.vn/vi/reports/weekly", "role": "Liên ngân hàng, TPCP, TPDN tuần", "release_lag": "hàng tuần"},
     "vnba": {"name": "VNBA", "url": "https://vnba.org.vn/", "role": "Bản tin tiền tệ tài chính tháng", "release_lag": "M+1 ngày 11-13"},
-    "market": {"name": "Public market APIs", "url": "https://query1.finance.yahoo.com/", "role": "Tỷ giá, vàng, dầu, DXY, US10Y", "release_lag": "daily"},
+    "market": {"name": "Public market APIs / Vietcap", "url": "https://trading.vietcap.com.vn/", "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y", "release_lag": "daily"},
 }
 
 HISTORY_IMPORTANT_KEYS = {
@@ -124,6 +131,31 @@ HISTORY_IMPORTANT_KEYS = {
 }
 
 HISTORY_LIMIT = 100
+TLS_FALLBACK_HOSTS = {"nso.gov.vn", "www.nso.gov.vn", "vbma.org.vn", "www.vbma.org.vn"}
+HOST_REFERERS = {
+    "nso.gov.vn": "https://www.nso.gov.vn/",
+    "www.nso.gov.vn": "https://www.nso.gov.vn/",
+    "vbma.org.vn": "https://vbma.org.vn/",
+    "www.vbma.org.vn": "https://vbma.org.vn/",
+}
+NSO_API_URL = (
+    "https://www.nso.gov.vn/wp-json/wp/v2/posts?"
+    "search=bao%20cao%20tinh%20hinh%20kinh%20te%20xa%20hoi%20thang&per_page=20"
+)
+NSO_FEED_URL = "https://www.nso.gov.vn/feed/"
+PMI_SEARCH_URL = "https://en.baochinhphu.vn/search.htm?keywords=PMI"
+VBMA_WEEKLY_URL = "https://vbma.org.vn/vi/reports/weekly"
+DEFAULT_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/126.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
+    "Accept-Language": "vi-VN,vi;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Cache-Control": "no-cache",
+    "Connection": "close",
+}
 
 
 SPECS: list[IndicatorSpec] = [
@@ -176,17 +208,83 @@ SPECS: list[IndicatorSpec] = [
 ]
 
 
-def fetch_text(url: str, timeout: int = 20) -> str:
-    request = Request(url, headers={"User-Agent": "vimo-VN/1.0"})
-    try:
-        with urlopen(request, timeout=timeout) as response:
-            return response.read().decode("utf-8", errors="replace")
-    except ssl.SSLError:
-        if ".gov.vn" not in url and "vbma.org.vn" not in url and "vnba.org.vn" not in url:
-            raise
-        context = ssl._create_unverified_context()
-        with urlopen(request, timeout=timeout, context=context) as response:
-            return response.read().decode("utf-8", errors="replace")
+def request_headers(url: str) -> dict[str, str]:
+    headers = dict(DEFAULT_HEADERS)
+    referer = HOST_REFERERS.get(urlparse(url).hostname or "")
+    if referer:
+        headers["Referer"] = referer
+    return headers
+
+
+def should_retry_without_tls_verification(url: str, exc: BaseException) -> bool:
+    host = urlparse(url).hostname
+    if host not in TLS_FALLBACK_HOSTS:
+        return False
+    reason = getattr(exc, "reason", None)
+    return (
+        isinstance(exc, ssl.SSLCertVerificationError)
+        or isinstance(reason, ssl.SSLCertVerificationError)
+        or "CERTIFICATE_VERIFY_FAILED" in str(exc)
+    )
+
+
+def is_retryable_network_error(exc: BaseException) -> bool:
+    if isinstance(exc, HTTPError):
+        return 500 <= exc.code < 600
+    reason = getattr(exc, "reason", None)
+    if isinstance(reason, (TimeoutError, ConnectionResetError, RemoteDisconnected)):
+        return True
+    message = str(exc).lower()
+    return any(
+        marker in message
+        for marker in (
+            "connection reset",
+            "remote end closed connection",
+            "temporarily unavailable",
+            "timed out",
+        )
+    )
+
+
+def read_response_bytes(request: Request, timeout: int, context: ssl.SSLContext | None = None) -> bytes:
+    kwargs: dict[str, Any] = {"timeout": timeout}
+    if context is not None:
+        kwargs["context"] = context
+    with urlopen(request, **kwargs) as response:
+        return response.read()
+
+
+def fetch_request_bytes(request: Request, timeout: int = 20, retries: int = 3) -> bytes:
+    url = request.full_url
+    context: ssl.SSLContext | None = None
+    last_error: BaseException | None = None
+    for attempt in range(retries + 1):
+        try:
+            return read_response_bytes(request, timeout, context)
+        except (HTTPError, URLError, ssl.SSLError, TimeoutError, OSError, RemoteDisconnected) as exc:
+            last_error = exc
+            if context is None and should_retry_without_tls_verification(url, exc):
+                context = ssl._create_unverified_context()
+                continue
+            if attempt >= retries or not is_retryable_network_error(exc):
+                raise
+            time.sleep(min(2**attempt, 4))
+    assert last_error is not None
+    raise last_error
+
+
+def fetch_request_text(request: Request, timeout: int = 20, retries: int = 3) -> str:
+    return fetch_request_bytes(request, timeout, retries).decode("utf-8", errors="replace")
+
+
+def fetch_text(url: str, timeout: int = 20, retries: int = 3) -> str:
+    request = Request(url, headers=request_headers(url))
+    return fetch_request_text(request, timeout, retries)
+
+
+def fetch_bytes(url: str, timeout: int = 30, retries: int = 3) -> bytes:
+    request = Request(url, headers=request_headers(url))
+    return fetch_request_bytes(request, timeout, retries)
 
 
 def fetch_json(url: str) -> Any:
@@ -201,9 +299,20 @@ def strip_tags(text: str) -> str:
 
 
 def parse_vietnamese_number(raw: str) -> float:
-    raw = raw.strip().replace("\xa0", " ")
-    raw = raw.replace(".", "").replace(",", ".")
-    return float(re.sub(r"[^0-9.\-]", "", raw))
+    cleaned = re.sub(r"[^0-9,.\-]", "", raw.strip().replace("\xa0", " "))
+    if "." in cleaned and "," in cleaned:
+        if cleaned.rfind(",") > cleaned.rfind("."):
+            cleaned = cleaned.replace(".", "").replace(",", ".")
+        else:
+            cleaned = cleaned.replace(",", "")
+    elif "," in cleaned:
+        decimal_digits = len(cleaned) - cleaned.rfind(",") - 1
+        cleaned = cleaned.replace(",", ".") if decimal_digits <= 2 else cleaned.replace(",", "")
+    elif "." in cleaned:
+        decimal_digits = len(cleaned) - cleaned.rfind(".") - 1
+        if decimal_digits == 3:
+            cleaned = cleaned.replace(".", "")
+    return float(cleaned)
 
 
 def first_percent_after(text: str, markers: list[str]) -> float | None:
@@ -244,6 +353,41 @@ def first_percent_with_context(text: str, markers: list[str], contexts: list[str
     return None
 
 
+def parse_signed_percent(value_raw: str, direction: str | None = None) -> float:
+    value = parse_vietnamese_number(value_raw)
+    if direction and direction.lower() == "giảm":
+        return -value
+    return value
+
+
+def first_cpi_yoy(text: str) -> float | None:
+    lower = text.lower()
+    for marker in ["chỉ số giá tiêu dùng", "cpi"]:
+        start = lower.find(marker)
+        if start == -1:
+            continue
+        area = text[start : start + 2200]
+        sentences = re.split(r"(?<=[.!?])\s+", area)
+        for sentence in sentences[:5]:
+            sentence_l = sentence.lower()
+            if "cùng kỳ" not in sentence_l:
+                continue
+            if re.search(r"\b(bình quân|tính chung)\b", sentence_l[:120]):
+                continue
+            patterns = [
+                r"(?P<direction>tăng|giảm)\s*(?P<value>\d{1,3}(?:[,.]\d{1,3})?)\s*%\s*so với cùng kỳ(?: năm trước)?",
+                r"so với cùng kỳ(?: năm trước)?\s*(?P<direction>tăng|giảm)?\s*(?P<value>\d{1,3}(?:[,.]\d{1,3})?)\s*%",
+            ]
+            for pattern in patterns:
+                match = re.search(pattern, sentence, flags=re.I)
+                if match:
+                    try:
+                        return parse_signed_percent(match.group("value"), match.groupdict().get("direction"))
+                    except ValueError:
+                        return None
+    return None
+
+
 def first_number_after(text: str, markers: list[str]) -> float | None:
     lower = text.lower()
     for marker in markers:
@@ -260,14 +404,39 @@ def first_number_after(text: str, markers: list[str]) -> float | None:
     return None
 
 
+def fetch_nso_posts() -> list[dict[str, Any]]:
+    try:
+        posts = fetch_json(NSO_API_URL)
+        if isinstance(posts, list):
+            return posts
+    except (HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError):
+        pass
+
+    try:
+        root = ET.fromstring(fetch_text(NSO_FEED_URL))
+    except (HTTPError, URLError, TimeoutError, OSError, ET.ParseError):
+        return []
+
+    content_tag = "{http://purl.org/rss/1.0/modules/content/}encoded"
+    posts = []
+    for item in root.findall(".//item"):
+        title = item.findtext("title", default="")
+        link = item.findtext("link", default="")
+        content = item.findtext(content_tag) or item.findtext("description", default="")
+        posts.append(
+            {
+                "title": {"rendered": title},
+                "content": {"rendered": content},
+                "date": item.findtext("pubDate"),
+                "link": link,
+            }
+        )
+    return posts
+
+
 def fetch_nso_snapshot() -> dict[str, dict[str, Any]]:
     values: dict[str, dict[str, Any]] = {}
-    try:
-        posts = fetch_json(
-            "https://www.nso.gov.vn/wp-json/wp/v2/posts?search=bao%20cao%20tinh%20hinh%20kinh%20te%20xa%20hoi%20thang&per_page=20"
-        )
-    except (URLError, TimeoutError, OSError, json.JSONDecodeError):
-        return values
+    posts = fetch_nso_posts()
 
     selected = None
     for post in posts:
@@ -283,7 +452,7 @@ def fetch_nso_snapshot() -> dict[str, dict[str, Any]]:
     as_of = selected.get("date_gmt") or selected.get("date")
     link = selected.get("link")
     candidates = {
-        # CPI sits near gold/USD price-index paragraphs in NSO articles; keep it manual until a stricter parser is added.
+        "cpi": first_cpi_yoy(text),
         "iip": first_percent_with_context(text, ["Chỉ số sản xuất công nghiệp", "IIP"], ["so với cùng kỳ", "tăng"]),
         "retail": first_percent_with_context(text, ["Tổng mức bán lẻ", "doanh thu dịch vụ tiêu dùng"], ["so với cùng kỳ", "tăng"]),
         "international_visitors": first_number_after(text, ["khách quốc tế đến Việt Nam", "khách quốc tế"]),
@@ -299,6 +468,125 @@ def fetch_nso_snapshot() -> dict[str, dict[str, Any]]:
             "source_url": link,
         }
     return values
+
+
+def fetch_pmi_snapshot() -> dict[str, dict[str, Any]]:
+    try:
+        page = fetch_text(PMI_SEARCH_URL)
+    except (HTTPError, URLError, TimeoutError, OSError):
+        return {}
+
+    article_pattern = re.compile(
+        r'<a[^>]+class="box-stream-link-with-avatar"[^>]+href="(?P<link>[^"]+)"[^>]+title="(?P<title>[^"]*PMI[^"]*)"[^>]*>.*?'
+        r'<p[^>]+class="box-stream-sapo"[^>]*>(?P<summary>.*?)</p>',
+        flags=re.I | re.S,
+    )
+    for article in article_pattern.finditer(page):
+        text = strip_tags(f'{article.group("title")} {article.group("summary")}')
+        value_match = re.search(
+            r"PMI.{0,180}?(?:posted|posts|stood at|reached|rose.{0,30}?to|fell.{0,30}?to)\s*(\d{2}(?:[,.]\d+)?)",
+            text,
+            flags=re.I,
+        )
+        if not value_match:
+            continue
+        try:
+            value = parse_vietnamese_number(value_match.group(1))
+        except ValueError:
+            continue
+        if not 20 <= value <= 80:
+            continue
+        link = article.group("link")
+        if link.startswith("/"):
+            link = f"https://en.baochinhphu.vn{link}"
+        date_match = re.search(r"-111(?P<yy>\d{2})(?P<mm>\d{2})(?P<dd>\d{2})\d+\.htm$", link)
+        as_of = None
+        if date_match:
+            as_of = f'20{date_match.group("yy")}-{date_match.group("mm")}-{date_match.group("dd")}'
+        return {
+            "pmi_manufacturing": {
+                "value": round(value, 2),
+                "as_of": as_of,
+                "source_quality": "AUTO_VGP_SPGLOBAL",
+                "source_live": "VGP / S&P Global",
+                "source_url": link,
+            }
+        }
+    return {}
+
+
+def parse_vbma_report(text: str, source_url: str) -> dict[str, dict[str, Any]]:
+    date_match = re.search(r"tính đến ngày\s+(\d{1,2})/(\d{1,2})/(20\d{2})", text, flags=re.I)
+    if not date_match:
+        return {}
+    day, month, year = (int(date_match.group(1)), int(date_match.group(2)), int(date_match.group(3)))
+    as_of = f"{year:04d}-{month:02d}-{day:02d}"
+    metadata = {
+        "as_of": as_of,
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_live": "VBMA",
+        "source_url": source_url,
+    }
+    values: dict[str, dict[str, Any]] = {}
+
+    overnight_match = re.search(
+        r"lãi suất qua đêm ON\s+(?:tăng|giảm)\s+\d+\s*đcb\s+(?:lên|xuống) mức\s+(\d+(?:[,.]\d+)?)%",
+        text,
+        flags=re.I,
+    )
+    if overnight_match:
+        values["interbank_rate"] = {
+            "value": round(parse_vietnamese_number(overnight_match.group(1)), 4),
+            **metadata,
+        }
+
+    yield_section_pos = text.find("BIẾN ĐỘNG LỢI SUẤT PHÒNG GIAO DỊCH VBMA")
+    if yield_section_pos != -1:
+        yield_section = text[yield_section_pos : yield_section_pos + 2500]
+        date_pattern = rf"0?{day}/0?{month}/{year}"
+        current_row = re.search(
+            date_pattern + r"\s+(?=(?:\d+(?:[,.]\d+)?%\s*){6,})",
+            yield_section,
+        )
+        if current_row:
+            yield_values = re.findall(
+                r"(\d+(?:[,.]\d+)?)%",
+                yield_section[current_row.end() : current_row.end() + 220],
+            )
+            if len(yield_values) >= 6:
+                values["govt_bond_yield"] = {
+                    "value": round(parse_vietnamese_number(yield_values[5]), 4),
+                    **metadata,
+                }
+
+    govt_issuance_match = re.search(r"đã huy động gần\s+([\d,.]+)\s+tỷ đồng", text, flags=re.I)
+    if govt_issuance_match:
+        values["govt_bond_issuance"] = {
+            "value": round(parse_vietnamese_number(govt_issuance_match.group(1)) / 1000, 4),
+            **metadata,
+        }
+
+    corporate_issuance_match = re.search(r"tổng khối lượng là\s+([\d,.]+)\s+tỷ đồng", text, flags=re.I)
+    if corporate_issuance_match:
+        values["corporate_bond_issuance"] = {
+            "value": round(parse_vietnamese_number(corporate_issuance_match.group(1)) / 1000, 4),
+            **metadata,
+        }
+    return values
+
+
+def fetch_vbma_snapshot() -> dict[str, dict[str, Any]]:
+    try:
+        page = fetch_text(VBMA_WEEKLY_URL)
+        pdf_match = re.search(r'href=["\'](?P<href>[^"\']+\.pdf)["\']', page, flags=re.I)
+        if not pdf_match:
+            return {}
+        pdf_url = quote(urljoin(VBMA_WEEKLY_URL, html.unescape(pdf_match.group("href"))), safe=":/?=&%")
+        reader = PdfReader(BytesIO(fetch_bytes(pdf_url)))
+        text = "\n".join(page.extract_text() or "" for page in reader.pages)
+        return parse_vbma_report(text, pdf_url)
+    except (HTTPError, URLError, TimeoutError, OSError, ValueError):
+        return {}
 
 
 def source_health() -> dict[str, Any]:
@@ -337,30 +625,68 @@ def latest_stooq(symbol: str) -> tuple[float | None, str | None]:
         return None, None
 
 
-def latest_yahoo(symbol: str) -> tuple[float | None, str | None]:
-    encoded = symbol.replace("^", "%5E")
-    url = f"https://query1.finance.yahoo.com/v8/finance/chart/{encoded}?range=5d&interval=1d"
+def latest_vietcap_index() -> tuple[float | None, str | None]:
+    url = "https://trading.vietcap.com.vn/api/chart/OHLCChart/gap-chart"
+    payload = {
+        "timeFrame": "ONE_DAY",
+        "symbols": ["VNINDEX"],
+        "to": int(datetime.now(timezone.utc).timestamp()),
+        "countBack": 5,
+    }
+    headers = request_headers(url)
+    headers.update(
+        {
+            "Content-Type": "application/json",
+            "Origin": "https://trading.vietcap.com.vn",
+            "Referer": "https://trading.vietcap.com.vn/",
+        }
+    )
+    request = Request(url, data=json.dumps(payload).encode("utf-8"), headers=headers, method="POST")
     try:
-        data = fetch_json(url)
-        result = data.get("chart", {}).get("result", [])
-        if not result:
+        data = json.loads(fetch_request_text(request))
+        if not isinstance(data, list) or not data:
             return None, None
-        quote = result[0].get("indicators", {}).get("quote", [{}])[0]
-        closes = quote.get("close", [])
-        timestamps = result[0].get("timestamp", [])
+        closes = data[0].get("c", [])
+        timestamps = data[0].get("t", [])
         for idx in range(len(closes) - 1, -1, -1):
             close = closes[idx]
             if isinstance(close, (int, float)):
-                stamp = datetime.fromtimestamp(timestamps[idx], tz=timezone.utc).date().isoformat() if idx < len(timestamps) else None
+                stamp = None
+                if idx < len(timestamps):
+                    stamp = datetime.fromtimestamp(int(timestamps[idx]), tz=timezone.utc).date().isoformat()
                 return float(close), stamp
-    except (ValueError, URLError, TimeoutError, OSError, json.JSONDecodeError):
+    except (ValueError, TypeError, HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError):
         return None, None
+    return None, None
+
+
+def latest_yahoo(symbol: str) -> tuple[float | None, str | None]:
+    encoded = symbol.replace("^", "%5E")
+    for host in ["query2.finance.yahoo.com", "query1.finance.yahoo.com"]:
+        url = f"https://{host}/v8/finance/chart/{encoded}?range=5d&interval=1d"
+        try:
+            data = fetch_json(url)
+            result = data.get("chart", {}).get("result", [])
+            if not result:
+                continue
+            quote = result[0].get("indicators", {}).get("quote", [{}])[0]
+            closes = quote.get("close", [])
+            timestamps = result[0].get("timestamp", [])
+            for idx in range(len(closes) - 1, -1, -1):
+                close = closes[idx]
+                if isinstance(close, (int, float)):
+                    stamp = datetime.fromtimestamp(timestamps[idx], tz=timezone.utc).date().isoformat() if idx < len(timestamps) else None
+                    return float(close), stamp
+        except (ValueError, HTTPError, URLError, TimeoutError, OSError, json.JSONDecodeError):
+            continue
     return None, None
 
 
 def live_values() -> dict[str, dict[str, Any]]:
     values: dict[str, dict[str, Any]] = {}
     values.update(fetch_nso_snapshot())
+    values.update(fetch_pmi_snapshot())
+    values.update(fetch_vbma_snapshot())
 
     try:
         rates = fetch_json("https://open.er-api.com/v6/latest/USD")
@@ -391,6 +717,16 @@ def live_values() -> dict[str, dict[str, Any]]:
         value, as_of = latest_stooq(symbol)
         if value is not None:
             values[key] = {"value": round(value, 4), "as_of": as_of, "source_quality": "AUTO", "source_live": "Stooq"}
+
+    value, as_of = latest_vietcap_index()
+    if value is not None:
+        values["stock_market"] = {
+            "value": round(value, 4),
+            "as_of": as_of,
+            "source_quality": "AUTO",
+            "source_live": "Vietcap",
+            "source_url": "https://trading.vietcap.com.vn/",
+        }
 
     for key, symbol in {
         "gold_world": "GC=F",

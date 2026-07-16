@@ -6,12 +6,12 @@ This project runs independently. The `vimovietnam` repository was used only as a
 
 | Source | Coverage | Frequency | Status |
 |---|---|---:|---|
-| S&P Global PMI | PMI headline and sub-indices | Monthly | Monitored |
-| NSO/GSO Vietnam | CPI, IIP, FDI, retail, business, tourism | Monthly/Yearly | Partially parsed |
+| S&P Global PMI via VGP | PMI headline | Monthly | Parsed |
+| NSO/GSO Vietnam | CPI, IIP, FDI, retail, business, tourism | Monthly/Yearly | CPI/IIP/retail/tourism parsed |
 | Vietnam Customs | Trade balance, exports, imports, market/commodity split | Monthly | Monitored |
-| VBMA | Interbank, government bonds, corporate bonds | Weekly snapshot | Monitored |
+| VBMA | Interbank, government bonds, corporate bonds | Weekly snapshot | Weekly PDF parsed |
 | VNBA | Banking, rates, FX, market context | Monthly | Monitored |
-| Public market APIs | USD/VND, gold, oil, DXY, US10Y, global equity | Daily | Parsed |
+| Public market APIs | USD/VND, VN-Index, gold, oil, DXY, US10Y, global equity | Daily | Parsed |
 
 ## VIP Label
 
@@ -25,8 +25,8 @@ The pipeline does not invent values. If a source is available but a reliable par
 
 ## Parser Roadmap
 
-1. NSO: expand strict regex/parser for CPI, FDI, state budget, state investment.
+1. NSO: expand strict regex/parser for FDI, state budget, state investment, and business counts.
 2. Customs: parse official or secondary monthly trade release.
-3. PMI: find current S&P press release URL and parse headline PMI.
-4. VBMA: fetch weekly PDF and extract interbank, bond yields, issuance.
-5. VNBA: fetch monthly PDF and extract monetary/financial tables.
+3. PMI: expand beyond the headline into sub-indices when S&P exposes stable structured data.
+4. VBMA: add auction-period issuance alongside the current YTD government-bond total.
+5. VNBA: extract deposit/lending rates only when a stable numeric table is available.
