@@ -36,6 +36,18 @@ class RunReportTests(unittest.TestCase):
                 self.assertTrue(str(baseline.get("source_url", "")).startswith("https://"))
                 self.assertTrue(str(baseline.get("source_quality", "")).startswith("VERIFIED_BASELINE_"))
 
+    def test_verified_history_never_uses_an_unsourced_old_value(self) -> None:
+        series = run_report.load_verified_history()
+        self.assertGreaterEqual(len(series), 15)
+        for key, points in series.items():
+            with self.subTest(key=key):
+                self.assertGreaterEqual(len(points), 1)
+                for point in points:
+                    self.assertIsNotNone(point.get("value"))
+                    self.assertRegex(point.get("date", ""), r"^20\d{2}-\d{2}-\d{2}$")
+                    self.assertTrue(str(point.get("source_url", "")).startswith("https://"))
+                    self.assertTrue(str(point.get("source_quality", "")).startswith("VERIFIED_HISTORY_"))
+
     def test_number_parser_supports_vietnamese_and_international_formats(self) -> None:
         self.assertEqual(run_report.parse_vietnamese_number("4,69"), 4.69)
         self.assertEqual(run_report.parse_vietnamese_number("51.8"), 51.8)
@@ -247,7 +259,149 @@ class RunReportTests(unittest.TestCase):
                 )
             finally:
                 run_report.HISTORY_FILE = original_history_file
-        self.assertEqual(history["series"]["cpi"][0]["value"], 3.57)
+        self.assertEqual(history["series"]["cpi"][-1]["value"], 3.57)
+        self.assertIn(5.6, [point["value"] for point in history["series"]["cpi"]])
+
+    def test_history_uses_observation_date_and_removes_future_month_bucket(self) -> None:
+        original_history_file = run_report.HISTORY_FILE
+        original_verified_history_file = run_report.VERIFIED_HISTORY_FILE
+        with tempfile.TemporaryDirectory() as temporary_dir:
+            root = Path(temporary_dir)
+            run_report.HISTORY_FILE = root / "history.json"
+            run_report.VERIFIED_HISTORY_FILE = root / "verified_history.json"
+            run_report.HISTORY_FILE.write_text(
+                '{"series":{"cpi":[{"date":"2026-07-03T00:00:00+00:00","bucket":"2026-07","value":4.69,"unit":"% YoY"}]}}',
+                encoding="utf-8",
+            )
+            run_report.VERIFIED_HISTORY_FILE.write_text('{"series":{}}', encoding="utf-8")
+            try:
+                history = run_report.update_history(
+                    [
+                        {
+                            "key": "cpi",
+                            "value": 4.69,
+                            "unit": "% YoY",
+                            "as_of": "2026-06-30",
+                            "frequency": "monthly",
+                            "vip": True,
+                        },
+                        {
+                            "key": "deposit_rate",
+                            "value": "5,9-6,0",
+                            "unit": "%/năm",
+                            "as_of": "2026-05-31",
+                            "frequency": "monthly",
+                            "vip": True,
+                        },
+                    ],
+                    datetime(2026, 7, 16, tzinfo=timezone.utc),
+                )
+            finally:
+                run_report.HISTORY_FILE = original_history_file
+                run_report.VERIFIED_HISTORY_FILE = original_verified_history_file
+        self.assertEqual(history["series"]["cpi"][0]["date"], "2026-06-30")
+        self.assertEqual(history["series"]["cpi"][0]["bucket"], "2026-06")
+        self.assertEqual(history["series"]["deposit_rate"][0]["value"], "5,9-6,0")
+
+    def test_trend_forecast_requires_two_numeric_periods(self) -> None:
+        one_point = [{"date": "2026-05-31", "value": 5.6}]
+        two_points = [*one_point, {"date": "2026-06-30", "value": 4.69}]
+        self.assertIsNone(run_report.trend_forecast(one_point))
+        forecast = run_report.trend_forecast(two_points)
+        self.assertIsNotNone(forecast)
+        self.assertEqual(forecast["confidence"], "LOW")
+        self.assertLess(forecast["forecast_1m"]["value"], 4.69)
+
+    def test_macro_strategy_is_general_and_scenario_based(self) -> None:
+        cards = [
+            {"key": "pmi_manufacturing", "value": 51.8},
+            {"key": "iip", "value": 10.8},
+            {"key": "retail", "value": 12.9},
+            {"key": "credit", "value": 7.41},
+            {"key": "cpi", "value": 4.69},
+            {"key": "trade_balance", "value": -16.65},
+            {"key": "oil_prices", "value": 100.0},
+        ]
+        strategy = run_report.build_macro_strategy(cards, {"status": "waiting_for_api_key"})
+        self.assertEqual(strategy["stance"], "NẮM GIỮ / TÍCH LŨY CHỌN LỌC")
+        self.assertIn("không phải khuyến nghị", strategy["disclaimer"].lower())
+        self.assertTrue(strategy["base_case"])
+
+    def test_render_exposes_all_inspectable_cards_and_strategy_tab(self) -> None:
+        cards = [
+            {
+                "key": "cpi",
+                "name_vi": "CPI",
+                "group": "real_economy",
+                "group_name": "Kinh tế thực",
+                "value": 4.69,
+                "unit": "% YoY",
+                "vip": True,
+                "frequency": "monthly",
+                "source_primary": "NSO",
+                "source_url": "https://www.nso.gov.vn/",
+                "source_quality": "AUTO",
+                "source_note": None,
+                "direction": "down",
+                "as_of": "2026-06-30",
+            },
+            {
+                "key": "pmi_manufacturing",
+                "name_vi": "PMI sản xuất",
+                "group": "real_economy",
+                "group_name": "Kinh tế thực",
+                "value": 51.8,
+                "unit": "điểm",
+                "vip": True,
+                "frequency": "monthly",
+                "source_primary": "VGP",
+                "source_url": "https://en.baochinhphu.vn/",
+                "source_quality": "AUTO",
+                "source_note": None,
+                "direction": "up",
+                "as_of": "2026-07-03",
+            },
+        ]
+        payload = {
+            "cards": cards,
+            "coverage": {"available_cards": 2, "total_cards": 2, "source_count": 2},
+            "generated_at_bkk": "2026-07-16T21:00:00+07:00",
+            "status": "ok",
+            "source_health": {},
+            "history": {"series": {"cpi": [{"date": "2026-05-31", "value": 5.6}, {"date": "2026-06-30", "value": 4.69}]}},
+            "card_insights": {
+                "cpi": {
+                    "current": {"value": 4.69, "unit": "% YoY", "date": "2026-06-30"},
+                    "previous": {"value": 5.6, "unit": "% YoY", "date": "2026-05-31"},
+                    "forecast_1m": {"value": 4.24, "low": 3.92, "high": 4.55, "as_of": "2026-07-30"},
+                    "forecast_3m": None,
+                    "reason_short": "CPI giảm theo số liệu quan sát.",
+                    "confidence": "LOW",
+                    "method": "Test",
+                    "disclaimer": "Tham khảo",
+                },
+                "pmi_manufacturing": {},
+            },
+            "macro_strategy": {
+                "stance": "NẮM GIỮ",
+                "reason_short": "Cân bằng.",
+                "score": 0,
+                "confidence": "LOW",
+                "gemini_status": "waiting_for_api_key",
+                "positive_drivers": [],
+                "risk_drivers": [],
+                "base_case": "Giữ.",
+                "bull_case": "Tăng.",
+                "bear_case": "Giảm.",
+                "method": "Test",
+                "disclaimer": "Tham khảo.",
+            },
+        }
+        rendered = run_report.render_html(payload)
+        self.assertEqual(rendered.count('class="card ok inspectable'), 2)
+        self.assertIn('data-tab="strategy"', rendered)
+        self.assertIn('id="detailForecast1"', rendered)
+        self.assertIn("Số cũ · dự báo tham khảo · lý do", rendered)
 
     def test_successful_gemini_analysis_marks_only_submitted_events(self) -> None:
         calls = []
@@ -255,7 +409,17 @@ class RunReportTests(unittest.TestCase):
         class FakeInteractions:
             def create(self, **kwargs):
                 calls.append(kwargs)
-                return types.SimpleNamespace(output_text="Phan tich co nguon.")
+                return types.SimpleNamespace(
+                    output_text=(
+                        '{"summary_vi":"Phân tích có nguồn.",'
+                        '"portfolio_note":{"stance":"NẮM GIỮ / TÍCH LŨY CHỌN LỌC",'
+                        '"reason_short":"Cân bằng tăng trưởng và lạm phát.","base_case":"Giữ",'
+                        '"bull_case":"Tăng", "bear_case":"Giảm", "confidence":"LOW"},'
+                        '"indicators":[{"key":"cpi","reason_short":"CPI tăng theo dữ liệu.",'
+                        '"forecast_1m":3.4,"forecast_3m":3.2,"unit":"% YoY",'
+                        '"confidence":"LOW","sources":["https://www.nso.gov.vn/"]}]}'
+                    )
+                )
 
         class FakeClient:
             def __init__(self, api_key):
@@ -284,6 +448,7 @@ class RunReportTests(unittest.TestCase):
 
         self.assertEqual(analysis["status"], "success")
         self.assertEqual(memory["events"][0]["ai_status"], "analyzed")
+        self.assertEqual(analysis["analysis_data"]["indicators"][0]["forecast_1m"], 3.4)
         self.assertEqual(calls[0]["tools"], [{"type": "google_search"}])
         self.assertEqual(calls[0]["generation_config"]["thinking_level"], "high")
 

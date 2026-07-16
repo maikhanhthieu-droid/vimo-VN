@@ -55,7 +55,7 @@
   },
   "business_exited": {
     "value": 151100,
-    "unit": "doanh nghiệp (6T/2026)",
+    "unit": "doanh nghiệp (lũy kế kỳ báo cáo)",
     "as_of": "2026-06-30",
     "source_quality": "VERIFIED_BASELINE_HIGHQ",
     "source_live": "NSO",

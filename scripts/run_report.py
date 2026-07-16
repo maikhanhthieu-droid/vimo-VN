@@ -33,6 +33,7 @@ HISTORY_FILE = OUTPUT_DIR / "history.json"
 MEMORY_FILE = OUTPUT_DIR / "indicator_memory.json"
 GEMINI_ANALYSIS_FILE = OUTPUT_DIR / "gemini_analysis.json"
 VERIFIED_BASELINE_FILE = ROOT / "data" / "verified_baseline.json"
+VERIFIED_HISTORY_FILE = ROOT / "data" / "verified_history.json"
 
 
 @dataclass(frozen=True)
@@ -106,27 +107,6 @@ SOURCE_REGISTRY = {
     "vbma": {"name": "VBMA", "url": "https://vbma.org.vn/vi/reports/weekly", "role": "Liên ngân hàng, TPCP, TPDN tuần", "release_lag": "hàng tuần"},
     "vnba": {"name": "VNBA", "url": "https://vnba.org.vn/", "role": "Bản tin tiền tệ tài chính tháng", "release_lag": "M+1 ngày 11-13"},
     "market": {"name": "Public market APIs / Vietcap", "url": "https://trading.vietcap.com.vn/", "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y", "release_lag": "daily"},
-}
-
-HISTORY_IMPORTANT_KEYS = {
-    "cpi",
-    "pmi_manufacturing",
-    "iip",
-    "trade_balance",
-    "exports",
-    "imports",
-    "fdi_disbursed",
-    "retail",
-    "interbank_rate",
-    "fx_market_usd_vnd",
-    "fx_central_rate",
-    "stock_market",
-    "govt_bond_yield",
-    "gold_world",
-    "credit",
-    "dxy",
-    "oil_prices",
-    "us_10y_yield",
 }
 
 HISTORY_LIMIT = 100
@@ -1069,6 +1049,37 @@ def build_cards(now: datetime) -> list[dict[str, Any]]:
     return sorted(cards, key=lambda c: (c["group"], c["priority"]))
 
 
+def load_verified_history() -> dict[str, list[dict[str, Any]]]:
+    try:
+        data = json.loads(VERIFIED_HISTORY_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    active_keys = {spec.key for spec in SPECS}
+    raw_series = data.get("series", {}) if isinstance(data, dict) else {}
+    return {
+        str(key): [dict(point) for point in points if isinstance(point, dict) and point.get("value") is not None]
+        for key, points in raw_series.items()
+        if key in active_keys and isinstance(points, list)
+    }
+
+
+def normalized_data_date(raw: Any, fallback: datetime | None = None) -> str:
+    value = str(raw or "")
+    exact = re.search(r"(20\d{2})[-/](\d{1,2})[-/](\d{1,2})", value)
+    if exact:
+        year, month, day = (int(part) for part in exact.groups())
+        try:
+            return datetime(year, month, day).date().isoformat()
+        except ValueError:
+            pass
+    monthly = re.search(r"(20\d{2})[-/](\d{1,2})", value)
+    if monthly:
+        year, month = (int(part) for part in monthly.groups())
+        if 1 <= month <= 12:
+            return f"{year:04d}-{month:02d}-{monthrange(year, month)[1]:02d}"
+    return (fallback or datetime.now(timezone.utc)).date().isoformat()
+
+
 def update_history(cards: list[dict[str, Any]], now: datetime) -> dict[str, Any]:
     if HISTORY_FILE.exists():
         try:
@@ -1078,79 +1089,100 @@ def update_history(cards: list[dict[str, Any]], now: datetime) -> dict[str, Any]
     else:
         history = {"series": {}}
 
-    series = history.setdefault("series", {})
-    stamp = now.isoformat()
-    for key in list(series.keys()):
-        if key not in HISTORY_IMPORTANT_KEYS:
-            series.pop(key, None)
+    active_keys = {str(card["key"]) for card in cards}
+    existing_series = history.get("series", {}) if isinstance(history.get("series"), dict) else {}
+    verified_series = load_verified_history()
+    series: dict[str, list[dict[str, Any]]] = {}
+
     for card in cards:
-        if card["key"] not in HISTORY_IMPORTANT_KEYS or card["value"] is None:
-            continue
-        points = series.setdefault(card["key"], [])
-        bucket = history_bucket(card, now)
+        key = str(card["key"])
+        points = [*verified_series.get(key, []), *existing_series.get(key, [])]
+        current_date = normalized_data_date(card.get("as_of"), now)
+        current_bucket = history_bucket(card, current_date)
         points = compact_bucket_points(points, card)
-        if points and points[-1].get("bucket") == bucket:
-            points[-1] = {"date": stamp, "bucket": bucket, "value": card["value"], "unit": card["unit"]}
-        else:
-            points.append({"date": stamp, "bucket": bucket, "value": card["value"], "unit": card["unit"]})
-        series[card["key"]] = points[-HISTORY_LIMIT:]
+        points = [point for point in points if str(point.get("bucket", "")) <= current_bucket]
+
+        if card.get("value") is not None:
+            points.append(
+                {
+                    "date": current_date,
+                    "bucket": current_bucket,
+                    "value": card["value"],
+                    "unit": card.get("unit"),
+                    "source": card.get("source_primary"),
+                    "source_url": card.get("source_url"),
+                    "source_quality": card.get("source_quality"),
+                    "source_note": card.get("source_note"),
+                }
+            )
+        series[key] = compact_bucket_points(points, card)[-HISTORY_LIMIT:]
+
+    for key in list(series):
+        if key not in active_keys:
+            series.pop(key, None)
+    history["series"] = series
     history["policy"] = {
         "retention_max_points": HISTORY_LIMIT,
         "retention_min_target_points": 30,
-        "stored_keys": sorted(HISTORY_IMPORTANT_KEYS),
+        "stored_keys": sorted(active_keys),
         "frequency_rule": {
             "daily": "one point per day",
             "monthly_or_yearly_vip": "one point per month/period, not one duplicate point every day",
             "weekly_snapshot": "one point per ISO week",
-            "event_or_meeting": "one point only when the value changes",
+            "event_or_meeting": "one point per dated observation",
         },
-        "note": "Only important indicators keep history. Normal snapshot data is not retained to avoid duplicate/noisy storage.",
+        "note": "All 41 indicators retain dated observations. Verified older values are merged from data/verified_history.json; no historical value is invented.",
     }
     return history
 
 
-def history_bucket(card: dict[str, Any], now: datetime) -> str:
+def history_bucket(card: dict[str, Any], data_date: str | datetime) -> str:
     frequency = card.get("frequency", "daily")
+    date = normalized_data_date(data_date, data_date if isinstance(data_date, datetime) else None)
     if frequency in {"monthly", "yearly"} or card.get("vip"):
-        as_of = str(card.get("as_of") or now.date().isoformat())
-        match = re.search(r"(20\d{2})[-/](\d{1,2})", as_of)
-        if match:
-            return f"{match.group(1)}-{int(match.group(2)):02d}"
-        return now.strftime("%Y-%m")
+        return date[:7]
     if frequency == "weekly_snapshot":
-        year, week, _ = now.isocalendar()
+        year, week, _ = datetime.fromisoformat(date).isocalendar()
         return f"{year}-W{week:02d}"
-    if frequency in {"event", "meeting", "daily_monitor"}:
-        return f"value-{card.get('value')}"
-    return now.date().isoformat()
+    return date
 
 
 def compact_bucket_points(points: list[dict[str, Any]], card: dict[str, Any]) -> list[dict[str, Any]]:
-    by_day: dict[str, dict[str, Any]] = {}
+    by_bucket: dict[str, dict[str, Any]] = {}
     for point in points:
         bucket = bucket_from_existing_point(point, card)
         if not bucket:
             continue
         normalized = dict(point)
         normalized["bucket"] = bucket
-        by_day[bucket] = normalized
-    return [by_day[day] for day in sorted(by_day)]
+        normalized["date"] = normalized_point_date(normalized, card)
+        by_bucket[bucket] = normalized
+    return sorted(by_bucket.values(), key=lambda point: str(point.get("date", "")))
+
+
+def normalized_point_date(point: dict[str, Any], card: dict[str, Any]) -> str:
+    bucket = str(point.get("bucket") or "")
+    if (card.get("frequency") in {"monthly", "yearly"} or card.get("vip")) and re.fullmatch(r"20\d{2}-\d{2}", bucket):
+        year, month = (int(part) for part in bucket.split("-"))
+        return f"{year:04d}-{month:02d}-{monthrange(year, month)[1]:02d}"
+    return normalized_data_date(point.get("date"))
 
 
 def bucket_from_existing_point(point: dict[str, Any], card: dict[str, Any]) -> str:
+    stored_bucket = str(point.get("bucket") or "")
+    if stored_bucket:
+        return stored_bucket
     date = str(point.get("date", ""))
     frequency = card.get("frequency", "daily")
     if (frequency in {"monthly", "yearly"} or card.get("vip")) and len(date) >= 7:
         return date[:7]
     if frequency == "weekly_snapshot" and len(date) >= 10:
         try:
-            parsed = datetime.fromisoformat(date.replace("Z", "+00:00"))
+            parsed = datetime.fromisoformat(normalized_data_date(date))
             year, week, _ = parsed.isocalendar()
             return f"{year}-W{week:02d}"
         except ValueError:
             return date[:10]
-    if frequency in {"event", "meeting", "daily_monitor"}:
-        return f"value-{point.get('value')}"
     return date[:10]
 
 
@@ -1291,6 +1323,22 @@ def load_previous_gemini_analysis() -> dict[str, Any] | None:
         return None
 
 
+def extract_json_object(text: str) -> dict[str, Any] | None:
+    cleaned = text.strip()
+    if cleaned.startswith("```"):
+        cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned, flags=re.IGNORECASE)
+        cleaned = re.sub(r"\s*```$", "", cleaned)
+    start = cleaned.find("{")
+    end = cleaned.rfind("}")
+    if start < 0 or end <= start:
+        return None
+    try:
+        parsed = json.loads(cleaned[start : end + 1])
+    except json.JSONDecodeError:
+        return None
+    return parsed if isinstance(parsed, dict) else None
+
+
 def analyze_indicator_changes(
     memory: dict[str, Any],
     cards: list[dict[str, Any]],
@@ -1337,16 +1385,37 @@ def analyze_indicator_changes(
         if card.get("value") is not None
     ]
     prompt = f"""
-Ban la chuyen gia phan tich kinh te Viet Nam. Du lieu trong CHANGE_EVENTS va CURRENT_CONTEXT la
-du lieu dau vao da duoc he thong thu thap; khong duoc sua so, tu dien so, hay bien kich ban thanh su that.
-Hay dung Google Search de tim nguyen nhan tu nguon chinh thong hoac bao chi uy tin.
+Bạn là chuyên gia phân tích kinh tế Việt Nam. Dữ liệu trong CHANGE_EVENTS và CURRENT_CONTEXT là
+dữ liệu đầu vào đã được hệ thống thu thập; không được sửa số, tự điền số, hay biến kịch bản thành sự thật.
+Hãy dùng Google Search để tìm nguyên nhân từ nguồn chính thống hoặc báo chí uy tín.
 
-Tra loi bang tieng Viet, ro rang va ngan gon. Voi tung bien dong:
-1. Nhac lai dung gia tri cu, gia tri moi, don vi va ky du lieu.
-2. Tach bach: su kien da kiem chung, suy luan hop ly, va diem chua chac chan.
-3. Phan tich cac nguyen nhan co the gay thay doi, kem URL nguon truc tiep.
-4. Dua ra kich ban co so/tich cuc/tieu cuc cho 1-3 thang toi, kem do tin cay; day khong phai loi khuyen dau tu.
-5. Neu khong tim duoc bang chung du manh, noi ro "chua du bang chung", khong bia ly do.
+Chỉ trả về một JSON object hợp lệ, không dùng Markdown, theo đúng cấu trúc:
+{{
+  "summary_vi": "tóm tắt tối đa 80 từ",
+  "portfolio_note": {{
+    "stance": "một trong: TÍCH LŨY TỪNG PHẦN | NẮM GIỮ / TÍCH LŨY CHỌN LỌC | NẮM GIỮ / HẠN CHẾ MUA ĐUỔI | GIẢM TỶ TRỌNG RỦI RO",
+    "reason_short": "lý do tối đa 60 từ",
+    "base_case": "kịch bản cơ sở 1-3 tháng",
+    "bull_case": "kịch bản tích cực 1-3 tháng",
+    "bear_case": "kịch bản tiêu cực 1-3 tháng",
+    "confidence": "LOW | MEDIUM | HIGH"
+  }},
+  "indicators": [
+    {{
+      "key": "đúng key đầu vào",
+      "reason_short": "nguyên nhân ngắn; nói chưa đủ bằng chứng nếu cần",
+      "forecast_1m": null,
+      "forecast_3m": null,
+      "unit": "đúng đơn vị đầu vào",
+      "confidence": "LOW | MEDIUM | HIGH",
+      "sources": ["URL trực tiếp"]
+    }}
+  ]
+}}
+
+forecast_1m và forecast_3m chỉ được là số hoặc null. Mỗi biến động phải nhắc đúng giá trị cũ/mới trong
+reason_short, tách suy luận khỏi sự kiện, và có URL nguồn trực tiếp. Không có bằng chứng thì dùng null và
+nói rõ "chưa đủ bằng chứng". Đây là phân tích tham khảo chung, không phải lời khuyên đầu tư cá nhân.
 
 CHANGE_EVENTS:
 {json.dumps(selected, ensure_ascii=False, indent=2)}
@@ -1376,6 +1445,7 @@ CURRENT_CONTEXT:
             output_text = str(steps[-1]) if steps else ""
         if not output_text.strip():
             raise ValueError("Gemini returned an empty analysis")
+        analysis_data = extract_json_object(output_text)
         selected_ids = {event["id"] for event in selected}
         for event in memory.get("events", []):
             if event.get("id") in selected_ids:
@@ -1388,6 +1458,7 @@ CURRENT_CONTEXT:
             "event_count": len(selected),
             "event_ids": sorted(selected_ids),
             "analysis_vi": output_text.strip(),
+            "analysis_data": analysis_data or {},
         }
     except Exception as exc:
         safe_error = str(exc).replace(api_key, "[REDACTED]")[:500]
@@ -1410,11 +1481,274 @@ def change_memory_summary(memory: dict[str, Any]) -> dict[str, int]:
     }
 
 
+def numeric_value(value: Any) -> float | None:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    number = float(value)
+    return number if math.isfinite(number) else None
+
+
+def numeric_history_points(points: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_date: dict[str, dict[str, Any]] = {}
+    for point in points:
+        value = numeric_value(point.get("value"))
+        if value is None:
+            continue
+        date = normalized_data_date(point.get("date"))
+        by_date[date] = {**point, "date": date, "value": value}
+    return [by_date[date] for date in sorted(by_date)]
+
+
+def add_calendar_months(date: str, months: int) -> str:
+    parsed = datetime.fromisoformat(normalized_data_date(date)).date()
+    zero_based = parsed.year * 12 + parsed.month - 1 + months
+    year, month_index = divmod(zero_based, 12)
+    month = month_index + 1
+    day = min(parsed.day, monthrange(year, month)[1])
+    return parsed.replace(year=year, month=month, day=day).isoformat()
+
+
+def forecast_precision(value: float) -> int:
+    magnitude = abs(value)
+    if magnitude >= 1000:
+        return 0
+    if magnitude >= 100:
+        return 1
+    return 2
+
+
+def rounded_forecast(value: float, reference: float) -> float:
+    return round(value, forecast_precision(reference))
+
+
+def trend_forecast(points: list[dict[str, Any]]) -> dict[str, Any] | None:
+    numeric_points = numeric_history_points(points)[-6:]
+    if len(numeric_points) < 2:
+        return None
+    first = numeric_points[0]
+    last = numeric_points[-1]
+    first_date = datetime.fromisoformat(first["date"])
+    last_date = datetime.fromisoformat(last["date"])
+    elapsed_days = max(1, (last_date - first_date).days)
+    current = float(last["value"])
+    slope_per_day = (current - float(first["value"])) / elapsed_days
+    recent_change = current - float(numeric_points[-2]["value"])
+    scale = max(abs(current), abs(recent_change), 1.0)
+
+    one_month_delta = max(-scale * 0.15, min(scale * 0.15, slope_per_day * 30 * 0.50))
+    three_month_delta = max(-scale * 0.30, min(scale * 0.30, slope_per_day * 90 * 0.35))
+    uncertainty = max(scale * 0.02, abs(recent_change) * 0.35)
+    uncertainty = min(uncertainty, scale * 0.12)
+    one_center = current + one_month_delta
+    three_center = current + three_month_delta
+    confidence = "MEDIUM" if len(numeric_points) >= 4 else "LOW"
+
+    return {
+        "forecast_1m": {
+            "value": rounded_forecast(one_center, current),
+            "low": rounded_forecast(one_center - uncertainty, current),
+            "high": rounded_forecast(one_center + uncertainty, current),
+            "as_of": add_calendar_months(last["date"], 1),
+        },
+        "forecast_3m": {
+            "value": rounded_forecast(three_center, current),
+            "low": rounded_forecast(three_center - uncertainty * 1.6, current),
+            "high": rounded_forecast(three_center + uncertainty * 1.6, current),
+            "as_of": add_calendar_months(last["date"], 3),
+        },
+        "confidence": confidence,
+        "method": f"Ngoại suy xu hướng giảm chấn từ {len(numeric_points)} kỳ; không phải dự báo chính thức.",
+        "observations": len(numeric_points),
+    }
+
+
+def gemini_indicator_lookup(gemini_analysis: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    analysis_data = gemini_analysis.get("analysis_data", {})
+    indicators = analysis_data.get("indicators", []) if isinstance(analysis_data, dict) else []
+    return {
+        str(item["key"]): item
+        for item in indicators
+        if isinstance(item, dict) and item.get("key")
+    }
+
+
+def observed_change_reason(card: dict[str, Any], previous: dict[str, Any] | None) -> str:
+    if previous is None:
+        note = str(card.get("source_note") or "").strip()
+        return note or "Chưa có kỳ trước cùng định nghĩa để xác định biến động."
+    old_value = numeric_value(previous.get("value"))
+    current_value = numeric_value(card.get("value"))
+    if old_value is not None and current_value is not None:
+        delta = current_value - old_value
+        if math.isclose(delta, 0.0, abs_tol=1e-12):
+            movement = "không đổi"
+        else:
+            movement = f"{'tăng' if delta > 0 else 'giảm'} {abs(delta):g} {card.get('unit') or ''}".strip()
+        return (
+            f"Giá trị {movement} so với kỳ {previous.get('date', 'trước')}. "
+            "Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn."
+        )
+    if values_equal(previous.get("value"), card.get("value")):
+        return "Nội dung công bố không đổi so với kỳ dữ liệu trước."
+    return "Nội dung công bố đã thay đổi; dữ liệu dạng chữ nên không nội suy số."
+
+
+def build_card_insights(
+    cards: list[dict[str, Any]],
+    history: dict[str, Any],
+    gemini_analysis: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    series = history.get("series", {})
+    ai_lookup = gemini_indicator_lookup(gemini_analysis)
+    insights: dict[str, dict[str, Any]] = {}
+
+    for card in cards:
+        key = str(card["key"])
+        points = list(series.get(key, []))
+        current_date = normalized_data_date(card.get("as_of"))
+        previous_candidates = [point for point in points if normalized_data_date(point.get("date")) < current_date]
+        previous = previous_candidates[-1] if previous_candidates else None
+        forecast = trend_forecast(points)
+        ai_item = ai_lookup.get(key, {})
+        reason = str(ai_item.get("reason_short") or "").strip() or observed_change_reason(card, previous)
+        method = forecast.get("method") if forecast else "Cần ít nhất 2 kỳ số liệu cùng định nghĩa để dự báo."
+        confidence = forecast.get("confidence") if forecast else "WAITING_FOR_DATA"
+        forecast_1m = forecast.get("forecast_1m") if forecast else None
+        forecast_3m = forecast.get("forecast_3m") if forecast else None
+
+        ai_one = numeric_value(ai_item.get("forecast_1m"))
+        ai_three = numeric_value(ai_item.get("forecast_3m"))
+        if ai_one is not None or ai_three is not None:
+            reference = numeric_value(card.get("value")) or 1.0
+            spread = max(abs(reference) * 0.04, 0.01)
+            if ai_one is not None:
+                forecast_1m = {
+                    "value": rounded_forecast(ai_one, reference),
+                    "low": rounded_forecast(ai_one - spread, reference),
+                    "high": rounded_forecast(ai_one + spread, reference),
+                    "as_of": add_calendar_months(current_date, 1),
+                }
+            if ai_three is not None:
+                forecast_3m = {
+                    "value": rounded_forecast(ai_three, reference),
+                    "low": rounded_forecast(ai_three - spread * 1.6, reference),
+                    "high": rounded_forecast(ai_three + spread * 1.6, reference),
+                    "as_of": add_calendar_months(current_date, 3),
+                }
+            confidence = str(ai_item.get("confidence") or "LOW").upper()
+            method = "Gemini phân tích kèm Google Search; khoảng số là biên tham khảo của hệ thống."
+
+        change = None
+        old_numeric = numeric_value(previous.get("value")) if previous else None
+        current_numeric = numeric_value(card.get("value"))
+        if old_numeric is not None and current_numeric is not None:
+            absolute = current_numeric - old_numeric
+            change = {
+                "absolute": round(absolute, 8),
+                "percent": round(absolute / abs(old_numeric) * 100, 4) if old_numeric else None,
+                "direction": "up" if absolute > 0 else "down" if absolute < 0 else "flat",
+            }
+
+        insights[key] = {
+            "key": key,
+            "name_vi": card["name_vi"],
+            "current": {
+                "value": card.get("value"),
+                "unit": card.get("unit"),
+                "date": current_date,
+                "source": card.get("source_primary"),
+                "source_url": card.get("source_url"),
+            },
+            "previous": previous,
+            "change": change,
+            "forecast_1m": forecast_1m,
+            "forecast_3m": forecast_3m,
+            "reason_short": reason,
+            "confidence": confidence,
+            "method": method,
+            "ai_sources": ai_item.get("sources", []) if isinstance(ai_item.get("sources"), list) else [],
+            "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư.",
+        }
+    return insights
+
+
+def build_macro_strategy(cards: list[dict[str, Any]], gemini_analysis: dict[str, Any]) -> dict[str, Any]:
+    values = {str(card["key"]): numeric_value(card.get("value")) for card in cards}
+    positive: list[str] = []
+    negative: list[str] = []
+    score = 0
+
+    if values.get("pmi_manufacturing") is not None and values["pmi_manufacturing"] >= 50:
+        score += 1
+        positive.append(f"PMI {values['pmi_manufacturing']:g} trên ngưỡng mở rộng 50")
+    if values.get("iip") is not None and values["iip"] > 0:
+        score += 1
+        positive.append(f"IIP tăng {values['iip']:g}% YoY")
+    if values.get("retail") is not None and values["retail"] > 0:
+        score += 1
+        positive.append(f"Bán lẻ tăng {values['retail']:g}% YoY")
+    if values.get("credit") is not None and 4 <= values["credit"] <= 12:
+        score += 1
+        positive.append(f"Tín dụng tăng {values['credit']:g}% YTD, hỗ trợ thanh khoản kinh tế")
+    if values.get("cpi") is not None and values["cpi"] > 4.5:
+        score -= 2
+        negative.append(f"CPI {values['cpi']:g}% YoY tạo áp lực lãi suất")
+    if values.get("trade_balance") is not None and values["trade_balance"] < 0:
+        score -= 1
+        negative.append(f"Cán cân thương mại âm {abs(values['trade_balance']):g} tỷ USD")
+    if values.get("interbank_rate") is not None and values["interbank_rate"] > 6:
+        score -= 1
+        negative.append(f"Lãi suất liên ngân hàng {values['interbank_rate']:g}% còn cao")
+    if values.get("dxy") is not None and values["dxy"] > 105:
+        score -= 1
+        negative.append(f"DXY {values['dxy']:g} gây áp lực lên tỷ giá")
+    if values.get("us_10y_yield") is not None and values["us_10y_yield"] > 4.5:
+        score -= 1
+        negative.append(f"Lợi suất Mỹ 10Y {values['us_10y_yield']:g}% làm tăng chi phí vốn toàn cầu")
+    if values.get("oil_prices") is not None and values["oil_prices"] > 90:
+        score -= 1
+        negative.append(f"Dầu {values['oil_prices']:g} USD/thùng làm tăng rủi ro chi phí")
+
+    if score >= 3:
+        stance = "TÍCH LŨY TỪNG PHẦN"
+    elif score >= 0:
+        stance = "NẮM GIỮ / TÍCH LŨY CHỌN LỌC"
+    elif score > -3:
+        stance = "NẮM GIỮ / HẠN CHẾ MUA ĐUỔI"
+    else:
+        stance = "GIẢM TỶ TRỌNG RỦI RO"
+
+    strategy = {
+        "stance": stance,
+        "score": score,
+        "reason_short": "Tín hiệu tăng trưởng vẫn hiện diện nhưng cần cân bằng với lạm phát, tỷ giá và chi phí vốn.",
+        "positive_drivers": positive,
+        "risk_drivers": negative,
+        "base_case": "Giữ vị thế lõi và tích lũy từng phần ở doanh nghiệp cơ bản tốt; tránh mua đuổi khi thị trường tăng nóng.",
+        "bull_case": "Nếu CPI hạ, thanh khoản dịu và PMI tiếp tục trên 50, có thể nâng dần tỷ trọng theo kỷ luật giải ngân.",
+        "bear_case": "Nếu lạm phát, dầu hoặc lãi suất tăng lại, ưu tiên tiền mặt và giảm các vị thế nhạy với chi phí vốn.",
+        "confidence": "LOW",
+        "method": "Thang điểm vĩ mô minh bạch từ 9 chỉ báo; không dùng dữ liệu cá nhân hay định giá từng cổ phiếu.",
+        "gemini_status": gemini_analysis.get("status", "unknown"),
+        "disclaimer": "Quan điểm chung cho 1-3 tháng, chỉ để tham khảo. Không phải khuyến nghị mua/bán cho cá nhân hoặc mã cổ phiếu cụ thể.",
+    }
+
+    analysis_data = gemini_analysis.get("analysis_data", {})
+    ai_note = analysis_data.get("portfolio_note") if isinstance(analysis_data, dict) else None
+    if isinstance(ai_note, dict) and ai_note.get("stance"):
+        for key in ("stance", "reason_short", "base_case", "bull_case", "bear_case", "confidence"):
+            if ai_note.get(key):
+                strategy[key] = ai_note[key]
+        strategy["method"] = "Gemini phân tích biến động với Google Search, kết hợp các tín hiệu vĩ mô đang hiển thị."
+    return strategy
+
+
 def build_frontend_api(
     payload: dict[str, Any],
     history: dict[str, Any],
     memory: dict[str, Any],
     gemini_analysis: dict[str, Any],
+    card_insights: dict[str, dict[str, Any]],
 ) -> None:
     DOCS_API_DIR.mkdir(exist_ok=True)
     indicators = []
@@ -1444,6 +1778,7 @@ def build_frontend_api(
     (DOCS_API_DIR / "history.json").write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "indicator_memory.json").write_text(json.dumps(memory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "gemini_analysis.json").write_text(json.dumps(gemini_analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (DOCS_API_DIR / "card_insights.json").write_text(json.dumps(card_insights, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def render_html(payload: dict[str, Any]) -> str:
@@ -1454,6 +1789,8 @@ def render_html(payload: dict[str, Any]) -> str:
     tabs = []
     sections = []
     history = payload.get("history", {}).get("series", {})
+    insights = payload.get("card_insights", {})
+    strategy = payload.get("macro_strategy", {})
     for group_key, group_name in GROUPS.items():
         active = " active" if not tabs else ""
         group_cards = [c for c in cards if c["group"] == group_key]
@@ -1473,10 +1810,10 @@ def render_html(payload: dict[str, Any]) -> str:
             vip = '<b class="vip">VIP</b>' if card.get("vip") else ""
             health = "OK" if card["value"] is not None else "CHECK"
             icon = "↗" if card["direction"] == "up" else "↘" if card["direction"] == "down" else "–"
-            has_chart = card["key"] in history and len(history[card["key"]]) >= 2
-            chart_attr = f' data-key="{html.escape(card["key"])}"' if has_chart else ""
-            chart_class = " chartable" if has_chart else ""
-            chart_hint = '<span class="chart-hint">Bấm để xem biểu đồ</span>' if has_chart else '<span class="chart-hint muted">Snapshot</span>'
+            has_chart = len(numeric_history_points(history.get(card["key"], []))) >= 2
+            chart_attr = f' data-key="{html.escape(card["key"])}" tabindex="0" role="button" aria-label="Xem số cũ, dự báo và lý do của {html.escape(card["name_vi"])}"'
+            chart_class = " inspectable" + (" has-chart" if has_chart else "")
+            chart_hint = '<span class="chart-hint">Bấm xem số cũ, dự báo &amp; lý do</span>'
             card_html.append(
                 f"""
         <article class="card {status}{chart_class}"{chart_attr}>
@@ -1494,6 +1831,36 @@ def render_html(payload: dict[str, Any]) -> str:
             )
         sections.append(f'<section id="{group_key}" class="panel{active}">' + "\n".join(card_html) + "</section>")
 
+    tabs.append('<button class="tab" data-tab="strategy">Ghi chú 1–3 tháng</button>')
+    positive_items = "".join(f"<li>{html.escape(str(item))}</li>" for item in strategy.get("positive_drivers", []))
+    risk_items = "".join(f"<li>{html.escape(str(item))}</li>" for item in strategy.get("risk_drivers", []))
+    if not positive_items:
+        positive_items = "<li>Chưa có đủ tín hiệu thuận lợi rõ ràng.</li>"
+    if not risk_items:
+        risk_items = "<li>Chưa có tín hiệu rủi ro vượt ngưỡng của mô hình.</li>"
+    gemini_status = html.escape(str(strategy.get("gemini_status") or "unknown"))
+    strategy_html = f"""
+      <section id="strategy" class="panel strategy-panel">
+        <div class="strategy-head">
+          <p class="group-label">Quan điểm tham khảo · 1–3 tháng</p>
+          <h2>{html.escape(str(strategy.get('stance') or 'CHỜ DỮ LIỆU'))}</h2>
+          <p>{html.escape(str(strategy.get('reason_short') or 'Chưa đủ dữ liệu để hình thành quan điểm.'))}</p>
+          <div class="strategy-meta"><span>Điểm vĩ mô: {html.escape(str(strategy.get('score', 0)))}</span><span>Độ tin cậy: {html.escape(str(strategy.get('confidence', 'LOW')))}</span><span>Gemini: {gemini_status}</span></div>
+        </div>
+        <div class="driver-grid">
+          <div><h3>Tín hiệu hỗ trợ</h3><ul>{positive_items}</ul></div>
+          <div><h3>Rủi ro cần theo dõi</h3><ul>{risk_items}</ul></div>
+        </div>
+        <div class="scenario-grid">
+          <div><span>Cơ sở</span><p>{html.escape(str(strategy.get('base_case') or ''))}</p></div>
+          <div><span>Tích cực</span><p>{html.escape(str(strategy.get('bull_case') or ''))}</p></div>
+          <div><span>Tiêu cực</span><p>{html.escape(str(strategy.get('bear_case') or ''))}</p></div>
+        </div>
+        <p class="strategy-method">{html.escape(str(strategy.get('method') or ''))}</p>
+        <p class="disclaimer">{html.escape(str(strategy.get('disclaimer') or ''))}</p>
+      </section>"""
+    sections.append(strategy_html)
+
     source_rows = []
     for key, source in payload["source_health"].items():
         badge = "OK" if source["available"] else "CHECK"
@@ -1503,16 +1870,16 @@ def render_html(payload: dict[str, Any]) -> str:
         )
     source_table = "<table><thead><tr><th>Nguồn</th><th>Vai trò</th><th>Lịch</th><th>Health</th></tr></thead><tbody>" + "".join(source_rows) + "</tbody></table>"
 
-    chart_data = {
+    detail_data = {
         card["key"]: {
             "name": card["name_vi"],
             "unit": card["unit"],
-            "points": history.get(card["key"], []),
+            "points": numeric_history_points(history.get(card["key"], [])),
+            "insight": insights.get(card["key"], {}),
         }
         for card in cards
-        if history.get(card["key"])
     }
-    chart_data_json = json.dumps(chart_data, ensure_ascii=False).replace("</", "<\\/")
+    detail_data_json = json.dumps(detail_data, ensure_ascii=False).replace("</", "<\\/")
 
     return f"""<!doctype html>
 <html lang="vi">
@@ -1523,7 +1890,7 @@ def render_html(payload: dict[str, Any]) -> str:
   <style>
     :root {{ color-scheme: dark; --ink:#f8fafc; --muted:#94a3b8; --line:rgba(255,255,255,.09); --ok:#34d399; --warn:#f59e0b; --bg:#090b10; --panel:#0f1119; }}
     * {{ box-sizing: border-box; }}
-    body {{ margin:0; font-family: Arial, sans-serif; background:radial-gradient(circle at 20% 0%, rgba(79,70,229,.2), transparent 28%), var(--bg); color:var(--ink); }}
+    body {{ margin:0; font-family: Arial, sans-serif; background:var(--bg); color:var(--ink); }}
     header {{ padding:30px 20px 10px; }}
     .wrap {{ max-width:1060px; margin:0 auto; }}
     .eyebrow {{ display:inline-flex; gap:8px; align-items:center; margin-bottom:10px; }}
@@ -1542,7 +1909,8 @@ def render_html(payload: dict[str, Any]) -> str:
     .panel.active {{ display:grid; }}
     .card {{ text-align:left; background:rgba(255,255,255,.035); border:1px solid var(--line); border-radius:8px; padding:18px; min-height:178px; transition:background .2s,border-color .2s; }}
     .card:hover {{ background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); }}
-    .card.chartable {{ cursor:pointer; }}
+    .card.inspectable {{ cursor:pointer; }}
+    .card.inspectable:focus-visible {{ outline:2px solid #818cf8; outline-offset:3px; }}
     .card-top {{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }}
     .group-label {{ font-size:11px; text-transform:uppercase; color:#94a3b8; font-weight:700; }}
     .health {{ color:#34d399; background:rgba(52,211,153,.1); border-radius:999px; padding:2px 7px; font-size:10px; font-weight:700; }}
@@ -1553,7 +1921,6 @@ def render_html(payload: dict[str, Any]) -> str:
     .value-unit {{ display:block; margin-top:4px; color:#94a3b8; font-size:12px; font-weight:500; line-height:1.35; overflow-wrap:anywhere; }}
     .change {{ display:flex; gap:6px; align-items:flex-start; color:#94a3b8; font-size:12px; line-height:1.35; }}
     .chart-hint {{ display:inline-block; margin-top:10px; color:#a5b4fc; font-size:12px; }}
-    .chart-hint.muted {{ color:#64748b; }}
     .data-date {{ color:#94a3b8; font-size:12px; margin:12px 0 0; }}
     .data-date strong {{ color:#cbd5e1; }}
     .source {{ color:#64748b; font-size:12px; margin:6px 0 0; }}
@@ -1568,15 +1935,41 @@ def render_html(payload: dict[str, Any]) -> str:
     th {{ color:var(--muted); font-weight:600; background:rgba(255,255,255,.03); }}
     .source-ok {{ color:var(--ok); font-weight:700; }}
     .source-warn {{ color:var(--warn); font-weight:700; }}
+    .strategy-panel.active {{ display:block; }}
+    .strategy-head {{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:24px 0; }}
+    .strategy-head h2 {{ margin:8px 0; font-size:28px; color:#fff; }}
+    .strategy-head > p:not(.group-label) {{ max-width:760px; color:#cbd5e1; }}
+    .strategy-meta {{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }}
+    .strategy-meta span {{ border:1px solid var(--line); border-radius:6px; padding:7px 9px; color:#a5b4fc; font-size:12px; }}
+    .driver-grid {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; padding:24px 0; border-bottom:1px solid var(--line); }}
+    .driver-grid h3 {{ margin:0 0 10px; color:#e2e8f0; }}
+    .driver-grid ul {{ margin:0; padding-left:20px; color:#cbd5e1; }}
+    .driver-grid li {{ margin:8px 0; line-height:1.45; }}
+    .scenario-grid {{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; margin:24px 0; background:var(--line); border:1px solid var(--line); }}
+    .scenario-grid > div {{ background:var(--bg); padding:16px; }}
+    .scenario-grid span {{ color:#a5b4fc; font-size:11px; font-weight:700; text-transform:uppercase; }}
+    .scenario-grid p {{ color:#cbd5e1; margin-bottom:0; }}
+    .strategy-method {{ color:#94a3b8; font-size:12px; }}
+    .disclaimer {{ color:#fbbf24; border-left:3px solid #f59e0b; padding:10px 12px; background:rgba(245,158,11,.06); font-size:12px; }}
     .modal {{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.72); padding:18px; z-index:50; }}
     .modal.open {{ display:flex; }}
-    .modal-box {{ width:min(760px,100%); background:#0f1119; border:1px solid var(--line); border-radius:8px; padding:18px; box-shadow:0 22px 80px rgba(0,0,0,.45); }}
+    .modal-box {{ width:min(860px,100%); max-height:calc(100vh - 36px); overflow:auto; background:#0f1119; border:1px solid var(--line); border-radius:8px; padding:18px; box-shadow:0 22px 80px rgba(0,0,0,.45); }}
     .modal-head {{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:12px; }}
     .modal-title {{ margin:0; font-size:18px; }}
     .modal-close {{ background:rgba(255,255,255,.06); color:#fff; border:1px solid var(--line); border-radius:6px; padding:7px 10px; cursor:pointer; }}
+    .detail-grid {{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border:1px solid var(--line); background:var(--line); gap:1px; }}
+    .detail-stat {{ background:#0f1119; padding:13px; min-width:0; }}
+    .detail-stat span {{ display:block; color:#64748b; font-size:11px; margin-bottom:6px; }}
+    .detail-stat strong {{ display:block; color:#fff; font-size:17px; overflow-wrap:anywhere; }}
+    .detail-stat small {{ display:block; color:#94a3b8; margin-top:5px; overflow-wrap:anywhere; }}
+    .reason-block {{ margin:16px 0; padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }}
+    .reason-block h3 {{ margin:0 0 7px; color:#e2e8f0; }}
+    .reason-block p {{ margin:0; color:#cbd5e1; }}
+    .forecast-note {{ color:#fbbf24; font-size:12px; }}
+    .chart-wrap[hidden] {{ display:none; }}
     .chart-svg {{ width:100%; height:300px; display:block; background:rgba(255,255,255,.025); border:1px solid var(--line); border-radius:8px; }}
     .chart-meta {{ color:#94a3b8; font-size:12px; margin-top:10px; }}
-    @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} }}
+    @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} .detail-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }} .driver-grid,.scenario-grid {{ grid-template-columns:1fr; }} }}
   </style>
 </head>
 <body>
@@ -1595,20 +1988,31 @@ def render_html(payload: dict[str, Any]) -> str:
   <nav class="wrap">{"".join(tabs)}</nav>
   <main class="wrap">{"".join(sections)}<section class="sources"><h2>Nguồn độc lập đang theo dõi</h2>{source_table}</section></main>
   <div class="modal" id="chartModal" aria-hidden="true">
-    <div class="modal-box">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="chartTitle">
       <div class="modal-head">
         <div>
-          <p class="group-label">Lịch sử tối đa {HISTORY_LIMIT} điểm</p>
-          <h2 class="modal-title" id="chartTitle">Biểu đồ</h2>
+          <p class="group-label">Số cũ · dự báo tham khảo · lý do</p>
+          <h2 class="modal-title" id="chartTitle">Chi tiết chỉ số</h2>
         </div>
-        <button class="modal-close" id="chartClose" type="button">Đóng</button>
+        <button class="modal-close" id="chartClose" type="button" title="Đóng" aria-label="Đóng">×</button>
       </div>
-      <svg class="chart-svg" id="chartSvg" viewBox="0 0 720 300" role="img"></svg>
-      <p class="chart-meta" id="chartMeta"></p>
+      <div class="detail-grid">
+        <div class="detail-stat"><span>Hiện tại</span><strong id="detailCurrent">—</strong><small id="detailCurrentDate"></small></div>
+        <div class="detail-stat"><span>Kỳ trước</span><strong id="detailPrevious">—</strong><small id="detailPreviousDate"></small></div>
+        <div class="detail-stat"><span>Dự báo +1 tháng</span><strong id="detailForecast1">—</strong><small id="detailForecast1Range"></small></div>
+        <div class="detail-stat"><span>Dự báo +3 tháng</span><strong id="detailForecast3">—</strong><small id="detailForecast3Range"></small></div>
+      </div>
+      <div class="reason-block"><h3>Lý do ngắn</h3><p id="detailReason"></p></div>
+      <p class="chart-meta" id="detailMethod"></p>
+      <p class="forecast-note" id="detailDisclaimer"></p>
+      <div class="chart-wrap" id="chartWrap">
+        <svg class="chart-svg" id="chartSvg" viewBox="0 0 720 300" role="img"></svg>
+        <p class="chart-meta" id="chartMeta"></p>
+      </div>
     </div>
   </div>
   <script>
-    const chartData = {chart_data_json};
+    const detailData = {detail_data_json};
     const tabs = document.querySelectorAll('.tab');
     const panels = document.querySelectorAll('.panel');
     tabs.forEach(tab => tab.addEventListener('click', () => {{
@@ -1622,9 +2026,34 @@ def render_html(payload: dict[str, Any]) -> str:
     const title = document.getElementById('chartTitle');
     const svg = document.getElementById('chartSvg');
     const meta = document.getElementById('chartMeta');
-    function drawChart(key) {{
-      const item = chartData[key];
-      if (!item || !item.points || item.points.length < 2) return;
+    const chartWrap = document.getElementById('chartWrap');
+    const currentEl = document.getElementById('detailCurrent');
+    const currentDateEl = document.getElementById('detailCurrentDate');
+    const previousEl = document.getElementById('detailPrevious');
+    const previousDateEl = document.getElementById('detailPreviousDate');
+    const forecast1El = document.getElementById('detailForecast1');
+    const forecast1RangeEl = document.getElementById('detailForecast1Range');
+    const forecast3El = document.getElementById('detailForecast3');
+    const forecast3RangeEl = document.getElementById('detailForecast3Range');
+    const reasonEl = document.getElementById('detailReason');
+    const methodEl = document.getElementById('detailMethod');
+    const disclaimerEl = document.getElementById('detailDisclaimer');
+    let lastFocused = null;
+
+    function formatValue(value, unit) {{
+      if (value === null || value === undefined || value === '') return 'Chưa có';
+      const shown = typeof value === 'number'
+        ? new Intl.NumberFormat('vi-VN', {{ maximumFractionDigits: 3 }}).format(value)
+        : String(value);
+      return `${{shown}}${{unit ? ` ${{unit}}` : ''}}`;
+    }}
+
+    function forecastRange(forecast, unit) {{
+      if (!forecast) return 'Cần ít nhất 2 kỳ số liệu';
+      return `${{formatValue(forecast.low, unit)}} – ${{formatValue(forecast.high, unit)}} · đến ${{forecast.as_of}}`;
+    }}
+
+    function drawChart(item) {{
       const pts = item.points.slice(-{HISTORY_LIMIT});
       const values = pts.map(p => Number(p.value));
       const min = Math.min(...values);
@@ -1643,14 +2072,58 @@ def render_html(payload: dict[str, Any]) -> str:
         <polyline points="${{line}}" fill="none" stroke="#818cf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
         <circle cx="${{x(pts.length - 1).toFixed(1)}}" cy="${{y(Number(last.value)).toFixed(1)}}" r="4" fill="#34d399" />
       `;
-      title.textContent = item.name;
       meta.textContent = `${{pts.length}} điểm · mới nhất: ${{last.value}} ${{item.unit || ''}} · từ ${{first.date.slice(0,10)}} đến ${{last.date.slice(0,10)}}`;
+    }}
+
+    function openDetail(key, trigger) {{
+      const item = detailData[key];
+      if (!item) return;
+      const insight = item.insight || {{}};
+      const current = insight.current || {{}};
+      const previous = insight.previous;
+      title.textContent = item.name;
+      currentEl.textContent = formatValue(current.value, current.unit || item.unit);
+      currentDateEl.textContent = current.date ? `Ngày dữ liệu: ${{current.date}}` : '';
+      previousEl.textContent = previous ? formatValue(previous.value, previous.unit || item.unit) : 'Chưa có kỳ so sánh';
+      previousDateEl.textContent = previous && previous.date ? `Ngày dữ liệu: ${{previous.date.slice(0, 10)}}` : 'Không tạo số thay thế';
+      forecast1El.textContent = insight.forecast_1m ? formatValue(insight.forecast_1m.value, item.unit) : 'Chưa đủ dữ liệu';
+      forecast1RangeEl.textContent = forecastRange(insight.forecast_1m, item.unit);
+      forecast3El.textContent = insight.forecast_3m ? formatValue(insight.forecast_3m.value, item.unit) : 'Chưa đủ dữ liệu';
+      forecast3RangeEl.textContent = forecastRange(insight.forecast_3m, item.unit);
+      reasonEl.textContent = insight.reason_short || 'Chưa có phân tích nguyên nhân.';
+      methodEl.textContent = `${{insight.method || ''}} Độ tin cậy: ${{insight.confidence || 'WAITING_FOR_DATA'}}.`;
+      disclaimerEl.textContent = insight.disclaimer || 'Dự báo chỉ mang tính tham khảo.';
+      if (item.points && item.points.length >= 2) {{
+        chartWrap.hidden = false;
+        drawChart(item);
+      }} else {{
+        chartWrap.hidden = true;
+        svg.innerHTML = '';
+        meta.textContent = '';
+      }}
+      lastFocused = trigger || document.activeElement;
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
+      closeBtn.focus();
     }}
-    document.querySelectorAll('.card.chartable').forEach(card => card.addEventListener('click', () => drawChart(card.dataset.key)));
-    closeBtn.addEventListener('click', () => {{ modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); }});
+    document.querySelectorAll('.card.inspectable').forEach(card => {{
+      card.addEventListener('click', event => {{
+        if (!event.target.closest('a')) openDetail(card.dataset.key, card);
+      }});
+      card.addEventListener('keydown', event => {{
+        if (event.key === 'Enter' || event.key === ' ') {{
+          event.preventDefault();
+          openDetail(card.dataset.key, card);
+        }}
+      }});
+    }});
+    closeBtn.addEventListener('click', () => {{
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      if (lastFocused) lastFocused.focus();
+    }});
     modal.addEventListener('click', event => {{ if (event.target === modal) closeBtn.click(); }});
+    document.addEventListener('keydown', event => {{ if (event.key === 'Escape' && modal.classList.contains('open')) closeBtn.click(); }});
   </script>
 </body>
 </html>
@@ -1666,6 +2139,8 @@ def main() -> None:
     history = update_history(cards, now)
     memory = update_indicator_memory(cards, now)
     gemini_analysis = analyze_indicator_changes(memory, cards, now)
+    card_insights = build_card_insights(cards, history, gemini_analysis)
+    macro_strategy = build_macro_strategy(cards, gemini_analysis)
     memory_summary = change_memory_summary(memory)
     available = sum(1 for card in cards if card["value"] is not None)
     payload = {
@@ -1689,6 +2164,8 @@ def main() -> None:
             "event_count": gemini_analysis["event_count"],
             "api_url": "api/gemini_analysis.json",
         },
+        "card_insights": card_insights,
+        "macro_strategy": macro_strategy,
         "source_health": sources,
         "history": history,
         "cards": cards,
@@ -1698,7 +2175,7 @@ def main() -> None:
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     MEMORY_FILE.write_text(json.dumps(memory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     GEMINI_ANALYSIS_FILE.write_text(json.dumps(gemini_analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    build_frontend_api(payload, history, memory, gemini_analysis)
+    build_frontend_api(payload, history, memory, gemini_analysis, card_insights)
     (DOCS_DIR / "index.html").write_text(render_html(payload), encoding="utf-8")
 
     vip_available = payload["coverage"]["vip_available"]

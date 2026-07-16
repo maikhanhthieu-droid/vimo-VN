@@ -1,405 +1,905 @@
 {
   "series": {
+    "interbank_rate": [
+      {
+        "date": "2026-05-29",
+        "value": 7.0,
+        "unit": "% qua đêm",
+        "source": "VNBA",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Lãi suất VND liên ngân hàng qua đêm ngày 29/5/2026.",
+        "bucket": "2026-W22"
+      },
+      {
+        "date": "2026-07-10",
+        "bucket": "2026-W28",
+        "value": 4.28,
+        "unit": "%",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null
+      }
+    ],
+    "fx_central_rate": [
+      {
+        "date": "2026-05-22",
+        "value": 25134,
+        "unit": "VND/USD",
+        "source": "VNBA / NHNN",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Tỷ giá trung tâm ngày 22/5/2026 theo bản tin VNBA tổng hợp từ NHNN.",
+        "bucket": "2026-05-22"
+      },
+      {
+        "date": "2026-05-29",
+        "bucket": "2026-05-29",
+        "value": 25139,
+        "unit": "VND/USD",
+        "source": "VNBA / NHNN",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Tỷ giá trung tâm chốt tuần cuối tháng 5 theo bản tin VNBA tổng hợp từ NHNN."
+      }
+    ],
     "fx_market_usd_vnd": [
       {
-        "date": "2026-07-09T20:51:44.770399+00:00",
+        "date": "2026-07-09",
         "bucket": "2026-07-09",
         "value": 26221.66,
         "unit": "VND/USD"
       },
       {
-        "date": "2026-07-10T13:55:03.926260+00:00",
+        "date": "2026-07-10",
         "bucket": "2026-07-10",
         "value": 26230.03,
         "unit": "VND/USD"
       },
       {
-        "date": "2026-07-11T03:48:50.928597+00:00",
+        "date": "2026-07-11",
         "bucket": "2026-07-11",
         "value": 26240.86,
         "unit": "VND/USD"
       },
       {
-        "date": "2026-07-12T04:04:46.389839+00:00",
+        "date": "2026-07-12",
         "bucket": "2026-07-12",
         "value": 26214.47,
         "unit": "VND/USD"
       },
       {
-        "date": "2026-07-13T04:06:38.476836+00:00",
+        "date": "2026-07-13",
         "bucket": "2026-07-13",
         "value": 26191.27,
         "unit": "VND/USD"
       },
       {
-        "date": "2026-07-14T03:41:42.419513+00:00",
+        "date": "2026-07-14",
         "bucket": "2026-07-14",
         "value": 26190.52,
         "unit": "VND/USD"
       },
       {
-        "date": "2026-07-15T03:41:50.896906+00:00",
+        "date": "2026-07-15",
         "bucket": "2026-07-15",
         "value": 26205.97,
         "unit": "VND/USD"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-07-16",
         "bucket": "2026-07-16",
         "value": 26176.94,
-        "unit": "VND/USD"
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null
+      }
+    ],
+    "stock_market": [
+      {
+        "date": "2026-07-16",
+        "bucket": "2026-07-16",
+        "value": 1804.24,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null
+      }
+    ],
+    "govt_bond_yield": [
+      {
+        "date": "2026-07-10",
+        "bucket": "2026-W28",
+        "value": 4.4,
+        "unit": "%",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null
       }
     ],
     "gold_world": [
       {
-        "date": "2026-07-09T20:51:44.770399+00:00",
+        "date": "2026-07-09",
         "bucket": "2026-07-09",
         "value": 4133.7998,
         "unit": "USD/oz"
       },
       {
-        "date": "2026-07-10T13:55:03.926260+00:00",
+        "date": "2026-07-10",
         "bucket": "2026-07-10",
         "value": 4107.7998,
         "unit": "USD/oz"
       },
       {
-        "date": "2026-07-11T03:48:50.928597+00:00",
+        "date": "2026-07-11",
         "bucket": "2026-07-11",
         "value": 4128.8999,
         "unit": "USD/oz"
       },
       {
-        "date": "2026-07-12T04:04:46.389839+00:00",
+        "date": "2026-07-12",
         "bucket": "2026-07-12",
         "value": 4113.7002,
         "unit": "USD/oz"
       },
       {
-        "date": "2026-07-13T04:06:38.476836+00:00",
+        "date": "2026-07-13",
         "bucket": "2026-07-13",
         "value": 4104.1001,
         "unit": "USD/oz"
       },
       {
-        "date": "2026-07-14T03:41:42.419513+00:00",
+        "date": "2026-07-14",
         "bucket": "2026-07-14",
         "value": 4023.7,
         "unit": "USD/oz"
       },
       {
-        "date": "2026-07-15T03:41:50.896906+00:00",
+        "date": "2026-07-15",
         "bucket": "2026-07-15",
         "value": 4035.8,
         "unit": "USD/oz"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-07-16",
         "bucket": "2026-07-16",
-        "value": 4003.3999,
-        "unit": "USD/oz"
+        "value": 4009.0,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null
+      }
+    ],
+    "credit": [
+      {
+        "date": "2026-05-31",
+        "value": 5.71,
+        "unit": "% YTD",
+        "source": "VNBA / SSI Research",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "VERIFIED_HISTORY_MEDQ",
+        "source_note": "Ước tính tăng trưởng tín dụng cuối tháng 5 theo SSI Research được VNBA dẫn lại.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 7.41,
+        "unit": "% YTD",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
+      }
+    ],
+    "deposit_rate": [
+      {
+        "date": "2026-05-31",
+        "bucket": "2026-05",
+        "value": "5,9-6,0",
+        "unit": "%/năm Big4 kỳ hạn 12T",
+        "source": "VNBA",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Dải lãi suất huy động thông thường của Big4 cho kỳ hạn từ 12 tháng; giữ dạng khoảng, không lấy trung bình giả."
+      }
+    ],
+    "lending_rate": [
+      {
+        "date": "2026-05-31",
+        "bucket": "2026-05",
+        "value": "7,1-9,4",
+        "unit": "%/năm bình quân VND",
+        "source": "VNBA / NHNN",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Dải lãi suất cho vay bình quân đối với dư nợ cũ và mới."
       }
     ],
     "dxy": [
       {
-        "date": "2026-07-09T20:51:44.770399+00:00",
+        "date": "2026-07-09",
         "bucket": "2026-07-09",
         "value": 100.936,
         "unit": "điểm"
       },
       {
-        "date": "2026-07-10T13:55:03.926260+00:00",
+        "date": "2026-07-10",
         "bucket": "2026-07-10",
         "value": 100.882,
         "unit": "điểm"
       },
       {
-        "date": "2026-07-11T03:48:50.928597+00:00",
+        "date": "2026-07-11",
         "bucket": "2026-07-11",
         "value": 100.965,
         "unit": "điểm"
       },
       {
-        "date": "2026-07-12T04:04:46.389839+00:00",
+        "date": "2026-07-12",
         "bucket": "2026-07-12",
         "value": 100.97,
         "unit": "điểm"
       },
       {
-        "date": "2026-07-13T04:06:38.476836+00:00",
+        "date": "2026-07-13",
         "bucket": "2026-07-13",
         "value": 100.97,
         "unit": "điểm"
       },
       {
-        "date": "2026-07-14T03:41:42.419513+00:00",
+        "date": "2026-07-14",
         "bucket": "2026-07-14",
         "value": 101.179,
         "unit": "điểm"
       },
       {
-        "date": "2026-07-15T03:41:50.896906+00:00",
+        "date": "2026-07-15",
         "bucket": "2026-07-15",
         "value": 100.827,
         "unit": "điểm"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-07-16",
         "bucket": "2026-07-16",
-        "value": 100.633,
-        "unit": "điểm"
+        "value": 100.7,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null
+      }
+    ],
+    "corporate_bond_issuance": [
+      {
+        "date": "2026-07-31",
+        "bucket": "2026-07",
+        "value": 0.1,
+        "unit": "nghìn tỷ VND",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null
+      }
+    ],
+    "govt_bond_issuance": [
+      {
+        "date": "2026-07-10",
+        "bucket": "2026-W28",
+        "value": 185.401,
+        "unit": "nghìn tỷ VND",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/July2026/06072026%20-%2010072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null
+      }
+    ],
+    "fed_policy": [
+      {
+        "date": "2025-12-09",
+        "value": "3,75-4,00",
+        "unit": "% lãi suất áp dụng trước 10/12/2025",
+        "source": "Federal Reserve",
+        "source_url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Dải mục tiêu lãi suất Fed trước lần điều chỉnh ngày 10/12/2025.",
+        "bucket": "2025-12-09"
+      },
+      {
+        "date": "2026-06-06",
+        "bucket": "2026-06-06",
+        "value": "3,50-3,75",
+        "unit": "% lãi suất hiện áp dụng",
+        "source": "VNBA / Fed",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Dải lãi suất Fed trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
+      }
+    ],
+    "us_economy": [
+      {
+        "date": "2026-05-31",
+        "bucket": "2026-05",
+        "value": 1.6,
+        "unit": "% GDP YoY",
+        "source": "VNBA",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Tăng trưởng kinh tế Mỹ được VNBA ghi nhận trong bản tin tháng 5."
       }
     ],
     "oil_prices": [
       {
-        "date": "2026-07-09T20:51:44.770399+00:00",
+        "date": "2026-07-09",
         "bucket": "2026-07-09",
         "value": 71.82,
         "unit": "USD/thùng"
       },
       {
-        "date": "2026-07-10T13:55:03.926260+00:00",
+        "date": "2026-07-10",
         "bucket": "2026-07-10",
         "value": 71.68,
         "unit": "USD/thùng"
       },
       {
-        "date": "2026-07-11T03:48:50.928597+00:00",
+        "date": "2026-07-11",
         "bucket": "2026-07-11",
         "value": 71.51,
         "unit": "USD/thùng"
       },
       {
-        "date": "2026-07-12T04:04:46.389839+00:00",
+        "date": "2026-07-12",
         "bucket": "2026-07-12",
         "value": 71.41,
         "unit": "USD/thùng"
       },
       {
-        "date": "2026-07-13T04:06:38.476836+00:00",
+        "date": "2026-07-13",
         "bucket": "2026-07-13",
         "value": 71.41,
         "unit": "USD/thùng"
       },
       {
-        "date": "2026-07-14T03:41:42.419513+00:00",
+        "date": "2026-07-14",
         "bucket": "2026-07-14",
         "value": 79.72,
         "unit": "USD/thùng"
       },
       {
-        "date": "2026-07-15T03:41:50.896906+00:00",
+        "date": "2026-07-15",
         "bucket": "2026-07-15",
         "value": 80.08,
         "unit": "USD/thùng"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-07-16",
         "bucket": "2026-07-16",
-        "value": 80.11,
-        "unit": "USD/thùng"
+        "value": 78.82,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null
+      }
+    ],
+    "geopolitical_risk": [
+      {
+        "date": "2026-05-31",
+        "bucket": "2026-05-31",
+        "value": "Trung Đông/Hormuz: cú sốc năng lượng",
+        "unit": "ghi nhận tháng 5/2026",
+        "source": "VNBA",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Bản tin ghi nhận xung đột Trung Đông và gián đoạn tại Hormuz gây cú sốc năng lượng."
       }
     ],
     "us_10y_yield": [
       {
-        "date": "2026-07-09T20:51:44.770399+00:00",
+        "date": "2026-07-09",
         "bucket": "2026-07-09",
         "value": 4.539,
         "unit": "%"
       },
       {
-        "date": "2026-07-10T13:55:03.926260+00:00",
+        "date": "2026-07-10",
         "bucket": "2026-07-10",
         "value": 4.549,
         "unit": "%"
       },
       {
-        "date": "2026-07-11T03:48:50.928597+00:00",
+        "date": "2026-07-11",
         "bucket": "2026-07-11",
         "value": 4.569,
         "unit": "%"
       },
       {
-        "date": "2026-07-12T04:04:46.389839+00:00",
+        "date": "2026-07-12",
         "bucket": "2026-07-12",
         "value": 4.569,
         "unit": "%"
       },
       {
-        "date": "2026-07-13T04:06:38.476836+00:00",
+        "date": "2026-07-13",
         "bucket": "2026-07-13",
         "value": 4.569,
         "unit": "%"
       },
       {
-        "date": "2026-07-14T03:41:42.419513+00:00",
+        "date": "2026-07-14",
         "bucket": "2026-07-14",
         "value": 4.609,
         "unit": "%"
       },
       {
-        "date": "2026-07-15T03:41:50.896906+00:00",
+        "date": "2026-07-15",
         "bucket": "2026-07-15",
         "value": 4.585,
         "unit": "%"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-07-16",
         "bucket": "2026-07-16",
-        "value": 4.582,
-        "unit": "%"
+        "value": 4.571,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
-    "stock_market": [
+    "ecb_eurozone": [
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
-        "bucket": "2026-07-16",
-        "value": 1804.24,
-        "unit": "điểm"
+        "date": "2025-06-04",
+        "value": 2.25,
+        "unit": "% lãi suất tiền gửi",
+        "source": "ECB",
+        "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Lãi suất tiền gửi ECB trước quyết định có hiệu lực ngày 11/6/2025.",
+        "bucket": "2025-06-04"
+      },
+      {
+        "date": "2026-06-06",
+        "bucket": "2026-06-06",
+        "value": 2.0,
+        "unit": "% lãi suất hiện áp dụng",
+        "source": "VNBA / ECB",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Lãi suất ECB trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
       }
     ],
-    "interbank_rate": [
+    "boj_japan": [
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
-        "bucket": "2026-W29",
-        "value": 4.28,
-        "unit": "%"
+        "date": "2025-12-18",
+        "value": 0.5,
+        "unit": "% lãi suất chính sách",
+        "source": "Bank of Japan",
+        "source_url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2025/index.htm",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Lãi suất chính sách BOJ trước quyết định ngày 19/12/2025.",
+        "bucket": "2025-12-18"
+      },
+      {
+        "date": "2026-06-06",
+        "bucket": "2026-06-06",
+        "value": 0.75,
+        "unit": "% lãi suất hiện áp dụng",
+        "source": "VNBA / BOJ",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Lãi suất BOJ trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
       }
     ],
-    "govt_bond_yield": [
+    "china_economy": [
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
-        "bucket": "2026-W29",
-        "value": 4.4,
-        "unit": "%"
+        "date": "2026-05-31",
+        "bucket": "2026-05",
+        "value": 5.0,
+        "unit": "% tăng trưởng YoY",
+        "source": "VNBA / NBS China",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Tăng trưởng Trung Quốc được VNBA tổng hợp trong bản tin tháng 5."
       }
     ],
-    "pmi_manufacturing": [
+    "policy_actions_vn": [
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
-        "bucket": "2026-07",
-        "value": 51.8,
-        "unit": "điểm"
+        "date": "2026-05-31",
+        "bucket": "2026-05-31",
+        "value": "Thông tư NHNN 11-21/2026",
+        "unit": "ban hành trong tháng 5/2026",
+        "source": "VNBA / NHNN",
+        "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Bản tin VNBA liệt kê chuỗi Thông tư 11-21/2026 do NHNN ban hành trong tháng 5."
+      }
+    ],
+    "agriculture_snapshot": [
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 3.87,
+        "unit": "% YoY khu vực I",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
       }
     ],
     "cpi": [
       {
-        "date": "2026-07-16T14:34:38.853607+00:00",
-        "bucket": "2026-07",
-        "value": 4.69,
-        "unit": "% YoY"
+        "date": "2026-05-31",
+        "value": 5.6,
+        "unit": "% YoY",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "CPI tháng 5/2026 tăng 5,60% so với cùng kỳ năm trước.",
+        "bucket": "2026-05"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-06-30",
         "bucket": "2026-06",
         "value": 4.69,
-        "unit": "% YoY"
+        "unit": "% YoY",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
+      }
+    ],
+    "pmi_manufacturing": [
+      {
+        "date": "2026-05-31",
+        "value": 52.8,
+        "unit": "điểm",
+        "source": "VGP / S&P Global",
+        "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-sector-records-strongest-new-order-growth-in-three-months-111260601165451257.htm",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "PMI sản xuất tháng 5/2026 đạt 52,8 điểm.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-07-31",
+        "bucket": "2026-07",
+        "value": 51.8,
+        "unit": "điểm",
+        "source": "VGP / S&P Global",
+        "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
+        "source_quality": "AUTO_VGP_SPGLOBAL",
+        "source_note": null
       }
     ],
     "iip": [
       {
-        "date": "2026-07-16T14:34:38.853607+00:00",
-        "bucket": "2026-07",
-        "value": 10.8,
-        "unit": "% YoY"
+        "date": "2026-05-31",
+        "value": 9.1,
+        "unit": "% YoY lũy kế 5T/2026",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "IIP lũy kế 5 tháng đầu năm 2026 tăng 9,1% so với cùng kỳ.",
+        "bucket": "2026-05"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-06-30",
         "bucket": "2026-06",
         "value": 10.8,
-        "unit": "% YoY"
-      }
-    ],
-    "retail": [
-      {
-        "date": "2026-07-16T14:34:38.853607+00:00",
-        "bucket": "2026-07",
-        "value": 12.9,
-        "unit": "% YoY lũy kế kỳ báo cáo"
-      },
-      {
-        "date": "2026-07-16T14:37:14.263648+00:00",
-        "bucket": "2026-06",
-        "value": 12.9,
-        "unit": "% YoY lũy kế kỳ báo cáo"
-      }
-    ],
-    "fx_central_rate": [
-      {
-        "date": "2026-07-16T14:37:14.263648+00:00",
-        "bucket": "2026-07-16",
-        "value": 25139,
-        "unit": "VND/USD"
-      }
-    ],
-    "credit": [
-      {
-        "date": "2026-07-16T14:34:38.853607+00:00",
-        "bucket": "2026-07",
-        "value": 7.41,
-        "unit": "% YTD"
-      },
-      {
-        "date": "2026-07-16T14:37:14.263648+00:00",
-        "bucket": "2026-06",
-        "value": 7.41,
-        "unit": "% YTD"
+        "unit": "% YoY",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
       }
     ],
     "trade_balance": [
       {
-        "date": "2026-07-16T14:34:38.853607+00:00",
-        "bucket": "2026-07",
-        "value": -16.65,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)"
+        "date": "2026-05-31",
+        "value": -13.81,
+        "unit": "tỷ USD (5T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Cán cân hàng hóa lũy kế 5 tháng nhập siêu 13,81 tỷ USD.",
+        "bucket": "2026-05"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-06-30",
         "bucket": "2026-06",
         "value": -16.65,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)"
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": "Nhập siêu mang dấu âm; xuất siêu mang dấu dương."
       }
     ],
     "exports": [
       {
-        "date": "2026-07-16T14:34:38.853607+00:00",
-        "bucket": "2026-07",
-        "value": 266.52,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)"
+        "date": "2026-05-31",
+        "value": 215.66,
+        "unit": "tỷ USD (5T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Kim ngạch xuất khẩu hàng hóa lũy kế 5 tháng.",
+        "bucket": "2026-05"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-06-30",
         "bucket": "2026-06",
         "value": 266.52,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)"
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
       }
     ],
     "imports": [
       {
-        "date": "2026-07-16T14:34:38.853607+00:00",
-        "bucket": "2026-07",
-        "value": 283.17,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)"
+        "date": "2026-05-31",
+        "value": 229.46,
+        "unit": "tỷ USD (5T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Kim ngạch nhập khẩu hàng hóa lũy kế 5 tháng.",
+        "bucket": "2026-05"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-06-30",
         "bucket": "2026-06",
         "value": 283.17,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)"
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
       }
     ],
     "fdi_disbursed": [
       {
-        "date": "2026-07-16T14:34:38.853607+00:00",
-        "bucket": "2026-07",
-        "value": 13.03,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)"
+        "date": "2026-05-31",
+        "value": 9.75,
+        "unit": "tỷ USD (5T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Vốn FDI thực hiện lũy kế 5 tháng đầu năm 2026.",
+        "bucket": "2026-05"
       },
       {
-        "date": "2026-07-16T14:37:14.263648+00:00",
+        "date": "2026-06-30",
         "bucket": "2026-06",
         "value": 13.03,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)"
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
+      }
+    ],
+    "fdi_registered": [
+      {
+        "date": "2026-05-31",
+        "value": 24.81,
+        "unit": "tỷ USD (đến 31/05/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Tổng vốn FDI đăng ký tính đến cuối tháng 5/2026.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 34.65,
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
+      }
+    ],
+    "retail": [
+      {
+        "date": "2026-05-31",
+        "value": 11.2,
+        "unit": "% YoY lũy kế 5T/2026",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Tổng mức bán lẻ và doanh thu dịch vụ lũy kế 5 tháng tăng 11,2%.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 12.9,
+        "unit": "% YoY lũy kế kỳ báo cáo",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
+      }
+    ],
+    "business_new": [
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 111700.0,
+        "unit": "doanh nghiệp (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
+      }
+    ],
+    "business_exited": [
+      {
+        "date": "2026-05-31",
+        "value": 129300,
+        "unit": "doanh nghiệp (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Tổng doanh nghiệp rút lui khỏi thị trường trong 5 tháng đầu năm.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 151100,
+        "unit": "doanh nghiệp (6T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Tổng doanh nghiệp tạm ngừng, chờ giải thể và hoàn tất giải thể."
+      }
+    ],
+    "international_visitors": [
+      {
+        "date": "2026-05-31",
+        "value": 10.6,
+        "unit": "triệu lượt (5T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Khách quốc tế đến Việt Nam lũy kế 5 tháng đầu năm.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 12.3,
+        "unit": "triệu lượt (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
+      }
+    ],
+    "state_investment": [
+      {
+        "date": "2026-05-31",
+        "value": 11.2,
+        "unit": "% YoY vốn khu vực Nhà nước (5T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Vốn đầu tư thực hiện khu vực Nhà nước lũy kế 5 tháng tăng 11,2%.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 12.5,
+        "unit": "% YoY vốn khu vực Nhà nước",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch."
+      }
+    ],
+    "state_budget": [
+      {
+        "date": "2026-05-31",
+        "value": 1340,
+        "unit": "nghìn tỷ VND thu NSNN (5T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Tổng thu ngân sách Nhà nước lũy kế 5 tháng, quy đổi từ 1,34 triệu tỷ đồng.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 1568.2,
+        "unit": "nghìn tỷ VND thu NSNN",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null
+      }
+    ],
+    "pmi_sub_indices": [
+      {
+        "date": "2026-05-31",
+        "value": "Đơn hàng tăng nhanh nhất 3 tháng; việc làm giảm",
+        "unit": "ghi nhận tháng 5/2026",
+        "source": "VGP / S&P Global",
+        "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-sector-records-strongest-new-order-growth-in-three-months-111260601165451257.htm",
+        "source_quality": "VERIFIED_HISTORY_HIGHQ",
+        "source_note": "Mô tả cấu phần PMI tháng 5; S&P không công bố miễn phí điểm số từng cấu phần.",
+        "bucket": "2026-05"
+      },
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": "Đơn hàng và sản lượng tăng; việc làm giảm",
+        "unit": "ghi nhận tháng 6/2026",
+        "source": "VGP / S&P Global",
+        "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "S&P không công bố điểm số từng cấu phần miễn phí; lưu đúng mô tả hướng biến động, không tự gán điểm."
+      }
+    ],
+    "trade_by_sector": [
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 79.9,
+        "unit": "% xuất khẩu thuộc khu vực FDI (6T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Tỷ trọng xuất khẩu của khu vực có vốn đầu tư nước ngoài, kể cả dầu thô."
+      }
+    ],
+    "trade_by_market": [
+      {
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": "Mỹ XK 86,5; Trung Quốc NK 115,2",
+        "unit": "tỷ USD (6T/2026)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Mỹ là thị trường xuất khẩu lớn nhất; Trung Quốc là thị trường nhập khẩu lớn nhất."
+      }
+    ],
+    "trade_by_commodity": [
+      {
+        "date": "2026-05-31",
+        "bucket": "2026-05",
+        "value": 22.5,
+        "unit": "tỷ USD điện tử sang Mỹ (5T/2026)",
+        "source": "VGP / số liệu thương mại",
+        "source_url": "https://en.baochinhphu.vn/viet-nams-exports-to-us-up-nearly-22-in-five-months-111260616101850643.htm",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_MEDQ",
+        "source_note": "Máy tính, sản phẩm điện tử và linh kiện xuất sang Mỹ; nguồn Chính phủ dẫn số liệu thương mại."
+      }
+    ],
+    "fdi_by_sector": [
+      {
+        "date": "2025-12-31",
+        "bucket": "2025-12",
+        "value": 21.01,
+        "unit": "tỷ USD chế biến, chế tạo (2025)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/nganh-cong-nghiep-che-bien-che-tao-thu-hut-manh-me-nhat-dong-von-dau-tu-truc-tiep-nuoc-ngoai-nam-2025/",
+        "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
+        "source_note": "Tổng FDI đăng ký vào ngành chế biến, chế tạo năm 2025; dùng số cũ gần nhất có phân ngành rõ."
       }
     ]
   },
@@ -407,31 +907,54 @@
     "retention_max_points": 100,
     "retention_min_target_points": 30,
     "stored_keys": [
+      "agriculture_snapshot",
+      "boj_japan",
+      "business_exited",
+      "business_new",
+      "china_economy",
+      "corporate_bond_issuance",
       "cpi",
       "credit",
+      "deposit_rate",
       "dxy",
+      "ecb_eurozone",
       "exports",
+      "fdi_by_sector",
       "fdi_disbursed",
+      "fdi_registered",
+      "fed_policy",
       "fx_central_rate",
       "fx_market_usd_vnd",
+      "geopolitical_risk",
       "gold_world",
+      "govt_bond_issuance",
       "govt_bond_yield",
       "iip",
       "imports",
       "interbank_rate",
+      "international_visitors",
+      "lending_rate",
       "oil_prices",
       "pmi_manufacturing",
+      "pmi_sub_indices",
+      "policy_actions_vn",
       "retail",
+      "state_budget",
+      "state_investment",
       "stock_market",
       "trade_balance",
-      "us_10y_yield"
+      "trade_by_commodity",
+      "trade_by_market",
+      "trade_by_sector",
+      "us_10y_yield",
+      "us_economy"
     ],
     "frequency_rule": {
       "daily": "one point per day",
       "monthly_or_yearly_vip": "one point per month/period, not one duplicate point every day",
       "weekly_snapshot": "one point per ISO week",
-      "event_or_meeting": "one point only when the value changes"
+      "event_or_meeting": "one point per dated observation"
     },
-    "note": "Only important indicators keep history. Normal snapshot data is not retained to avoid duplicate/noisy storage."
+    "note": "All 41 indicators retain dated observations. Verified older values are merged from data/verified_history.json; no historical value is invented."
   }
 }
