@@ -10,7 +10,7 @@
       "source_quality": "AUTO_VBMA_PDF",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "fx_central_rate": {
@@ -22,7 +22,7 @@
       "source_quality": "VERIFIED_BASELINE_HIGHQ",
       "source_note": "Tỷ giá trung tâm chốt tuần cuối tháng 5 theo bản tin VNBA tổng hợp từ NHNN.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "fx_market_usd_vnd": {
@@ -34,7 +34,7 @@
       "source_quality": "AUTO",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "stock_market": {
@@ -46,7 +46,7 @@
       "source_quality": "AUTO",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "govt_bond_yield": {
@@ -58,11 +58,11 @@
       "source_quality": "AUTO_VBMA_PDF",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "gold_world": {
-      "value": 3997.0,
+      "value": 4003.3999,
       "as_of": "2026-07-16",
       "unit": "USD/oz",
       "source_primary": "Yahoo Finance",
@@ -70,8 +70,8 @@
       "source_quality": "AUTO",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
+      "last_changed_at": "2026-07-16T14:37:14.263648+00:00"
     },
     "credit": {
       "value": 7.41,
@@ -79,10 +79,10 @@
       "unit": "% YTD",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "deposit_rate": {
@@ -94,7 +94,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Dải lãi suất huy động thông thường của Big4 cho kỳ hạn từ 12 tháng; giữ dạng khoảng, không lấy trung bình giả.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "lending_rate": {
@@ -106,11 +106,11 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Dải lãi suất cho vay bình quân đối với dư nợ cũ và mới.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "dxy": {
-      "value": 100.645,
+      "value": 100.633,
       "as_of": "2026-07-16",
       "unit": "điểm",
       "source_primary": "Yahoo Finance",
@@ -118,8 +118,8 @@
       "source_quality": "AUTO",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
+      "last_changed_at": "2026-07-16T14:37:14.263648+00:00"
     },
     "corporate_bond_issuance": {
       "value": 0.1,
@@ -130,7 +130,7 @@
       "source_quality": "AUTO_VBMA_PDF",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "govt_bond_issuance": {
@@ -142,7 +142,7 @@
       "source_quality": "AUTO_VBMA_PDF",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "fed_policy": {
@@ -154,7 +154,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Dải lãi suất Fed trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "us_economy": {
@@ -166,11 +166,11 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Tăng trưởng kinh tế Mỹ được VNBA ghi nhận trong bản tin tháng 5.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "oil_prices": {
-      "value": 80.19,
+      "value": 80.11,
       "as_of": "2026-07-16",
       "unit": "USD/thùng",
       "source_primary": "Yahoo Finance",
@@ -178,8 +178,8 @@
       "source_quality": "AUTO",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
+      "last_changed_at": "2026-07-16T14:37:14.263648+00:00"
     },
     "geopolitical_risk": {
       "value": "Trung Đông/Hormuz: cú sốc năng lượng",
@@ -190,11 +190,11 @@
       "source_quality": "VERIFIED_BASELINE_HIGHQ",
       "source_note": "Bản tin ghi nhận xung đột Trung Đông và gián đoạn tại Hormuz gây cú sốc năng lượng.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "us_10y_yield": {
-      "value": 4.577,
+      "value": 4.582,
       "as_of": "2026-07-16",
       "unit": "%",
       "source_primary": "Yahoo Finance",
@@ -202,8 +202,8 @@
       "source_quality": "AUTO",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
+      "last_changed_at": "2026-07-16T14:37:14.263648+00:00"
     },
     "ecb_eurozone": {
       "value": 2.0,
@@ -214,7 +214,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Lãi suất ECB trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "boj_japan": {
@@ -226,7 +226,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Lãi suất BOJ trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "china_economy": {
@@ -238,7 +238,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Tăng trưởng Trung Quốc được VNBA tổng hợp trong bản tin tháng 5.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "policy_actions_vn": {
@@ -250,7 +250,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Bản tin VNBA liệt kê chuỗi Thông tư 11-21/2026 do NHNN ban hành trong tháng 5.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "agriculture_snapshot": {
@@ -259,10 +259,10 @@
       "unit": "% YoY khu vực I",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "cpi": {
@@ -271,10 +271,10 @@
       "unit": "% YoY",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "pmi_manufacturing": {
@@ -286,7 +286,7 @@
       "source_quality": "AUTO_VGP_SPGLOBAL",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "iip": {
@@ -295,10 +295,10 @@
       "unit": "% YoY",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "trade_balance": {
@@ -307,10 +307,10 @@
       "unit": "tỷ USD (lũy kế kỳ báo cáo)",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": "Nhập siêu mang dấu âm; xuất siêu mang dấu dương.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "exports": {
@@ -319,10 +319,10 @@
       "unit": "tỷ USD (lũy kế kỳ báo cáo)",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "imports": {
@@ -331,10 +331,10 @@
       "unit": "tỷ USD (lũy kế kỳ báo cáo)",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "fdi_disbursed": {
@@ -343,10 +343,10 @@
       "unit": "tỷ USD (lũy kế kỳ báo cáo)",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "fdi_registered": {
@@ -355,10 +355,10 @@
       "unit": "tỷ USD (lũy kế kỳ báo cáo)",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "retail": {
@@ -367,10 +367,10 @@
       "unit": "% YoY lũy kế kỳ báo cáo",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "business_new": {
@@ -379,10 +379,10 @@
       "unit": "doanh nghiệp (lũy kế kỳ báo cáo)",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "business_exited": {
@@ -394,7 +394,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Tổng doanh nghiệp tạm ngừng, chờ giải thể và hoàn tất giải thể.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "international_visitors": {
@@ -403,10 +403,10 @@
       "unit": "triệu lượt (lũy kế kỳ báo cáo)",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "state_investment": {
@@ -415,10 +415,10 @@
       "unit": "% YoY vốn khu vực Nhà nước",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "state_budget": {
@@ -427,10 +427,10 @@
       "unit": "nghìn tỷ VND thu NSNN",
       "source_primary": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "source_note": null,
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "pmi_sub_indices": {
@@ -442,7 +442,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "S&P không công bố điểm số từng cấu phần miễn phí; lưu đúng mô tả hướng biến động, không tự gán điểm.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "trade_by_sector": {
@@ -454,7 +454,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Tỷ trọng xuất khẩu của khu vực có vốn đầu tư nước ngoài, kể cả dầu thô.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "trade_by_market": {
@@ -466,7 +466,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Mỹ là thị trường xuất khẩu lớn nhất; Trung Quốc là thị trường nhập khẩu lớn nhất.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "trade_by_commodity": {
@@ -478,7 +478,7 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_MEDQ",
       "source_note": "Máy tính, sản phẩm điện tử và linh kiện xuất sang Mỹ; nguồn Chính phủ dẫn số liệu thương mại.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     },
     "fdi_by_sector": {
@@ -490,10 +490,87 @@
       "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
       "source_note": "Tổng FDI đăng ký vào ngành chế biến, chế tạo năm 2025; dùng số cũ gần nhất có phân ngành rõ.",
       "first_seen_at": "2026-07-16T14:34:38.853607+00:00",
-      "last_seen_at": "2026-07-16T14:34:38.853607+00:00",
+      "last_seen_at": "2026-07-16T14:37:14.263648+00:00",
       "last_changed_at": "2026-07-16T14:34:38.853607+00:00"
     }
   },
-  "events": [],
-  "updated_at": "2026-07-16T14:34:38.853607+00:00"
+  "events": [
+    {
+      "id": "gold_world:2026-07-16T14:37:14.263648+00:00",
+      "key": "gold_world",
+      "name_vi": "Vàng thế giới",
+      "event_type": "change",
+      "detected_at": "2026-07-16T14:37:14.263648+00:00",
+      "previous_value": 3997.0,
+      "current_value": 4003.3999,
+      "absolute_change": 6.3999,
+      "percent_change": 0.160118,
+      "previous_unit": "USD/oz",
+      "unit": "USD/oz",
+      "as_of": "2026-07-16",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+      "source_quality": "AUTO",
+      "source_note": null,
+      "ai_status": "pending"
+    },
+    {
+      "id": "dxy:2026-07-16T14:37:14.263648+00:00",
+      "key": "dxy",
+      "name_vi": "DXY",
+      "event_type": "change",
+      "detected_at": "2026-07-16T14:37:14.263648+00:00",
+      "previous_value": 100.645,
+      "current_value": 100.633,
+      "absolute_change": -0.012,
+      "percent_change": -0.011923,
+      "previous_unit": "điểm",
+      "unit": "điểm",
+      "as_of": "2026-07-16",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+      "source_quality": "AUTO",
+      "source_note": null,
+      "ai_status": "pending"
+    },
+    {
+      "id": "oil_prices:2026-07-16T14:37:14.263648+00:00",
+      "key": "oil_prices",
+      "name_vi": "Giá dầu WTI",
+      "event_type": "change",
+      "detected_at": "2026-07-16T14:37:14.263648+00:00",
+      "previous_value": 80.19,
+      "current_value": 80.11,
+      "absolute_change": -0.08,
+      "percent_change": -0.099763,
+      "previous_unit": "USD/thùng",
+      "unit": "USD/thùng",
+      "as_of": "2026-07-16",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+      "source_quality": "AUTO",
+      "source_note": null,
+      "ai_status": "pending"
+    },
+    {
+      "id": "us_10y_yield:2026-07-16T14:37:14.263648+00:00",
+      "key": "us_10y_yield",
+      "name_vi": "US 10Y yield",
+      "event_type": "change",
+      "detected_at": "2026-07-16T14:37:14.263648+00:00",
+      "previous_value": 4.577,
+      "current_value": 4.582,
+      "absolute_change": 0.005,
+      "percent_change": 0.109242,
+      "previous_unit": "%",
+      "unit": "%",
+      "as_of": "2026-07-16",
+      "source_primary": "Yahoo Finance",
+      "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+      "source_quality": "AUTO",
+      "source_note": null,
+      "ai_status": "pending"
+    }
+  ],
+  "updated_at": "2026-07-16T14:37:14.263648+00:00"
 }
