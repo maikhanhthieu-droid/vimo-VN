@@ -106,6 +106,16 @@
         "source_url": "https://open.er-api.com/",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-18",
+        "bucket": "2026-07-18",
+        "value": 26203.03,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "stock_market": [
@@ -122,7 +132,7 @@
       {
         "date": "2026-07-17",
         "bucket": "2026-07-17",
-        "value": 1791.11,
+        "value": 1787.45,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -198,7 +208,7 @@
       {
         "date": "2026-07-17",
         "bucket": "2026-07-17",
-        "value": 4002.0,
+        "value": 4023.0,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -308,7 +318,7 @@
       {
         "date": "2026-07-17",
         "bucket": "2026-07-17",
-        "value": 100.765,
+        "value": 100.755,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -430,7 +440,7 @@
       {
         "date": "2026-07-17",
         "bucket": "2026-07-17",
-        "value": 78.98,
+        "value": 81.77,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -497,6 +507,16 @@
         "date": "2026-07-16",
         "bucket": "2026-07-16",
         "value": 4.569,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-17",
+        "bucket": "2026-07-17",
+        "value": 4.541,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",

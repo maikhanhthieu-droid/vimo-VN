@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-17T03:44:49.217031+00:00",
-  "generated_at_bkk": "2026-07-17T10:44:49.217031+07:00",
+  "generated_at_utc": "2026-07-18T03:39:24.852261+00:00",
+  "generated_at_bkk": "2026-07-18T10:39:24.852261+07:00",
   "coverage": {
     "available_cards": 41,
     "total_cards": 41,
@@ -13,13 +13,13 @@
   },
   "change_memory": {
     "state_count": 41,
-    "event_count": 16,
+    "event_count": 17,
     "pending_ai_events": 5
   },
   "gemini_analysis": {
     "status": "waiting_for_api_key",
     "model": "models/gemini-3-flash-preview",
-    "generated_at": "2026-07-17T03:44:49.217031+00:00",
+    "generated_at": "2026-07-18T03:39:24.852261+00:00",
     "event_count": 5,
     "api_url": "api/gemini_analysis.json"
   },
@@ -114,16 +114,16 @@
       "key": "fx_market_usd_vnd",
       "name_vi": "USD/VND thị trường",
       "current": {
-        "value": 26178.22,
+        "value": 26203.03,
         "unit": "VND/USD",
-        "date": "2026-07-17",
+        "date": "2026-07-18",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "previous": {
-        "date": "2026-07-16",
-        "bucket": "2026-07-16",
-        "value": 26176.94,
+        "date": "2026-07-17",
+        "bucket": "2026-07-17",
+        "value": 26178.22,
         "unit": "VND/USD",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/",
@@ -131,23 +131,23 @@
         "source_note": null
       },
       "change": {
-        "absolute": 1.28,
-        "percent": 0.0049,
+        "absolute": 24.81,
+        "percent": 0.0948,
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 26069.0,
-        "low": 25546.0,
-        "high": 26593.0,
-        "as_of": "2026-08-17"
+        "value": 26238.0,
+        "low": 25714.0,
+        "high": 26762.0,
+        "as_of": "2026-08-18"
       },
       "forecast_3m": {
-        "value": 25950.0,
-        "low": 25112.0,
-        "high": 26788.0,
-        "as_of": "2026-10-17"
+        "value": 26277.0,
+        "low": 25439.0,
+        "high": 27116.0,
+        "as_of": "2026-10-18"
       },
-      "reason_short": "Giá trị tăng 1.28 VND/USD so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 24.81 VND/USD so với kỳ 2026-07-17. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -157,7 +157,7 @@
       "key": "stock_market",
       "name_vi": "VN-Index",
       "current": {
-        "value": 1791.11,
+        "value": 1787.45,
         "unit": "điểm",
         "date": "2026-07-17",
         "source": "Vietcap",
@@ -174,23 +174,23 @@
         "source_note": null
       },
       "change": {
-        "absolute": -13.13,
-        "percent": -0.7277,
+        "absolute": -16.79,
+        "percent": -0.9306,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 1594.0,
-        "low": 1558.0,
-        "high": 1630.0,
+        "value": 1536.0,
+        "low": 1500.0,
+        "high": 1571.0,
         "as_of": "2026-08-17"
       },
       "forecast_3m": {
-        "value": 1378.0,
-        "low": 1320.0,
-        "high": 1435.0,
+        "value": 1259.0,
+        "low": 1201.0,
+        "high": 1316.0,
         "as_of": "2026-10-17"
       },
-      "reason_short": "Giá trị giảm 13.13 điểm so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 16.79 điểm so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "LOW",
       "method": "Ngoại suy xu hướng giảm chấn từ 2 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -220,7 +220,7 @@
       "key": "gold_world",
       "name_vi": "Vàng thế giới",
       "current": {
-        "value": 4002.0,
+        "value": 4023.0,
         "unit": "USD/oz",
         "date": "2026-07-17",
         "source": "Yahoo Finance",
@@ -237,23 +237,23 @@
         "source_note": null
       },
       "change": {
-        "absolute": 10.5,
-        "percent": 0.2631,
+        "absolute": 31.5,
+        "percent": 0.7892,
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 3667.0,
-        "low": 3587.0,
-        "high": 3747.0,
+        "value": 3751.0,
+        "low": 3670.0,
+        "high": 3831.0,
         "as_of": "2026-08-17"
       },
       "forecast_3m": {
-        "value": 3298.0,
-        "low": 3170.0,
-        "high": 3426.0,
+        "value": 3452.0,
+        "low": 3323.0,
+        "high": 3580.0,
         "as_of": "2026-10-17"
       },
-      "reason_short": "Giá trị tăng 10.5 USD/oz so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 31.5 USD/oz so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -346,7 +346,7 @@
       "key": "dxy",
       "name_vi": "DXY",
       "current": {
-        "value": 100.765,
+        "value": 100.755,
         "unit": "điểm",
         "date": "2026-07-17",
         "source": "Yahoo Finance",
@@ -363,23 +363,23 @@
         "source_note": null
       },
       "change": {
-        "absolute": 0.017,
-        "percent": 0.0169,
+        "absolute": 0.007,
+        "percent": 0.0069,
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 100.2,
+        "value": 100.1,
         "low": 98.1,
-        "high": 102.2,
+        "high": 102.1,
         "as_of": "2026-08-17"
       },
       "forecast_3m": {
-        "value": 99.5,
+        "value": 99.4,
         "low": 96.2,
-        "high": 102.7,
+        "high": 102.6,
         "as_of": "2026-10-17"
       },
-      "reason_short": "Giá trị tăng 0.017 điểm so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 0.007 điểm so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -478,7 +478,7 @@
       "key": "oil_prices",
       "name_vi": "Giá dầu WTI",
       "current": {
-        "value": 78.98,
+        "value": 81.77,
         "unit": "USD/thùng",
         "date": "2026-07-17",
         "source": "Yahoo Finance",
@@ -495,23 +495,23 @@
         "source_note": null
       },
       "change": {
-        "absolute": 0.03,
-        "percent": 0.038,
+        "absolute": 2.82,
+        "percent": 3.5719,
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 90.83,
-        "low": 89.25,
-        "high": 92.41,
+        "value": 94.04,
+        "low": 92.4,
+        "high": 95.67,
         "as_of": "2026-08-17"
       },
       "forecast_3m": {
-        "value": 102.67,
-        "low": 100.15,
-        "high": 105.2,
+        "value": 106.3,
+        "low": 103.68,
+        "high": 108.92,
         "as_of": "2026-10-17"
       },
-      "reason_short": "Giá trị tăng 0.03 USD/thùng so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 2.82 USD/thùng so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -541,36 +541,40 @@
       "key": "us_10y_yield",
       "name_vi": "US 10Y yield",
       "current": {
-        "value": 4.569,
+        "value": 4.541,
         "unit": "%",
-        "date": "2026-07-16",
+        "date": "2026-07-17",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
       "previous": {
-        "date": "2026-07-15",
-        "bucket": "2026-07-15",
-        "value": 4.585,
-        "unit": "%"
+        "date": "2026-07-16",
+        "bucket": "2026-07-16",
+        "value": 4.569,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null
       },
       "change": {
-        "absolute": -0.016,
-        "percent": -0.349,
+        "absolute": -0.028,
+        "percent": -0.6128,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 4.57,
-        "low": 4.48,
-        "high": 4.66,
-        "as_of": "2026-08-16"
+        "value": 4.46,
+        "low": 4.37,
+        "high": 4.55,
+        "as_of": "2026-08-17"
       },
       "forecast_3m": {
-        "value": 4.57,
-        "low": 4.42,
-        "high": 4.72,
-        "as_of": "2026-10-16"
+        "value": 4.36,
+        "low": 4.22,
+        "high": 4.51,
+        "as_of": "2026-10-17"
       },
-      "reason_short": "Giá trị giảm 0.016 % so với kỳ 2026-07-15. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 0.028 % so với kỳ 2026-07-16. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "confidence": "MEDIUM",
       "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
       "ai_sources": [],
@@ -1422,7 +1426,7 @@
     "risk_drivers": [
       "CPI 4.69% YoY tạo áp lực lãi suất",
       "Cán cân thương mại âm 16.65 tỷ USD",
-      "Lợi suất Mỹ 10Y 4.569% làm tăng chi phí vốn toàn cầu"
+      "Lợi suất Mỹ 10Y 4.541% làm tăng chi phí vốn toàn cầu"
     ],
     "neutral_drivers": [
       "PMI 51.8 chỉ nhỉnh hơn ngưỡng 50, cần thêm kỳ xác nhận",
@@ -1443,8 +1447,8 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-07-17T03:45:31.136610+00:00",
-      "bytes": 94362
+      "checked_at": "2026-07-18T03:40:02.779995+00:00",
+      "bytes": 95278
     },
     "nso": {
       "name": "NSO/GSO Việt Nam",
@@ -1452,7 +1456,7 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": false,
-      "checked_at": "2026-07-17T03:45:41.417474+00:00",
+      "checked_at": "2026-07-18T03:40:13.260813+00:00",
       "error": "<urlopen error [Errno 104] Connection reset by peer>"
     },
     "customs": {
@@ -1461,7 +1465,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-07-17T03:45:42.805103+00:00",
+      "checked_at": "2026-07-18T03:40:15.068477+00:00",
       "bytes": 12013
     },
     "vbma": {
@@ -1470,7 +1474,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-07-17T03:45:43.698510+00:00",
+      "checked_at": "2026-07-18T03:40:15.842525+00:00",
       "bytes": 39804
     },
     "vnba": {
@@ -1479,8 +1483,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-07-17T03:45:45.833696+00:00",
-      "bytes": 251454
+      "checked_at": "2026-07-18T03:40:18.475694+00:00",
+      "bytes": 218246
     },
     "market": {
       "name": "Public market APIs / Vietcap",
@@ -1488,7 +1492,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-07-17T03:45:47.768318+00:00",
+      "checked_at": "2026-07-18T03:40:20.230552+00:00",
       "bytes": 8036
     }
   },
@@ -1600,6 +1604,16 @@
           "source_url": "https://open.er-api.com/",
           "source_quality": "AUTO",
           "source_note": null
+        },
+        {
+          "date": "2026-07-18",
+          "bucket": "2026-07-18",
+          "value": 26203.03,
+          "unit": "VND/USD",
+          "source": "Open ER API",
+          "source_url": "https://open.er-api.com/",
+          "source_quality": "AUTO",
+          "source_note": null
         }
       ],
       "stock_market": [
@@ -1616,7 +1630,7 @@
         {
           "date": "2026-07-17",
           "bucket": "2026-07-17",
-          "value": 1791.11,
+          "value": 1787.45,
           "unit": "điểm",
           "source": "Vietcap",
           "source_url": "https://trading.vietcap.com.vn/",
@@ -1692,7 +1706,7 @@
         {
           "date": "2026-07-17",
           "bucket": "2026-07-17",
-          "value": 4002.0,
+          "value": 4023.0,
           "unit": "USD/oz",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -1802,7 +1816,7 @@
         {
           "date": "2026-07-17",
           "bucket": "2026-07-17",
-          "value": 100.765,
+          "value": 100.755,
           "unit": "điểm",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -1924,7 +1938,7 @@
         {
           "date": "2026-07-17",
           "bucket": "2026-07-17",
-          "value": 78.98,
+          "value": 81.77,
           "unit": "USD/thùng",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -1991,6 +2005,16 @@
           "date": "2026-07-16",
           "bucket": "2026-07-16",
           "value": 4.569,
+          "unit": "%",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+          "source_quality": "AUTO",
+          "source_note": null
+        },
+        {
+          "date": "2026-07-17",
+          "bucket": "2026-07-17",
+          "value": 4.541,
           "unit": "%",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/%5ETNX",
@@ -2555,7 +2579,7 @@
       "priority": 3,
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
       "why_it_matters": "USD/VND cho thấy áp lực ngoại hối cập nhật hằng ngày.",
-      "value": 26178.22,
+      "value": 26203.03,
       "unit": "VND/USD",
       "status": "available",
       "signal": "GREEN",
@@ -2563,11 +2587,11 @@
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "Fri, 17 Jul 2026 00:02:31 +0000",
+      "as_of": "Sat, 18 Jul 2026 00:02:32 +0000",
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 26178.22 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
+      "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 26203.03 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
     },
     {
       "key": "stock_market",
@@ -2577,7 +2601,7 @@
       "priority": 4,
       "definition": "Chỉ số VN-Index.",
       "why_it_matters": "VN-Index là thước đo sentiment tài sản rủi ro nội địa.",
-      "value": 1791.11,
+      "value": 1787.45,
       "unit": "điểm",
       "status": "available",
       "signal": "GREEN",
@@ -2589,7 +2613,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1791.11 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
+      "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1787.45 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
     },
     {
       "key": "govt_bond_yield",
@@ -2621,7 +2645,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4002.0,
+      "value": 4023.0,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -2633,7 +2657,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4002.0 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4023.0 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -2709,7 +2733,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 100.765,
+      "value": 100.755,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -2721,7 +2745,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.765 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 100.755 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -2819,7 +2843,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 78.98,
+      "value": 81.77,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -2831,7 +2855,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 78.98 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 81.77 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
@@ -2863,7 +2887,7 @@
       "priority": 5,
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
       "why_it_matters": "US10Y là benchmark định giá tài sản toàn cầu.",
-      "value": 4.569,
+      "value": 4.541,
       "unit": "%",
       "status": "available",
       "signal": "YELLOW",
@@ -2871,11 +2895,11 @@
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-07-16",
+      "as_of": "2026-07-17",
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.569 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
+      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.541 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
     },
     {
       "key": "ecb_eurozone",
