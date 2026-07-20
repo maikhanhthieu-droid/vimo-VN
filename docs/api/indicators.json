@@ -37,7 +37,7 @@
     "id": "fx_market_usd_vnd",
     "group": "financial",
     "name": "USD/VND thị trường",
-    "value": 26187.46,
+    "value": 26215.98,
     "unit": "VND/USD",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -48,13 +48,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "Sun, 19 Jul 2026 00:02:31 +0000"
+    "updated_at": "Mon, 20 Jul 2026 00:02:31 +0000"
   },
   {
     "id": "stock_market",
     "group": "financial",
     "name": "VN-Index",
-    "value": 1787.45,
+    "value": 1757.87,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -65,7 +65,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-17"
+    "updated_at": "2026-07-20"
   },
   {
     "id": "govt_bond_yield",
@@ -88,7 +88,7 @@
     "id": "gold_world",
     "group": "financial",
     "name": "Vàng thế giới",
-    "value": 4018.8,
+    "value": 4030.1001,
     "unit": "USD/oz",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -99,7 +99,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-17"
+    "updated_at": "2026-07-20"
   },
   {
     "id": "credit",
@@ -156,7 +156,7 @@
     "id": "dxy",
     "group": "financial",
     "name": "DXY",
-    "value": 100.75,
+    "value": 100.717,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -167,7 +167,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-17"
+    "updated_at": "2026-07-20"
   },
   {
     "id": "corporate_bond_issuance",
@@ -241,7 +241,7 @@
     "id": "oil_prices",
     "group": "global",
     "name": "Giá dầu WTI",
-    "value": 81.78,
+    "value": 83.71,
     "unit": "USD/thùng",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -252,7 +252,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-07-17"
+    "updated_at": "2026-07-20"
   },
   {
     "id": "geopolitical_risk",

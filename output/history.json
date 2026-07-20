@@ -126,6 +126,16 @@
         "source_url": "https://open.er-api.com/",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-20",
+        "bucket": "2026-07-20",
+        "value": 26215.98,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "stock_market": [
@@ -143,6 +153,16 @@
         "date": "2026-07-17",
         "bucket": "2026-07-17",
         "value": 1787.45,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-20",
+        "bucket": "2026-07-20",
+        "value": 1757.87,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -219,6 +239,16 @@
         "date": "2026-07-17",
         "bucket": "2026-07-17",
         "value": 4018.8,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-20",
+        "bucket": "2026-07-20",
+        "value": 4030.1001,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -329,6 +359,16 @@
         "date": "2026-07-17",
         "bucket": "2026-07-17",
         "value": 100.75,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-20",
+        "bucket": "2026-07-20",
+        "value": 100.717,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -451,6 +491,16 @@
         "date": "2026-07-17",
         "bucket": "2026-07-17",
         "value": 81.78,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-20",
+        "bucket": "2026-07-20",
+        "value": 83.71,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
