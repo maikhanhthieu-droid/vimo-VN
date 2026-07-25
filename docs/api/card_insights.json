@@ -89,16 +89,16 @@
     "key": "fx_market_usd_vnd",
     "name_vi": "USD/VND thị trường",
     "current": {
-      "value": 26250.54,
+      "value": 26278.14,
       "unit": "VND/USD",
-      "date": "2026-07-24",
+      "date": "2026-07-25",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/"
     },
     "previous": {
-      "date": "2026-07-23",
-      "bucket": "2026-07-23",
-      "value": 26266.67,
+      "date": "2026-07-24",
+      "bucket": "2026-07-24",
+      "value": 26250.54,
       "unit": "VND/USD",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
@@ -106,23 +106,23 @@
       "source_note": null
     },
     "change": {
-      "absolute": -16.13,
-      "percent": -0.0614,
-      "direction": "down"
+      "absolute": 27.6,
+      "percent": 0.1051,
+      "direction": "up"
     },
     "forecast_1m": {
-      "value": 26440.0,
-      "low": 25915.0,
-      "high": 26965.0,
-      "as_of": "2026-08-24"
+      "value": 26465.0,
+      "low": 25939.0,
+      "high": 26990.0,
+      "as_of": "2026-08-25"
     },
     "forecast_3m": {
-      "value": 26648.0,
-      "low": 25808.0,
-      "high": 27488.0,
-      "as_of": "2026-10-24"
+      "value": 26670.0,
+      "low": 25829.0,
+      "high": 27511.0,
+      "as_of": "2026-10-25"
     },
-    "reason_short": "Giá trị giảm 16.13 VND/USD so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị tăng 27.6 VND/USD so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "confidence": "MEDIUM",
     "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
     "ai_sources": [],
@@ -132,7 +132,7 @@
     "key": "stock_market",
     "name_vi": "VN-Index",
     "current": {
-      "value": 1688.57,
+      "value": 1686.11,
       "unit": "điểm",
       "date": "2026-07-24",
       "source": "Vietcap",
@@ -149,23 +149,23 @@
       "source_note": null
     },
     "change": {
-      "absolute": 20.66,
-      "percent": 1.2387,
+      "absolute": 18.2,
+      "percent": 1.0912,
       "direction": "up"
     },
     "forecast_1m": {
-      "value": 1477.0,
-      "low": 1443.0,
-      "high": 1510.0,
+      "value": 1469.0,
+      "low": 1435.0,
+      "high": 1503.0,
       "as_of": "2026-08-24"
     },
     "forecast_3m": {
-      "value": 1244.0,
-      "low": 1190.0,
-      "high": 1298.0,
+      "value": 1230.0,
+      "low": 1176.0,
+      "high": 1284.0,
       "as_of": "2026-10-24"
     },
-    "reason_short": "Giá trị tăng 20.66 điểm so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị tăng 18.2 điểm so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "confidence": "MEDIUM",
     "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
     "ai_sources": [],
@@ -218,7 +218,7 @@
     "key": "gold_world",
     "name_vi": "Vàng thế giới",
     "current": {
-      "value": 4035.0,
+      "value": 4055.7,
       "unit": "USD/oz",
       "date": "2026-07-24",
       "source": "Yahoo Finance",
@@ -235,23 +235,23 @@
       "source_note": null
     },
     "change": {
-      "absolute": -97.3999,
-      "percent": -2.357,
+      "absolute": -76.6999,
+      "percent": -1.8561,
       "direction": "down"
     },
     "forecast_1m": {
-      "value": 4070.0,
-      "low": 3989.0,
-      "high": 4150.0,
+      "value": 4135.0,
+      "low": 4054.0,
+      "high": 4216.0,
       "as_of": "2026-08-24"
     },
     "forecast_3m": {
-      "value": 4108.0,
-      "low": 3979.0,
-      "high": 4237.0,
+      "value": 4222.0,
+      "low": 4092.0,
+      "high": 4352.0,
       "as_of": "2026-10-24"
     },
-    "reason_short": "Giá trị giảm 97.3999 USD/oz so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị giảm 76.6999 USD/oz so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "confidence": "MEDIUM",
     "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
     "ai_sources": [],
@@ -344,7 +344,7 @@
     "key": "dxy",
     "name_vi": "DXY",
     "current": {
-      "value": 101.414,
+      "value": 101.465,
       "unit": "điểm",
       "date": "2026-07-24",
       "source": "Yahoo Finance",
@@ -361,23 +361,23 @@
       "source_note": null
     },
     "change": {
-      "absolute": 0.44,
-      "percent": 0.4358,
+      "absolute": 0.491,
+      "percent": 0.4863,
       "direction": "up"
     },
     "forecast_1m": {
-      "value": 102.8,
-      "low": 100.8,
-      "high": 104.9,
+      "value": 103.0,
+      "low": 101.0,
+      "high": 105.0,
       "as_of": "2026-08-24"
     },
     "forecast_3m": {
-      "value": 104.4,
-      "low": 101.2,
-      "high": 107.6,
+      "value": 104.7,
+      "low": 101.4,
+      "high": 107.9,
       "as_of": "2026-10-24"
     },
-    "reason_short": "Giá trị tăng 0.44 điểm so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị tăng 0.491 điểm so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "confidence": "MEDIUM",
     "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
     "ai_sources": [],
@@ -499,7 +499,7 @@
     "key": "oil_prices",
     "name_vi": "Giá dầu WTI",
     "current": {
-      "value": 92.08,
+      "value": 90.47,
       "unit": "USD/thùng",
       "date": "2026-07-24",
       "source": "Yahoo Finance",
@@ -516,23 +516,23 @@
       "source_note": null
     },
     "change": {
-      "absolute": 3.65,
-      "percent": 4.1276,
+      "absolute": 2.04,
+      "percent": 2.3069,
       "direction": "up"
     },
     "forecast_1m": {
-      "value": 105.89,
-      "low": 104.05,
-      "high": 107.73,
+      "value": 104.04,
+      "low": 102.23,
+      "high": 105.85,
       "as_of": "2026-08-24"
     },
     "forecast_3m": {
-      "value": 119.7,
-      "low": 116.76,
-      "high": 122.65,
+      "value": 117.61,
+      "low": 114.72,
+      "high": 120.51,
       "as_of": "2026-10-24"
     },
-    "reason_short": "Giá trị tăng 3.65 USD/thùng so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị tăng 2.04 USD/thùng so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "confidence": "MEDIUM",
     "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
     "ai_sources": [],
@@ -562,16 +562,16 @@
     "key": "us_10y_yield",
     "name_vi": "US 10Y yield",
     "current": {
-      "value": 4.703,
+      "value": 4.679,
       "unit": "%",
-      "date": "2026-07-23",
+      "date": "2026-07-24",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/%5ETNX"
     },
     "previous": {
-      "date": "2026-07-22",
-      "bucket": "2026-07-22",
-      "value": 4.657,
+      "date": "2026-07-23",
+      "bucket": "2026-07-23",
+      "value": 4.703,
       "unit": "%",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
@@ -579,23 +579,23 @@
       "source_note": null
     },
     "change": {
-      "absolute": 0.046,
-      "percent": 0.9878,
-      "direction": "up"
+      "absolute": -0.024,
+      "percent": -0.5103,
+      "direction": "down"
     },
     "forecast_1m": {
-      "value": 4.99,
-      "low": 4.9,
-      "high": 5.08,
-      "as_of": "2026-08-23"
+      "value": 4.97,
+      "low": 4.88,
+      "high": 5.07,
+      "as_of": "2026-08-24"
     },
     "forecast_3m": {
-      "value": 5.31,
-      "low": 5.16,
-      "high": 5.46,
-      "as_of": "2026-10-23"
+      "value": 5.3,
+      "low": 5.15,
+      "high": 5.45,
+      "as_of": "2026-10-24"
     },
-    "reason_short": "Giá trị tăng 0.046 % so với kỳ 2026-07-22. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị giảm 0.024 % so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "confidence": "MEDIUM",
     "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
     "ai_sources": [],
