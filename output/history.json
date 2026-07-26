@@ -196,6 +196,16 @@
         "source_url": "https://open.er-api.com/",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-26",
+        "bucket": "2026-07-26",
+        "value": 26256.81,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "stock_market": [
@@ -398,7 +408,7 @@
       {
         "date": "2026-07-24",
         "bucket": "2026-07-24",
-        "value": 4055.7,
+        "value": 4070.8,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -558,7 +568,7 @@
       {
         "date": "2026-07-24",
         "bucket": "2026-07-24",
-        "value": 101.465,
+        "value": 101.47,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -740,7 +750,7 @@
       {
         "date": "2026-07-24",
         "bucket": "2026-07-24",
-        "value": 90.47,
+        "value": 89.31,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
