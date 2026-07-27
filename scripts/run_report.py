@@ -112,6 +112,20 @@ SOURCE_REGISTRY = {
 HISTORY_LIMIT = 100
 MEMORY_EVENT_LIMIT = 500
 GEMINI_EVENT_BATCH_LIMIT = 8
+FORECASTABLE_POINT_IN_TIME_KEYS = {
+    "cpi",
+    "pmi_manufacturing",
+    "iip",
+    "interbank_rate",
+    "fx_central_rate",
+    "fx_market_usd_vnd",
+    "stock_market",
+    "govt_bond_yield",
+    "gold_world",
+    "dxy",
+    "oil_prices",
+    "us_10y_yield",
+}
 NON_CACHEABLE_FREQUENCIES = {"daily", "daily_monitor"}
 TLS_FALLBACK_HOSTS = {"nso.gov.vn", "www.nso.gov.vn", "vbma.org.vn", "www.vbma.org.vn"}
 HOST_REFERERS = {
@@ -1346,6 +1360,64 @@ def extract_json_object(text: str) -> dict[str, Any] | None:
     return parsed if isinstance(parsed, dict) else None
 
 
+def valid_source_urls(value: Any) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    urls: list[str] = []
+    for raw in value:
+        url = str(raw or "").strip()
+        parsed = urlparse(url)
+        if parsed.scheme in {"http", "https"} and parsed.netloc:
+            urls.append(url)
+    return urls
+
+
+def sanitize_gemini_analysis(
+    raw: dict[str, Any] | None,
+    allowed_keys: set[str],
+) -> dict[str, Any]:
+    """Keep sourced qualitative context only; Gemini never owns numeric facts."""
+    if not isinstance(raw, dict):
+        return {"summary_vi": "", "indicators": []}
+    indicators = []
+    seen: set[str] = set()
+    for item in raw.get("indicators", []):
+        if not isinstance(item, dict):
+            continue
+        key = str(item.get("key") or "")
+        if key not in allowed_keys or key in seen:
+            continue
+        seen.add(key)
+        sources = valid_source_urls(item.get("sources"))
+        reason = str(item.get("reason_short") or "").strip()
+        # Numbers are rendered from deterministic change events instead.  A
+        # digit in AI prose could be a new, unverified claim, so discard it.
+        if not sources or re.search(r"\d", reason):
+            reason = ""
+        confidence = str(item.get("confidence") or "LOW").upper()
+        if confidence not in {"LOW", "MEDIUM", "HIGH"}:
+            confidence = "LOW"
+        indicators.append(
+            {
+                "key": key,
+                "reason_short": reason,
+                "confidence": confidence if reason else "LOW",
+                "sources": sources,
+                "evidence_status": "sourced" if reason else "unverified",
+                "forecast_1m": None,
+                "forecast_3m": None,
+            }
+        )
+    summary = str(raw.get("summary_vi") or "").strip()
+    if re.search(r"\d", summary):
+        summary = ""
+    return {
+        "summary_vi": summary,
+        "indicators": indicators,
+        "policy": "qualitative_context_only_no_numeric_override",
+    }
+
+
 def latest_pending_events(memory: dict[str, Any]) -> list[dict[str, Any]]:
     latest_by_key: dict[str, dict[str, Any]] = {}
     for event in memory.get("events", []):
@@ -1426,18 +1498,15 @@ Chỉ trả về một JSON object hợp lệ, không dùng Markdown, theo đún
     {{
       "key": "đúng key đầu vào",
       "reason_short": "nguyên nhân ngắn; nói chưa đủ bằng chứng nếu cần",
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "unit": "đúng đơn vị đầu vào",
       "confidence": "LOW | MEDIUM | HIGH",
       "sources": ["URL trực tiếp"]
     }}
   ]
 }}
 
-forecast_1m và forecast_3m chỉ được là số hoặc null. Mỗi biến động phải nhắc đúng giá trị cũ/mới trong
-reason_short, tách suy luận khỏi sự kiện, và có URL nguồn trực tiếp. Không có bằng chứng thì dùng null và
-nói rõ "chưa đủ bằng chứng". Dự báo phải có thiên kiến trung lập, không lạc quan hóa. Đây là phân tích
+reason_short không được chép lại hoặc bổ sung bất kỳ con số nào; hệ thống sẽ tự hiển thị số cũ/mới từ
+CHANGE_EVENTS. Chỉ giải thích bối cảnh định tính và phải có URL nguồn trực tiếp. Không có bằng chứng thì
+nói rõ "chưa đủ bằng chứng". Không dự báo giá trị 1 tháng/3 tháng. Đây là phân tích
 tham khảo chung, không phải lời khuyên đầu tư cá nhân.
 
 CHANGE_EVENTS:
@@ -1468,7 +1537,11 @@ CURRENT_CONTEXT:
             output_text = str(steps[-1]) if steps else ""
         if not output_text.strip():
             raise ValueError("Gemini returned an empty analysis")
-        analysis_data = extract_json_object(output_text)
+        selected_keys = {str(event.get("key")) for event in selected}
+        analysis_data = sanitize_gemini_analysis(
+            extract_json_object(output_text),
+            selected_keys,
+        )
         selected_ids = {event["id"] for event in selected}
         for event in memory.get("events", []):
             if event.get("id") in selected_ids:
@@ -1517,7 +1590,13 @@ def numeric_history_points(points: list[dict[str, Any]]) -> list[dict[str, Any]]
         value = numeric_value(point.get("value"))
         if value is None:
             continue
-        date = normalized_data_date(point.get("date"))
+        raw_date = str(point.get("date") or "")
+        if not re.fullmatch(r"20\d{2}-\d{2}-\d{2}", raw_date):
+            continue
+        try:
+            date = datetime.fromisoformat(raw_date).date().isoformat()
+        except ValueError:
+            continue
         by_date[date] = {**point, "date": date, "value": value}
     return [by_date[date] for date in sorted(by_date)]
 
@@ -1631,35 +1710,40 @@ def build_card_insights(
         current_date = normalized_data_date(card.get("as_of"))
         previous_candidates = [point for point in points if normalized_data_date(point.get("date")) < current_date]
         previous = previous_candidates[-1] if previous_candidates else None
-        forecast = trend_forecast(points)
+        comparable_points = [
+            point
+            for point in points
+            if not point.get("unit") or str(point.get("unit")) == str(card.get("unit"))
+        ]
+        forecast = (
+            trend_forecast(comparable_points)
+            if key in FORECASTABLE_POINT_IN_TIME_KEYS
+            else None
+        )
         ai_item = ai_lookup.get(key, {})
-        reason = str(ai_item.get("reason_short") or "").strip() or observed_change_reason(card, previous)
-        method = forecast.get("method") if forecast else "Cần ít nhất 2 kỳ số liệu cùng định nghĩa để dự báo."
+        ai_reason = (
+            str(ai_item.get("reason_short") or "").strip()
+            if ai_item.get("evidence_status") == "sourced"
+            else ""
+        )
+        # The displayed reason remains deterministic. AI context is carried in
+        # a separate, explicitly unverified field and cannot replace it.
+        reason = observed_change_reason(card, previous)
+        method = (
+            forecast.get("method")
+            if forecast
+            else "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm."
+        )
         confidence = forecast.get("confidence") if forecast else "WAITING_FOR_DATA"
         forecast_1m = forecast.get("forecast_1m") if forecast else None
         forecast_3m = forecast.get("forecast_3m") if forecast else None
-
-        ai_one = numeric_value(ai_item.get("forecast_1m"))
-        ai_three = numeric_value(ai_item.get("forecast_3m"))
-        if ai_one is not None or ai_three is not None:
-            reference = numeric_value(card.get("value")) or 1.0
-            spread = max(abs(reference) * 0.04, 0.01)
-            if ai_one is not None:
-                forecast_1m = {
-                    "value": rounded_forecast(ai_one, reference),
-                    "low": rounded_forecast(ai_one - spread, reference),
-                    "high": rounded_forecast(ai_one + spread, reference),
-                    "as_of": add_calendar_months(current_date, 1),
-                }
-            if ai_three is not None:
-                forecast_3m = {
-                    "value": rounded_forecast(ai_three, reference),
-                    "low": rounded_forecast(ai_three - spread * 1.6, reference),
-                    "high": rounded_forecast(ai_three + spread * 1.6, reference),
-                    "as_of": add_calendar_months(current_date, 3),
-                }
-            confidence = str(ai_item.get("confidence") or "LOW").upper()
-            method = "Gemini phân tích kèm Google Search; khoảng số là biên tham khảo của hệ thống."
+        if confidence == "LOW":
+            forecast_1m = None
+            forecast_3m = None
+            method = (
+                "Có dưới 4 kỳ cùng định nghĩa; không hiển thị ngoại suy định lượng. "
+                "Chờ thêm dữ liệu đã xác minh."
+            )
 
         change = None
         old_numeric = numeric_value(previous.get("value")) if previous else None
@@ -1687,9 +1771,14 @@ def build_card_insights(
             "forecast_1m": forecast_1m,
             "forecast_3m": forecast_3m,
             "reason_short": reason,
+            "ai_context_unverified": ai_reason or None,
             "confidence": confidence,
             "method": method,
-            "ai_sources": ai_item.get("sources", []) if isinstance(ai_item.get("sources"), list) else [],
+            "ai_sources": (
+                ai_item.get("sources", [])
+                if ai_item.get("evidence_status") == "sourced"
+                else []
+            ),
             "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư.",
         }
     return insights
@@ -1794,6 +1883,7 @@ def build_frontend_api(
 ) -> None:
     DOCS_API_DIR.mkdir(exist_ok=True)
     indicators = []
+    facts = []
     for card in payload["cards"]:
         if card["value"] is None:
             continue
@@ -1816,7 +1906,33 @@ def build_frontend_api(
                 "updated_at": card["as_of"],
             }
         )
+        facts.append(
+            {
+                "id": card["key"],
+                "value": card["value"],
+                "unit": card["unit"],
+                "definition": card.get("definition"),
+                "as_of": card["as_of"],
+                "source": card["source_primary"],
+                "source_url": card.get("source_url"),
+                "source_quality": card.get("source_quality"),
+                "status": "ok",
+            }
+        )
     (DOCS_API_DIR / "indicators.json").write_text(json.dumps(indicators, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    facts_feed = {
+        "schema_version": "vimo.facts.v1",
+        "producer": "maikhanhthieu-droid/vimo-VN",
+        "generated_at": payload["generated_at_utc"],
+        "status": "ok" if facts else "missing",
+        "facts": facts,
+        "quality": {
+            "facts_only": True,
+            "ai_output_included": False,
+            "missing_values_omitted": True,
+        },
+    }
+    (DOCS_API_DIR / "facts.json").write_text(json.dumps(facts_feed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "history.json").write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "indicator_memory.json").write_text(json.dumps(memory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "gemini_analysis.json").write_text(json.dumps(gemini_analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

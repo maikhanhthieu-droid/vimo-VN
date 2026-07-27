@@ -1,5 +1,13 @@
 # vimo-VN
 
+## Hợp đồng dữ liệu dùng chung
+
+- Headline **Lãi suất liên ngân hàng qua đêm** là mức **đóng cửa thứ Sáu của VBMA** (`VBMA Friday close`), thống nhất với `laixuat_tienVN`.
+- Không trộn mức đóng cửa VBMA với bình quân tuần SBV trong cùng chuỗi lịch sử.
+- Thiếu dữ liệu cùng định nghĩa hoặc độ tin cậy `LOW`: giữ giá trị dự báo là `null` và hiển thị trạng thái chờ xác minh, không dựng số thay thế.
+- Feed dùng chung chỉ chứa facts tại `docs/api/facts.json`; Gemini nằm ở file riêng và không được ghi đè facts/dự báo.
+- Nguyên nhân hiển thị chính được dựng từ biến động quan sát; bối cảnh Gemini được giữ ở trường `ai_context_unverified`, không thay thế nguyên nhân deterministic.
+
 Auto runner for Vietnamese macro reports.
 
 ## What it does

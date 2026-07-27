@@ -1,0 +1,14 @@
+{
+  "schema_version": "vimo.facts.v1",
+  "producer": "maikhanhthieu-droid/vimo-VN",
+  "generated_at": null,
+  "as_of": null,
+  "status": "missing",
+  "facts": [],
+  "quality": {
+    "facts_only": true,
+    "ai_output_included": false,
+    "missing_values_omitted": true,
+    "note": "Placeholder only; the daily report pipeline replaces this file."
+  }
+}

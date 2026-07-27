@@ -145,6 +145,28 @@ class RunReportTests(unittest.TestCase):
         self.assertEqual(result["govt_bond_issuance"]["value"], 185.401)
         self.assertEqual(result["corporate_bond_issuance"]["value"], 0.1)
 
+    def test_low_confidence_card_insight_hides_numeric_forecast(self) -> None:
+        cards = [{
+            "key": "interbank_rate",
+            "name_vi": "Lãi suất liên ngân hàng qua đêm",
+            "value": 3.87,
+            "unit": "%",
+            "as_of": "2026-07-17",
+            "source_primary": "VBMA",
+            "source_url": "https://vbma.example/w29.pdf",
+        }]
+        history = {"series": {"interbank_rate": [
+            {"date": "2026-07-10", "value": 4.28, "unit": "%", "source": "VBMA"},
+            {"date": "2026-07-17", "value": 3.87, "unit": "%", "source": "VBMA"},
+        ]}}
+        insight = run_report.build_card_insights(
+            cards, history, {"analysis_data": {"indicators": []}}
+        )["interbank_rate"]
+        self.assertEqual(insight["confidence"], "LOW")
+        self.assertIsNone(insight["forecast_1m"])
+        self.assertIsNone(insight["forecast_3m"])
+        self.assertIn("không hiển thị", insight["method"])
+
     def test_cached_official_values_are_marked_stale(self) -> None:
         payload = {
             "cards": [
@@ -418,6 +440,66 @@ class RunReportTests(unittest.TestCase):
         self.assertEqual(forecast["confidence"], "LOW")
         self.assertLess(forecast["forecast_1m"]["value"], 4.69)
 
+    def test_numeric_history_skips_invalid_dates_instead_of_using_today(self) -> None:
+        points = [
+            {"date": "not-a-date", "value": 99},
+            {"date": "2026-06-30", "value": 4.69},
+        ]
+        self.assertEqual(
+            run_report.numeric_history_points(points),
+            [{"date": "2026-06-30", "value": 4.69}],
+        )
+
+    def test_gemini_sanitizer_rejects_unsourced_or_numeric_claims(self) -> None:
+        raw = {
+            "summary_vi": "test",
+            "indicators": [
+                {
+                    "key": "cpi",
+                    "reason_short": "Nguyên nhân 12 phần trăm",
+                    "sources": ["https://www.nso.gov.vn/"],
+                    "forecast_1m": 99,
+                },
+                {
+                    "key": "pmi_manufacturing",
+                    "reason_short": "Nhu cầu đang yếu đi",
+                    "sources": [],
+                },
+            ],
+        }
+        result = run_report.sanitize_gemini_analysis(
+            raw, {"cpi", "pmi_manufacturing"}
+        )
+        self.assertTrue(all(not item["reason_short"] for item in result["indicators"]))
+        self.assertTrue(all(item["forecast_1m"] is None for item in result["indicators"]))
+
+    def test_sourced_ai_context_never_replaces_observed_reason(self) -> None:
+        cards = [{
+            "key": "cpi",
+            "name_vi": "CPI",
+            "value": 3.5,
+            "unit": "% YoY",
+            "as_of": "2026-07-31",
+            "source_primary": "NSO",
+            "source_url": "https://www.nso.gov.vn/",
+        }]
+        history = {"series": {"cpi": [
+            {"date": "2026-06-30", "value": 3.2, "unit": "% YoY"},
+            {"date": "2026-07-31", "value": 3.5, "unit": "% YoY"},
+        ]}}
+        gemini = {"analysis_data": {"indicators": [{
+            "key": "cpi",
+            "reason_short": "Bối cảnh nhu cầu thay đổi",
+            "sources": ["https://www.nso.gov.vn/"],
+            "evidence_status": "sourced",
+        }]}}
+        insight = run_report.build_card_insights(cards, history, gemini)["cpi"]
+        self.assertIn("biến động quan sát", insight["reason_short"])
+        self.assertEqual(
+            insight["ai_context_unverified"],
+            "Bối cảnh nhu cầu thay đổi",
+        )
+
     def test_macro_strategy_is_general_and_scenario_based(self) -> None:
         cards = [
             {"key": "pmi_manufacturing", "value": 51.8},
@@ -559,7 +641,9 @@ class RunReportTests(unittest.TestCase):
 
         self.assertEqual(analysis["status"], "success")
         self.assertEqual(memory["events"][0]["ai_status"], "analyzed")
-        self.assertEqual(analysis["analysis_data"]["indicators"][0]["forecast_1m"], 3.4)
+        indicator = analysis["analysis_data"]["indicators"][0]
+        self.assertIsNone(indicator["forecast_1m"])
+        self.assertEqual(indicator["evidence_status"], "sourced")
         self.assertEqual(calls[0]["tools"], [{"type": "google_search"}])
         self.assertEqual(calls[0]["generation_config"]["thinking_level"], "high")
         self.assertEqual(calls[0]["generation_config"]["max_output_tokens"], 4096)
