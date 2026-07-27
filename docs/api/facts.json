@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-07-27T06:15:46.225066+00:00",
+  "generated_at": "2026-07-27T06:17:39.000470+00:00",
   "as_of": "2026-07-27",
   "facts": [
     {
@@ -39,7 +39,7 @@
     },
     {
       "id": "stock_market",
-      "value": 1686.97,
+      "value": 1686.05,
       "unit": "điểm",
       "definition": "Chỉ số VN-Index.",
       "as_of": "2026-07-27",
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 4094.3,
+      "value": 4095.8,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-07-27",
@@ -105,7 +105,7 @@
     },
     {
       "id": "dxy",
-      "value": 101.169,
+      "value": 101.171,
       "unit": "điểm",
       "definition": "US Dollar Index.",
       "as_of": "2026-07-27",
@@ -160,7 +160,7 @@
     },
     {
       "id": "oil_prices",
-      "value": 84.12,
+      "value": 84.25,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
       "as_of": "2026-07-27",
