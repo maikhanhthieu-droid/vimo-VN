@@ -481,37 +481,31 @@ def collect_external_forecast_data(
             }
         )
 
-    if eia_api_key:
-        try:
-            forecast = fetch_eia_wti_forecast(eia_api_key, now)
-            official_forecasts.setdefault("oil_prices", []).append(forecast)
-            providers.append(
-                {
-                    "provider": "EIA STEO",
-                    "status": "ok",
-                    "series": ["oil_prices"],
-                    "errors": {},
-                    "key_required": True,
-                }
-            )
-        except Exception as exc:
-            providers.append(
-                {
-                    "provider": "EIA STEO",
-                    "status": "unavailable",
-                    "series": [],
-                    "errors": {"oil_prices": _safe_error(exc)},
-                    "key_required": True,
-                }
-            )
-    else:
+    eia_request_key = eia_api_key or "DEMO_KEY"
+    eia_credential_mode = "repository_secret" if eia_api_key else "shared_demo"
+    try:
+        forecast = fetch_eia_wti_forecast(eia_request_key, now)
+        forecast["credential_mode"] = eia_credential_mode
+        official_forecasts.setdefault("oil_prices", []).append(forecast)
         providers.append(
             {
                 "provider": "EIA STEO",
-                "status": "not_configured",
-                "series": [],
+                "status": "ok" if eia_api_key else "demo",
+                "series": ["oil_prices"],
                 "errors": {},
                 "key_required": True,
+                "credential_mode": eia_credential_mode,
+            }
+        )
+    except Exception as exc:
+        providers.append(
+            {
+                "provider": "EIA STEO",
+                "status": "unavailable",
+                "series": [],
+                "errors": {"oil_prices": _safe_error(exc)},
+                "key_required": True,
+                "credential_mode": eia_credential_mode,
             }
         )
 
