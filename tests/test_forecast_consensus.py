@@ -1,6 +1,7 @@
 import json
 import unittest
 from datetime import date, datetime, timedelta, timezone
+from unittest.mock import patch
 
 from scripts import forecast_consensus
 
@@ -169,6 +170,51 @@ class ForecastConsensusTests(unittest.TestCase):
         self.assertEqual(source["cache_age_days"], 2)
         self.assertEqual(source["fetched_at"], "2026-07-25T00:00:00+00:00")
         self.assertEqual(result["providers"][0]["status"], "stale_cache")
+
+    def test_eia_shared_demo_is_explicit_when_personal_key_is_missing(self) -> None:
+        now = datetime(2026, 7, 27, tzinfo=timezone.utc)
+        fake_eia = {
+            "provider": "EIA STEO",
+            "source_kind": "official_forecast",
+            "source_url": "https://www.eia.gov/outlooks/steo/",
+            "as_of": "2026-07-27",
+            "fetched_at": now.isoformat(),
+            "cache_status": "live",
+            "forecast_1m": {"value": 70, "low": 70, "high": 70, "as_of": "2026-08-01"},
+            "forecast_3m": {"value": 68, "low": 68, "high": 68, "as_of": "2026-10-01"},
+            "observations": 2,
+            "span_days": 0,
+            "method": "official",
+            "official": True,
+        }
+        with (
+            patch.object(
+                forecast_consensus,
+                "fetch_yahoo_history",
+                side_effect=ValueError("unavailable"),
+            ),
+            patch.object(
+                forecast_consensus,
+                "fetch_vietcap_vnindex_history",
+                side_effect=ValueError("unavailable"),
+            ),
+            patch.object(
+                forecast_consensus,
+                "fetch_eia_wti_forecast",
+                return_value=fake_eia,
+            ) as eia,
+        ):
+            result = forecast_consensus.collect_external_forecast_data(now)
+        eia.assert_called_once_with("DEMO_KEY", now)
+        provider = next(
+            item for item in result["providers"] if item["provider"] == "EIA STEO"
+        )
+        self.assertEqual(provider["status"], "demo")
+        self.assertEqual(provider["credential_mode"], "shared_demo")
+        self.assertEqual(
+            result["official_forecasts"]["oil_prices"][0]["credential_mode"],
+            "shared_demo",
+        )
 
 
 if __name__ == "__main__":
