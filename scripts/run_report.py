@@ -1924,7 +1924,14 @@ def build_frontend_api(
         "schema_version": "vimo.facts.v1",
         "producer": "maikhanhthieu-droid/vimo-VN",
         "generated_at": payload["generated_at_utc"],
-        "status": "ok" if facts else "missing",
+        "as_of": max(
+            (
+                str(item["as_of"])
+                for item in facts
+                if re.fullmatch(r"20\d{2}-\d{2}-\d{2}", str(item.get("as_of") or ""))
+            ),
+            default=None,
+        ),
         "facts": facts,
         "quality": {
             "facts_only": True,
@@ -1932,6 +1939,13 @@ def build_frontend_api(
             "missing_values_omitted": True,
         },
     }
+    facts_feed["status"] = (
+        "ok"
+        if facts and facts_feed["as_of"]
+        else "degraded"
+        if facts
+        else "missing"
+    )
     (DOCS_API_DIR / "facts.json").write_text(json.dumps(facts_feed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "history.json").write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "indicator_memory.json").write_text(json.dumps(memory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

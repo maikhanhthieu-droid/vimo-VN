@@ -500,6 +500,39 @@ class RunReportTests(unittest.TestCase):
             "Bối cảnh nhu cầu thay đổi",
         )
 
+    def test_frontend_facts_feed_requires_top_level_as_of(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            original_api_dir = run_report.DOCS_API_DIR
+            run_report.DOCS_API_DIR = Path(directory)
+            try:
+                payload = {
+                    "generated_at_utc": "2026-07-27T05:00:00+00:00",
+                    "cards": [{
+                        "key": "cpi",
+                        "group": "real_economy",
+                        "name_vi": "CPI",
+                        "value": 3.5,
+                        "unit": "% YoY",
+                        "definition": "CPI so với cùng kỳ",
+                        "as_of": "2026-06-30",
+                        "source_primary": "NSO",
+                        "source_url": "https://www.nso.gov.vn/",
+                        "source_quality": "AUTO",
+                        "source_note": None,
+                        "frequency": "monthly",
+                        "vip": True,
+                        "direction": "flat",
+                    }],
+                }
+                run_report.build_frontend_api(payload, {}, {}, {}, {})
+                feed = json.loads(
+                    (Path(directory) / "facts.json").read_text(encoding="utf-8")
+                )
+            finally:
+                run_report.DOCS_API_DIR = original_api_dir
+        self.assertEqual(feed["as_of"], "2026-06-30")
+        self.assertEqual(feed["status"], "ok")
+
     def test_macro_strategy_is_general_and_scenario_based(self) -> None:
         cards = [
             {"key": "pmi_manufacturing", "value": 51.8},
