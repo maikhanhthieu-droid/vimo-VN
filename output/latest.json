@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-07-27T05:46:38.999336+00:00",
-  "generated_at_bkk": "2026-07-27T12:46:38.999336+07:00",
+  "generated_at_utc": "2026-07-27T06:15:46.225066+00:00",
+  "generated_at_bkk": "2026-07-27T13:15:46.225066+07:00",
   "coverage": {
     "available_cards": 41,
     "total_cards": 41,
@@ -19,7 +19,7 @@
   "gemini_analysis": {
     "status": "waiting_for_api_key",
     "model": "models/gemini-3-flash-preview",
-    "generated_at": "2026-07-27T05:46:38.999336+00:00",
+    "generated_at": "2026-07-27T06:15:46.225066+00:00",
     "event_count": 9,
     "api_url": "api/gemini_analysis.json"
   },
@@ -51,10 +51,13 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
       "reason_short": "Giá trị giảm 0.41 % so với kỳ 2026-07-10. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "LOW",
-      "method": "Có dưới 4 kỳ cùng định nghĩa; không hiển thị ngoại suy định lượng. Chờ thêm dữ liệu đã xác minh.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -85,10 +88,13 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
       "reason_short": "Giá trị tăng 5 VND/USD so với kỳ 2026-05-22. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "LOW",
-      "method": "Có dưới 4 kỳ cùng định nghĩa; không hiển thị ngoại suy định lượng. Chờ thêm dữ liệu đã xác minh.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -117,22 +123,15 @@
         "percent": -0.0002,
         "direction": "down"
       },
-      "forecast_1m": {
-        "value": 26311.0,
-        "low": 25786.0,
-        "high": 26836.0,
-        "as_of": "2026-08-27"
-      },
-      "forecast_3m": {
-        "value": 26371.0,
-        "low": 25531.0,
-        "high": 27211.0,
-        "as_of": "2026-10-27"
-      },
+      "forecast_1m": null,
+      "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
       "reason_short": "Giá trị giảm 0.06 VND/USD so với kỳ 2026-07-26. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "MEDIUM",
-      "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -140,7 +139,7 @@
       "key": "stock_market",
       "name_vi": "VN-Index",
       "current": {
-        "value": 1682.53,
+        "value": 1686.97,
         "unit": "điểm",
         "date": "2026-07-27",
         "source": "Vietcap",
@@ -157,26 +156,55 @@
         "source_note": null
       },
       "change": {
-        "absolute": -3.58,
-        "percent": -0.2123,
-        "direction": "down"
+        "absolute": 0.86,
+        "percent": 0.051,
+        "direction": "up"
       },
       "forecast_1m": {
-        "value": 1521.0,
-        "low": 1487.0,
-        "high": 1555.0,
+        "value": 1693.0,
+        "low": 1624.0,
+        "high": 1764.0,
         "as_of": "2026-08-27"
       },
       "forecast_3m": {
-        "value": 1344.0,
-        "low": 1290.0,
-        "high": 1397.0,
+        "value": 1697.0,
+        "low": 1579.0,
+        "high": 1823.0,
         "as_of": "2026-10-27"
       },
-      "reason_short": "Giá trị giảm 3.58 điểm so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "forecast_status": "SINGLE_SOURCE",
+      "forecast_sources": [
+        {
+          "provider": "Vietcap",
+          "source_kind": "observed_history",
+          "source_url": "https://trading.vietcap.com.vn/",
+          "as_of": "2026-07-27",
+          "fetched_at": "2026-07-27T06:15:46.225066+00:00",
+          "cache_status": "live",
+          "cache_age_days": 0,
+          "forecast_1m": {
+            "value": 1693.0,
+            "low": 1624.0,
+            "high": 1764.0,
+            "as_of": "2026-08-27"
+          },
+          "forecast_3m": {
+            "value": 1697.0,
+            "low": 1579.0,
+            "high": 1823.0,
+            "as_of": "2026-10-27"
+          },
+          "observations": 180,
+          "span_days": 265,
+          "method": "Damped robust median-slope projection from dated API history.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "NGHI NGỜ: chỉ có một nguồn API; không phải dự báo đồng thuận.",
+      "reason_short": "Giá trị tăng 0.86 điểm so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "MEDIUM",
-      "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
+      "confidence": "LOW",
+      "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -207,10 +235,13 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
       "reason_short": "Giá trị không đổi so với kỳ 2026-07-10. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "LOW",
-      "method": "Có dưới 4 kỳ cùng định nghĩa; không hiển thị ngoại suy định lượng. Chờ thêm dữ liệu đã xác minh.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -218,7 +249,7 @@
       "key": "gold_world",
       "name_vi": "Vàng thế giới",
       "current": {
-        "value": 4089.8,
+        "value": 4094.3,
         "unit": "USD/oz",
         "date": "2026-07-27",
         "source": "Yahoo Finance",
@@ -235,26 +266,19 @@
         "source_note": null
       },
       "change": {
-        "absolute": 19.0,
-        "percent": 0.4667,
+        "absolute": 23.5,
+        "percent": 0.5773,
         "direction": "up"
       },
-      "forecast_1m": {
-        "value": 4218.0,
-        "low": 4136.0,
-        "high": 4300.0,
-        "as_of": "2026-08-27"
-      },
-      "forecast_3m": {
-        "value": 4358.0,
-        "low": 4228.0,
-        "high": 4489.0,
-        "as_of": "2026-10-27"
-      },
-      "reason_short": "Giá trị tăng 19 USD/oz so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "forecast_1m": null,
+      "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
+      "reason_short": "Giá trị tăng 23.5 USD/oz so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "MEDIUM",
-      "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -285,6 +309,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 1.7 % YTD so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -306,6 +333,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Dải lãi suất huy động thông thường của Big4 cho kỳ hạn từ 12 tháng; giữ dạng khoảng, không lấy trung bình giả.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -327,6 +357,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Dải lãi suất cho vay bình quân đối với dư nợ cũ và mới.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -338,7 +371,7 @@
       "key": "dxy",
       "name_vi": "DXY",
       "current": {
-        "value": 101.2,
+        "value": 101.169,
         "unit": "điểm",
         "date": "2026-07-27",
         "source": "Yahoo Finance",
@@ -355,26 +388,19 @@
         "source_note": null
       },
       "change": {
-        "absolute": -0.27,
-        "percent": -0.2661,
+        "absolute": -0.301,
+        "percent": -0.2966,
         "direction": "down"
       },
-      "forecast_1m": {
-        "value": 102.2,
-        "low": 100.2,
-        "high": 104.3,
-        "as_of": "2026-08-27"
-      },
-      "forecast_3m": {
-        "value": 103.4,
-        "low": 100.1,
-        "high": 106.6,
-        "as_of": "2026-10-27"
-      },
-      "reason_short": "Giá trị giảm 0.27 điểm so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "forecast_1m": null,
+      "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
+      "reason_short": "Giá trị giảm 0.301 điểm so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "MEDIUM",
-      "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -392,6 +418,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Chưa có kỳ trước cùng định nghĩa để xác định biến động.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -426,6 +455,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 3.04 nghìn tỷ VND so với kỳ 2026-07-10. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -456,6 +488,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Nội dung công bố đã thay đổi; dữ liệu dạng chữ nên không nội suy số.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -477,6 +512,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Tăng trưởng kinh tế Mỹ được VNBA ghi nhận trong bản tin tháng 5.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -488,7 +526,7 @@
       "key": "oil_prices",
       "name_vi": "Giá dầu WTI",
       "current": {
-        "value": 84.81,
+        "value": 84.12,
         "unit": "USD/thùng",
         "date": "2026-07-27",
         "source": "Yahoo Finance",
@@ -505,26 +543,19 @@
         "source_note": null
       },
       "change": {
-        "absolute": -4.5,
-        "percent": -5.0386,
+        "absolute": -5.19,
+        "percent": -5.8112,
         "direction": "down"
       },
-      "forecast_1m": {
-        "value": 87.17,
-        "low": 85.47,
-        "high": 88.86,
-        "as_of": "2026-08-27"
-      },
-      "forecast_3m": {
-        "value": 89.76,
-        "low": 87.05,
-        "high": 92.47,
-        "as_of": "2026-10-27"
-      },
-      "reason_short": "Giá trị giảm 4.5 USD/thùng so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "forecast_1m": null,
+      "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
+      "reason_short": "Giá trị giảm 5.19 USD/thùng so với kỳ 2026-07-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "MEDIUM",
-      "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -542,6 +573,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Bản tin ghi nhận xung đột Trung Đông và gián đoạn tại Hormuz gây cú sốc năng lượng.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -574,22 +608,15 @@
         "percent": -0.5103,
         "direction": "down"
       },
-      "forecast_1m": {
-        "value": 4.97,
-        "low": 4.88,
-        "high": 5.07,
-        "as_of": "2026-08-24"
-      },
-      "forecast_3m": {
-        "value": 5.3,
-        "low": 5.15,
-        "high": 5.45,
-        "as_of": "2026-10-24"
-      },
+      "forecast_1m": null,
+      "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
       "reason_short": "Giá trị giảm 0.024 % so với kỳ 2026-07-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "MEDIUM",
-      "method": "Ngoại suy xu hướng giảm chấn từ 6 kỳ; không phải dự báo chính thức.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -620,6 +647,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị giảm 0.25 % lãi suất hiện áp dụng so với kỳ 2025-06-04. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -654,6 +684,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 0.25 % lãi suất hiện áp dụng so với kỳ 2025-12-18. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -675,6 +708,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Tăng trưởng Trung Quốc được VNBA tổng hợp trong bản tin tháng 5.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -696,6 +732,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Bản tin VNBA liệt kê chuỗi Thông tư 11-21/2026 do NHNN ban hành trong tháng 5.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -717,6 +756,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Chưa có kỳ trước cùng định nghĩa để xác định biến động.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -751,10 +793,13 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
       "reason_short": "Giá trị giảm 0.91 % YoY so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "LOW",
-      "method": "Có dưới 4 kỳ cùng định nghĩa; không hiển thị ngoại suy định lượng. Chờ thêm dữ liệu đã xác minh.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -785,10 +830,13 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
       "reason_short": "Giá trị giảm 1 điểm so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "LOW",
-      "method": "Có dưới 4 kỳ cùng định nghĩa; không hiển thị ngoại suy định lượng. Chờ thêm dữ liệu đã xác minh.",
+      "confidence": "WAITING_FOR_DATA",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -819,10 +867,13 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "INSUFFICIENT_SOURCES",
+      "forecast_sources": [],
+      "forecast_warning": "Không điền số thay thế.",
       "reason_short": "Giá trị tăng 1.7 % YoY so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -853,6 +904,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị giảm 2.84 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -887,6 +941,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 50.86 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -921,6 +978,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 53.71 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -955,6 +1015,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 3.28 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -989,6 +1052,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 9.84 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1023,6 +1089,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 1.7 % YoY lũy kế kỳ báo cáo so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1044,6 +1113,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Chưa có kỳ trước cùng định nghĩa để xác định biến động.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1078,6 +1150,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 21800 doanh nghiệp (6T/2026) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1112,6 +1187,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 1.7 triệu lượt (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1146,6 +1224,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 1.3 % YoY vốn khu vực Nhà nước so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1180,6 +1261,9 @@
       },
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Giá trị tăng 228.2 nghìn tỷ VND thu NSNN so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1210,6 +1294,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Nội dung công bố đã thay đổi; dữ liệu dạng chữ nên không nội suy số.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1231,6 +1318,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Tỷ trọng xuất khẩu của khu vực có vốn đầu tư nước ngoài, kể cả dầu thô.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1252,6 +1342,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Mỹ là thị trường xuất khẩu lớn nhất; Trung Quốc là thị trường nhập khẩu lớn nhất.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1273,6 +1366,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Máy tính, sản phẩm điện tử và linh kiện xuất sang Mỹ; nguồn Chính phủ dẫn số liệu thương mại.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1294,6 +1390,9 @@
       "change": null,
       "forecast_1m": null,
       "forecast_3m": null,
+      "forecast_status": "NOT_FORECASTABLE",
+      "forecast_sources": [],
+      "forecast_warning": null,
       "reason_short": "Tổng FDI đăng ký vào ngành chế biến, chế tạo năm 2025; dùng số cũ gần nhất có phân ngành rõ.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1302,6 +1401,44 @@
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     }
   },
+  "forecast_provider_health": [
+    {
+      "provider": "Yahoo Finance",
+      "status": "unavailable",
+      "series": [],
+      "errors": {
+        "fx_market_usd_vnd": "INVALID_RESPONSE",
+        "gold_world": "INVALID_RESPONSE",
+        "dxy": "INVALID_RESPONSE",
+        "oil_prices": "INVALID_RESPONSE",
+        "us_10y_yield": "INVALID_RESPONSE"
+      },
+      "key_required": false
+    },
+    {
+      "provider": "Vietcap",
+      "status": "ok",
+      "series": [
+        "stock_market"
+      ],
+      "errors": {},
+      "key_required": false
+    },
+    {
+      "provider": "FRED",
+      "status": "not_configured",
+      "series": [],
+      "errors": {},
+      "key_required": true
+    },
+    {
+      "provider": "EIA STEO",
+      "status": "not_configured",
+      "series": [],
+      "errors": {},
+      "key_required": true
+    }
+  ],
   "macro_strategy": {
     "stance": "NẮM GIỮ / CHỜ XÁC NHẬN",
     "score": -2,
@@ -1334,8 +1471,8 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-07-27T05:47:01.243076+00:00",
-      "bytes": 96275
+      "checked_at": "2026-07-27T06:15:55.204569+00:00",
+      "bytes": 96242
     },
     "nso": {
       "name": "NSO/GSO Việt Nam",
@@ -1343,7 +1480,7 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": true,
-      "checked_at": "2026-07-27T05:47:04.184247+00:00",
+      "checked_at": "2026-07-27T06:15:56.604844+00:00",
       "bytes": 114449
     },
     "customs": {
@@ -1352,7 +1489,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-07-27T05:47:05.551757+00:00",
+      "checked_at": "2026-07-27T06:15:56.693818+00:00",
       "bytes": 14038
     },
     "vbma": {
@@ -1361,7 +1498,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-07-27T05:47:06.406550+00:00",
+      "checked_at": "2026-07-27T06:15:57.270899+00:00",
       "bytes": 39678
     },
     "vnba": {
@@ -1370,8 +1507,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-07-27T05:47:08.541419+00:00",
-      "bytes": 220791
+      "checked_at": "2026-07-27T06:15:57.409587+00:00",
+      "bytes": 226452
     },
     "market": {
       "name": "Public market APIs / Vietcap",
@@ -1379,7 +1516,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-07-27T05:47:09.794489+00:00",
+      "checked_at": "2026-07-27T06:15:57.487507+00:00",
       "bytes": 8036
     }
   },
@@ -1677,7 +1814,7 @@
         {
           "date": "2026-07-27",
           "bucket": "2026-07-27",
-          "value": 1682.53,
+          "value": 1686.97,
           "unit": "điểm",
           "source": "Vietcap",
           "source_url": "https://trading.vietcap.com.vn/",
@@ -1823,7 +1960,7 @@
         {
           "date": "2026-07-27",
           "bucket": "2026-07-27",
-          "value": 4089.8,
+          "value": 4094.3,
           "unit": "USD/oz",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -1993,7 +2130,7 @@
         {
           "date": "2026-07-27",
           "bucket": "2026-07-27",
-          "value": 101.2,
+          "value": 101.169,
           "unit": "điểm",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -2185,7 +2322,7 @@
         {
           "date": "2026-07-27",
           "bucket": "2026-07-27",
-          "value": 84.81,
+          "value": 84.12,
           "unit": "USD/thùng",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -2898,7 +3035,7 @@
       "priority": 4,
       "definition": "Chỉ số VN-Index.",
       "why_it_matters": "VN-Index là thước đo sentiment tài sản rủi ro nội địa.",
-      "value": 1682.53,
+      "value": 1686.97,
       "unit": "điểm",
       "status": "available",
       "signal": "GREEN",
@@ -2910,7 +3047,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1682.53 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
+      "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1686.97 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
     },
     {
       "key": "govt_bond_yield",
@@ -2942,7 +3079,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4089.8,
+      "value": 4094.3,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -2954,7 +3091,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4089.8 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4094.3 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -3030,7 +3167,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 101.2,
+      "value": 101.169,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -3042,7 +3179,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 101.2 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 101.169 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -3140,7 +3277,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 84.81,
+      "value": 84.12,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -3152,7 +3289,7 @@
       "frequency": "daily",
       "vip": false,
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 84.81 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 84.12 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",

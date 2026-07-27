@@ -24,6 +24,17 @@ from zoneinfo import ZoneInfo
 
 from pypdf import PdfReader
 
+try:
+    from forecast_consensus import (
+        build_forecast_consensus,
+        collect_external_forecast_data,
+    )
+except ModuleNotFoundError:
+    from scripts.forecast_consensus import (
+        build_forecast_consensus,
+        collect_external_forecast_data,
+    )
+
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "output"
@@ -32,6 +43,7 @@ DOCS_API_DIR = DOCS_DIR / "api"
 HISTORY_FILE = OUTPUT_DIR / "history.json"
 MEMORY_FILE = OUTPUT_DIR / "indicator_memory.json"
 GEMINI_ANALYSIS_FILE = OUTPUT_DIR / "gemini_analysis.json"
+FORECAST_SOURCE_CACHE_FILE = OUTPUT_DIR / "forecast_source_cache.json"
 VERIFIED_BASELINE_FILE = ROOT / "data" / "verified_baseline.json"
 VERIFIED_HISTORY_FILE = ROOT / "data" / "verified_history.json"
 
@@ -814,6 +826,14 @@ def load_cached_official_values() -> dict[str, dict[str, Any]]:
     for key, cached in cached_values_from_memory(memory).items():
         values.setdefault(key, cached)
     return values
+
+
+def load_forecast_source_cache() -> dict[str, Any]:
+    try:
+        payload = json.loads(FORECAST_SOURCE_CACHE_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
 
 
 def source_health() -> dict[str, Any]:
@@ -1699,6 +1719,7 @@ def build_card_insights(
     cards: list[dict[str, Any]],
     history: dict[str, Any],
     gemini_analysis: dict[str, Any],
+    external_forecast_data: dict[str, Any] | None = None,
 ) -> dict[str, dict[str, Any]]:
     series = history.get("series", {})
     ai_lookup = gemini_indicator_lookup(gemini_analysis)
@@ -1715,11 +1736,18 @@ def build_card_insights(
             for point in points
             if not point.get("unit") or str(point.get("unit")) == str(card.get("unit"))
         ]
-        forecast = (
-            trend_forecast(comparable_points)
-            if key in FORECASTABLE_POINT_IN_TIME_KEYS
-            else None
-        )
+        if key not in FORECASTABLE_POINT_IN_TIME_KEYS:
+            forecast = None
+        elif external_forecast_data is None:
+            # Compatibility for callers that explicitly omit the API
+            # consensus layer. Production always passes external data.
+            forecast = trend_forecast(comparable_points)
+        else:
+            forecast = build_forecast_consensus(
+                key,
+                card.get("value"),
+                external_forecast_data,
+            )
         ai_item = ai_lookup.get(key, {})
         ai_reason = (
             str(ai_item.get("reason_short") or "").strip()
@@ -1737,7 +1765,9 @@ def build_card_insights(
         confidence = forecast.get("confidence") if forecast else "WAITING_FOR_DATA"
         forecast_1m = forecast.get("forecast_1m") if forecast else None
         forecast_3m = forecast.get("forecast_3m") if forecast else None
-        if confidence == "LOW":
+        if confidence == "LOW" and not (
+            forecast and forecast.get("forecast_status")
+        ):
             forecast_1m = None
             forecast_3m = None
             method = (
@@ -1770,6 +1800,15 @@ def build_card_insights(
             "change": change,
             "forecast_1m": forecast_1m,
             "forecast_3m": forecast_3m,
+            "forecast_status": (
+                forecast.get("forecast_status")
+                if forecast
+                else "NOT_FORECASTABLE"
+                if key not in FORECASTABLE_POINT_IN_TIME_KEYS
+                else "INSUFFICIENT_SOURCES"
+            ),
+            "forecast_sources": forecast.get("forecast_sources", []) if forecast else [],
+            "forecast_warning": forecast.get("warning") if forecast else None,
             "reason_short": reason,
             "ai_context_unverified": ai_reason or None,
             "confidence": confidence,
@@ -1947,6 +1986,64 @@ def build_frontend_api(
         else "missing"
     )
     (DOCS_API_DIR / "facts.json").write_text(json.dumps(facts_feed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    forecast_rows = []
+    for key, insight in card_insights.items():
+        status = insight.get("forecast_status")
+        if not status or status == "NOT_FORECASTABLE":
+            continue
+        forecast_rows.append(
+            {
+                "id": key,
+                "current": insight.get("current"),
+                "forecast_1m": insight.get("forecast_1m"),
+                "forecast_3m": insight.get("forecast_3m"),
+                "forecast_status": status,
+                "confidence": insight.get("confidence"),
+                "method": insight.get("method"),
+                "warning": insight.get("forecast_warning"),
+                "sources": insight.get("forecast_sources", []),
+                "disclaimer": insight.get("disclaimer"),
+            }
+        )
+    numeric_forecasts = [
+        row
+        for row in forecast_rows
+        if row.get("forecast_1m") is not None and row.get("forecast_3m") is not None
+    ]
+    forecasts_feed = {
+        "schema_version": "vimo.forecasts.v1",
+        "producer": "maikhanhthieu-droid/vimo-VN",
+        "generated_at": payload["generated_at_utc"],
+        "as_of": max(
+            (
+                str(row.get("current", {}).get("date"))
+                for row in forecast_rows
+                if re.fullmatch(
+                    r"20\d{2}-\d{2}-\d{2}",
+                    str(row.get("current", {}).get("date") or ""),
+                )
+            ),
+            default=None,
+        ),
+        "status": "ok" if numeric_forecasts else "degraded" if forecast_rows else "missing",
+        "horizons": ["1_month", "3_months"],
+        "forecasts": forecast_rows,
+        "provider_health": payload.get("forecast_provider_health", []),
+        "quality": {
+            "facts_endpoint_separate": True,
+            "ai_output_included": False,
+            "missing_or_disputed_consensus_is_null": True,
+            "single_source_is_explicitly_low_confidence": True,
+        },
+        "disclaimer": (
+            "Đây là đầu ra mô hình/kịch bản, không phải số liệu chính thức "
+            "hay khuyến nghị đầu tư."
+        ),
+    }
+    (DOCS_API_DIR / "forecasts.json").write_text(
+        json.dumps(forecasts_feed, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     (DOCS_API_DIR / "history.json").write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "indicator_memory.json").write_text(json.dumps(memory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DOCS_API_DIR / "gemini_analysis.json").write_text(json.dumps(gemini_analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -2180,6 +2277,7 @@ def render_html(payload: dict[str, Any]) -> str:
       </div>
       <div class="reason-block"><h3>Lý do ngắn</h3><p id="detailReason"></p></div>
       <p class="chart-meta" id="detailMethod"></p>
+      <p class="chart-meta" id="detailForecastSources"></p>
       <p class="forecast-note" id="detailDisclaimer"></p>
       <div class="chart-wrap" id="chartWrap">
         <svg class="chart-svg" id="chartSvg" viewBox="0 0 720 300" role="img"></svg>
@@ -2213,6 +2311,7 @@ def render_html(payload: dict[str, Any]) -> str:
     const forecast3RangeEl = document.getElementById('detailForecast3Range');
     const reasonEl = document.getElementById('detailReason');
     const methodEl = document.getElementById('detailMethod');
+    const forecastSourcesEl = document.getElementById('detailForecastSources');
     const disclaimerEl = document.getElementById('detailDisclaimer');
     let lastFocused = null;
 
@@ -2267,8 +2366,12 @@ def render_html(payload: dict[str, Any]) -> str:
       forecast3El.textContent = insight.forecast_3m ? formatValue(insight.forecast_3m.value, item.unit) : 'Chưa đủ dữ liệu';
       forecast3RangeEl.textContent = forecastRange(insight.forecast_3m, item.unit);
       reasonEl.textContent = insight.reason_short || 'Chưa có phân tích nguyên nhân.';
-      methodEl.textContent = `${{insight.method || ''}} Độ tin cậy: ${{insight.confidence || 'WAITING_FOR_DATA'}}.`;
-      disclaimerEl.textContent = insight.disclaimer || 'Dự báo chỉ mang tính tham khảo.';
+      methodEl.textContent = `${{insight.method || ''}} Trạng thái: ${{insight.forecast_status || 'INSUFFICIENT_SOURCES'}} · Độ tin cậy: ${{insight.confidence || 'WAITING_FOR_DATA'}}.`;
+      const forecastSources = Array.isArray(insight.forecast_sources) ? insight.forecast_sources : [];
+      forecastSourcesEl.textContent = forecastSources.length
+        ? `Nguồn dự báo: ${{forecastSources.map(source => `${{source.provider}} (${{source.as_of || 'chưa rõ ngày'}})`).join(' · ')}}`
+        : 'Nguồn dự báo: chưa đủ nguồn API hợp lệ.';
+      disclaimerEl.textContent = insight.forecast_warning || insight.disclaimer || 'Dự báo chỉ mang tính tham khảo.';
       if (item.points && item.points.length >= 2) {{
         chartWrap.hidden = false;
         drawChart(item);
@@ -2315,7 +2418,18 @@ def main() -> None:
     history = update_history(cards, now)
     memory = update_indicator_memory(cards, now)
     gemini_analysis = analyze_indicator_changes(memory, cards, now)
-    card_insights = build_card_insights(cards, history, gemini_analysis)
+    external_forecast_data = collect_external_forecast_data(
+        now,
+        fred_api_key=os.environ.get("FRED_API_KEY", "").strip(),
+        eia_api_key=os.environ.get("EIA_API_KEY", "").strip(),
+        cached_data=load_forecast_source_cache(),
+    )
+    card_insights = build_card_insights(
+        cards,
+        history,
+        gemini_analysis,
+        external_forecast_data,
+    )
     macro_strategy = build_macro_strategy(cards, gemini_analysis)
     memory_summary = change_memory_summary(memory)
     available = sum(1 for card in cards if card["value"] is not None)
@@ -2341,6 +2455,7 @@ def main() -> None:
             "api_url": "api/gemini_analysis.json",
         },
         "card_insights": card_insights,
+        "forecast_provider_health": external_forecast_data.get("providers", []),
         "macro_strategy": macro_strategy,
         "source_health": sources,
         "history": history,
@@ -2351,6 +2466,10 @@ def main() -> None:
     HISTORY_FILE.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     MEMORY_FILE.write_text(json.dumps(memory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     GEMINI_ANALYSIS_FILE.write_text(json.dumps(gemini_analysis, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    FORECAST_SOURCE_CACHE_FILE.write_text(
+        json.dumps(external_forecast_data, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     build_frontend_api(payload, history, memory, gemini_analysis, card_insights)
     (DOCS_DIR / "index.html").write_text(render_html(payload), encoding="utf-8")
 

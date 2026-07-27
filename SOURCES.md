@@ -12,6 +12,10 @@ This project runs independently. The `vimovietnam` repository was used only as a
 | VBMA | Interbank, government bonds, corporate bonds | Weekly snapshot | Weekly PDF parsed |
 | VNBA | Banking, rates, FX, market context | Monthly | Monitored |
 | Public market APIs | USD/VND, VN-Index, gold, oil, DXY, US10Y, global equity | Daily | Parsed |
+| Yahoo Finance chart API | USD/VND, gold, oil, DXY, US10Y history for model input | Daily | Parsed, no key |
+| Vietcap chart API | VN-Index history for model input | Daily | Parsed, no key |
+| FRED observations API | Gold, WTI and US10Y independent history | Daily | Optional `FRED_API_KEY` |
+| EIA STEO API | Official WTI monthly forecast | Monthly | Optional `EIA_API_KEY` |
 
 ## VIP Label
 
@@ -24,6 +28,19 @@ VIP indicators include CPI, PMI, IIP, trade, FDI, retail, business creation/exit
 The pipeline does not invent values. If a source is available but a reliable parser is not yet implemented, the card is marked `awaiting_official_source`.
 
 For parsed monthly and weekly official indicators, a temporary network failure reuses the last verified value with a `STALE_CACHE` quality label and its original publication date. Daily market values are never reused this way.
+
+## Forecast quality
+
+- API observations and official forecasts are retained as separate members with
+  provider, direct source URL, data date and observation count.
+- One mature API history may produce a visible `LOW / SINGLE_SOURCE` scenario,
+  always with a warning that it is not consensus.
+- Two or more agreeing providers produce a median consensus and a range covering
+  all member ranges.
+- Provider disagreement beyond the per-indicator threshold produces
+  `DISAGREEMENT` with `forecast_1m` and `forecast_3m` set to `null`.
+- Gemini is not part of numeric forecasting. Forecasts never enter
+  `docs/api/facts.json`.
 
 ## Parser Roadmap
 

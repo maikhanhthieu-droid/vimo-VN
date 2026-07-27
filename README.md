@@ -4,8 +4,10 @@
 
 - Headline **Lãi suất liên ngân hàng qua đêm** là mức **đóng cửa thứ Sáu của VBMA** (`VBMA Friday close`), thống nhất với `laixuat_tienVN`.
 - Không trộn mức đóng cửa VBMA với bình quân tuần SBV trong cùng chuỗi lịch sử.
-- Thiếu dữ liệu cùng định nghĩa hoặc độ tin cậy `LOW`: giữ giá trị dự báo là `null` và hiển thị trạng thái chờ xác minh, không dựng số thay thế.
+- Dự báo `LOW` chỉ được hiển thị khi một nguồn API có tối thiểu 60 quan sát/90 ngày và phải gắn cảnh báo `SINGLE_SOURCE`; nếu chưa đạt ngưỡng thì giữ `null`.
+- Hai nguồn lệch nhau vượt ngưỡng phải trả `DISAGREEMENT` và giữ consensus là `null`, không lấy trung bình cho có.
 - Feed dùng chung chỉ chứa facts tại `docs/api/facts.json`; Gemini nằm ở file riêng và không được ghi đè facts/dự báo.
+- Dự báo nằm riêng tại `docs/api/forecasts.json`; đây là đầu ra mô hình, không được nhập vào facts.
 - Nguyên nhân hiển thị chính được dựng từ biến động quan sát; bối cảnh Gemini được giữ ở trường `ai_context_unverified`, không thay thế nguyên nhân deterministic.
 
 Auto runner for Vietnamese macro reports.
@@ -15,6 +17,7 @@ Auto runner for Vietnamese macro reports.
 - Runs on GitHub Actions every day at 07:30 Asia/Bangkok.
 - Tracks the original 41-indicator `vimovietnam` structure.
 - Fetches machine-readable daily values for USD/VND, gold, oil, DXY, US 10Y, S&P 500, and VN-Index, with Vietcap as the primary VN-Index source.
+- Builds auditable 1-month/3-month projections from Yahoo Finance and Vietcap histories, optional FRED histories, and optional official EIA STEO oil forecasts.
 - Adds `VIP` labels to monthly/yearly macro indicators.
 - Monitors the five official/free macro sources used by the reference project: PMI, NSO, Customs, VBMA, and VNBA.
 - Reads the latest S&P Global Vietnam manufacturing PMI from Viet Nam Government News.
@@ -49,3 +52,17 @@ Do not commit the bot token into files.
 Add `GEMINI_API_KEY` as a repository secret. The optional repository variable `GEMINI_MODEL` can override the default `models/gemini-3-flash-preview`.
 
 When the key is absent or Gemini is unavailable, report generation continues and pending events remain in the memory file for a later run. Older pending events for the same indicator are marked `superseded`, so only the newest observation is analyzed. Gemini output is published to `output/gemini_analysis.json` and `docs/api/gemini_analysis.json`; forecasts are stored as neutral scenarios, not observed facts or investment recommendations.
+
+## Forecast API setup
+
+Yahoo Finance and Vietcap inputs require no repository secret. Two optional free
+official APIs improve independent confirmation:
+
+- `FRED_API_KEY`: official FRED histories for gold, WTI and US 10Y.
+- `EIA_API_KEY`: official EIA Short-Term Energy Outlook forecast for WTI.
+
+Missing keys never stop the report. Provider status is written to
+`docs/api/forecasts.json`; a key, request URL containing a key, or raw provider
+exception is never published. Successful source histories are cached in
+`output/forecast_source_cache.json`; daily histories expire after 7 days and an
+official monthly EIA forecast expires after 45 days.
