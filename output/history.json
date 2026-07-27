@@ -438,7 +438,7 @@
       {
         "date": "2026-07-27",
         "bucket": "2026-07-27",
-        "value": 4090.6001,
+        "value": 4089.8,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -608,7 +608,7 @@
       {
         "date": "2026-07-27",
         "bucket": "2026-07-27",
-        "value": 101.193,
+        "value": 101.2,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -800,7 +800,7 @@
       {
         "date": "2026-07-27",
         "bucket": "2026-07-27",
-        "value": 84.75,
+        "value": 84.81,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",

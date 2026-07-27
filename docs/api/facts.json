@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-07-27T05:40:45.012099+00:00",
-  "status": "ok",
+  "generated_at": "2026-07-27T05:46:38.999336+00:00",
+  "as_of": "2026-07-27",
   "facts": [
     {
       "id": "interbank_rate",
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 4090.6001,
+      "value": 4089.8,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-07-27",
@@ -105,7 +105,7 @@
     },
     {
       "id": "dxy",
-      "value": 101.193,
+      "value": 101.2,
       "unit": "điểm",
       "definition": "US Dollar Index.",
       "as_of": "2026-07-27",
@@ -160,7 +160,7 @@
     },
     {
       "id": "oil_prices",
-      "value": 84.75,
+      "value": 84.81,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
       "as_of": "2026-07-27",
@@ -460,5 +460,6 @@
     "facts_only": true,
     "ai_output_included": false,
     "missing_values_omitted": true
-  }
+  },
+  "status": "ok"
 }
