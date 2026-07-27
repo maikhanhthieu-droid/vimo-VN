@@ -15,7 +15,7 @@ This project runs independently. The `vimovietnam` repository was used only as a
 | Yahoo Finance chart API | USD/VND, gold, oil, DXY, US10Y history for model input | Daily | Parsed, no key |
 | Vietcap chart API | VN-Index history for model input | Daily | Parsed, no key |
 | FRED observations API | Gold, WTI and US10Y independent history | Daily | Optional `FRED_API_KEY` |
-| EIA STEO API | Official WTI monthly forecast | Monthly | Optional `EIA_API_KEY` |
+| EIA STEO API | Official WTI monthly forecast | Monthly | Shared demo fallback; optional `EIA_API_KEY` preferred |
 
 ## VIP Label
 
