@@ -292,7 +292,7 @@
       {
         "date": "2026-07-27",
         "bucket": "2026-07-27",
-        "value": 1683.73,
+        "value": 1682.53,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -438,7 +438,7 @@
       {
         "date": "2026-07-27",
         "bucket": "2026-07-27",
-        "value": 4094.8,
+        "value": 4090.6001,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -608,7 +608,7 @@
       {
         "date": "2026-07-27",
         "bucket": "2026-07-27",
-        "value": 101.199,
+        "value": 101.193,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -800,7 +800,7 @@
       {
         "date": "2026-07-27",
         "bucket": "2026-07-27",
-        "value": 84.91,
+        "value": 84.75,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -917,6 +917,16 @@
         "date": "2026-07-23",
         "bucket": "2026-07-23",
         "value": 4.703,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-24",
+        "bucket": "2026-07-24",
+        "value": 4.679,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
