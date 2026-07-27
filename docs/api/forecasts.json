@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.forecasts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-07-27T06:17:39.000470+00:00",
+  "generated_at": "2026-07-27T06:22:51.087206+00:00",
   "as_of": "2026-07-27",
   "status": "ok",
   "horizons": [
@@ -66,22 +66,22 @@
     {
       "id": "stock_market",
       "current": {
-        "value": 1686.05,
+        "value": 1683.32,
         "unit": "điểm",
         "date": "2026-07-27",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/"
       },
       "forecast_1m": {
-        "value": 1692.0,
-        "low": 1623.0,
-        "high": 1763.0,
+        "value": 1689.0,
+        "low": 1620.0,
+        "high": 1760.0,
         "as_of": "2026-08-27"
       },
       "forecast_3m": {
-        "value": 1696.0,
-        "low": 1578.0,
-        "high": 1822.0,
+        "value": 1693.0,
+        "low": 1576.0,
+        "high": 1819.0,
         "as_of": "2026-10-27"
       },
       "forecast_status": "SINGLE_SOURCE",
@@ -94,19 +94,19 @@
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
           "as_of": "2026-07-27",
-          "fetched_at": "2026-07-27T06:17:39.000470+00:00",
+          "fetched_at": "2026-07-27T06:22:51.087206+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
-            "value": 1692.0,
-            "low": 1623.0,
-            "high": 1763.0,
+            "value": 1689.0,
+            "low": 1620.0,
+            "high": 1760.0,
             "as_of": "2026-08-27"
           },
           "forecast_3m": {
-            "value": 1696.0,
-            "low": 1578.0,
-            "high": 1822.0,
+            "value": 1693.0,
+            "low": 1576.0,
+            "high": 1819.0,
             "as_of": "2026-10-27"
           },
           "observations": 180,
@@ -138,7 +138,7 @@
     {
       "id": "gold_world",
       "current": {
-        "value": 4095.8,
+        "value": 4097.8999,
         "unit": "USD/oz",
         "date": "2026-07-27",
         "source": "Yahoo Finance",
@@ -156,7 +156,7 @@
     {
       "id": "dxy",
       "current": {
-        "value": 101.171,
+        "value": 101.154,
         "unit": "điểm",
         "date": "2026-07-27",
         "source": "Yahoo Finance",
@@ -174,27 +174,63 @@
     {
       "id": "oil_prices",
       "current": {
-        "value": 84.25,
+        "value": 83.81,
         "unit": "USD/thùng",
         "date": "2026-07-27",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 72.0,
+        "low": 72.0,
+        "high": 72.0,
+        "as_of": "2026-08-01"
+      },
+      "forecast_3m": {
+        "value": 67.0,
+        "low": 67.0,
+        "high": 67.0,
+        "as_of": "2026-10-01"
+      },
+      "forecast_status": "SINGLE_SOURCE",
+      "confidence": "LOW",
+      "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
+      "warning": "NGHI NGỜ: chỉ có một nguồn API; không phải dự báo đồng thuận.",
+      "sources": [
+        {
+          "provider": "EIA STEO",
+          "source_kind": "official_forecast",
+          "source_url": "https://www.eia.gov/outlooks/steo/",
+          "as_of": "2026-07-27",
+          "fetched_at": "2026-07-27T06:22:51.087206+00:00",
+          "cache_status": "live",
+          "forecast_1m": {
+            "value": 72.0,
+            "low": 72.0,
+            "high": 72.0,
+            "as_of": "2026-08-01"
+          },
+          "forecast_3m": {
+            "value": 67.0,
+            "low": 67.0,
+            "high": 67.0,
+            "as_of": "2026-10-01"
+          },
+          "observations": 2,
+          "span_days": 0,
+          "method": "EIA Short-Term Energy Outlook monthly projection.",
+          "official": true,
+          "credential_mode": "shared_demo"
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
       "id": "us_10y_yield",
       "current": {
-        "value": 4.679,
+        "value": 4.703,
         "unit": "%",
-        "date": "2026-07-24",
+        "date": "2026-07-23",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
@@ -294,10 +330,13 @@
     },
     {
       "provider": "EIA STEO",
-      "status": "not_configured",
-      "series": [],
+      "status": "demo",
+      "series": [
+        "oil_prices"
+      ],
       "errors": {},
-      "key_required": true
+      "key_required": true,
+      "credential_mode": "shared_demo"
     }
   ],
   "quality": {

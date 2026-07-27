@@ -724,15 +724,43 @@
           },
           {
             "date": "2026-07-27",
-            "value": 1685.73
+            "value": 1683.44
           }
         ],
-        "fetched_at": "2026-07-27T06:17:39.000470+00:00",
+        "fetched_at": "2026-07-27T06:22:51.087206+00:00",
         "cache_status": "live"
       }
     ]
   },
-  "official_forecasts": {},
+  "official_forecasts": {
+    "oil_prices": [
+      {
+        "provider": "EIA STEO",
+        "source_kind": "official_forecast",
+        "source_url": "https://www.eia.gov/outlooks/steo/",
+        "as_of": "2026-07-27",
+        "fetched_at": "2026-07-27T06:22:51.087206+00:00",
+        "cache_status": "live",
+        "forecast_1m": {
+          "value": 72.0,
+          "low": 72.0,
+          "high": 72.0,
+          "as_of": "2026-08-01"
+        },
+        "forecast_3m": {
+          "value": 67.0,
+          "low": 67.0,
+          "high": 67.0,
+          "as_of": "2026-10-01"
+        },
+        "observations": 2,
+        "span_days": 0,
+        "method": "EIA Short-Term Energy Outlook monthly projection.",
+        "official": true,
+        "credential_mode": "shared_demo"
+      }
+    ]
+  },
   "providers": [
     {
       "provider": "Yahoo Finance",
@@ -765,11 +793,14 @@
     },
     {
       "provider": "EIA STEO",
-      "status": "not_configured",
-      "series": [],
+      "status": "demo",
+      "series": [
+        "oil_prices"
+      ],
       "errors": {},
-      "key_required": true
+      "key_required": true,
+      "credential_mode": "shared_demo"
     }
   ],
-  "generated_at": "2026-07-27T06:17:39.000470+00:00"
+  "generated_at": "2026-07-27T06:22:51.087206+00:00"
 }
