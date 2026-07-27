@@ -59,7 +59,9 @@ Yahoo Finance and Vietcap inputs require no repository secret. Two optional free
 official APIs improve independent confirmation:
 
 - `FRED_API_KEY`: official FRED histories for gold, WTI and US 10Y.
-- `EIA_API_KEY`: official EIA Short-Term Energy Outlook forecast for WTI.
+- `EIA_API_KEY`: official EIA Short-Term Energy Outlook forecast for WTI. If
+  absent, the pipeline may use EIA's public shared `DEMO_KEY`, explicitly marked
+  `shared_demo`; a personal free key is preferred for quota stability.
 
 Missing keys never stop the report. Provider status is written to
 `docs/api/forecasts.json`; a key, request URL containing a key, or raw provider
