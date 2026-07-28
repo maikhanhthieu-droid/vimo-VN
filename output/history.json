@@ -216,6 +216,16 @@
         "source_url": "https://open.er-api.com/",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-28",
+        "bucket": "2026-07-28",
+        "value": 26235.49,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "stock_market": [
@@ -293,6 +303,16 @@
         "date": "2026-07-27",
         "bucket": "2026-07-27",
         "value": 1683.32,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-28",
+        "bucket": "2026-07-28",
+        "value": 1664.07,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -439,6 +459,16 @@
         "date": "2026-07-27",
         "bucket": "2026-07-27",
         "value": 4097.8999,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-28",
+        "bucket": "2026-07-28",
+        "value": 4051.3,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -609,6 +639,16 @@
         "date": "2026-07-27",
         "bucket": "2026-07-27",
         "value": 101.154,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-28",
+        "bucket": "2026-07-28",
+        "value": 101.436,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -806,6 +846,16 @@
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-28",
+        "bucket": "2026-07-28",
+        "value": 81.46,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "geopolitical_risk": [
@@ -917,6 +967,16 @@
         "date": "2026-07-23",
         "bucket": "2026-07-23",
         "value": 4.703,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-27",
+        "bucket": "2026-07-27",
+        "value": 4.641,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",

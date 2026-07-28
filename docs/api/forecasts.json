@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.forecasts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-07-27T06:22:51.087206+00:00",
-  "as_of": "2026-07-27",
+  "generated_at": "2026-07-28T03:43:43.469441+00:00",
+  "as_of": "2026-07-28",
   "status": "ok",
   "horizons": [
     "1_month",
@@ -48,9 +48,9 @@
     {
       "id": "fx_market_usd_vnd",
       "current": {
-        "value": 26256.75,
+        "value": 26235.49,
         "unit": "VND/USD",
-        "date": "2026-07-27",
+        "date": "2026-07-28",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
@@ -66,23 +66,23 @@
     {
       "id": "stock_market",
       "current": {
-        "value": 1683.32,
+        "value": 1664.07,
         "unit": "điểm",
-        "date": "2026-07-27",
+        "date": "2026-07-28",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/"
       },
       "forecast_1m": {
-        "value": 1689.0,
-        "low": 1620.0,
-        "high": 1760.0,
-        "as_of": "2026-08-27"
+        "value": 1669.0,
+        "low": 1601.0,
+        "high": 1740.0,
+        "as_of": "2026-08-28"
       },
       "forecast_3m": {
-        "value": 1693.0,
-        "low": 1576.0,
-        "high": 1819.0,
-        "as_of": "2026-10-27"
+        "value": 1672.0,
+        "low": 1556.0,
+        "high": 1798.0,
+        "as_of": "2026-10-28"
       },
       "forecast_status": "SINGLE_SOURCE",
       "confidence": "LOW",
@@ -93,21 +93,21 @@
           "provider": "Vietcap",
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
-          "as_of": "2026-07-27",
-          "fetched_at": "2026-07-27T06:22:51.087206+00:00",
+          "as_of": "2026-07-28",
+          "fetched_at": "2026-07-28T03:43:43.469441+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
-            "value": 1689.0,
-            "low": 1620.0,
-            "high": 1760.0,
-            "as_of": "2026-08-27"
+            "value": 1669.0,
+            "low": 1601.0,
+            "high": 1740.0,
+            "as_of": "2026-08-28"
           },
           "forecast_3m": {
-            "value": 1693.0,
-            "low": 1576.0,
-            "high": 1819.0,
-            "as_of": "2026-10-27"
+            "value": 1672.0,
+            "low": 1556.0,
+            "high": 1798.0,
+            "as_of": "2026-10-28"
           },
           "observations": 180,
           "span_days": 265,
@@ -138,9 +138,9 @@
     {
       "id": "gold_world",
       "current": {
-        "value": 4097.8999,
+        "value": 4051.3,
         "unit": "USD/oz",
-        "date": "2026-07-27",
+        "date": "2026-07-28",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF"
       },
@@ -156,9 +156,9 @@
     {
       "id": "dxy",
       "current": {
-        "value": 101.154,
+        "value": 101.436,
         "unit": "điểm",
-        "date": "2026-07-27",
+        "date": "2026-07-28",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB"
       },
@@ -174,9 +174,9 @@
     {
       "id": "oil_prices",
       "current": {
-        "value": 83.81,
+        "value": 81.46,
         "unit": "USD/thùng",
-        "date": "2026-07-27",
+        "date": "2026-07-28",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF"
       },
@@ -201,8 +201,8 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-07-27",
-          "fetched_at": "2026-07-27T06:22:51.087206+00:00",
+          "as_of": "2026-07-28",
+          "fetched_at": "2026-07-28T03:43:43.469441+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 72.0,
@@ -228,9 +228,9 @@
     {
       "id": "us_10y_yield",
       "current": {
-        "value": 4.703,
+        "value": 4.641,
         "unit": "%",
-        "date": "2026-07-23",
+        "date": "2026-07-27",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
