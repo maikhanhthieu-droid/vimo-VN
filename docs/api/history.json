@@ -30,6 +30,16 @@
         "source_url": "https://vbma.org.vn/storage/reports/July2026/13072026%20-%2017072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null
+      },
+      {
+        "date": "2026-07-24",
+        "bucket": "2026-W30",
+        "value": 2.43,
+        "unit": "%",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null
       }
     ],
     "fx_central_rate": [
@@ -226,6 +236,16 @@
         "source_url": "https://open.er-api.com/",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-29",
+        "bucket": "2026-07-29",
+        "value": 26252.67,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "stock_market": [
@@ -318,6 +338,16 @@
         "source_url": "https://trading.vietcap.com.vn/",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-29",
+        "bucket": "2026-07-29",
+        "value": 1683.23,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "govt_bond_yield": [
@@ -338,6 +368,16 @@
         "unit": "%",
         "source": "VBMA",
         "source_url": "https://vbma.org.vn/storage/reports/July2026/13072026%20-%2017072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-24",
+        "bucket": "2026-W30",
+        "value": 4.41,
+        "unit": "%",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null
       }
@@ -469,6 +509,16 @@
         "date": "2026-07-28",
         "bucket": "2026-07-28",
         "value": 4051.3,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-29",
+        "bucket": "2026-07-29",
+        "value": 4025.6001,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -654,16 +704,26 @@
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-29",
+        "bucket": "2026-07-29",
+        "value": 101.307,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "corporate_bond_issuance": [
       {
         "date": "2026-07-31",
         "bucket": "2026-07",
-        "value": 4.9,
+        "value": 8.939,
         "unit": "nghìn tỷ VND",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/July2026/13072026%20-%2017072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null
       }
@@ -686,6 +746,16 @@
         "unit": "nghìn tỷ VND",
         "source": "VBMA",
         "source_url": "https://vbma.org.vn/storage/reports/July2026/13072026%20-%2017072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-24",
+        "bucket": "2026-W30",
+        "value": 194.565,
+        "unit": "nghìn tỷ VND",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null
       }
@@ -856,6 +926,16 @@
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
         "source_quality": "AUTO",
         "source_note": null
+      },
+      {
+        "date": "2026-07-29",
+        "bucket": "2026-07-29",
+        "value": 82.53,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null
       }
     ],
     "geopolitical_risk": [
@@ -977,6 +1057,16 @@
         "date": "2026-07-27",
         "bucket": "2026-07-27",
         "value": 4.641,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null
+      },
+      {
+        "date": "2026-07-28",
+        "bucket": "2026-07-28",
+        "value": 4.604,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
