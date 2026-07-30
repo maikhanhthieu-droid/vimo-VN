@@ -1643,6 +1643,151 @@ def rounded_forecast(value: float, reference: float) -> float:
     return round(value, forecast_precision(reference))
 
 
+def _triangular_cdf(value: float, low: float, mode: float, high: float) -> float:
+    if value <= low:
+        return 0.0
+    if value >= high:
+        return 1.0
+    span = high - low
+    if mode <= low:
+        return 1.0 - ((high - value) / span) ** 2
+    if mode >= high:
+        return ((value - low) / span) ** 2
+    if value <= mode:
+        return ((value - low) ** 2) / (span * (mode - low))
+    return 1.0 - ((high - value) ** 2) / (span * (high - mode))
+
+
+def forecast_probability_bands(
+    forecast: dict[str, Any] | None,
+    reference: Any,
+    *,
+    confidence: str = "LOW",
+    observations: Any = None,
+) -> list[dict[str, Any]]:
+    if not forecast:
+        return []
+    low = numeric_value(forecast.get("low"))
+    mode = numeric_value(forecast.get("value"))
+    high = numeric_value(forecast.get("high"))
+    reference_value = numeric_value(reference)
+    if (
+        low is None
+        or mode is None
+        or high is None
+        or reference_value is None
+        or low >= high
+        or mode < low
+        or mode > high
+    ):
+        return []
+
+    precision = forecast_precision(reference_value)
+    display_step = 10.0 ** (-precision)
+    band_count = 3 if (high - low) >= display_step * 6 else 2
+    raw_boundaries = [
+        low + (high - low) * index / band_count
+        for index in range(band_count + 1)
+    ]
+    boundaries: list[float] = []
+    for index, boundary in enumerate(raw_boundaries):
+        rounded = (
+            low
+            if index == 0
+            else high
+            if index == band_count
+            else round(boundary, precision)
+        )
+        if not boundaries or rounded > boundaries[-1]:
+            boundaries.append(rounded)
+    if len(boundaries) < 3:
+        return []
+
+    confidence_weight = {
+        "LOW": 0.15,
+        "MEDIUM": 0.35,
+        "HIGH": 0.55,
+    }.get(str(confidence).upper(), 0.15)
+    observation_count = numeric_value(observations)
+    if observation_count is not None and observation_count >= 2:
+        observation_score = min(
+            1.0,
+            max(0.0, math.log(observation_count / 2.0) / math.log(30.0)),
+        )
+        confidence_weight = min(0.85, confidence_weight + 0.10 * observation_score)
+
+    bands: list[dict[str, float]] = []
+    for band_low, band_high in zip(boundaries, boundaries[1:]):
+        triangular_mass = _triangular_cdf(
+            band_high, low, mode, high
+        ) - _triangular_cdf(
+            band_low, low, mode, high
+        )
+        uniform_mass = (band_high - band_low) / (high - low)
+        probability = (
+            (1.0 - confidence_weight) * uniform_mass
+            + confidence_weight * triangular_mass
+        )
+        if band_high > band_low and probability > 0:
+            bands.append(
+                {
+                    "low": band_low,
+                    "high": band_high,
+                    "raw_probability": probability,
+                }
+            )
+
+    percentages = [
+        round(float(band["raw_probability"]) * 100, 1)
+        for band in bands
+    ]
+    correction = round(100.0 - sum(percentages), 1)
+    if percentages:
+        largest_index = max(range(len(percentages)), key=percentages.__getitem__)
+        percentages[largest_index] = round(percentages[largest_index] + correction, 1)
+    probability_order = sorted(
+        range(len(bands)),
+        key=lambda index: (-percentages[index], bands[index]["low"]),
+    )
+    ranks = {band_index: rank + 1 for rank, band_index in enumerate(probability_order)}
+    return [
+        {
+            "low": rounded_forecast(float(band["low"]), reference_value),
+            "high": rounded_forecast(float(band["high"]), reference_value),
+            "probability": percentages[index],
+            "rank": ranks[index],
+        }
+        for index, band in enumerate(bands)
+    ]
+
+
+def with_probability_bands(
+    forecast: dict[str, Any] | None,
+    reference: Any,
+    *,
+    confidence: str = "LOW",
+    observations: Any = None,
+) -> dict[str, Any] | None:
+    if not forecast:
+        return None
+    bands = forecast_probability_bands(
+        forecast,
+        reference,
+        confidence=confidence,
+        observations=observations,
+    )
+    if not bands:
+        return forecast
+    return {
+        **forecast,
+        "probability_bands": bands,
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": False,
+    }
+
+
 def trend_forecast(
     points: list[dict[str, Any]],
     *,
@@ -1819,6 +1964,17 @@ def build_card_insights(
         confidence = forecast.get("confidence") if forecast else "WAITING_FOR_DATA"
         forecast_1m = forecast.get("forecast_1m") if forecast else None
         forecast_3m = forecast.get("forecast_3m") if forecast else None
+        forecast_observations = forecast.get("observations") if forecast else None
+        if forecast_observations is None and forecast:
+            source_observations = [
+                numeric_value(source.get("observations"))
+                for source in forecast.get("forecast_sources", [])
+                if isinstance(source, dict)
+            ]
+            forecast_observations = max(
+                (value for value in source_observations if value is not None),
+                default=None,
+            )
         if confidence == "LOW" and not (
             forecast and forecast.get("forecast_status")
         ):
@@ -1828,6 +1984,18 @@ def build_card_insights(
                 "Có dưới 4 kỳ cùng định nghĩa; không hiển thị ngoại suy định lượng. "
                 "Chờ thêm dữ liệu đã xác minh."
             )
+        forecast_1m = with_probability_bands(
+            forecast_1m,
+            card.get("value"),
+            confidence=confidence,
+            observations=forecast_observations,
+        )
+        forecast_3m = with_probability_bands(
+            forecast_3m,
+            card.get("value"),
+            confidence=confidence,
+            observations=forecast_observations,
+        )
 
         change = None
         old_numeric = numeric_value(previous.get("value")) if previous else None
@@ -2090,6 +2258,8 @@ def build_frontend_api(
             "single_source_is_explicitly_low_confidence": True,
             "local_history_scenario_is_explicitly_low_confidence": True,
             "model_estimate_is_not_source_consensus": True,
+            "probability_bands_sum_to_100_percent": True,
+            "probability_bands_are_scenario_weights_not_calibrated_odds": True,
         },
         "disclaimer": (
             "Đây là đầu ra mô hình/kịch bản, không phải số liệu chính thức "
@@ -2301,11 +2471,25 @@ def render_html(payload: dict[str, Any]) -> str:
     .forecast-badge[hidden],.forecast-note[hidden] {{ display:none; }}
     .forecast-note {{ color:#fbbf24; border-left:3px solid #f59e0b; padding:8px 10px; background:rgba(245,158,11,.055); font-size:12px; }}
     .forecast-disclaimer {{ color:#94a3b8; font-size:12px; }}
+    .probability-wrap {{ margin:14px 0 0; }}
+    .probability-wrap[hidden],.probability-panel[hidden] {{ display:none; }}
+    .probability-grid {{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }}
+    .probability-panel {{ border:1px solid var(--line); border-radius:8px; padding:12px; background:rgba(255,255,255,.025); }}
+    .probability-panel h3 {{ margin:0 0 10px; color:#cbd5e1; font-size:13px; }}
+    .probability-list {{ display:grid; gap:8px; }}
+    .probability-row {{ display:grid; grid-template-columns:minmax(112px,auto) minmax(90px,1fr) 48px; gap:9px; align-items:center; font-size:12px; }}
+    .probability-range {{ color:#cbd5e1; overflow-wrap:anywhere; }}
+    .probability-track {{ height:8px; overflow:hidden; border-radius:999px; background:rgba(148,163,184,.18); }}
+    .probability-fill {{ height:100%; border-radius:inherit; background:#60a5fa; }}
+    .probability-percent {{ color:#dbeafe; text-align:right; font-variant-numeric:tabular-nums; font-weight:700; }}
+    .probability-row.top .probability-range,.probability-row.top .probability-percent {{ color:#fff; font-weight:700; }}
+    .probability-row.top .probability-fill {{ background:#3b82f6; }}
+    .probability-note {{ margin:10px 0 0; color:#64748b; font-size:11px; }}
     .chart-wrap[hidden] {{ display:none; }}
     .chart-svg {{ width:100%; height:300px; display:block; background:rgba(255,255,255,.025); border:1px solid var(--line); border-radius:8px; }}
     .chart-meta {{ color:#94a3b8; font-size:12px; margin-top:10px; }}
-    @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} .detail-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }} .driver-grid,.scenario-grid {{ grid-template-columns:1fr; }} }}
-    @media (max-width:480px) {{ .modal {{ padding:0; }} .modal-box {{ min-height:100dvh; max-height:100dvh; border-radius:0; }} .detail-grid {{ grid-template-columns:1fr; }} }}
+    @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} .detail-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }} .driver-grid,.scenario-grid,.probability-grid {{ grid-template-columns:1fr; }} }}
+    @media (max-width:480px) {{ .modal {{ padding:0; }} .modal-box {{ min-height:100dvh; max-height:100dvh; border-radius:0; }} .detail-grid {{ grid-template-columns:1fr; }} .probability-row {{ grid-template-columns:minmax(105px,auto) 1fr 44px; gap:7px; }} }}
   </style>
 </head>
 <body>
@@ -2339,6 +2523,19 @@ def render_html(payload: dict[str, Any]) -> str:
         <div class="detail-stat"><span>Dự báo +3 tháng</span><strong id="detailForecast3">—</strong><small id="detailForecast3Range"></small></div>
       </div>
       <p class="forecast-badge" id="detailForecastBadge" hidden>KỊCH BẢN MÔ HÌNH · ĐỘ TIN CẬY THẤP</p>
+      <div class="probability-wrap" id="detailProbabilityWrap" aria-live="polite" hidden>
+        <div class="probability-grid">
+          <section class="probability-panel" id="detailProbability1Panel" aria-labelledby="detailProbability1Title">
+            <h3 id="detailProbability1Title">Vùng xác suất +1 tháng</h3>
+            <div class="probability-list" id="detailProbability1" role="list"></div>
+          </section>
+          <section class="probability-panel" id="detailProbability3Panel" aria-labelledby="detailProbability3Title">
+            <h3 id="detailProbability3Title">Vùng xác suất +3 tháng</h3>
+            <div class="probability-list" id="detailProbability3" role="list"></div>
+          </section>
+        </div>
+        <p class="probability-note">Tỷ lệ là trọng số kịch bản từ khoảng bất định và độ tin cậy của mô hình, chưa phải xác suất đã được kiểm định.</p>
+      </div>
       <div class="reason-block"><h3>Lý do ngắn</h3><p id="detailReason"></p></div>
       <p class="chart-meta" id="detailMethod"></p>
       <p class="chart-meta" id="detailForecastSources"></p>
@@ -2375,6 +2572,11 @@ def render_html(payload: dict[str, Any]) -> str:
     const forecast3El = document.getElementById('detailForecast3');
     const forecast3RangeEl = document.getElementById('detailForecast3Range');
     const forecastBadgeEl = document.getElementById('detailForecastBadge');
+    const probabilityWrapEl = document.getElementById('detailProbabilityWrap');
+    const probability1PanelEl = document.getElementById('detailProbability1Panel');
+    const probability3PanelEl = document.getElementById('detailProbability3Panel');
+    const probability1El = document.getElementById('detailProbability1');
+    const probability3El = document.getElementById('detailProbability3');
     const reasonEl = document.getElementById('detailReason');
     const methodEl = document.getElementById('detailMethod');
     const forecastSourcesEl = document.getElementById('detailForecastSources');
@@ -2415,6 +2617,47 @@ def render_html(payload: dict[str, Any]) -> str:
         LOW: 'THẤP',
         WAITING_FOR_DATA: 'CHỜ DỮ LIỆU',
       }})[confidence] || confidence || 'CHỜ DỮ LIỆU';
+    }}
+
+    function formatNumber(value) {{
+      return new Intl.NumberFormat('vi-VN', {{ maximumFractionDigits: 3 }}).format(value);
+    }}
+
+    function renderProbabilityBands(container, forecast, unit) {{
+      container.replaceChildren();
+      const bands = Array.isArray(forecast && forecast.probability_bands)
+        ? forecast.probability_bands.slice(0, 3)
+        : [];
+      bands
+        .sort((left, right) => Number(left.low) - Number(right.low))
+        .forEach(band => {{
+          const probability = Math.max(0, Math.min(100, Number(band.probability) || 0));
+          const range = `${{formatNumber(band.low)}}–${{formatNumber(band.high)}}${{unit ? ` ${{unit}}` : ''}}`;
+          const row = document.createElement('div');
+          row.className = `probability-row${{Number(band.rank) === 1 ? ' top' : ''}}`;
+          row.setAttribute('role', 'listitem');
+          const rangeEl = document.createElement('span');
+          rangeEl.className = 'probability-range';
+          rangeEl.textContent = range;
+          const track = document.createElement('span');
+          track.className = 'probability-track';
+          track.setAttribute('role', 'meter');
+          track.setAttribute('aria-label', `${{range}}`);
+          track.setAttribute('aria-valuemin', '0');
+          track.setAttribute('aria-valuemax', '100');
+          track.setAttribute('aria-valuenow', `${{probability}}`);
+          track.setAttribute('aria-valuetext', `${{formatNumber(probability)}} phần trăm`);
+          const fill = document.createElement('span');
+          fill.className = 'probability-fill';
+          fill.style.width = `${{probability}}%`;
+          track.appendChild(fill);
+          const percent = document.createElement('strong');
+          percent.className = 'probability-percent';
+          percent.textContent = `${{formatNumber(probability)}}%`;
+          row.append(rangeEl, track, percent);
+          container.appendChild(row);
+        }});
+      return bands.length > 0;
     }}
 
     function drawChart(item) {{
@@ -2460,6 +2703,11 @@ def render_html(payload: dict[str, Any]) -> str:
       forecast1El.closest('.detail-stat').classList.toggle('modeled', isModelEstimate);
       forecast3El.closest('.detail-stat').classList.toggle('modeled', isModelEstimate);
       forecastBadgeEl.hidden = !isModelEstimate;
+      const hasProbability1 = renderProbabilityBands(probability1El, insight.forecast_1m, item.unit);
+      const hasProbability3 = renderProbabilityBands(probability3El, insight.forecast_3m, item.unit);
+      probability1PanelEl.hidden = !hasProbability1;
+      probability3PanelEl.hidden = !hasProbability3;
+      probabilityWrapEl.hidden = !hasProbability1 && !hasProbability3;
       reasonEl.textContent = insight.reason_short || 'Chưa có phân tích nguyên nhân.';
       methodEl.textContent = `${{insight.method || ''}} Trạng thái: ${{forecastStatusLabel(forecastStatus)}} · Độ tin cậy: ${{confidenceLabel(insight.confidence)}}.`;
       const forecastSources = Array.isArray(insight.forecast_sources) ? insight.forecast_sources : [];

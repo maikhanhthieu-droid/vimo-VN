@@ -609,6 +609,84 @@ class RunReportTests(unittest.TestCase):
         self.assertEqual(forecast["confidence"], "LOW")
         self.assertLess(forecast["forecast_1m"]["value"], 4.69)
 
+    def test_cpi_probability_bands_are_ranked_contiguous_and_sum_to_100(self) -> None:
+        one_month = run_report.forecast_probability_bands(
+            {"value": 4.24, "low": 3.92, "high": 4.55},
+            4.69,
+            confidence="LOW",
+            observations=2,
+        )
+        three_months = run_report.forecast_probability_bands(
+            {"value": 3.73, "low": 3.22, "high": 4.24},
+            4.69,
+            confidence="LOW",
+            observations=2,
+        )
+
+        self.assertEqual(
+            one_month,
+            [
+                {"low": 3.92, "high": 4.13, "probability": 31.6, "rank": 3},
+                {"low": 4.13, "high": 4.34, "probability": 36.7, "rank": 1},
+                {"low": 4.34, "high": 4.55, "probability": 31.7, "rank": 2},
+            ],
+        )
+        self.assertEqual(
+            three_months,
+            [
+                {"low": 3.22, "high": 3.56, "probability": 31.7, "rank": 2},
+                {"low": 3.56, "high": 3.9, "probability": 36.6, "rank": 1},
+                {"low": 3.9, "high": 4.24, "probability": 31.7, "rank": 3},
+            ],
+        )
+        for bands in (one_month, three_months):
+            self.assertIn(len(bands), {2, 3})
+            self.assertAlmostEqual(sum(band["probability"] for band in bands), 100.0)
+            self.assertEqual(
+                [band["high"] for band in bands[:-1]],
+                [band["low"] for band in bands[1:]],
+            )
+            self.assertEqual(
+                {band["rank"] for band in bands},
+                set(range(1, len(bands) + 1)),
+            )
+
+    def test_narrow_probability_range_is_merged_to_two_bands(self) -> None:
+        bands = run_report.forecast_probability_bands(
+            {"value": 1001, "low": 1000, "high": 1002},
+            1001,
+            confidence="LOW",
+            observations=2,
+        )
+        self.assertEqual(
+            bands,
+            [
+                {"low": 1000.0, "high": 1001.0, "probability": 50.0, "rank": 1},
+                {"low": 1001.0, "high": 1002.0, "probability": 50.0, "rank": 2},
+            ],
+        )
+
+    def test_higher_confidence_concentrates_more_weight_in_center_band(self) -> None:
+        forecast = {"value": 4.24, "low": 3.92, "high": 4.55}
+        low = run_report.forecast_probability_bands(
+            forecast, 4.69, confidence="LOW", observations=2
+        )
+        high = run_report.forecast_probability_bands(
+            forecast, 4.69, confidence="HIGH", observations=180
+        )
+        low_center = next(band for band in low if band["rank"] == 1)
+        high_center = next(band for band in high if band["rank"] == 1)
+        self.assertGreater(high_center["probability"], low_center["probability"])
+        self.assertEqual(
+            run_report.forecast_probability_bands(
+                {"value": 4.0, "low": 4.0, "high": 4.0},
+                4.0,
+                confidence="LOW",
+                observations=2,
+            ),
+            [],
+        )
+
     def test_numeric_history_skips_invalid_dates_instead_of_using_today(self) -> None:
         points = [
             {"date": "not-a-date", "value": 99},
@@ -764,7 +842,17 @@ class RunReportTests(unittest.TestCase):
                 "cpi": {
                     "current": {"value": 4.69, "unit": "% YoY", "date": "2026-06-30"},
                     "previous": {"value": 5.6, "unit": "% YoY", "date": "2026-05-31"},
-                    "forecast_1m": {"value": 4.24, "low": 3.92, "high": 4.55, "as_of": "2026-07-31"},
+                    "forecast_1m": {
+                        "value": 4.24,
+                        "low": 3.92,
+                        "high": 4.55,
+                        "as_of": "2026-07-31",
+                        "probability_bands": [
+                            {"low": 3.92, "high": 4.13, "probability": 31.6, "rank": 3},
+                            {"low": 4.13, "high": 4.34, "probability": 36.7, "rank": 1},
+                            {"low": 4.34, "high": 4.55, "probability": 31.7, "rank": 2},
+                        ],
+                    },
                     "forecast_3m": None,
                     "forecast_status": "MODEL_ESTIMATE",
                     "forecast_warning": "MODEL_WARNING_TEST",
@@ -796,6 +884,11 @@ class RunReportTests(unittest.TestCase):
         self.assertIn('id="detailForecast1"', rendered)
         self.assertIn('id="detailForecastWarning"', rendered)
         self.assertIn('id="detailDisclaimer"', rendered)
+        self.assertIn('id="detailProbabilityWrap"', rendered)
+        self.assertIn('id="detailProbability1"', rendered)
+        self.assertIn('id="detailProbability3"', rendered)
+        self.assertIn("probability_bands", rendered)
+        self.assertIn("setAttribute('role', 'meter')", rendered)
         self.assertIn("MODEL_WARNING_TEST", rendered)
         self.assertIn("MODEL_DISCLAIMER_TEST", rendered)
         self.assertIn("Số cũ · dự báo tham khảo · lý do", rendered)

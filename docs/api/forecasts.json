@@ -22,13 +22,61 @@
         "value": 2.07,
         "low": 1.77,
         "high": 2.36,
-        "as_of": "2026-08-24"
+        "as_of": "2026-08-24",
+        "probability_bands": [
+          {
+            "low": 1.77,
+            "high": 1.97,
+            "probability": 32.1,
+            "rank": 3
+          },
+          {
+            "low": 1.97,
+            "high": 2.16,
+            "probability": 35.7,
+            "rank": 1
+          },
+          {
+            "low": 2.16,
+            "high": 2.36,
+            "probability": 32.2,
+            "rank": 2
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 1.7,
         "low": 1.23,
         "high": 2.17,
-        "as_of": "2026-10-24"
+        "as_of": "2026-10-24",
+        "probability_bands": [
+          {
+            "low": 1.23,
+            "high": 1.54,
+            "probability": 31.2,
+            "rank": 2
+          },
+          {
+            "low": 1.54,
+            "high": 1.86,
+            "probability": 37.6,
+            "rank": 1
+          },
+          {
+            "low": 1.86,
+            "high": 2.17,
+            "probability": 31.2,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
@@ -74,13 +122,61 @@
         "value": 25150.0,
         "low": 24647.0,
         "high": 25652.0,
-        "as_of": "2026-06-29"
+        "as_of": "2026-06-29",
+        "probability_bands": [
+          {
+            "low": 24647.0,
+            "high": 24982.0,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 24982.0,
+            "high": 25317.0,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 25317.0,
+            "high": 25652.0,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 25162.0,
         "low": 24357.0,
         "high": 25966.0,
-        "as_of": "2026-08-29"
+        "as_of": "2026-08-29",
+        "probability_bands": [
+          {
+            "low": 24357.0,
+            "high": 24893.0,
+            "probability": 31.6,
+            "rank": 2
+          },
+          {
+            "low": 24893.0,
+            "high": 25430.0,
+            "probability": 36.8,
+            "rank": 1
+          },
+          {
+            "low": 25430.0,
+            "high": 25966.0,
+            "probability": 31.6,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
@@ -126,13 +222,61 @@
         "value": 26182.0,
         "low": 25656.0,
         "high": 26707.0,
-        "as_of": "2026-08-30"
+        "as_of": "2026-08-30",
+        "probability_bands": [
+          {
+            "low": 25656.0,
+            "high": 26006.0,
+            "probability": 31.3,
+            "rank": 2
+          },
+          {
+            "low": 26006.0,
+            "high": 26357.0,
+            "probability": 37.4,
+            "rank": 1
+          },
+          {
+            "low": 26357.0,
+            "high": 26707.0,
+            "probability": 31.3,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 26102.0,
         "low": 25262.0,
         "high": 26942.0,
-        "as_of": "2026-10-30"
+        "as_of": "2026-10-30",
+        "probability_bands": [
+          {
+            "low": 25262.0,
+            "high": 25822.0,
+            "probability": 31.3,
+            "rank": 2
+          },
+          {
+            "low": 25822.0,
+            "high": 26382.0,
+            "probability": 37.4,
+            "rank": 1
+          },
+          {
+            "low": 26382.0,
+            "high": 26942.0,
+            "probability": 31.3,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
@@ -178,13 +322,61 @@
         "value": 1730.0,
         "low": 1657.0,
         "high": 1806.0,
-        "as_of": "2026-08-30"
+        "as_of": "2026-08-30",
+        "probability_bands": [
+          {
+            "low": 1657.0,
+            "high": 1707.0,
+            "probability": 30.9,
+            "rank": 2
+          },
+          {
+            "low": 1707.0,
+            "high": 1756.0,
+            "probability": 38.4,
+            "rank": 1
+          },
+          {
+            "low": 1756.0,
+            "high": 1806.0,
+            "probability": 30.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 1734.0,
         "low": 1610.0,
         "high": 1868.0,
-        "as_of": "2026-10-30"
+        "as_of": "2026-10-30",
+        "probability_bands": [
+          {
+            "low": 1610.0,
+            "high": 1696.0,
+            "probability": 30.8,
+            "rank": 2
+          },
+          {
+            "low": 1696.0,
+            "high": 1782.0,
+            "probability": 38.9,
+            "rank": 1
+          },
+          {
+            "low": 1782.0,
+            "high": 1868.0,
+            "probability": 30.3,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "SINGLE_SOURCE",
       "confidence": "LOW",
@@ -232,13 +424,61 @@
         "value": 4.42,
         "low": 4.33,
         "high": 4.51,
-        "as_of": "2026-08-24"
+        "as_of": "2026-08-24",
+        "probability_bands": [
+          {
+            "low": 4.33,
+            "high": 4.39,
+            "probability": 31.5,
+            "rank": 2
+          },
+          {
+            "low": 4.39,
+            "high": 4.45,
+            "probability": 37.0,
+            "rank": 1
+          },
+          {
+            "low": 4.45,
+            "high": 4.51,
+            "probability": 31.5,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 4.43,
         "low": 4.29,
         "high": 4.57,
-        "as_of": "2026-10-24"
+        "as_of": "2026-10-24",
+        "probability_bands": [
+          {
+            "low": 4.29,
+            "high": 4.38,
+            "probability": 30.3,
+            "rank": 2
+          },
+          {
+            "low": 4.38,
+            "high": 4.48,
+            "probability": 39.4,
+            "rank": 1
+          },
+          {
+            "low": 4.48,
+            "high": 4.57,
+            "probability": 30.3,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
@@ -284,13 +524,61 @@
         "value": 4066.0,
         "low": 3984.0,
         "high": 4148.0,
-        "as_of": "2026-08-30"
+        "as_of": "2026-08-30",
+        "probability_bands": [
+          {
+            "low": 3984.0,
+            "high": 4039.0,
+            "probability": 31.5,
+            "rank": 2
+          },
+          {
+            "low": 4039.0,
+            "high": 4093.0,
+            "probability": 37.0,
+            "rank": 1
+          },
+          {
+            "low": 4093.0,
+            "high": 4148.0,
+            "probability": 31.5,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 4016.0,
         "low": 3885.0,
         "high": 4148.0,
-        "as_of": "2026-10-30"
+        "as_of": "2026-10-30",
+        "probability_bands": [
+          {
+            "low": 3885.0,
+            "high": 3973.0,
+            "probability": 31.5,
+            "rank": 2
+          },
+          {
+            "low": 3973.0,
+            "high": 4060.0,
+            "probability": 37.1,
+            "rank": 1
+          },
+          {
+            "low": 4060.0,
+            "high": 4148.0,
+            "probability": 31.4,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
@@ -336,13 +624,61 @@
         "value": 100.9,
         "low": 98.9,
         "high": 102.9,
-        "as_of": "2026-08-30"
+        "as_of": "2026-08-30",
+        "probability_bands": [
+          {
+            "low": 98.9,
+            "high": 100.2,
+            "probability": 30.4,
+            "rank": 2
+          },
+          {
+            "low": 100.2,
+            "high": 101.6,
+            "probability": 39.2,
+            "rank": 1
+          },
+          {
+            "low": 101.6,
+            "high": 102.9,
+            "probability": 30.4,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 100.8,
         "low": 97.6,
         "high": 104.1,
-        "as_of": "2026-10-30"
+        "as_of": "2026-10-30",
+        "probability_bands": [
+          {
+            "low": 97.6,
+            "high": 99.8,
+            "probability": 31.9,
+            "rank": 2
+          },
+          {
+            "low": 99.8,
+            "high": 101.9,
+            "probability": 36.3,
+            "rank": 1
+          },
+          {
+            "low": 101.9,
+            "high": 104.1,
+            "probability": 31.8,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
@@ -442,13 +778,61 @@
         "value": 4.61,
         "low": 4.52,
         "high": 4.7,
-        "as_of": "2026-08-29"
+        "as_of": "2026-08-29",
+        "probability_bands": [
+          {
+            "low": 4.52,
+            "high": 4.58,
+            "probability": 31.3,
+            "rank": 2
+          },
+          {
+            "low": 4.58,
+            "high": 4.64,
+            "probability": 37.4,
+            "rank": 1
+          },
+          {
+            "low": 4.64,
+            "high": 4.7,
+            "probability": 31.3,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 4.6,
         "low": 4.45,
         "high": 4.75,
-        "as_of": "2026-10-29"
+        "as_of": "2026-10-29",
+        "probability_bands": [
+          {
+            "low": 4.45,
+            "high": 4.55,
+            "probability": 31.3,
+            "rank": 2
+          },
+          {
+            "low": 4.55,
+            "high": 4.65,
+            "probability": 37.4,
+            "rank": 1
+          },
+          {
+            "low": 4.65,
+            "high": 4.75,
+            "probability": 31.3,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
@@ -494,13 +878,61 @@
         "value": 4.24,
         "low": 3.92,
         "high": 4.55,
-        "as_of": "2026-07-31"
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 3.92,
+            "high": 4.13,
+            "probability": 31.6,
+            "rank": 3
+          },
+          {
+            "low": 4.13,
+            "high": 4.34,
+            "probability": 36.7,
+            "rank": 1
+          },
+          {
+            "low": 4.34,
+            "high": 4.55,
+            "probability": 31.7,
+            "rank": 2
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 3.73,
         "low": 3.22,
         "high": 4.24,
-        "as_of": "2026-09-30"
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 3.22,
+            "high": 3.56,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 3.56,
+            "high": 3.9,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 3.9,
+            "high": 4.24,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
@@ -617,7 +1049,9 @@
     "disputed_consensus_is_null": true,
     "single_source_is_explicitly_low_confidence": true,
     "local_history_scenario_is_explicitly_low_confidence": true,
-    "model_estimate_is_not_source_consensus": true
+    "model_estimate_is_not_source_consensus": true,
+    "probability_bands_sum_to_100_percent": true,
+    "probability_bands_are_scenario_weights_not_calibrated_odds": true
   },
   "disclaimer": "Đây là đầu ra mô hình/kịch bản, không phải số liệu chính thức hay khuyến nghị đầu tư."
 }

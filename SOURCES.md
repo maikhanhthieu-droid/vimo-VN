@@ -39,6 +39,11 @@ For parsed monthly and weekly official indicators, a temporary network failure r
   the same unit may produce a deterministic `LOW / MODEL_ESTIMATE`. It carries
   a wide uncertainty range, identifies the observed input source, and is
   explicitly not a provider forecast or source consensus.
+- Numeric horizons may include `probability_bands`: two or three adjacent
+  ranges derived from a confidence-weighted uniform/triangular scenario
+  distribution over the published low/high envelope. Rounded duplicate or
+  very narrow ranges are merged, and displayed weights are corrected to total
+  exactly 100%. They are not backtested or calibrated probabilities.
 - Two or more agreeing providers produce a median consensus and a range covering
   all member ranges.
 - Provider disagreement beyond the per-indicator threshold produces

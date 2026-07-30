@@ -6,6 +6,7 @@
 - Không trộn mức đóng cửa VBMA với bình quân tuần SBV trong cùng chuỗi lịch sử.
 - Dự báo `LOW / SINGLE_SOURCE` chỉ được hiển thị khi một nguồn API có tối thiểu 60 quan sát/90 ngày.
 - Khi API chưa đủ nguồn nhưng chuỗi nội bộ có ít nhất 2 kỳ số cùng đơn vị, hệ thống có thể hiển thị `LOW / MODEL_ESTIMATE`: một kịch bản ngoại suy deterministic có biên bất định và cảnh báo rõ, không phải đồng thuận nguồn hay số liệu chính thức.
+- Mỗi khoảng dự báo số có thể kèm 2–3 vùng xác suất liền nhau. Tỷ lệ dùng hỗn hợp phân bố đều–tam giác trên chính biên mô hình và được làm phẳng theo độ tin cậy, tự gộp vùng quá hẹp và luôn cộng thành 100%; đây là trọng số kịch bản chưa hiệu chuẩn, không phải xác suất thống kê thực nghiệm.
 - Hai nguồn lệch nhau vượt ngưỡng phải trả `DISAGREEMENT` và giữ consensus là `null`, không lấy trung bình cho có.
 - Feed dùng chung chỉ chứa facts tại `docs/api/facts.json`; Gemini nằm ở file riêng và không được ghi đè facts/dự báo.
 - Dự báo nằm riêng tại `docs/api/forecasts.json`; đây là đầu ra mô hình, không được nhập vào facts.
@@ -20,6 +21,7 @@ Auto runner for Vietnamese macro reports.
 - Fetches machine-readable daily values for USD/VND, gold, oil, DXY, US 10Y, S&P 500, and VN-Index, with Vietcap as the primary VN-Index source.
 - Builds auditable 1-month/3-month projections from Yahoo Finance and Vietcap histories, optional FRED histories, and optional official EIA STEO oil forecasts.
 - Falls back to an explicitly low-confidence `MODEL_ESTIMATE` when external sources are insufficient but at least two comparable observed periods are available; source disagreement is never overridden.
+- Shows two or three adjacent model-probability bands for each numeric horizon, with narrow display ranges merged and percentages normalized to 100%.
 - Adds `VIP` labels to monthly/yearly macro indicators.
 - Monitors the five official/free macro sources used by the reference project: PMI, NSO, Customs, VBMA, and VNBA.
 - Reads the latest S&P Global Vietnam manufacturing PMI from Viet Nam Government News.
