@@ -18,13 +18,47 @@
         "source": "VBMA",
         "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 2.07,
+        "low": 1.77,
+        "high": 2.36,
+        "as_of": "2026-08-24"
+      },
+      "forecast_3m": {
+        "value": 1.7,
+        "low": 1.23,
+        "high": 2.17,
+        "as_of": "2026-10-24"
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn VBMA; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "VBMA",
+          "source_kind": "local_observed_history",
+          "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+          "as_of": "2026-07-24",
+          "forecast_1m": {
+            "value": 2.07,
+            "low": 1.77,
+            "high": 2.36,
+            "as_of": "2026-08-24"
+          },
+          "forecast_3m": {
+            "value": 1.7,
+            "low": 1.23,
+            "high": 2.17,
+            "as_of": "2026-10-24"
+          },
+          "observations": 3,
+          "span_days": 14,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
@@ -36,13 +70,47 @@
         "source": "VNBA / NHNN",
         "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 25150.0,
+        "low": 24647.0,
+        "high": 25652.0,
+        "as_of": "2026-06-29"
+      },
+      "forecast_3m": {
+        "value": 25162.0,
+        "low": 24357.0,
+        "high": 25966.0,
+        "as_of": "2026-08-29"
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn VNBA / NHNN; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "VNBA / NHNN",
+          "source_kind": "local_observed_history",
+          "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
+          "as_of": "2026-05-29",
+          "forecast_1m": {
+            "value": 25150.0,
+            "low": 24647.0,
+            "high": 25652.0,
+            "as_of": "2026-06-29"
+          },
+          "forecast_3m": {
+            "value": 25162.0,
+            "low": 24357.0,
+            "high": 25966.0,
+            "as_of": "2026-08-29"
+          },
+          "observations": 2,
+          "span_days": 7,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
@@ -54,13 +122,47 @@
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 26182.0,
+        "low": 25656.0,
+        "high": 26707.0,
+        "as_of": "2026-08-30"
+      },
+      "forecast_3m": {
+        "value": 26102.0,
+        "low": 25262.0,
+        "high": 26942.0,
+        "as_of": "2026-10-30"
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 6 kỳ có nguồn Open ER API; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "Open ER API",
+          "source_kind": "local_observed_history",
+          "source_url": "https://open.er-api.com/",
+          "as_of": "2026-07-30",
+          "forecast_1m": {
+            "value": 26182.0,
+            "low": 25656.0,
+            "high": 26707.0,
+            "as_of": "2026-08-30"
+          },
+          "forecast_3m": {
+            "value": 26102.0,
+            "low": 25262.0,
+            "high": 26942.0,
+            "as_of": "2026-10-30"
+          },
+          "observations": 6,
+          "span_days": 5,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
@@ -126,13 +228,47 @@
         "source": "VBMA",
         "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 4.42,
+        "low": 4.33,
+        "high": 4.51,
+        "as_of": "2026-08-24"
+      },
+      "forecast_3m": {
+        "value": 4.43,
+        "low": 4.29,
+        "high": 4.57,
+        "as_of": "2026-10-24"
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn VBMA; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "VBMA",
+          "source_kind": "local_observed_history",
+          "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+          "as_of": "2026-07-24",
+          "forecast_1m": {
+            "value": 4.42,
+            "low": 4.33,
+            "high": 4.51,
+            "as_of": "2026-08-24"
+          },
+          "forecast_3m": {
+            "value": 4.43,
+            "low": 4.29,
+            "high": 4.57,
+            "as_of": "2026-10-24"
+          },
+          "observations": 3,
+          "span_days": 14,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
@@ -144,13 +280,47 @@
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 4066.0,
+        "low": 3984.0,
+        "high": 4148.0,
+        "as_of": "2026-08-30"
+      },
+      "forecast_3m": {
+        "value": 4016.0,
+        "low": 3885.0,
+        "high": 4148.0,
+        "as_of": "2026-10-30"
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 6 kỳ có nguồn Yahoo Finance; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "Yahoo Finance",
+          "source_kind": "local_observed_history",
+          "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+          "as_of": "2026-07-30",
+          "forecast_1m": {
+            "value": 4066.0,
+            "low": 3984.0,
+            "high": 4148.0,
+            "as_of": "2026-08-30"
+          },
+          "forecast_3m": {
+            "value": 4016.0,
+            "low": 3885.0,
+            "high": 4148.0,
+            "as_of": "2026-10-30"
+          },
+          "observations": 6,
+          "span_days": 7,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
@@ -162,13 +332,47 @@
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 100.9,
+        "low": 98.9,
+        "high": 102.9,
+        "as_of": "2026-08-30"
+      },
+      "forecast_3m": {
+        "value": 100.8,
+        "low": 97.6,
+        "high": 104.1,
+        "as_of": "2026-10-30"
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 6 kỳ có nguồn Yahoo Finance; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "Yahoo Finance",
+          "source_kind": "local_observed_history",
+          "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+          "as_of": "2026-07-30",
+          "forecast_1m": {
+            "value": 100.9,
+            "low": 98.9,
+            "high": 102.9,
+            "as_of": "2026-08-30"
+          },
+          "forecast_3m": {
+            "value": 100.8,
+            "low": 97.6,
+            "high": 104.1,
+            "as_of": "2026-10-30"
+          },
+          "observations": 6,
+          "span_days": 7,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
@@ -234,13 +438,47 @@
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 4.61,
+        "low": 4.52,
+        "high": 4.7,
+        "as_of": "2026-08-29"
+      },
+      "forecast_3m": {
+        "value": 4.6,
+        "low": 4.45,
+        "high": 4.75,
+        "as_of": "2026-10-29"
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 6 kỳ có nguồn Yahoo Finance; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "Yahoo Finance",
+          "source_kind": "local_observed_history",
+          "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+          "as_of": "2026-07-29",
+          "forecast_1m": {
+            "value": 4.61,
+            "low": 4.52,
+            "high": 4.7,
+            "as_of": "2026-08-29"
+          },
+          "forecast_3m": {
+            "value": 4.6,
+            "low": 4.45,
+            "high": 4.75,
+            "as_of": "2026-10-29"
+          },
+          "observations": 6,
+          "span_days": 8,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
@@ -252,13 +490,47 @@
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
-      "warning": "Không điền số thay thế.",
-      "sources": [],
+      "forecast_1m": {
+        "value": 4.24,
+        "low": 3.92,
+        "high": 4.55,
+        "as_of": "2026-07-31"
+      },
+      "forecast_3m": {
+        "value": 3.73,
+        "low": 3.22,
+        "high": 4.24,
+        "as_of": "2026-09-30"
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_observed_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 4.24,
+            "low": 3.92,
+            "high": 4.55,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 3.73,
+            "low": 3.22,
+            "high": 4.24,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "span_days": 30,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
     {
@@ -342,8 +614,10 @@
   "quality": {
     "facts_endpoint_separate": true,
     "ai_output_included": false,
-    "missing_or_disputed_consensus_is_null": true,
-    "single_source_is_explicitly_low_confidence": true
+    "disputed_consensus_is_null": true,
+    "single_source_is_explicitly_low_confidence": true,
+    "local_history_scenario_is_explicitly_low_confidence": true,
+    "model_estimate_is_not_source_consensus": true
   },
   "disclaimer": "Đây là đầu ra mô hình/kịch bản, không phải số liệu chính thức hay khuyến nghị đầu tư."
 }

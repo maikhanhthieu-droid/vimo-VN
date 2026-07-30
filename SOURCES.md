@@ -25,7 +25,7 @@ VIP indicators include CPI, PMI, IIP, trade, FDI, retail, business creation/exit
 
 ## Quality Rule
 
-The pipeline does not invent values. If a source is available but a reliable parser is not yet implemented, the card is marked `awaiting_official_source`.
+The pipeline never invents observed facts. If a source is available but a reliable parser is not yet implemented, the card is marked `awaiting_official_source`. Model scenarios remain in the separate forecast feed and are never copied into facts.
 
 For parsed monthly and weekly official indicators, a temporary network failure reuses the last verified value with a `STALE_CACHE` quality label and its original publication date. Daily market values are never reused this way.
 
@@ -35,6 +35,10 @@ For parsed monthly and weekly official indicators, a temporary network failure r
   provider, direct source URL, data date and observation count.
 - One mature API history may produce a visible `LOW / SINGLE_SOURCE` scenario,
   always with a warning that it is not consensus.
+- If external sources are insufficient, at least two dated observations with
+  the same unit may produce a deterministic `LOW / MODEL_ESTIMATE`. It carries
+  a wide uncertainty range, identifies the observed input source, and is
+  explicitly not a provider forecast or source consensus.
 - Two or more agreeing providers produce a median consensus and a range covering
   all member ranges.
 - Provider disagreement beyond the per-indicator threshold produces

@@ -1621,12 +1621,12 @@ def numeric_history_points(points: list[dict[str, Any]]) -> list[dict[str, Any]]
     return [by_date[date] for date in sorted(by_date)]
 
 
-def add_calendar_months(date: str, months: int) -> str:
+def add_calendar_months(date: str, months: int, *, month_end: bool = False) -> str:
     parsed = datetime.fromisoformat(normalized_data_date(date)).date()
     zero_based = parsed.year * 12 + parsed.month - 1 + months
     year, month_index = divmod(zero_based, 12)
     month = month_index + 1
-    day = min(parsed.day, monthrange(year, month)[1])
+    day = monthrange(year, month)[1] if month_end else min(parsed.day, monthrange(year, month)[1])
     return parsed.replace(year=year, month=month, day=day).isoformat()
 
 
@@ -1643,16 +1643,30 @@ def rounded_forecast(value: float, reference: float) -> float:
     return round(value, forecast_precision(reference))
 
 
-def trend_forecast(points: list[dict[str, Any]]) -> dict[str, Any] | None:
+def trend_forecast(
+    points: list[dict[str, Any]],
+    *,
+    current_value: Any = None,
+    current_date: str | None = None,
+    month_end: bool = False,
+) -> dict[str, Any] | None:
     numeric_points = numeric_history_points(points)[-6:]
     if len(numeric_points) < 2:
         return None
     first = numeric_points[0]
     last = numeric_points[-1]
+    if current_date and last["date"] != normalized_data_date(current_date):
+        return None
     first_date = datetime.fromisoformat(first["date"])
     last_date = datetime.fromisoformat(last["date"])
     elapsed_days = max(1, (last_date - first_date).days)
     current = float(last["value"])
+    expected_current = numeric_value(current_value)
+    if current_value is not None and (
+        expected_current is None
+        or not math.isclose(current, expected_current, rel_tol=1e-9, abs_tol=1e-9)
+    ):
+        return None
     slope_per_day = (current - float(first["value"])) / elapsed_days
     recent_change = current - float(numeric_points[-2]["value"])
     scale = max(abs(current), abs(recent_change), 1.0)
@@ -1663,23 +1677,49 @@ def trend_forecast(points: list[dict[str, Any]]) -> dict[str, Any] | None:
     uncertainty = min(uncertainty, scale * 0.12)
     one_center = current + one_month_delta
     three_center = current + three_month_delta
-    confidence = "MEDIUM" if len(numeric_points) >= 4 else "LOW"
-
+    forecast_1m = {
+        "value": rounded_forecast(one_center, current),
+        "low": rounded_forecast(one_center - uncertainty, current),
+        "high": rounded_forecast(one_center + uncertainty, current),
+        "as_of": add_calendar_months(last["date"], 1, month_end=month_end),
+    }
+    forecast_3m = {
+        "value": rounded_forecast(three_center, current),
+        "low": rounded_forecast(three_center - uncertainty * 1.6, current),
+        "high": rounded_forecast(three_center + uncertainty * 1.6, current),
+        "as_of": add_calendar_months(last["date"], 3, month_end=month_end),
+    }
+    input_provider = str(last.get("source") or "Chuỗi lịch sử đã xác minh")
+    source_url = str(last.get("source_url") or "")
+    model_source = {
+        "provider": "Mô hình ViMO",
+        "input_provider": input_provider,
+        "source_kind": "local_observed_history",
+        "source_url": source_url,
+        "as_of": last["date"],
+        "forecast_1m": forecast_1m,
+        "forecast_3m": forecast_3m,
+        "observations": len(numeric_points),
+        "span_days": elapsed_days,
+        "method": "Damped deterministic trend scenario from dated observed history.",
+        "official": False,
+    }
     return {
-        "forecast_1m": {
-            "value": rounded_forecast(one_center, current),
-            "low": rounded_forecast(one_center - uncertainty, current),
-            "high": rounded_forecast(one_center + uncertainty, current),
-            "as_of": add_calendar_months(last["date"], 1),
-        },
-        "forecast_3m": {
-            "value": rounded_forecast(three_center, current),
-            "low": rounded_forecast(three_center - uncertainty * 1.6, current),
-            "high": rounded_forecast(three_center + uncertainty * 1.6, current),
-            "as_of": add_calendar_months(last["date"], 3),
-        },
-        "confidence": confidence,
-        "method": f"Ngoại suy xu hướng giảm chấn từ {len(numeric_points)} kỳ; không phải dự báo chính thức.",
+        "forecast_status": "MODEL_ESTIMATE",
+        "forecast_1m": forecast_1m,
+        "forecast_3m": forecast_3m,
+        "confidence": "LOW",
+        "forecast_sources": [model_source],
+        "source_count": 1,
+        "method": (
+            f"Kịch bản xu hướng giảm chấn từ {len(numeric_points)} kỳ quan sát "
+            "cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức."
+        ),
+        "warning": (
+            f"ƯỚC TÍNH MÔ HÌNH: ngoại suy từ {len(numeric_points)} kỳ có nguồn "
+            f"{input_provider}; độ bất định cao, không phải dự báo chính thức "
+            "hay đồng thuận nguồn."
+        ),
         "observations": len(numeric_points),
     }
 
@@ -1740,14 +1780,28 @@ def build_card_insights(
             forecast = None
         elif external_forecast_data is None:
             # Compatibility for callers that explicitly omit the API
-            # consensus layer. Production always passes external data.
-            forecast = trend_forecast(comparable_points)
+            # consensus layer.
+            forecast = trend_forecast(
+                comparable_points,
+                current_value=card.get("value"),
+                current_date=current_date,
+                month_end=card.get("frequency") == "monthly",
+            )
         else:
             forecast = build_forecast_consensus(
                 key,
                 card.get("value"),
                 external_forecast_data,
             )
+            if forecast and forecast.get("forecast_status") == "INSUFFICIENT_SOURCES":
+                local_scenario = trend_forecast(
+                    comparable_points,
+                    current_value=card.get("value"),
+                    current_date=current_date,
+                    month_end=card.get("frequency") == "monthly",
+                )
+                if local_scenario:
+                    forecast = local_scenario
         ai_item = ai_lookup.get(key, {})
         ai_reason = (
             str(ai_item.get("reason_short") or "").strip()
@@ -2032,8 +2086,10 @@ def build_frontend_api(
         "quality": {
             "facts_endpoint_separate": True,
             "ai_output_included": False,
-            "missing_or_disputed_consensus_is_null": True,
+            "disputed_consensus_is_null": True,
             "single_source_is_explicitly_low_confidence": True,
+            "local_history_scenario_is_explicitly_low_confidence": True,
+            "model_estimate_is_not_source_consensus": True,
         },
         "disclaimer": (
             "Đây là đầu ra mô hình/kịch bản, không phải số liệu chính thức "
@@ -2164,6 +2220,7 @@ def render_html(payload: dict[str, Any]) -> str:
     :root {{ color-scheme: dark; --ink:#f8fafc; --muted:#94a3b8; --line:rgba(255,255,255,.09); --ok:#34d399; --warn:#f59e0b; --bg:#090b10; --panel:#0f1119; }}
     * {{ box-sizing: border-box; }}
     body {{ margin:0; font-family: Arial, sans-serif; background:var(--bg); color:var(--ink); }}
+    body.modal-open {{ overflow:hidden; }}
     header {{ padding:30px 20px 10px; }}
     .wrap {{ max-width:1060px; margin:0 auto; }}
     .eyebrow {{ display:inline-flex; gap:8px; align-items:center; margin-bottom:10px; }}
@@ -2235,14 +2292,20 @@ def render_html(payload: dict[str, Any]) -> str:
     .detail-stat span {{ display:block; color:#64748b; font-size:11px; margin-bottom:6px; }}
     .detail-stat strong {{ display:block; color:#fff; font-size:17px; overflow-wrap:anywhere; }}
     .detail-stat small {{ display:block; color:#94a3b8; margin-top:5px; overflow-wrap:anywhere; }}
+    .detail-stat.modeled {{ background:rgba(245,158,11,.055); }}
+    .detail-stat.modeled strong {{ color:#fde68a; }}
     .reason-block {{ margin:16px 0; padding:14px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }}
     .reason-block h3 {{ margin:0 0 7px; color:#e2e8f0; }}
     .reason-block p {{ margin:0; color:#cbd5e1; }}
-    .forecast-note {{ color:#fbbf24; font-size:12px; }}
+    .forecast-badge {{ display:inline-flex; margin:12px 0 0; color:#fde68a; background:rgba(245,158,11,.1); border:1px solid rgba(245,158,11,.35); border-radius:999px; padding:5px 9px; font-size:11px; font-weight:700; }}
+    .forecast-badge[hidden],.forecast-note[hidden] {{ display:none; }}
+    .forecast-note {{ color:#fbbf24; border-left:3px solid #f59e0b; padding:8px 10px; background:rgba(245,158,11,.055); font-size:12px; }}
+    .forecast-disclaimer {{ color:#94a3b8; font-size:12px; }}
     .chart-wrap[hidden] {{ display:none; }}
     .chart-svg {{ width:100%; height:300px; display:block; background:rgba(255,255,255,.025); border:1px solid var(--line); border-radius:8px; }}
     .chart-meta {{ color:#94a3b8; font-size:12px; margin-top:10px; }}
     @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} .detail-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }} .driver-grid,.scenario-grid {{ grid-template-columns:1fr; }} }}
+    @media (max-width:480px) {{ .modal {{ padding:0; }} .modal-box {{ min-height:100dvh; max-height:100dvh; border-radius:0; }} .detail-grid {{ grid-template-columns:1fr; }} }}
   </style>
 </head>
 <body>
@@ -2261,7 +2324,7 @@ def render_html(payload: dict[str, Any]) -> str:
   <nav class="wrap">{"".join(tabs)}</nav>
   <main class="wrap">{"".join(sections)}<section class="sources"><h2>Nguồn độc lập đang theo dõi</h2>{source_table}</section></main>
   <div class="modal" id="chartModal" aria-hidden="true">
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="chartTitle">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="chartTitle" aria-describedby="detailMethod detailForecastWarning detailDisclaimer">
       <div class="modal-head">
         <div>
           <p class="group-label">Số cũ · dự báo tham khảo · lý do</p>
@@ -2275,10 +2338,12 @@ def render_html(payload: dict[str, Any]) -> str:
         <div class="detail-stat"><span>Dự báo +1 tháng</span><strong id="detailForecast1">—</strong><small id="detailForecast1Range"></small></div>
         <div class="detail-stat"><span>Dự báo +3 tháng</span><strong id="detailForecast3">—</strong><small id="detailForecast3Range"></small></div>
       </div>
+      <p class="forecast-badge" id="detailForecastBadge" hidden>KỊCH BẢN MÔ HÌNH · ĐỘ TIN CẬY THẤP</p>
       <div class="reason-block"><h3>Lý do ngắn</h3><p id="detailReason"></p></div>
       <p class="chart-meta" id="detailMethod"></p>
       <p class="chart-meta" id="detailForecastSources"></p>
-      <p class="forecast-note" id="detailDisclaimer"></p>
+      <p class="forecast-note" id="detailForecastWarning" hidden></p>
+      <p class="forecast-disclaimer" id="detailDisclaimer"></p>
       <div class="chart-wrap" id="chartWrap">
         <svg class="chart-svg" id="chartSvg" viewBox="0 0 720 300" role="img"></svg>
         <p class="chart-meta" id="chartMeta"></p>
@@ -2309,9 +2374,11 @@ def render_html(payload: dict[str, Any]) -> str:
     const forecast1RangeEl = document.getElementById('detailForecast1Range');
     const forecast3El = document.getElementById('detailForecast3');
     const forecast3RangeEl = document.getElementById('detailForecast3Range');
+    const forecastBadgeEl = document.getElementById('detailForecastBadge');
     const reasonEl = document.getElementById('detailReason');
     const methodEl = document.getElementById('detailMethod');
     const forecastSourcesEl = document.getElementById('detailForecastSources');
+    const forecastWarningEl = document.getElementById('detailForecastWarning');
     const disclaimerEl = document.getElementById('detailDisclaimer');
     let lastFocused = null;
 
@@ -2323,9 +2390,31 @@ def render_html(payload: dict[str, Any]) -> str:
       return `${{shown}}${{unit ? ` ${{unit}}` : ''}}`;
     }}
 
-    function forecastRange(forecast, unit) {{
-      if (!forecast) return 'Cần ít nhất 2 kỳ số liệu';
+    function forecastRange(forecast, unit, status) {{
+      if (!forecast && status === 'DISAGREEMENT') return 'Các nguồn đang bất đồng';
+      if (!forecast && status === 'NOT_FORECASTABLE') return 'Không áp dụng mô hình số';
+      if (!forecast) return 'Chưa đủ lịch sử phù hợp';
       return `${{formatValue(forecast.low, unit)}} – ${{formatValue(forecast.high, unit)}} · đến ${{forecast.as_of}}`;
+    }}
+
+    function forecastStatusLabel(status) {{
+      return ({{
+        MODEL_ESTIMATE: 'ƯỚC TÍNH MÔ HÌNH',
+        SINGLE_SOURCE: 'MỘT NGUỒN',
+        CONSENSUS: 'ĐỒNG THUẬN NGUỒN',
+        DISAGREEMENT: 'NGUỒN BẤT ĐỒNG',
+        INSUFFICIENT_SOURCES: 'CHƯA ĐỦ NGUỒN',
+        NOT_FORECASTABLE: 'KHÔNG NGOẠI SUY',
+      }})[status] || status || 'CHƯA ĐỦ NGUỒN';
+    }}
+
+    function confidenceLabel(confidence) {{
+      return ({{
+        HIGH: 'CAO',
+        MEDIUM: 'TRUNG BÌNH',
+        LOW: 'THẤP',
+        WAITING_FOR_DATA: 'CHỜ DỮ LIỆU',
+      }})[confidence] || confidence || 'CHỜ DỮ LIỆU';
     }}
 
     function drawChart(item) {{
@@ -2347,6 +2436,7 @@ def render_html(payload: dict[str, Any]) -> str:
         <polyline points="${{line}}" fill="none" stroke="#818cf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
         <circle cx="${{x(pts.length - 1).toFixed(1)}}" cy="${{y(Number(last.value)).toFixed(1)}}" r="4" fill="#34d399" />
       `;
+      svg.setAttribute('aria-label', `Biểu đồ ${{item.name}} gồm ${{pts.length}} điểm, từ ${{first.date.slice(0,10)}} đến ${{last.date.slice(0,10)}}`);
       meta.textContent = `${{pts.length}} điểm · mới nhất: ${{last.value}} ${{item.unit || ''}} · từ ${{first.date.slice(0,10)}} đến ${{last.date.slice(0,10)}}`;
     }}
 
@@ -2356,22 +2446,29 @@ def render_html(payload: dict[str, Any]) -> str:
       const insight = item.insight || {{}};
       const current = insight.current || {{}};
       const previous = insight.previous;
+      const forecastStatus = insight.forecast_status || 'INSUFFICIENT_SOURCES';
+      const isModelEstimate = forecastStatus === 'MODEL_ESTIMATE';
       title.textContent = item.name;
       currentEl.textContent = formatValue(current.value, current.unit || item.unit);
       currentDateEl.textContent = current.date ? `Ngày dữ liệu: ${{current.date}}` : '';
       previousEl.textContent = previous ? formatValue(previous.value, previous.unit || item.unit) : 'Chưa có kỳ so sánh';
       previousDateEl.textContent = previous && previous.date ? `Ngày dữ liệu: ${{previous.date.slice(0, 10)}}` : 'Không tạo số thay thế';
       forecast1El.textContent = insight.forecast_1m ? formatValue(insight.forecast_1m.value, item.unit) : 'Chưa đủ dữ liệu';
-      forecast1RangeEl.textContent = forecastRange(insight.forecast_1m, item.unit);
+      forecast1RangeEl.textContent = forecastRange(insight.forecast_1m, item.unit, forecastStatus);
       forecast3El.textContent = insight.forecast_3m ? formatValue(insight.forecast_3m.value, item.unit) : 'Chưa đủ dữ liệu';
-      forecast3RangeEl.textContent = forecastRange(insight.forecast_3m, item.unit);
+      forecast3RangeEl.textContent = forecastRange(insight.forecast_3m, item.unit, forecastStatus);
+      forecast1El.closest('.detail-stat').classList.toggle('modeled', isModelEstimate);
+      forecast3El.closest('.detail-stat').classList.toggle('modeled', isModelEstimate);
+      forecastBadgeEl.hidden = !isModelEstimate;
       reasonEl.textContent = insight.reason_short || 'Chưa có phân tích nguyên nhân.';
-      methodEl.textContent = `${{insight.method || ''}} Trạng thái: ${{insight.forecast_status || 'INSUFFICIENT_SOURCES'}} · Độ tin cậy: ${{insight.confidence || 'WAITING_FOR_DATA'}}.`;
+      methodEl.textContent = `${{insight.method || ''}} Trạng thái: ${{forecastStatusLabel(forecastStatus)}} · Độ tin cậy: ${{confidenceLabel(insight.confidence)}}.`;
       const forecastSources = Array.isArray(insight.forecast_sources) ? insight.forecast_sources : [];
       forecastSourcesEl.textContent = forecastSources.length
-        ? `Nguồn dự báo: ${{forecastSources.map(source => `${{source.provider}} (${{source.as_of || 'chưa rõ ngày'}})`).join(' · ')}}`
-        : 'Nguồn dự báo: chưa đủ nguồn API hợp lệ.';
-      disclaimerEl.textContent = insight.forecast_warning || insight.disclaimer || 'Dự báo chỉ mang tính tham khảo.';
+        ? `${{isModelEstimate ? 'Cơ sở mô hình' : 'Nguồn dự báo'}}: ${{forecastSources.map(source => `${{source.provider}}${{source.input_provider ? ` · đầu vào ${{source.input_provider}}` : ''}} (${{source.as_of || 'chưa rõ ngày'}})`).join(' · ')}}`
+        : 'Nguồn dự báo: chưa đủ nguồn hợp lệ.';
+      forecastWarningEl.textContent = insight.forecast_warning || '';
+      forecastWarningEl.hidden = !insight.forecast_warning;
+      disclaimerEl.textContent = insight.disclaimer || 'Dự báo chỉ mang tính tham khảo.';
       if (item.points && item.points.length >= 2) {{
         chartWrap.hidden = false;
         drawChart(item);
@@ -2381,6 +2478,7 @@ def render_html(payload: dict[str, Any]) -> str:
         meta.textContent = '';
       }}
       lastFocused = trigger || document.activeElement;
+      document.body.classList.add('modal-open');
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
       closeBtn.focus();
@@ -2397,6 +2495,7 @@ def render_html(payload: dict[str, Any]) -> str:
       }});
     }});
     closeBtn.addEventListener('click', () => {{
+      document.body.classList.remove('modal-open');
       modal.classList.remove('open');
       modal.setAttribute('aria-hidden', 'true');
       if (lastFocused) lastFocused.focus();
@@ -2444,7 +2543,10 @@ def main() -> None:
             "source_count": len({card["source_primary"] for card in cards}),
             "vip_cards": sum(1 for card in cards if card.get("vip")),
             "vip_available": sum(1 for card in cards if card.get("vip") and card["value"] is not None),
-            "note": "Priority is live parser, then dated cache, then sourced verified baseline. Values are never guessed.",
+            "note": (
+                "Observed values use live parsers, dated cache, then sourced "
+                "verified baselines; model scenarios stay separate from facts."
+            ),
         },
         "change_memory": memory_summary,
         "gemini_analysis": {

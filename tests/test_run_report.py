@@ -146,7 +146,7 @@ class RunReportTests(unittest.TestCase):
         self.assertEqual(result["govt_bond_issuance"]["value"], 185.401)
         self.assertEqual(result["corporate_bond_issuance"]["value"], 0.1)
 
-    def test_low_confidence_card_insight_hides_numeric_forecast(self) -> None:
+    def test_low_confidence_card_insight_is_labeled_model_estimate(self) -> None:
         cards = [{
             "key": "interbank_rate",
             "name_vi": "Lãi suất liên ngân hàng qua đêm",
@@ -163,10 +163,178 @@ class RunReportTests(unittest.TestCase):
         insight = run_report.build_card_insights(
             cards, history, {"analysis_data": {"indicators": []}}
         )["interbank_rate"]
+        self.assertEqual(insight["forecast_status"], "MODEL_ESTIMATE")
+        self.assertEqual(insight["confidence"], "LOW")
+        self.assertIsNotNone(insight["forecast_1m"])
+        self.assertIsNotNone(insight["forecast_3m"])
+        self.assertTrue(insight["forecast_warning"])
+
+    def test_empty_external_data_uses_exact_cpi_model_estimate_with_provenance(self) -> None:
+        cards = [{
+            "key": "cpi",
+            "name_vi": "CPI",
+            "value": 4.69,
+            "unit": "% YoY",
+            "as_of": "2026-06-30",
+            "frequency": "monthly",
+            "source_primary": "NSO",
+            "source_url": "https://www.nso.gov.vn/cpi-june-2026",
+        }]
+        history = {"series": {"cpi": [
+            {
+                "date": "2026-05-31",
+                "value": 5.6,
+                "unit": "% YoY",
+                "source": "NSO",
+                "source_url": "https://www.nso.gov.vn/cpi-may-2026",
+            },
+            {
+                "date": "2026-06-30",
+                "value": 4.69,
+                "unit": "% YoY",
+                "source": "NSO",
+                "source_url": "https://www.nso.gov.vn/cpi-june-2026",
+            },
+        ]}}
+        insight = run_report.build_card_insights(
+            cards,
+            history,
+            {"analysis_data": {"indicators": []}},
+            {"series": {}, "official_forecasts": {}},
+        )["cpi"]
+
+        self.assertEqual(insight["forecast_status"], "MODEL_ESTIMATE")
+        self.assertEqual(insight["confidence"], "LOW")
+        self.assertEqual(
+            {
+                key: insight["forecast_1m"][key]
+                for key in ("value", "low", "high")
+            },
+            {"value": 4.24, "low": 3.92, "high": 4.55},
+        )
+        self.assertEqual(insight["forecast_1m"]["as_of"], "2026-07-31")
+        self.assertEqual(
+            {
+                key: insight["forecast_3m"][key]
+                for key in ("value", "low", "high")
+            },
+            {"value": 3.73, "low": 3.22, "high": 4.24},
+        )
+        self.assertEqual(insight["forecast_3m"]["as_of"], "2026-09-30")
+        self.assertEqual(len(insight["forecast_sources"]), 1)
+        provenance = insight["forecast_sources"][0]
+        self.assertEqual(provenance["provider"], "Mô hình ViMO")
+        self.assertEqual(provenance["input_provider"], "NSO")
+        self.assertEqual(provenance["source_kind"], "local_observed_history")
+        self.assertEqual(provenance["as_of"], "2026-06-30")
+        self.assertEqual(provenance["observations"], 2)
+        self.assertEqual(
+            provenance["source_url"],
+            "https://www.nso.gov.vn/cpi-june-2026",
+        )
+
+    def test_one_cpi_point_remains_insufficient_with_empty_external_data(self) -> None:
+        cards = [{
+            "key": "cpi",
+            "name_vi": "CPI",
+            "value": 4.69,
+            "unit": "% YoY",
+            "as_of": "2026-06-30",
+            "source_primary": "NSO",
+            "source_url": "https://www.nso.gov.vn/cpi-june-2026",
+        }]
+        history = {"series": {"cpi": [{
+            "date": "2026-06-30",
+            "value": 4.69,
+            "unit": "% YoY",
+            "source": "NSO",
+        }]}}
+        insight = run_report.build_card_insights(
+            cards,
+            history,
+            {"analysis_data": {"indicators": []}},
+            {"series": {}, "official_forecasts": {}},
+        )["cpi"]
+
+        self.assertEqual(insight["forecast_status"], "INSUFFICIENT_SOURCES")
+        self.assertEqual(insight["confidence"], "WAITING_FOR_DATA")
+        self.assertIsNone(insight["forecast_1m"])
+        self.assertIsNone(insight["forecast_3m"])
+
+    def test_disagreement_is_not_overridden_by_local_model_estimate(self) -> None:
+        cards = [{
+            "key": "cpi",
+            "name_vi": "CPI",
+            "value": 4.69,
+            "unit": "% YoY",
+            "as_of": "2026-06-30",
+            "source_primary": "NSO",
+            "source_url": "https://www.nso.gov.vn/cpi-june-2026",
+        }]
+        history = {"series": {"cpi": [
+            {"date": "2026-05-31", "value": 5.6, "unit": "% YoY"},
+            {"date": "2026-06-30", "value": 4.69, "unit": "% YoY"},
+        ]}}
+        external = {
+            "series": {},
+            "official_forecasts": {
+                "cpi": [
+                    {
+                        "provider": "Source Up",
+                        "source_kind": "official_forecast",
+                        "source_url": "https://example.com/up",
+                        "as_of": "2026-06-30",
+                        "official": True,
+                        "forecast_1m": {
+                            "value": 6.0,
+                            "low": 5.8,
+                            "high": 6.2,
+                            "as_of": "2026-07-31",
+                        },
+                        "forecast_3m": {
+                            "value": 7.0,
+                            "low": 6.5,
+                            "high": 7.5,
+                            "as_of": "2026-09-30",
+                        },
+                    },
+                    {
+                        "provider": "Source Down",
+                        "source_kind": "official_forecast",
+                        "source_url": "https://example.com/down",
+                        "as_of": "2026-06-30",
+                        "official": True,
+                        "forecast_1m": {
+                            "value": 3.0,
+                            "low": 2.8,
+                            "high": 3.2,
+                            "as_of": "2026-07-31",
+                        },
+                        "forecast_3m": {
+                            "value": 2.0,
+                            "low": 1.5,
+                            "high": 2.5,
+                            "as_of": "2026-09-30",
+                        },
+                    },
+                ]
+            },
+        }
+        insight = run_report.build_card_insights(
+            cards,
+            history,
+            {"analysis_data": {"indicators": []}},
+            external,
+        )["cpi"]
+
+        self.assertEqual(insight["forecast_status"], "DISAGREEMENT")
         self.assertEqual(insight["confidence"], "LOW")
         self.assertIsNone(insight["forecast_1m"])
         self.assertIsNone(insight["forecast_3m"])
-        self.assertIn("không hiển thị", insight["method"])
+        self.assertEqual(
+            {source["provider"] for source in insight["forecast_sources"]},
+            {"Source Up", "Source Down"},
+        )
 
     def test_cached_official_values_are_marked_stale(self) -> None:
         payload = {
@@ -596,12 +764,14 @@ class RunReportTests(unittest.TestCase):
                 "cpi": {
                     "current": {"value": 4.69, "unit": "% YoY", "date": "2026-06-30"},
                     "previous": {"value": 5.6, "unit": "% YoY", "date": "2026-05-31"},
-                    "forecast_1m": {"value": 4.24, "low": 3.92, "high": 4.55, "as_of": "2026-07-30"},
+                    "forecast_1m": {"value": 4.24, "low": 3.92, "high": 4.55, "as_of": "2026-07-31"},
                     "forecast_3m": None,
+                    "forecast_status": "MODEL_ESTIMATE",
+                    "forecast_warning": "MODEL_WARNING_TEST",
                     "reason_short": "CPI giảm theo số liệu quan sát.",
                     "confidence": "LOW",
                     "method": "Test",
-                    "disclaimer": "Tham khảo",
+                    "disclaimer": "MODEL_DISCLAIMER_TEST",
                 },
                 "pmi_manufacturing": {},
             },
@@ -624,6 +794,10 @@ class RunReportTests(unittest.TestCase):
         self.assertEqual(rendered.count('class="card ok inspectable'), 2)
         self.assertIn('data-tab="strategy"', rendered)
         self.assertIn('id="detailForecast1"', rendered)
+        self.assertIn('id="detailForecastWarning"', rendered)
+        self.assertIn('id="detailDisclaimer"', rendered)
+        self.assertIn("MODEL_WARNING_TEST", rendered)
+        self.assertIn("MODEL_DISCLAIMER_TEST", rendered)
         self.assertIn("Số cũ · dự báo tham khảo · lý do", rendered)
 
     def test_successful_gemini_analysis_marks_only_submitted_events(self) -> None:
