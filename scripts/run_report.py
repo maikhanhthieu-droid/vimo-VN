@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import html
+import ipaddress
 import json
 import math
 import os
 import re
 import ssl
+import statistics
 import sys
 import time
 import xml.etree.ElementTree as ET
@@ -124,10 +127,19 @@ SOURCE_REGISTRY = {
 HISTORY_LIMIT = 100
 MEMORY_EVENT_LIMIT = 500
 GEMINI_EVENT_BATCH_LIMIT = 8
+GEMINI_FORECAST_BATCH_LIMIT = 24
+GEMINI_FORECAST_WEIGHT = 0.20
+GEMINI_SCENARIO_POLICY_VERSION = "bounded_numeric_blend_v1"
+
+# Forecast routing is explicit because identical-looking numbers can have very
+# different meanings.  In particular, a YTD cumulative total must be extended
+# by an estimated monthly flow instead of applying a trend to the total level.
 FORECASTABLE_POINT_IN_TIME_KEYS = {
     "cpi",
     "pmi_manufacturing",
     "iip",
+    "retail",
+    "state_investment",
     "interbank_rate",
     "fx_central_rate",
     "fx_market_usd_vnd",
@@ -137,6 +149,50 @@ FORECASTABLE_POINT_IN_TIME_KEYS = {
     "dxy",
     "oil_prices",
     "us_10y_yield",
+}
+FORECASTABLE_CUMULATIVE_KEYS = {
+    "trade_balance",
+    "exports",
+    "imports",
+    "fdi_disbursed",
+    "fdi_registered",
+    "business_new",
+    "business_exited",
+    "international_visitors",
+    "state_budget",
+}
+FORECASTABLE_CUMULATIVE_RATE_KEYS = {"credit"}
+NONNEGATIVE_CUMULATIVE_KEYS = FORECASTABLE_CUMULATIVE_KEYS - {"trade_balance"}
+FORECASTABLE_KEYS = (
+    FORECASTABLE_POINT_IN_TIME_KEYS
+    | FORECASTABLE_CUMULATIVE_KEYS
+    | FORECASTABLE_CUMULATIVE_RATE_KEYS
+)
+FORECAST_DEFINITION_IDS = {
+    "cpi": "cpi_headline_yoy",
+    "pmi_manufacturing": "pmi_manufacturing_headline",
+    "iip": "iip_ytd_yoy",
+    "credit": "credit_growth_ytd",
+    "retail": "retail_sales_ytd_yoy",
+    "state_investment": "state_investment_yoy",
+    "interbank_rate": "interbank_overnight_rate",
+    "fx_central_rate": "sbv_central_vnd_usd",
+    "fx_market_usd_vnd": "market_vnd_usd",
+    "stock_market": "vnindex_close",
+    "govt_bond_yield": "vn_government_bond_10y_yield",
+    "gold_world": "world_gold_usd_oz",
+    "dxy": "dxy_index",
+    "oil_prices": "wti_usd_barrel",
+    "us_10y_yield": "us_treasury_10y_yield",
+    "trade_balance": "goods_trade_balance_ytd",
+    "exports": "goods_exports_ytd",
+    "imports": "goods_imports_ytd",
+    "fdi_disbursed": "fdi_disbursed_ytd",
+    "fdi_registered": "fdi_registered_ytd",
+    "business_new": "new_businesses_ytd",
+    "business_exited": "exited_businesses_ytd",
+    "international_visitors": "international_visitors_ytd",
+    "state_budget": "state_budget_revenue_ytd",
 }
 NON_CACHEABLE_FREQUENCIES = {"daily", "daily_monitor"}
 TLS_FALLBACK_HOSTS = {"nso.gov.vn", "www.nso.gov.vn", "vbma.org.vn", "www.vbma.org.vn"}
@@ -661,7 +717,32 @@ def fetch_pmi_snapshot() -> dict[str, dict[str, Any]]:
         date_match = re.search(r"-111(?P<yy>\d{2})(?P<mm>\d{2})(?P<dd>\d{2})\d+\.htm$", link)
         as_of = None
         if date_match:
-            as_of = f'20{date_match.group("yy")}-{date_match.group("mm")}-{date_match.group("dd")}'
+            publication_year = int(f'20{date_match.group("yy")}')
+            publication_month = int(date_match.group("mm"))
+            publication_day = int(date_match.group("dd"))
+            as_of = f"{publication_year:04d}-{publication_month:02d}-{publication_day:02d}"
+            month_names = {
+                name.lower(): month
+                for month, name in enumerate(
+                    (
+                        "January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December",
+                    ),
+                    start=1,
+                )
+            }
+            period_match = re.search(
+                r"\b(?:in|for)\s+(January|February|March|April|May|June|July|August|September|October|November|December)\b",
+                text,
+                flags=re.I,
+            )
+            if period_match:
+                observation_month = month_names[period_match.group(1).lower()]
+                observation_year = publication_year - int(observation_month > publication_month)
+                as_of = (
+                    f"{observation_year:04d}-{observation_month:02d}-"
+                    f"{monthrange(observation_year, observation_month)[1]:02d}"
+                )
         return {
             "pmi_manufacturing": {
                 "value": round(value, 2),
@@ -1070,6 +1151,7 @@ def build_cards(now: datetime) -> list[dict[str, Any]]:
             "as_of": live.get("as_of", now.date().isoformat()),
             "frequency": VIP_FREQUENCIES.get(spec.key, "monitor"),
             "vip": VIP_FREQUENCIES.get(spec.key) in {"monthly", "yearly"},
+            "forecast_definition_id": FORECAST_DEFINITION_IDS.get(spec.key),
             "direction": direction_for(spec.key, value),
             "narrative": (
                 f"{spec.name_vi} hiện có dữ liệu tự động từ {spec.source_primary}. "
@@ -1147,6 +1229,7 @@ def update_history(cards: list[dict[str, Any]], now: datetime) -> dict[str, Any]
                     "source_url": card.get("source_url"),
                     "source_quality": card.get("source_quality"),
                     "source_note": card.get("source_note"),
+                    "forecast_definition_id": card.get("forecast_definition_id"),
                 }
             )
         series[key] = compact_bucket_points(points, card)[-HISTORY_LIMIT:]
@@ -1387,18 +1470,145 @@ def valid_source_urls(value: Any) -> list[str]:
     for raw in value:
         url = str(raw or "").strip()
         parsed = urlparse(url)
-        if parsed.scheme in {"http", "https"} and parsed.netloc:
+        hostname = str(parsed.hostname or "").casefold()
+        if (
+            parsed.scheme != "https"
+            or not parsed.netloc
+            or not hostname
+            or parsed.username
+            or parsed.password
+            or len(url) > 2048
+            or hostname == "localhost"
+            or hostname.endswith(".localhost")
+        ):
+            continue
+        try:
+            address = ipaddress.ip_address(hostname.strip("[]"))
+        except ValueError:
+            address = None
+        if address is not None and (
+            address.is_private
+            or address.is_loopback
+            or address.is_link_local
+            or address.is_reserved
+            or address.is_unspecified
+        ):
+            continue
+        if url not in urls:
             urls.append(url)
+        if len(urls) >= 5:
+            break
     return urls
+
+
+def gemini_forecast_input_id(
+    key: str,
+    current: dict[str, Any],
+    forecast_1m: dict[str, Any],
+    forecast_3m: dict[str, Any],
+    *,
+    model: str | None = None,
+) -> str:
+    locked_input = {
+        "key": key,
+        "forecast_definition_id": FORECAST_DEFINITION_IDS.get(key),
+        "gemini_model": model or "gemini-3.6-flash",
+        "scenario_policy_version": GEMINI_SCENARIO_POLICY_VERSION,
+        "current": {
+            "value": current.get("value"),
+            "unit": current.get("unit"),
+            "date": current.get("date"),
+        },
+        "forecast_1m": {
+            field: forecast_1m.get(field)
+            for field in ("value", "low", "high", "as_of")
+        },
+        "forecast_3m": {
+            field: forecast_3m.get(field)
+            for field in ("value", "low", "high", "as_of")
+        },
+    }
+    digest = hashlib.sha256(
+        json.dumps(
+            locked_input,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+    ).hexdigest()[:20]
+    return f"{key}:{digest}"
+
+
+def build_gemini_forecast_contexts(
+    cards: list[dict[str, Any]],
+    forecast_insights: dict[str, dict[str, Any]] | None,
+    *,
+    model: str | None = None,
+) -> list[dict[str, Any]]:
+    if not forecast_insights:
+        return []
+    card_lookup = {str(card.get("key")): card for card in cards}
+    contexts: list[dict[str, Any]] = []
+    for key, insight in forecast_insights.items():
+        # The trade balance is reconciled from export minus import, so it must
+        # not receive an independent AI adjustment that could break identity.
+        if key == "trade_balance" or insight.get("forecast_status") != "MODEL_ESTIMATE":
+            continue
+        forecast_1m = insight.get("forecast_1m")
+        forecast_3m = insight.get("forecast_3m")
+        current = insight.get("current")
+        if not all(isinstance(item, dict) for item in (current, forecast_1m, forecast_3m)):
+            continue
+        if any(
+            numeric_value(forecast.get(field)) is None
+            for forecast in (forecast_1m, forecast_3m)
+            for field in ("value", "low", "high")
+        ):
+            continue
+        input_id = gemini_forecast_input_id(
+            key,
+            current,
+            forecast_1m,
+            forecast_3m,
+            model=model,
+        )
+        card = card_lookup.get(key, {})
+        contexts.append(
+            {
+                "key": key,
+                "name_vi": card.get("name_vi") or insight.get("name_vi") or key,
+                "input_id": input_id,
+                "forecast_definition_id": FORECAST_DEFINITION_IDS.get(key),
+                "scenario_policy_version": GEMINI_SCENARIO_POLICY_VERSION,
+                "current": {
+                    "value": current.get("value"),
+                    "unit": current.get("unit"),
+                    "as_of": current.get("date"),
+                    "source": current.get("source") or card.get("source_primary"),
+                    "source_url": current.get("source_url") or card.get("source_url"),
+                },
+                "forecast_1m": {
+                    field: forecast_1m.get(field)
+                    for field in ("value", "low", "high", "as_of")
+                },
+                "forecast_3m": {
+                    field: forecast_3m.get(field)
+                    for field in ("value", "low", "high", "as_of")
+                },
+                "model_method": insight.get("method"),
+            }
+        )
+    return contexts
 
 
 def sanitize_gemini_analysis(
     raw: dict[str, Any] | None,
     allowed_keys: set[str],
+    forecast_contexts: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    """Keep sourced qualitative context only; Gemini never owns numeric facts."""
+    """Keep sourced context and only bounded candidates tied to locked inputs."""
     if not isinstance(raw, dict):
-        return {"summary_vi": "", "indicators": []}
+        return {"summary_vi": "", "indicators": [], "forecast_scenarios": []}
     indicators = []
     seen: set[str] = set()
     for item in raw.get("indicators", []):
@@ -1423,18 +1633,110 @@ def sanitize_gemini_analysis(
                 "reason_short": reason,
                 "confidence": confidence if reason else "LOW",
                 "sources": sources,
-                "evidence_status": "sourced" if reason else "unverified",
+                "evidence_status": "url_provided" if reason else "unverified",
+                "grounding_status": (
+                    "model_provided_url_not_independently_verified" if reason else "unverified"
+                ),
+                "event_id": item.get("event_id"),
                 "forecast_1m": None,
                 "forecast_3m": None,
             }
         )
+    allowed_forecasts = {
+        (str(context.get("key") or ""), str(context.get("input_id") or "")): context
+        for context in forecast_contexts or []
+    }
+    forecast_scenarios: list[dict[str, Any]] = []
+    seen_scenarios: set[str] = set()
+    for item in raw.get("forecast_scenarios", []):
+        if not isinstance(item, dict):
+            continue
+        key = str(item.get("key") or "")
+        input_id = str(item.get("input_id") or "")
+        context = allowed_forecasts.get((key, input_id))
+        if context is None or key in seen_scenarios:
+            continue
+        decision = str(item.get("decision") or "").upper()
+        if decision == "KEEP_BASELINE":
+            seen_scenarios.add(key)
+            forecast_scenarios.append(
+                {
+                    "key": key,
+                    "input_id": input_id,
+                    "decision": "KEEP_BASELINE",
+                    "forecast_1m": float(context["forecast_1m"]["value"]),
+                    "forecast_3m": float(context["forecast_3m"]["value"]),
+                    "reason_short": "Chưa đủ bằng chứng để điều chỉnh kịch bản nền.",
+                    "confidence": "LOW",
+                    "sources": valid_source_urls(item.get("sources")),
+                    "evidence_status": "baseline_retained",
+                    "grounding_status": "no_valid_grounded_adjustment",
+                    "model": item.get("model"),
+                    "generated_at": item.get("generated_at"),
+                }
+            )
+            continue
+        if decision != "ADJUST_WITHIN_BOUNDS":
+            continue
+        sources = valid_source_urls(item.get("sources"))
+        candidate_1m = numeric_value(item.get("forecast_1m"))
+        candidate_3m = numeric_value(item.get("forecast_3m"))
+        if not sources or candidate_1m is None or candidate_3m is None:
+            continue
+        baseline_1m = context["forecast_1m"]
+        baseline_3m = context["forecast_3m"]
+        if not (
+            float(baseline_1m["low"]) <= candidate_1m <= float(baseline_1m["high"])
+            and float(baseline_3m["low"]) <= candidate_3m <= float(baseline_3m["high"])
+        ):
+            continue
+        current_value = numeric_value(context.get("current", {}).get("value"))
+        if key in NONNEGATIVE_CUMULATIVE_KEYS:
+            if current_value is None:
+                continue
+            current_date = context.get("current", {}).get("as_of") or context.get("current", {}).get("date")
+            current_year = normalized_data_date(current_date).split("-", 1)[0]
+            one_year = normalized_data_date(baseline_1m.get("as_of")).split("-", 1)[0]
+            three_year = normalized_data_date(baseline_3m.get("as_of")).split("-", 1)[0]
+            if current_year == one_year and candidate_1m < current_value:
+                continue
+            if one_year == three_year and candidate_3m < candidate_1m:
+                continue
+        reason = str(item.get("reason_short") or "").strip()
+        if re.search(r"\d", reason):
+            reason = ""
+        if not reason:
+            continue
+        model_reported_confidence = str(item.get("confidence") or "LOW").upper()
+        if model_reported_confidence not in {"LOW", "MEDIUM", "HIGH"}:
+            model_reported_confidence = "LOW"
+        seen_scenarios.add(key)
+        forecast_scenarios.append(
+            {
+                "key": key,
+                "input_id": input_id,
+                "forecast_1m": candidate_1m,
+                "forecast_3m": candidate_3m,
+                "reason_short": reason,
+                "confidence": "LOW",
+                "model_reported_confidence": model_reported_confidence,
+                "decision": "ADJUST_WITHIN_BOUNDS",
+                "sources": sources,
+                "evidence_status": "url_provided",
+                "grounding_status": "model_provided_url_not_independently_verified",
+                "model": item.get("model"),
+                "generated_at": item.get("generated_at"),
+            }
+        )
+
     summary = str(raw.get("summary_vi") or "").strip()
     if re.search(r"\d", summary):
         summary = ""
     return {
         "summary_vi": summary,
         "indicators": indicators,
-        "policy": "qualitative_context_only_no_numeric_override",
+        "forecast_scenarios": forecast_scenarios,
+        "policy": "bounded_ai_scenario_candidates_never_override_observed_facts",
     }
 
 
@@ -1458,19 +1760,51 @@ def analyze_indicator_changes(
     memory: dict[str, Any],
     cards: list[dict[str, Any]],
     now: datetime,
+    forecast_insights: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     pending = latest_pending_events(memory)
-    model = os.environ.get("GEMINI_MODEL") or "models/gemini-3-flash-preview"
-    if not pending:
-        previous = load_previous_gemini_analysis()
+    model = os.environ.get("GEMINI_MODEL") or "gemini-3.6-flash"
+    forecast_contexts = build_gemini_forecast_contexts(
+        cards,
+        forecast_insights,
+        model=model,
+    )
+    previous = load_previous_gemini_analysis()
+    allowed_card_keys = {str(card.get("key") or "") for card in cards}
+    previous_analysis_data = sanitize_gemini_analysis(
+        previous.get("analysis_data") if isinstance(previous, dict) else None,
+        allowed_card_keys,
+        forecast_contexts,
+    )
+    pending_keys = {str(event.get("key") or "") for event in pending}
+    previous_analysis_data["indicators"] = [
+        item
+        for item in previous_analysis_data.get("indicators", [])
+        if str(item.get("key") or "") not in pending_keys
+    ]
+    cached_input_ids = {
+        str(item.get("input_id") or "")
+        for item in previous_analysis_data.get("forecast_scenarios", [])
+        if isinstance(item, dict)
+    }
+    missing_forecast_contexts = [
+        context
+        for context in forecast_contexts
+        if str(context.get("input_id") or "") not in cached_input_ids
+    ]
+    if not pending and not missing_forecast_contexts:
         if previous and previous.get("status") == "success":
-            return previous
+            return {**previous, "analysis_data": previous_analysis_data}
         return {
             "status": "no_change",
             "model": model,
             "generated_at": now.isoformat(),
             "event_count": 0,
+            "forecast_scenario_count": len(
+                previous_analysis_data.get("forecast_scenarios", [])
+            ),
             "analysis_vi": "Chua phat hien bien dong moi de phan tich.",
+            "analysis_data": previous_analysis_data,
         }
 
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -1480,10 +1814,15 @@ def analyze_indicator_changes(
             "model": model,
             "generated_at": now.isoformat(),
             "event_count": len(pending),
+            "forecast_scenario_count": len(
+                previous_analysis_data.get("forecast_scenarios", [])
+            ),
             "analysis_vi": "Da luu bien dong; dang cho GEMINI_API_KEY de phan tich.",
+            "analysis_data": previous_analysis_data,
         }
 
     selected = pending[:GEMINI_EVENT_BATCH_LIMIT]
+    selected_forecast_contexts = missing_forecast_contexts[:GEMINI_FORECAST_BATCH_LIMIT]
     selected_keys = {str(event.get("key")) for event in selected}
     context = [
         {
@@ -1500,40 +1839,97 @@ def analyze_indicator_changes(
         for card in cards
         if card.get("value") is not None and str(card.get("key")) in selected_keys
     ]
+    response_schema = {
+        "type": "object",
+        "properties": {
+            "summary_vi": {"type": "string"},
+            "indicators": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "key": {"type": "string"},
+                        "reason_short": {"type": "string"},
+                        "confidence": {
+                            "type": "string",
+                            "enum": ["LOW", "MEDIUM", "HIGH"],
+                        },
+                        "sources": {"type": "array", "items": {"type": "string"}},
+                    },
+                    "required": ["key", "reason_short", "confidence", "sources"],
+                },
+            },
+            "forecast_scenarios": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "key": {"type": "string"},
+                        "input_id": {"type": "string"},
+                        "decision": {
+                            "type": "string",
+                            "enum": ["KEEP_BASELINE", "ADJUST_WITHIN_BOUNDS"],
+                        },
+                        "forecast_1m": {"type": "number"},
+                        "forecast_3m": {"type": "number"},
+                        "reason_short": {"type": "string"},
+                        "confidence": {
+                            "type": "string",
+                            "enum": ["LOW"],
+                        },
+                        "sources": {"type": "array", "items": {"type": "string"}},
+                    },
+                    "required": [
+                        "key",
+                        "input_id",
+                        "decision",
+                        "forecast_1m",
+                        "forecast_3m",
+                        "reason_short",
+                        "confidence",
+                        "sources",
+                    ],
+                },
+            },
+        },
+        "required": ["summary_vi", "indicators", "forecast_scenarios"],
+    }
     prompt = f"""
 Bạn là chuyên gia phân tích kinh tế Việt Nam. Dữ liệu trong CHANGE_EVENTS và CURRENT_CONTEXT là
 dữ liệu đầu vào đã được hệ thống thu thập; không được sửa số, tự điền số, hay biến kịch bản thành sự thật.
-Hãy dùng Google Search để tìm nguyên nhân từ nguồn chính thống hoặc báo chí uy tín.
+FORECAST_BASELINES là khoảng kịch bản do mô hình ViMO khóa sẵn, tách biệt hoàn toàn với số liệu quan sát.
+Hãy dùng Google Search để tìm nguyên nhân và bối cảnh từ nguồn chính thống hoặc báo chí uy tín.
 
 Yêu cầu giọng điệu đầu tư trung lập và thận trọng:
 - Không dùng ngôn ngữ hô hào, giật gân hoặc mặc định chỉ số tăng là tốt cho cổ phiếu.
 - Nêu cả tác động thuận lợi và bất lợi; ưu tiên rủi ro, độ trễ và điều kiện cần xác nhận.
 - Không suy rộng từ một chỉ số sang toàn thị trường. Không đưa nhận định mua/bán tổng thể.
-- Chỉ phân tích các key có trong CHANGE_EVENTS. Dữ liệu không đổi đã được hệ thống giữ lại và không gửi lại để tiết kiệm token.
+- Phần indicators chỉ phân tích các key có trong CHANGE_EVENTS. Phần forecast_scenarios xử lý riêng mọi key có trong FORECAST_BASELINES.
+- Với mỗi phần tử FORECAST_BASELINES, phải chọn đúng một decision:
+  KEEP_BASELINE khi không có bằng chứng liên quan đủ mạnh; ADJUST_WITHIN_BOUNDS chỉ khi có bằng chứng liên quan.
+- Với KEEP_BASELINE, chép đúng value nền cho 1 tháng và 3 tháng; sources có thể là mảng rỗng.
+- Với ADJUST_WITHIN_BOUNDS, trả một ứng viên 1 tháng và 3 tháng nằm trong đúng low/high đã khóa
+  và kèm URL HTTPS trực tiếp thực sự hỗ trợ điều chỉnh.
+- Phải chép nguyên key và input_id. Không được đổi current, unit, as_of, low hoặc high.
+- Không được bịa URL hoặc dùng URL không liên quan để hợp thức hóa điều chỉnh.
 
-Chỉ trả về một JSON object hợp lệ, không dùng Markdown, theo đúng cấu trúc:
-{{
-  "summary_vi": "tóm tắt tối đa 80 từ",
-  "indicators": [
-    {{
-      "key": "đúng key đầu vào",
-      "reason_short": "nguyên nhân ngắn; nói chưa đủ bằng chứng nếu cần",
-      "confidence": "LOW | MEDIUM | HIGH",
-      "sources": ["URL trực tiếp"]
-    }}
-  ]
-}}
+Chỉ trả về JSON hợp lệ theo response schema đã cung cấp, không dùng Markdown. summary_vi tối đa 80 từ.
+Trong indicators, confidence có thể LOW, MEDIUM hoặc HIGH. Trong forecast_scenarios, confidence luôn LOW;
+forecast_1m và forecast_3m bắt buộc là số, không phải chuỗi.
 
 reason_short không được chép lại hoặc bổ sung bất kỳ con số nào; hệ thống sẽ tự hiển thị số cũ/mới từ
 CHANGE_EVENTS. Chỉ giải thích bối cảnh định tính và phải có URL nguồn trực tiếp. Không có bằng chứng thì
-nói rõ "chưa đủ bằng chứng". Không dự báo giá trị 1 tháng/3 tháng. Đây là phân tích
-tham khảo chung, không phải lời khuyên đầu tư cá nhân.
+nói rõ "chưa đủ bằng chứng". Các con số trong forecast_scenarios chỉ là kịch bản tham khảo bị giới hạn
+bởi mô hình ViMO, không phải số liệu chính thức hay lời khuyên đầu tư cá nhân.
 
 CHANGE_EVENTS:
 {json.dumps(selected, ensure_ascii=False, indent=2)}
 
 CURRENT_CONTEXT:
 {json.dumps(context, ensure_ascii=False, indent=2)}
+
+FORECAST_BASELINES:
+{json.dumps(selected_forecast_contexts, ensure_ascii=False, indent=2)}
 """.strip()
 
     try:
@@ -1543,13 +1939,20 @@ CURRENT_CONTEXT:
         interaction = client.interactions.create(
             model=model,
             input=prompt,
+            store=False,
             tools=[{"type": "google_search"}],
             generation_config={
-                "temperature": 0.1,
-                "max_output_tokens": 4096,
-                "top_p": 0.9,
+                "max_output_tokens": 8192,
                 "thinking_level": "high",
             },
+            response_format=[
+                {
+                    "type": "text",
+                    "mime_type": "application/json",
+                    "schema": response_schema,
+                }
+            ],
+            timeout=60.0,
         )
         output_text = getattr(interaction, "output_text", None)
         if not output_text:
@@ -1561,30 +1964,101 @@ CURRENT_CONTEXT:
         analysis_data = sanitize_gemini_analysis(
             extract_json_object(output_text),
             selected_keys,
+            selected_forecast_contexts,
         )
-        selected_ids = {event["id"] for event in selected}
+        event_id_by_key = {
+            str(event.get("key") or ""): event.get("id") for event in selected
+        }
+        for indicator in analysis_data.get("indicators", []):
+            indicator["event_id"] = event_id_by_key.get(str(indicator.get("key") or ""))
+        generated_at = now.isoformat()
+        for scenario in analysis_data.get("forecast_scenarios", []):
+            # Provenance is stamped by the application, never trusted from the
+            # model response.
+            scenario["model"] = model
+            scenario["generated_at"] = generated_at
+        # An explicit KEEP_BASELINE decision is cached, but an omitted or
+        # rejected item remains missing so a later run can retry it.  This
+        # avoids freezing a partial/transient model response for the whole
+        # observation period.
+        selected_forecast_keys = {
+            str(context.get("key") or "") for context in selected_forecast_contexts
+        }
+        prior_indicators = {
+            str(item.get("key") or ""): item
+            for item in previous_analysis_data.get("indicators", [])
+            if isinstance(item, dict) and str(item.get("key") or "") not in selected_keys
+        }
+        prior_indicators.update(
+            {
+                str(item.get("key") or ""): item
+                for item in analysis_data.get("indicators", [])
+                if isinstance(item, dict)
+            }
+        )
+        prior_scenarios = {
+            str(item.get("key") or ""): item
+            for item in previous_analysis_data.get("forecast_scenarios", [])
+            if isinstance(item, dict)
+            and str(item.get("key") or "") not in selected_forecast_keys
+        }
+        prior_scenarios.update(
+            {
+                str(item.get("key") or ""): item
+                for item in analysis_data.get("forecast_scenarios", [])
+                if isinstance(item, dict)
+            }
+        )
+        analysis_data = {
+            **analysis_data,
+            "indicators": list(prior_indicators.values()),
+            "forecast_scenarios": list(prior_scenarios.values()),
+        }
+        indicator_status_by_key = {
+            str(item.get("key") or ""): str(item.get("evidence_status") or "unverified")
+            for item in analysis_data.get("indicators", [])
+            if isinstance(item, dict) and item.get("key")
+        }
+        handled_keys = set(indicator_status_by_key)
+        selected_ids = {
+            event["id"]
+            for event in selected
+            if str(event.get("key") or "") in handled_keys
+        }
         for event in memory.get("events", []):
             if event.get("id") in selected_ids:
-                event["ai_status"] = "analyzed"
+                event["ai_status"] = (
+                    "analyzed"
+                    if indicator_status_by_key.get(str(event.get("key") or "")) == "sourced"
+                    else "analyzed_unverified"
+                )
                 event["ai_analyzed_at"] = now.isoformat()
         return {
             "status": "success",
             "model": model,
             "generated_at": now.isoformat(),
             "event_count": len(selected),
+            "analyzed_event_count": len(selected_ids),
             "event_ids": sorted(selected_ids),
-            "analysis_vi": output_text.strip(),
+            "forecast_scenario_count": len(analysis_data["forecast_scenarios"]),
+            "analysis_vi": analysis_data.get("summary_vi") or "Phân tích Gemini đã được kiểm tra và giới hạn.",
             "analysis_data": analysis_data or {},
         }
     except Exception as exc:
-        safe_error = str(exc).replace(api_key, "[REDACTED]")[:500]
+        error_type = type(exc).__name__.upper()
+        print(f"Gemini analysis failed: {error_type}", file=sys.stderr)
         return {
             "status": "error",
             "model": model,
             "generated_at": now.isoformat(),
             "event_count": len(selected),
-            "error": safe_error,
+            "forecast_scenario_count": len(
+                previous_analysis_data.get("forecast_scenarios", [])
+            ),
+            "error": "GEMINI_REQUEST_FAILED",
+            "error_type": error_type,
             "analysis_vi": "Gemini chua phan tich duoc; bien dong van duoc giu trong hang doi.",
+            "analysis_data": previous_analysis_data,
         }
 
 
@@ -1643,6 +2117,11 @@ def rounded_forecast(value: float, reference: float) -> float:
     return round(value, forecast_precision(reference))
 
 
+def forecast_decimal_places(value: float) -> int:
+    shown = f"{float(value):.8f}".rstrip("0").rstrip(".")
+    return len(shown.split(".", 1)[1]) if "." in shown else 0
+
+
 def _triangular_cdf(value: float, low: float, mode: float, high: float) -> float:
     if value <= low:
         return 0.0
@@ -1682,7 +2161,12 @@ def forecast_probability_bands(
     ):
         return []
 
-    precision = forecast_precision(reference_value)
+    precision = max(
+        forecast_precision(reference_value),
+        forecast_decimal_places(low),
+        forecast_decimal_places(mode),
+        forecast_decimal_places(high),
+    )
     display_step = 10.0 ** (-precision)
     band_count = 3 if (high - low) >= display_step * 6 else 2
     raw_boundaries = [
@@ -1752,8 +2236,8 @@ def forecast_probability_bands(
     ranks = {band_index: rank + 1 for rank, band_index in enumerate(probability_order)}
     return [
         {
-            "low": rounded_forecast(float(band["low"]), reference_value),
-            "high": rounded_forecast(float(band["high"]), reference_value),
+            "low": round(float(band["low"]), precision),
+            "high": round(float(band["high"]), precision),
             "probability": percentages[index],
             "rank": ranks[index],
         }
@@ -1767,9 +2251,41 @@ def with_probability_bands(
     *,
     confidence: str = "LOW",
     observations: Any = None,
+    horizon_months: int = 1,
 ) -> dict[str, Any] | None:
     if not forecast:
         return None
+    center = numeric_value(forecast.get("value"))
+    reference_value = numeric_value(reference)
+    low = numeric_value(forecast.get("low"))
+    high = numeric_value(forecast.get("high"))
+    if center is not None and reference_value is not None:
+        precision = forecast_precision(reference_value)
+        display_step = 10.0 ** (-precision)
+        if (
+            low is None
+            or high is None
+            or low > center
+            or high < center
+            or high - low < display_step * 2
+        ):
+            relative_width = {
+                "HIGH": 0.015,
+                "MEDIUM": 0.025,
+                "LOW": 0.04,
+            }.get(str(confidence).upper(), 0.04)
+            scale = max(abs(reference_value), abs(center), 1.0)
+            half_width = max(
+                scale * relative_width * math.sqrt(max(1, horizon_months)),
+                display_step * 3,
+            )
+            forecast = {
+                **forecast,
+                "low": rounded_forecast(center - half_width, reference_value),
+                "high": rounded_forecast(center + half_width, reference_value),
+                "interval_inferred": True,
+                "interval_method": "confidence_scaled_reference_width_v1",
+            }
     bands = forecast_probability_bands(
         forecast,
         reference,
@@ -1869,6 +2385,230 @@ def trend_forecast(
     }
 
 
+def legacy_forecast_unit_signature(key: str, unit: Any) -> str:
+    signature = re.sub(r"\s+", " ", str(unit or "").strip().casefold())
+    if key in FORECASTABLE_CUMULATIVE_KEYS or key == "state_investment":
+        signature = re.sub(r"\s*\([^)]*\)\s*$", "", signature)
+    if key in {"iip", "retail"}:
+        signature = re.sub(r"\s+lũy kế.*$", "", signature)
+    if key == "interbank_rate":
+        signature = re.sub(r"\s+qua đêm$", "", signature)
+    return signature.strip()
+
+
+def compatible_forecast_points(
+    card: dict[str, Any],
+    points: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Select points with the same semantic definition, tolerating legacy unit labels."""
+    key = str(card.get("key") or "")
+    expected_definition = str(
+        card.get("forecast_definition_id") or FORECAST_DEFINITION_IDS.get(key) or ""
+    )
+    current_unit = str(card.get("unit") or "")
+    compatible: list[dict[str, Any]] = []
+    for point in points:
+        point_definition = str(point.get("forecast_definition_id") or "")
+        if point_definition and expected_definition and point_definition != expected_definition:
+            continue
+        if point_definition and expected_definition:
+            compatible.append(point)
+            continue
+        point_unit = str(point.get("unit") or "")
+        if (
+            point_unit
+            and current_unit
+            and legacy_forecast_unit_signature(key, point_unit)
+            == legacy_forecast_unit_signature(key, current_unit)
+        ):
+            compatible.append(point)
+    return compatible
+
+
+def cumulative_forecast_precision(value: float) -> int:
+    magnitude = abs(value)
+    if magnitude >= 10000:
+        return 0
+    if magnitude >= 1000:
+        return 1
+    return 2
+
+
+def cumulative_flow_forecast(
+    key: str,
+    points: list[dict[str, Any]],
+    *,
+    current_value: Any = None,
+    current_date: str | None = None,
+) -> dict[str, Any] | None:
+    """Extend a YTD cumulative level with a shrunk monthly run-rate."""
+    numeric_points = numeric_history_points(points)[-12:]
+    if not numeric_points:
+        return None
+    last = numeric_points[-1]
+    normalized_current_date = normalized_data_date(current_date)
+    if current_date and last["date"] != normalized_current_date:
+        return None
+    current = float(last["value"])
+    expected_current = numeric_value(current_value)
+    if current_value is not None and (
+        expected_current is None
+        or not math.isclose(current, expected_current, rel_tol=1e-9, abs_tol=1e-9)
+    ):
+        return None
+
+    last_date = datetime.fromisoformat(last["date"]).date()
+    elapsed_months = max(1, last_date.month)
+    average_monthly_flow = current / elapsed_months
+    monthly_flows: list[float] = []
+    for previous, observed in zip(numeric_points, numeric_points[1:]):
+        previous_date = datetime.fromisoformat(previous["date"]).date()
+        observed_date = datetime.fromisoformat(observed["date"]).date()
+        if (
+            observed_date.year != previous_date.year
+            or observed_date.year != last_date.year
+        ):
+            continue
+        month_gap = (
+            (observed_date.year - previous_date.year) * 12
+            + observed_date.month
+            - previous_date.month
+        )
+        if month_gap <= 0:
+            continue
+        monthly_flow = (float(observed["value"]) - float(previous["value"])) / month_gap
+        if key in NONNEGATIVE_CUMULATIVE_KEYS and monthly_flow < 0:
+            continue
+        monthly_flows.append(monthly_flow)
+
+    recent_flow = (
+        statistics.median(monthly_flows[-3:])
+        if monthly_flows
+        else average_monthly_flow
+    )
+    increment_count = len(monthly_flows)
+    recent_weight = increment_count / (increment_count + 3.0)
+    pace = (
+        (1.0 - recent_weight) * average_monthly_flow
+        + recent_weight * recent_flow
+    )
+    if key in NONNEGATIVE_CUMULATIVE_KEYS:
+        pace = max(0.0, pace)
+
+    precision = cumulative_forecast_precision(current)
+    display_step = 10.0 ** (-precision)
+    robust_sigma = 0.0
+    if len(monthly_flows) >= 3:
+        median_flow = statistics.median(monthly_flows)
+        mad = statistics.median(abs(flow - median_flow) for flow in monthly_flows)
+        robust_sigma = 1.4826 * mad
+    if monthly_flows:
+        sigma = max(
+            robust_sigma,
+            abs(pace) * 0.25,
+            abs(recent_flow - average_monthly_flow),
+            display_step,
+        )
+    else:
+        sigma = max(abs(pace) * 0.35, display_step)
+    if key == "fdi_registered":
+        sigma *= 1.5
+
+    def horizon(months: int) -> dict[str, Any]:
+        target = datetime.fromisoformat(
+            add_calendar_months(last["date"], months, month_end=True)
+        ).date()
+        same_year = target.year == last_date.year
+        center = current + months * pace if same_year else target.month * pace
+        half_width = sigma * math.sqrt(months)
+        low = center - half_width
+        high = center + half_width
+        if key in NONNEGATIVE_CUMULATIVE_KEYS:
+            floor = current if same_year else 0.0
+            center = max(floor, center)
+            low = max(floor, low)
+            high = max(center, high)
+        return {
+            "value": round(center, precision),
+            "low": round(low, precision),
+            "high": round(high, precision),
+            "as_of": target.isoformat(),
+        }
+
+    forecast_1m = horizon(1)
+    forecast_3m = horizon(3)
+    input_provider = str(last.get("source") or "Chuỗi lịch sử đã xác minh")
+    source_url = str(last.get("source_url") or "")
+    model_source = {
+        "provider": "Mô hình ViMO",
+        "input_provider": input_provider,
+        "source_kind": "local_cumulative_history",
+        "source_url": source_url,
+        "as_of": last["date"],
+        "forecast_1m": forecast_1m,
+        "forecast_3m": forecast_3m,
+        "observations": len(numeric_points),
+        "effective_increments": increment_count,
+        "average_monthly_flow": round(average_monthly_flow, precision + 2),
+        "recent_monthly_flow": round(recent_flow, precision + 2),
+        "shrunk_monthly_pace": round(pace, precision + 2),
+        "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+        "official": False,
+    }
+    evidence_note = (
+        f"{increment_count} mức phát sinh quan sát được"
+        if increment_count
+        else "một mức lũy kế và nhịp bình quân từ đầu năm"
+    )
+    return {
+        "forecast_status": "MODEL_ESTIMATE",
+        "forecast_1m": forecast_1m,
+        "forecast_3m": forecast_3m,
+        "confidence": "LOW",
+        "forecast_sources": [model_source],
+        "source_count": 1,
+        "method": (
+            f"Kịch bản lũy kế dùng {evidence_note}, giảm chấn về nhịp bình quân; "
+            "tự đặt lại mức lũy kế khi sang năm mới."
+        ),
+        "warning": (
+            "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; "
+            "chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách."
+        ),
+        "observations": len(numeric_points),
+        "model_kind": "cumulative_flow_run_rate_v1",
+    }
+
+
+def local_model_forecast(
+    card: dict[str, Any],
+    points: list[dict[str, Any]],
+) -> dict[str, Any] | None:
+    key = str(card.get("key") or "")
+    compatible_points = compatible_forecast_points(card, points)
+    forecast_date = normalized_data_date(card.get("as_of"))
+    if card.get("frequency") == "monthly":
+        parsed_date = datetime.fromisoformat(forecast_date).date()
+        forecast_date = parsed_date.replace(
+            day=monthrange(parsed_date.year, parsed_date.month)[1]
+        ).isoformat()
+    if key in FORECASTABLE_CUMULATIVE_KEYS | FORECASTABLE_CUMULATIVE_RATE_KEYS:
+        return cumulative_flow_forecast(
+            key,
+            compatible_points,
+            current_value=card.get("value"),
+            current_date=forecast_date,
+        )
+    if key in FORECASTABLE_POINT_IN_TIME_KEYS:
+        return trend_forecast(
+            compatible_points,
+            current_value=card.get("value"),
+            current_date=forecast_date,
+            month_end=card.get("frequency") == "monthly",
+        )
+    return None
+
+
 def gemini_indicator_lookup(gemini_analysis: dict[str, Any]) -> dict[str, dict[str, Any]]:
     analysis_data = gemini_analysis.get("analysis_data", {})
     indicators = analysis_data.get("indicators", []) if isinstance(analysis_data, dict) else []
@@ -1876,6 +2616,137 @@ def gemini_indicator_lookup(gemini_analysis: dict[str, Any]) -> dict[str, dict[s
         str(item["key"]): item
         for item in indicators
         if isinstance(item, dict) and item.get("key")
+    }
+
+
+def gemini_forecast_lookup(gemini_analysis: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    analysis_data = gemini_analysis.get("analysis_data", {})
+    scenarios = (
+        analysis_data.get("forecast_scenarios", [])
+        if isinstance(analysis_data, dict)
+        else []
+    )
+    return {
+        str(item["key"]): {
+            **item,
+            "model": item.get("model") or gemini_analysis.get("model"),
+            "generated_at": item.get("generated_at") or gemini_analysis.get("generated_at"),
+        }
+        for item in scenarios
+        if isinstance(item, dict) and item.get("key")
+    }
+
+
+def apply_bounded_gemini_scenario(
+    key: str,
+    current: dict[str, Any],
+    forecast: dict[str, Any] | None,
+    scenario: dict[str, Any] | None,
+) -> dict[str, Any] | None:
+    if (
+        not forecast
+        or forecast.get("forecast_status") != "MODEL_ESTIMATE"
+        or not isinstance(scenario, dict)
+    ):
+        return forecast
+    forecast_1m = forecast.get("forecast_1m")
+    forecast_3m = forecast.get("forecast_3m")
+    if not isinstance(forecast_1m, dict) or not isinstance(forecast_3m, dict):
+        return forecast
+    expected_input_id = gemini_forecast_input_id(
+        key,
+        current,
+        forecast_1m,
+        forecast_3m,
+        model=str(scenario.get("model") or "gemini-3.6-flash"),
+    )
+    if str(scenario.get("input_id") or "") != expected_input_id:
+        return forecast
+    if scenario.get("decision") == "KEEP_BASELINE":
+        return forecast
+
+    candidates = {
+        "forecast_1m": numeric_value(scenario.get("forecast_1m")),
+        "forecast_3m": numeric_value(scenario.get("forecast_3m")),
+    }
+    for horizon_key, base in (
+        ("forecast_1m", forecast_1m),
+        ("forecast_3m", forecast_3m),
+    ):
+        candidate = candidates[horizon_key]
+        low = numeric_value(base.get("low"))
+        high = numeric_value(base.get("high"))
+        if candidate is None or low is None or high is None or not low <= candidate <= high:
+            return forecast
+    current_value = numeric_value(current.get("value"))
+    if key in NONNEGATIVE_CUMULATIVE_KEYS:
+        if current_value is None:
+            return forecast
+        current_year = normalized_data_date(current.get("date")).split("-", 1)[0]
+        one_year = normalized_data_date(forecast_1m.get("as_of")).split("-", 1)[0]
+        three_year = normalized_data_date(forecast_3m.get("as_of")).split("-", 1)[0]
+        if current_year == one_year and candidates["forecast_1m"] < current_value:
+            return forecast
+        if one_year == three_year and candidates["forecast_3m"] < candidates["forecast_1m"]:
+            return forecast
+
+    reference_value = numeric_value(current.get("value"))
+    if reference_value is None:
+        return forecast
+    precision = (
+        cumulative_forecast_precision(reference_value)
+        if key in FORECASTABLE_CUMULATIVE_KEYS
+        else forecast_precision(reference_value)
+    )
+
+    def blend(base: dict[str, Any], candidate: float) -> dict[str, Any]:
+        baseline_value = float(base["value"])
+        blended_value = (
+            (1.0 - GEMINI_FORECAST_WEIGHT) * baseline_value
+            + GEMINI_FORECAST_WEIGHT * candidate
+        )
+        blended_value = min(float(base["high"]), max(float(base["low"]), blended_value))
+        return {
+            **base,
+            "value": round(blended_value, precision),
+            "baseline_value": baseline_value,
+            "gemini_candidate_value": candidate,
+            "gemini_weight": GEMINI_FORECAST_WEIGHT,
+            "gemini_assisted": True,
+        }
+
+    blended_1m = blend(forecast_1m, float(candidates["forecast_1m"]))
+    blended_3m = blend(forecast_3m, float(candidates["forecast_3m"]))
+    gemini_source = {
+        "provider": "Google Gemini",
+        "model": scenario.get("model"),
+        "source_kind": "bounded_ai_scenario",
+        "source_url": (scenario.get("sources") or [""])[0],
+        "source_urls": list(scenario.get("sources") or []),
+        "as_of": scenario.get("generated_at"),
+        "input_id": expected_input_id,
+        "gemini_weight": GEMINI_FORECAST_WEIGHT,
+        "method": "20% bounded blend inside the locked ViMO forecast interval.",
+        "official": False,
+    }
+    return {
+        **forecast,
+        "forecast_status": "MODEL_ESTIMATE_GEMINI",
+        "forecast_1m": blended_1m,
+        "forecast_3m": blended_3m,
+        "forecast_sources": [*forecast.get("forecast_sources", []), gemini_source],
+        "source_count": int(forecast.get("source_count") or 0) + 1,
+        "method": (
+            f"{forecast.get('method', '')} Gemini bổ sung ứng viên có nguồn với trọng số "
+            f"{int(GEMINI_FORECAST_WEIGHT * 100)}%, luôn nằm trong biên mô hình ViMO."
+        ).strip(),
+        "warning": (
+            f"{forecast.get('warning', '')} Gemini chỉ hỗ trợ kịch bản trong biên đã khóa; "
+            "không sửa dữ liệu quan sát và không nâng độ tin cậy."
+        ).strip(),
+        "gemini_assisted": True,
+        "gemini_input_id": expected_input_id,
+        "gemini_reason": scenario.get("reason_short") or None,
     }
 
 
@@ -1908,6 +2779,7 @@ def build_card_insights(
 ) -> dict[str, dict[str, Any]]:
     series = history.get("series", {})
     ai_lookup = gemini_indicator_lookup(gemini_analysis)
+    ai_forecast_lookup = gemini_forecast_lookup(gemini_analysis)
     insights: dict[str, dict[str, Any]] = {}
 
     for card in cards:
@@ -1916,22 +2788,17 @@ def build_card_insights(
         current_date = normalized_data_date(card.get("as_of"))
         previous_candidates = [point for point in points if normalized_data_date(point.get("date")) < current_date]
         previous = previous_candidates[-1] if previous_candidates else None
-        comparable_points = [
-            point
-            for point in points
-            if not point.get("unit") or str(point.get("unit")) == str(card.get("unit"))
-        ]
-        if key not in FORECASTABLE_POINT_IN_TIME_KEYS:
+        if key not in FORECASTABLE_KEYS:
             forecast = None
-        elif external_forecast_data is None:
+        elif (
+            external_forecast_data is None
+            or key in FORECASTABLE_CUMULATIVE_KEYS | FORECASTABLE_CUMULATIVE_RATE_KEYS
+        ):
             # Compatibility for callers that explicitly omit the API
-            # consensus layer.
-            forecast = trend_forecast(
-                comparable_points,
-                current_value=card.get("value"),
-                current_date=current_date,
-                month_end=card.get("frequency") == "monthly",
-            )
+            # consensus layer. Cumulative semantics always stay on the local
+            # run-rate model unless a future provider explicitly declares the
+            # same definition and horizon basis.
+            forecast = local_model_forecast(card, points)
         else:
             forecast = build_forecast_consensus(
                 key,
@@ -1939,19 +2806,46 @@ def build_card_insights(
                 external_forecast_data,
             )
             if forecast and forecast.get("forecast_status") == "INSUFFICIENT_SOURCES":
-                local_scenario = trend_forecast(
-                    comparable_points,
-                    current_value=card.get("value"),
-                    current_date=current_date,
-                    month_end=card.get("frequency") == "monthly",
-                )
+                local_scenario = local_model_forecast(card, points)
                 if local_scenario:
                     forecast = local_scenario
+        current_context = {
+            "value": card.get("value"),
+            "unit": card.get("unit"),
+            "date": current_date,
+        }
+        ai_forecast_item = ai_forecast_lookup.get(key, {})
+        forecast = apply_bounded_gemini_scenario(
+            key,
+            current_context,
+            forecast,
+            ai_forecast_item,
+        )
         ai_item = ai_lookup.get(key, {})
-        ai_reason = (
-            str(ai_item.get("reason_short") or "").strip()
-            if ai_item.get("evidence_status") == "sourced"
+        gemini_assisted = bool(forecast and forecast.get("gemini_assisted"))
+        forecast_ai_reason = (
+            str(ai_forecast_item.get("reason_short") or "").strip()
+            if ai_forecast_item.get("evidence_status") == "url_provided"
             else ""
+        )
+        qualitative_ai_reason = (
+            str(ai_item.get("reason_short") or "").strip()
+            if ai_item.get("evidence_status") in {"sourced", "url_provided"}
+            else ""
+        )
+        ai_reason = (
+            forecast_ai_reason or qualitative_ai_reason
+            if gemini_assisted
+            else qualitative_ai_reason or forecast_ai_reason
+        )
+        ai_sources = (
+            ai_forecast_item.get("sources", [])
+            if gemini_assisted and forecast_ai_reason
+            else ai_item.get("sources", [])
+            if qualitative_ai_reason
+            else ai_forecast_item.get("sources", [])
+            if forecast_ai_reason
+            else []
         )
         # The displayed reason remains deterministic. AI context is carried in
         # a separate, explicitly unverified field and cannot replace it.
@@ -1989,12 +2883,14 @@ def build_card_insights(
             card.get("value"),
             confidence=confidence,
             observations=forecast_observations,
+            horizon_months=1,
         )
         forecast_3m = with_probability_bands(
             forecast_3m,
             card.get("value"),
             confidence=confidence,
             observations=forecast_observations,
+            horizon_months=3,
         )
 
         change = None
@@ -2012,9 +2908,7 @@ def build_card_insights(
             "key": key,
             "name_vi": card["name_vi"],
             "current": {
-                "value": card.get("value"),
-                "unit": card.get("unit"),
-                "date": current_date,
+                **current_context,
                 "source": card.get("source_primary"),
                 "source_url": card.get("source_url"),
             },
@@ -2026,22 +2920,192 @@ def build_card_insights(
                 forecast.get("forecast_status")
                 if forecast
                 else "NOT_FORECASTABLE"
-                if key not in FORECASTABLE_POINT_IN_TIME_KEYS
+                if key not in FORECASTABLE_KEYS
                 else "INSUFFICIENT_SOURCES"
             ),
             "forecast_sources": forecast.get("forecast_sources", []) if forecast else [],
             "forecast_warning": forecast.get("warning") if forecast else None,
+            "gemini_assisted": gemini_assisted,
+            "gemini_input_id": forecast.get("gemini_input_id") if forecast else None,
+            "gemini_grounding_status": (
+                ai_forecast_item.get("grounding_status") if gemini_assisted else None
+            ),
             "reason_short": reason,
             "ai_context_unverified": ai_reason or None,
             "confidence": confidence,
             "method": method,
-            "ai_sources": (
-                ai_item.get("sources", [])
-                if ai_item.get("evidence_status") == "sourced"
-                else []
-            ),
+            "ai_sources": ai_sources,
             "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư.",
         }
+
+    trade = insights.get("trade_balance")
+    exports = insights.get("exports")
+    imports = insights.get("imports")
+    if trade and exports and imports:
+        trade_current = trade.get("current", {})
+        export_current = exports.get("current", {})
+        import_current = imports.get("current", {})
+        trade_value = numeric_value(trade_current.get("value"))
+        export_value = numeric_value(export_current.get("value"))
+        import_value = numeric_value(import_current.get("value"))
+        current_dates = [
+            str(trade_current.get("date") or ""),
+            str(export_current.get("date") or ""),
+            str(import_current.get("date") or ""),
+        ]
+        aligned_dates = all(current_dates) and len(set(current_dates)) == 1
+        current_units = [
+            legacy_forecast_unit_signature("trade_balance", trade_current.get("unit")),
+            legacy_forecast_unit_signature("exports", export_current.get("unit")),
+            legacy_forecast_unit_signature("imports", import_current.get("unit")),
+        ]
+        aligned_units = all(current_units) and len(set(current_units)) == 1
+        identity_tolerance = max(
+            0.02,
+            0.001 * max(abs(export_value or 0.0), abs(import_value or 0.0), 1.0),
+        )
+        current_identity_holds = (
+            trade_value is not None
+            and export_value is not None
+            and import_value is not None
+            and math.isclose(
+                trade_value,
+                export_value - import_value,
+                rel_tol=0.0,
+                abs_tol=identity_tolerance,
+            )
+        )
+        derived: dict[str, dict[str, Any]] = {}
+        for horizon_key in ("forecast_1m", "forecast_3m") if aligned_dates and aligned_units and current_identity_holds else ():
+            direct_forecast = trade.get(horizon_key)
+            export_forecast = exports.get(horizon_key)
+            import_forecast = imports.get(horizon_key)
+            if not all(
+                isinstance(item, dict)
+                for item in (direct_forecast, export_forecast, import_forecast)
+            ):
+                derived = {}
+                break
+            horizon_dates = {
+                str(direct_forecast.get("as_of") or ""),
+                str(export_forecast.get("as_of") or ""),
+                str(import_forecast.get("as_of") or ""),
+            }
+            if len(horizon_dates) != 1:
+                derived = {}
+                break
+            direct_values = {
+                field: numeric_value(direct_forecast.get(field))
+                for field in ("value", "low", "high")
+            }
+            export_values = {
+                field: numeric_value(export_forecast.get(field))
+                for field in ("value", "low", "high")
+            }
+            import_values = {
+                field: numeric_value(import_forecast.get(field))
+                for field in ("value", "low", "high")
+            }
+            if any(
+                value is None
+                for value in (
+                    *direct_values.values(),
+                    *export_values.values(),
+                    *import_values.values(),
+                )
+            ):
+                derived = {}
+                break
+            precision = cumulative_forecast_precision(
+                float(numeric_value(trade.get("current", {}).get("value")) or 0.0)
+            )
+            center = export_values["value"] - import_values["value"]
+            lower_width = max(0.0, direct_values["value"] - direct_values["low"])
+            upper_width = max(0.0, direct_values["high"] - direct_values["value"])
+            derived[horizon_key] = {
+                "value": round(center, precision),
+                "low": round(center - lower_width, precision),
+                "high": round(center + upper_width, precision),
+                "as_of": export_forecast.get("as_of"),
+                "derived_from": ["exports", "imports"],
+                "uncertainty_from": "direct_trade_balance_run_rate",
+            }
+        if derived:
+            gemini_assisted = bool(
+                exports.get("gemini_assisted") or imports.get("gemini_assisted")
+            )
+            trade["forecast_1m"] = with_probability_bands(
+                derived["forecast_1m"],
+                trade.get("current", {}).get("value"),
+                confidence="LOW",
+                observations=2,
+                horizon_months=1,
+            )
+            trade["forecast_3m"] = with_probability_bands(
+                derived["forecast_3m"],
+                trade.get("current", {}).get("value"),
+                confidence="LOW",
+                observations=2,
+                horizon_months=3,
+            )
+            trade["forecast_status"] = (
+                "MODEL_ESTIMATE_GEMINI" if gemini_assisted else "MODEL_ESTIMATE"
+            )
+            trade["confidence"] = "LOW"
+            trade["gemini_assisted"] = gemini_assisted
+            trade["gemini_components"] = [
+                key
+                for key, component in (("exports", exports), ("imports", imports))
+                if component.get("gemini_assisted")
+            ]
+            trade["method"] = (
+                "Đồng nhất kế toán: cán cân thương mại dự báo bằng xuất khẩu trừ nhập khẩu "
+                "ở từng kỳ; độ rộng bất định giữ theo mô hình cán cân trực tiếp để tránh "
+                "coi hai cực trị xuất/nhập khẩu là độc lập."
+            )
+            trade["forecast_warning"] = (
+                "ƯỚC TÍNH MÔ HÌNH: kết quả phụ thuộc trực tiếp vào hai kịch bản xuất khẩu "
+                "và nhập khẩu, không phải số công bố chính thức."
+            )
+            component_gemini_sources = [
+                {**source, "component": component_key}
+                for component_key, component in (("exports", exports), ("imports", imports))
+                for source in component.get("forecast_sources", [])
+                if isinstance(source, dict) and source.get("source_kind") == "bounded_ai_scenario"
+            ]
+            trade["forecast_sources"] = [
+                {
+                    "provider": "Mô hình ViMO",
+                    "input_provider": "Xuất khẩu, nhập khẩu và lịch sử cán cân",
+                    "source_kind": "derived_accounting_identity",
+                    "source_url": trade_current.get("source_url"),
+                    "component_source_urls": [
+                        export_current.get("source_url"),
+                        import_current.get("source_url"),
+                    ],
+                    "as_of": trade_current.get("date"),
+                    "forecast_1m": trade["forecast_1m"],
+                    "forecast_3m": trade["forecast_3m"],
+                    "official": False,
+                },
+                *component_gemini_sources,
+            ]
+            if gemini_assisted:
+                component_reasons = [
+                    f"{component['name_vi']}: {component.get('ai_context_unverified')}"
+                    for component in (exports, imports)
+                    if component.get("gemini_assisted") and component.get("ai_context_unverified")
+                ]
+                trade["ai_context_unverified"] = " ".join(component_reasons) or None
+                trade["ai_sources"] = list(
+                    dict.fromkeys(
+                        url
+                        for component in (exports, imports)
+                        if component.get("gemini_assisted")
+                        for url in component.get("ai_sources", [])
+                    )
+                )
+                trade["gemini_grounding_status"] = "component_model_provided_urls_not_independently_verified"
     return insights
 
 
@@ -2224,6 +3288,10 @@ def build_frontend_api(
                 "method": insight.get("method"),
                 "warning": insight.get("forecast_warning"),
                 "sources": insight.get("forecast_sources", []),
+                "gemini_assisted": insight.get("gemini_assisted", False),
+                "gemini_context": insight.get("ai_context_unverified"),
+                "gemini_sources": insight.get("ai_sources", []),
+                "gemini_grounding_status": insight.get("gemini_grounding_status"),
                 "disclaimer": insight.get("disclaimer"),
             }
         )
@@ -2253,7 +3321,11 @@ def build_frontend_api(
         "provider_health": payload.get("forecast_provider_health", []),
         "quality": {
             "facts_endpoint_separate": True,
-            "ai_output_included": False,
+            "ai_output_included": any(
+                bool(row.get("gemini_assisted")) for row in forecast_rows
+            ),
+            "ai_scenario_is_bounded_to_model_interval": True,
+            "ai_scenario_weight": GEMINI_FORECAST_WEIGHT,
             "disputed_consensus_is_null": True,
             "single_source_is_explicitly_low_confidence": True,
             "local_history_scenario_is_explicitly_low_confidence": True,
@@ -2484,12 +3556,19 @@ def render_html(payload: dict[str, Any]) -> str:
     .probability-percent {{ color:#dbeafe; text-align:right; font-variant-numeric:tabular-nums; font-weight:700; }}
     .probability-row.top .probability-range,.probability-row.top .probability-percent {{ color:#fff; font-weight:700; }}
     .probability-row.top .probability-fill {{ background:#3b82f6; }}
+    .probability-top-label {{ display:inline-block; margin-left:6px; color:#93c5fd; font-size:10px; font-weight:800; text-transform:uppercase; }}
     .probability-note {{ margin:10px 0 0; color:#64748b; font-size:11px; }}
+    .gemini-context {{ margin:12px 0; padding:11px 12px; border-left:3px solid #60a5fa; background:rgba(59,130,246,.06); }}
+    .gemini-context[hidden] {{ display:none; }}
+    .gemini-context strong {{ color:#bfdbfe; font-size:12px; }}
+    .gemini-context p {{ margin:5px 0 7px; color:#cbd5e1; }}
+    .gemini-links {{ display:flex; flex-wrap:wrap; gap:8px; }}
+    .gemini-links a {{ color:#93c5fd; font-size:11px; }}
     .chart-wrap[hidden] {{ display:none; }}
     .chart-svg {{ width:100%; height:300px; display:block; background:rgba(255,255,255,.025); border:1px solid var(--line); border-radius:8px; }}
     .chart-meta {{ color:#94a3b8; font-size:12px; margin-top:10px; }}
     @media (max-width:720px) {{ .summary {{ grid-template-columns:1fr; }} h1 {{ font-size:23px; }} .detail-grid {{ grid-template-columns:repeat(2,minmax(0,1fr)); }} .driver-grid,.scenario-grid,.probability-grid {{ grid-template-columns:1fr; }} }}
-    @media (max-width:480px) {{ .modal {{ padding:0; }} .modal-box {{ min-height:100dvh; max-height:100dvh; border-radius:0; }} .detail-grid {{ grid-template-columns:1fr; }} .probability-row {{ grid-template-columns:minmax(105px,auto) 1fr 44px; gap:7px; }} }}
+    @media (max-width:480px) {{ .modal {{ padding:0; }} .modal-box {{ min-height:100dvh; max-height:100dvh; border-radius:0; }} .detail-grid {{ grid-template-columns:1fr; }} .probability-row {{ grid-template-columns:1fr auto; gap:6px 10px; }} .probability-track {{ grid-column:1 / -1; grid-row:2; }} }}
   </style>
 </head>
 <body>
@@ -2512,7 +3591,7 @@ def render_html(payload: dict[str, Any]) -> str:
       <div class="modal-head">
         <div>
           <p class="group-label">Số cũ · dự báo tham khảo · lý do</p>
-          <h2 class="modal-title" id="chartTitle">Chi tiết chỉ số</h2>
+          <h2 class="modal-title" id="chartTitle" tabindex="-1">Chi tiết chỉ số</h2>
         </div>
         <button class="modal-close" id="chartClose" type="button" title="Đóng" aria-label="Đóng">×</button>
       </div>
@@ -2526,17 +3605,22 @@ def render_html(payload: dict[str, Any]) -> str:
       <div class="probability-wrap" id="detailProbabilityWrap" aria-live="polite" hidden>
         <div class="probability-grid">
           <section class="probability-panel" id="detailProbability1Panel" aria-labelledby="detailProbability1Title">
-            <h3 id="detailProbability1Title">Vùng xác suất +1 tháng</h3>
+            <h3 id="detailProbability1Title">Các vùng dự báo +1 tháng</h3>
             <div class="probability-list" id="detailProbability1" role="list"></div>
           </section>
           <section class="probability-panel" id="detailProbability3Panel" aria-labelledby="detailProbability3Title">
-            <h3 id="detailProbability3Title">Vùng xác suất +3 tháng</h3>
+            <h3 id="detailProbability3Title">Các vùng dự báo +3 tháng</h3>
             <div class="probability-list" id="detailProbability3" role="list"></div>
           </section>
         </div>
         <p class="probability-note">Tỷ lệ là trọng số kịch bản từ khoảng bất định và độ tin cậy của mô hình, chưa phải xác suất đã được kiểm định.</p>
       </div>
       <div class="reason-block"><h3>Lý do ngắn</h3><p id="detailReason"></p></div>
+      <div class="gemini-context" id="detailGeminiContext" hidden>
+        <strong id="detailGeminiLabel">Bối cảnh Gemini · có URL tham chiếu</strong>
+        <p id="detailGeminiText"></p>
+        <div class="gemini-links" id="detailGeminiLinks"></div>
+      </div>
       <p class="chart-meta" id="detailMethod"></p>
       <p class="chart-meta" id="detailForecastSources"></p>
       <p class="forecast-note" id="detailForecastWarning" hidden></p>
@@ -2578,6 +3662,10 @@ def render_html(payload: dict[str, Any]) -> str:
     const probability1El = document.getElementById('detailProbability1');
     const probability3El = document.getElementById('detailProbability3');
     const reasonEl = document.getElementById('detailReason');
+    const geminiContextEl = document.getElementById('detailGeminiContext');
+    const geminiLabelEl = document.getElementById('detailGeminiLabel');
+    const geminiTextEl = document.getElementById('detailGeminiText');
+    const geminiLinksEl = document.getElementById('detailGeminiLinks');
     const methodEl = document.getElementById('detailMethod');
     const forecastSourcesEl = document.getElementById('detailForecastSources');
     const forecastWarningEl = document.getElementById('detailForecastWarning');
@@ -2602,6 +3690,7 @@ def render_html(payload: dict[str, Any]) -> str:
     function forecastStatusLabel(status) {{
       return ({{
         MODEL_ESTIMATE: 'ƯỚC TÍNH MÔ HÌNH',
+        MODEL_ESTIMATE_GEMINI: 'VIMO + GEMINI GIỚI HẠN',
         SINGLE_SOURCE: 'MỘT NGUỒN',
         CONSENSUS: 'ĐỒNG THUẬN NGUỒN',
         DISAGREEMENT: 'NGUỒN BẤT ĐỒNG',
@@ -2623,10 +3712,15 @@ def render_html(payload: dict[str, Any]) -> str:
       return new Intl.NumberFormat('vi-VN', {{ maximumFractionDigits: 3 }}).format(value);
     }}
 
-    function renderProbabilityBands(container, forecast, unit) {{
+    function renderProbabilityBands(container, forecast, unit, horizonLabel) {{
       container.replaceChildren();
       const bands = Array.isArray(forecast && forecast.probability_bands)
-        ? forecast.probability_bands.slice(0, 3)
+        ? [...forecast.probability_bands]
+            .sort((left, right) =>
+              Number(left.rank || 999) - Number(right.rank || 999) ||
+              Number(right.probability || 0) - Number(left.probability || 0)
+            )
+            .slice(0, 3)
         : [];
       bands
         .sort((left, right) => Number(left.low) - Number(right.low))
@@ -2639,10 +3733,16 @@ def render_html(payload: dict[str, Any]) -> str:
           const rangeEl = document.createElement('span');
           rangeEl.className = 'probability-range';
           rangeEl.textContent = range;
+          if (Number(band.rank) === 1) {{
+            const topLabel = document.createElement('small');
+            topLabel.className = 'probability-top-label';
+            topLabel.textContent = 'Cao nhất';
+            rangeEl.appendChild(topLabel);
+          }}
           const track = document.createElement('span');
           track.className = 'probability-track';
           track.setAttribute('role', 'meter');
-          track.setAttribute('aria-label', `${{range}}`);
+          track.setAttribute('aria-label', `${{horizonLabel}}, hạng ${{Number(band.rank) || 'chưa xếp'}}, ${{range}}`);
           track.setAttribute('aria-valuemin', '0');
           track.setAttribute('aria-valuemax', '100');
           track.setAttribute('aria-valuenow', `${{probability}}`);
@@ -2690,7 +3790,7 @@ def render_html(payload: dict[str, Any]) -> str:
       const current = insight.current || {{}};
       const previous = insight.previous;
       const forecastStatus = insight.forecast_status || 'INSUFFICIENT_SOURCES';
-      const isModelEstimate = forecastStatus === 'MODEL_ESTIMATE';
+      const isModelEstimate = ['MODEL_ESTIMATE', 'MODEL_ESTIMATE_GEMINI'].includes(forecastStatus);
       title.textContent = item.name;
       currentEl.textContent = formatValue(current.value, current.unit || item.unit);
       currentDateEl.textContent = current.date ? `Ngày dữ liệu: ${{current.date}}` : '';
@@ -2702,13 +3802,34 @@ def render_html(payload: dict[str, Any]) -> str:
       forecast3RangeEl.textContent = forecastRange(insight.forecast_3m, item.unit, forecastStatus);
       forecast1El.closest('.detail-stat').classList.toggle('modeled', isModelEstimate);
       forecast3El.closest('.detail-stat').classList.toggle('modeled', isModelEstimate);
-      forecastBadgeEl.hidden = !isModelEstimate;
-      const hasProbability1 = renderProbabilityBands(probability1El, insight.forecast_1m, item.unit);
-      const hasProbability3 = renderProbabilityBands(probability3El, insight.forecast_3m, item.unit);
+      const hasForecast = Boolean(insight.forecast_1m || insight.forecast_3m);
+      forecastBadgeEl.textContent = `${{forecastStatusLabel(forecastStatus)}} · ĐỘ TIN CẬY ${{confidenceLabel(insight.confidence)}}`;
+      forecastBadgeEl.hidden = !hasForecast;
+      const hasProbability1 = renderProbabilityBands(probability1El, insight.forecast_1m, item.unit, 'Dự báo một tháng');
+      const hasProbability3 = renderProbabilityBands(probability3El, insight.forecast_3m, item.unit, 'Dự báo ba tháng');
       probability1PanelEl.hidden = !hasProbability1;
       probability3PanelEl.hidden = !hasProbability3;
       probabilityWrapEl.hidden = !hasProbability1 && !hasProbability3;
       reasonEl.textContent = insight.reason_short || 'Chưa có phân tích nguyên nhân.';
+      const aiSources = Array.isArray(insight.ai_sources) ? insight.ai_sources : [];
+      geminiTextEl.textContent = insight.ai_context_unverified || '';
+      geminiLabelEl.textContent = insight.gemini_assisted
+        ? 'Gemini hỗ trợ kịch bản · URL tham chiếu · trọng số bị giới hạn'
+        : 'Bối cảnh Gemini · có URL tham chiếu';
+      geminiLinksEl.replaceChildren();
+      aiSources.slice(0, 3).forEach((url, index) => {{
+        try {{
+          const parsed = new URL(url);
+          if (!['http:', 'https:'].includes(parsed.protocol)) return;
+          const link = document.createElement('a');
+          link.href = parsed.href;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = `Nguồn ${{index + 1}}`;
+          geminiLinksEl.appendChild(link);
+        }} catch (_error) {{}}
+      }});
+      geminiContextEl.hidden = !insight.ai_context_unverified || geminiLinksEl.childElementCount === 0;
       methodEl.textContent = `${{insight.method || ''}} Trạng thái: ${{forecastStatusLabel(forecastStatus)}} · Độ tin cậy: ${{confidenceLabel(insight.confidence)}}.`;
       const forecastSources = Array.isArray(insight.forecast_sources) ? insight.forecast_sources : [];
       forecastSourcesEl.textContent = forecastSources.length
@@ -2729,7 +3850,7 @@ def render_html(payload: dict[str, Any]) -> str:
       document.body.classList.add('modal-open');
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
-      closeBtn.focus();
+      title.focus();
     }}
     document.querySelectorAll('.card.inspectable').forEach(card => {{
       card.addEventListener('click', event => {{
@@ -2749,7 +3870,21 @@ def render_html(payload: dict[str, Any]) -> str:
       if (lastFocused) lastFocused.focus();
     }});
     modal.addEventListener('click', event => {{ if (event.target === modal) closeBtn.click(); }});
-    document.addEventListener('keydown', event => {{ if (event.key === 'Escape' && modal.classList.contains('open')) closeBtn.click(); }});
+    document.addEventListener('keydown', event => {{
+      if (event.key === 'Escape' && modal.classList.contains('open')) closeBtn.click();
+      if (event.key === 'Tab' && modal.classList.contains('open')) {{
+        const focusable = [...modal.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')]
+          .filter(element => !element.hidden);
+        if (!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (!focusable.includes(document.activeElement)) {{
+          event.preventDefault();
+          (event.shiftKey ? last : first).focus();
+        }}
+        else if (event.shiftKey && document.activeElement === first) {{ event.preventDefault(); last.focus(); }}
+        else if (!event.shiftKey && document.activeElement === last) {{ event.preventDefault(); first.focus(); }}
+      }}
+    }});
   </script>
 </body>
 </html>
@@ -2764,12 +3899,23 @@ def main() -> None:
     sources = source_health()
     history = update_history(cards, now)
     memory = update_indicator_memory(cards, now)
-    gemini_analysis = analyze_indicator_changes(memory, cards, now)
     external_forecast_data = collect_external_forecast_data(
         now,
         fred_api_key=os.environ.get("FRED_API_KEY", "").strip(),
         eia_api_key=os.environ.get("EIA_API_KEY", "").strip(),
         cached_data=load_forecast_source_cache(),
+    )
+    baseline_insights = build_card_insights(
+        cards,
+        history,
+        {"analysis_data": {"indicators": [], "forecast_scenarios": []}},
+        external_forecast_data,
+    )
+    gemini_analysis = analyze_indicator_changes(
+        memory,
+        cards,
+        now,
+        baseline_insights,
     )
     card_insights = build_card_insights(
         cards,
@@ -2802,6 +3948,7 @@ def main() -> None:
             "model": gemini_analysis["model"],
             "generated_at": gemini_analysis["generated_at"],
             "event_count": gemini_analysis["event_count"],
+            "forecast_scenario_count": gemini_analysis.get("forecast_scenario_count", 0),
             "api_url": "api/gemini_analysis.json",
         },
         "card_insights": card_insights,

@@ -1,7 +1,14 @@
 {
   "status": "waiting_for_api_key",
-  "model": "models/gemini-3-flash-preview",
-  "generated_at": "2026-08-01T03:58:03.680696+00:00",
+  "model": "gemini-3.6-flash",
+  "generated_at": "2026-08-01T10:37:03.075908+00:00",
   "event_count": 9,
-  "analysis_vi": "Da luu bien dong; dang cho GEMINI_API_KEY de phan tich."
+  "forecast_scenario_count": 0,
+  "analysis_vi": "Da luu bien dong; dang cho GEMINI_API_KEY de phan tich.",
+  "analysis_data": {
+    "summary_vi": "",
+    "indicators": [],
+    "forecast_scenarios": [],
+    "policy": "bounded_ai_scenario_candidates_never_override_observed_facts"
+  }
 }

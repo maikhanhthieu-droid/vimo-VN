@@ -129,7 +129,7 @@ class RunReportTests(unittest.TestCase):
         finally:
             run_report.fetch_text = original_fetch_text
         self.assertEqual(result["value"], 51.8)
-        self.assertEqual(result["as_of"], "2026-07-03")
+        self.assertEqual(result["as_of"], "2026-06-30")
 
     def test_vbma_report_parser_extracts_numeric_cards(self) -> None:
         text = """
@@ -609,6 +609,346 @@ class RunReportTests(unittest.TestCase):
         self.assertEqual(forecast["confidence"], "LOW")
         self.assertLess(forecast["forecast_1m"]["value"], 4.69)
 
+    def test_exports_cumulative_forecast_accepts_period_unit_variants(self) -> None:
+        cards = [{
+            "key": "exports",
+            "name_vi": "Xuất khẩu",
+            "value": 266.52,
+            "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+            "as_of": "2026-06-30",
+            "frequency": "monthly",
+            "source_primary": "NSO",
+            "source_url": "https://www.nso.gov.vn/exports-june-2026",
+        }]
+        history = {"series": {"exports": [
+            {
+                "date": "2026-05-31",
+                "value": 215.66,
+                "unit": "tỷ USD (5T/2026)",
+                "source": "NSO",
+            },
+            {
+                "date": "2026-06-30",
+                "value": 266.52,
+                "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+                "source": "NSO",
+            },
+        ]}}
+        insight = run_report.build_card_insights(
+            cards,
+            history,
+            {"analysis_data": {"indicators": [], "forecast_scenarios": []}},
+            {"series": {}, "official_forecasts": {}},
+        )["exports"]
+
+        self.assertEqual(insight["forecast_status"], "MODEL_ESTIMATE")
+        self.assertEqual(insight["forecast_1m"]["value"], 312.55)
+        self.assertEqual(insight["forecast_3m"]["value"], 404.61)
+        self.assertEqual(insight["forecast_1m"]["as_of"], "2026-07-31")
+        self.assertEqual(insight["forecast_3m"]["as_of"], "2026-09-30")
+        for horizon in ("forecast_1m", "forecast_3m"):
+            bands = insight[horizon]["probability_bands"]
+            self.assertIn(len(bands), {2, 3})
+            self.assertAlmostEqual(sum(item["probability"] for item in bands), 100.0)
+
+    def test_monthly_forecast_uses_period_end_when_source_has_intra_month_date(self) -> None:
+        card = {
+            "key": "credit", "name_vi": "Tăng trưởng tín dụng",
+            "value": 7.41, "unit": "% YTD", "as_of": "2026-06-26",
+            "frequency": "monthly", "source_primary": "NSO",
+        }
+        forecast = run_report.local_model_forecast(
+            card,
+            [
+                {"date": "2026-05-31", "value": 5.71, "unit": "% YTD"},
+                {"date": "2026-06-30", "value": 7.41, "unit": "% YTD"},
+            ],
+        )
+        self.assertIsNotNone(forecast)
+        self.assertEqual(forecast["forecast_1m"]["as_of"], "2026-07-31")
+
+    def test_one_point_business_cumulative_forecast_uses_ytd_run_rate(self) -> None:
+        forecast = run_report.cumulative_flow_forecast(
+            "business_new",
+            [{"date": "2026-06-30", "value": 111700, "source": "NSO"}],
+            current_value=111700,
+            current_date="2026-06-30",
+        )
+        self.assertIsNotNone(forecast)
+        self.assertEqual(forecast["forecast_1m"]["value"], 130317.0)
+        self.assertEqual(forecast["forecast_3m"]["value"], 167550.0)
+        self.assertEqual(forecast["forecast_sources"][0]["effective_increments"], 0)
+
+    def test_cumulative_forecast_resets_when_horizon_crosses_calendar_year(self) -> None:
+        forecast = run_report.cumulative_flow_forecast(
+            "exports",
+            [{"date": "2026-12-31", "value": 120.0, "source": "NSO"}],
+            current_value=120.0,
+            current_date="2026-12-31",
+        )
+        self.assertEqual(forecast["forecast_1m"]["as_of"], "2027-01-31")
+        self.assertEqual(forecast["forecast_1m"]["value"], 10.0)
+        self.assertEqual(forecast["forecast_3m"]["as_of"], "2027-03-31")
+        self.assertEqual(forecast["forecast_3m"]["value"], 30.0)
+
+    def test_cumulative_forecast_ignores_prior_year_monthly_flows(self) -> None:
+        forecast = run_report.cumulative_flow_forecast(
+            "exports",
+            [
+                {"date": "2025-11-30", "value": 1100.0, "source": "NSO"},
+                {"date": "2025-12-31", "value": 1200.0, "source": "NSO"},
+                {"date": "2026-01-31", "value": 10.0, "source": "NSO"},
+            ],
+            current_value=10.0,
+            current_date="2026-01-31",
+        )
+        self.assertIsNotNone(forecast)
+        self.assertEqual(forecast["forecast_1m"]["value"], 20.0)
+        self.assertEqual(forecast["forecast_sources"][0]["effective_increments"], 0)
+
+    def test_legacy_history_with_a_different_unit_is_not_forecast(self) -> None:
+        forecast = run_report.local_model_forecast(
+            {
+                "key": "cpi", "value": 3.0, "unit": "% YoY",
+                "as_of": "2026-06-30", "frequency": "monthly",
+            },
+            [
+                {"date": "2026-05-31", "value": 2.9, "unit": "% MoM"},
+                {"date": "2026-06-30", "value": 3.0, "unit": "% MoM"},
+            ],
+        )
+        self.assertIsNone(forecast)
+
+    def test_trade_balance_forecast_is_derived_from_exports_minus_imports(self) -> None:
+        cards = [
+            {
+                "key": "trade_balance", "name_vi": "Cán cân thương mại",
+                "value": -16.65, "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+                "as_of": "2026-06-30", "frequency": "monthly",
+                "source_primary": "NSO", "source_url": "https://www.nso.gov.vn/",
+            },
+            {
+                "key": "exports", "name_vi": "Xuất khẩu", "value": 266.52,
+                "unit": "tỷ USD (lũy kế kỳ báo cáo)", "as_of": "2026-06-30",
+                "frequency": "monthly", "source_primary": "NSO",
+                "source_url": "https://www.nso.gov.vn/",
+            },
+            {
+                "key": "imports", "name_vi": "Nhập khẩu", "value": 283.17,
+                "unit": "tỷ USD (lũy kế kỳ báo cáo)", "as_of": "2026-06-30",
+                "frequency": "monthly", "source_primary": "NSO",
+                "source_url": "https://www.nso.gov.vn/",
+            },
+        ]
+        history = {"series": {
+            "trade_balance": [
+                {"date": "2026-05-31", "value": -13.81, "unit": "tỷ USD (5T/2026)"},
+                {"date": "2026-06-30", "value": -16.65, "unit": "tỷ USD (lũy kế kỳ báo cáo)"},
+            ],
+            "exports": [
+                {"date": "2026-05-31", "value": 215.66, "unit": "tỷ USD (5T/2026)"},
+                {"date": "2026-06-30", "value": 266.52, "unit": "tỷ USD (lũy kế kỳ báo cáo)"},
+            ],
+            "imports": [
+                {"date": "2026-05-31", "value": 229.46, "unit": "tỷ USD (5T/2026)"},
+                {"date": "2026-06-30", "value": 283.17, "unit": "tỷ USD (lũy kế kỳ báo cáo)"},
+            ],
+        }}
+        direct_trade = run_report.cumulative_flow_forecast(
+            "trade_balance",
+            history["series"]["trade_balance"],
+            current_value=-16.65,
+            current_date="2026-06-30",
+        )
+        insights = run_report.build_card_insights(
+            cards,
+            history,
+            {"analysis_data": {"indicators": [], "forecast_scenarios": []}},
+            {"series": {}, "official_forecasts": {}},
+        )
+        for horizon in ("forecast_1m", "forecast_3m"):
+            trade = insights["trade_balance"][horizon]
+            exports = insights["exports"][horizon]
+            imports = insights["imports"][horizon]
+            direct = direct_trade[horizon]
+            self.assertAlmostEqual(trade["value"], exports["value"] - imports["value"])
+            self.assertAlmostEqual(
+                trade["value"] - trade["low"], direct["value"] - direct["low"]
+            )
+            self.assertAlmostEqual(
+                trade["high"] - trade["value"], direct["high"] - direct["value"]
+            )
+
+    def test_bounded_gemini_candidate_is_blended_but_outlier_is_rejected(self) -> None:
+        current = {"value": 90.0, "unit": "tỷ USD", "date": "2026-06-30"}
+        baseline = {
+            "forecast_status": "MODEL_ESTIMATE",
+            "forecast_1m": {"value": 100.0, "low": 95.0, "high": 105.0, "as_of": "2026-07-31"},
+            "forecast_3m": {"value": 120.0, "low": 110.0, "high": 130.0, "as_of": "2026-09-30"},
+            "confidence": "LOW",
+            "forecast_sources": [],
+            "source_count": 1,
+            "method": "baseline",
+            "warning": "model",
+        }
+        input_id = run_report.gemini_forecast_input_id(
+            "exports", current, baseline["forecast_1m"], baseline["forecast_3m"]
+        )
+        forecast_contexts = [{
+            "key": "exports", "input_id": input_id, "current": current,
+            "forecast_1m": baseline["forecast_1m"],
+            "forecast_3m": baseline["forecast_3m"],
+        }]
+        sanitized = run_report.sanitize_gemini_analysis(
+            {
+                "forecast_scenarios": [{
+                    "key": "exports", "input_id": input_id,
+                    "decision": "ADJUST_WITHIN_BOUNDS",
+                    "forecast_1m": 104.0, "forecast_3m": 128.0,
+                    "reason_short": "Đơn hàng cải thiện",
+                    "confidence": "HIGH", "sources": ["https://www.nso.gov.vn/"],
+                }]
+            },
+            set(),
+            forecast_contexts,
+        )
+        scenario = sanitized["forecast_scenarios"][0]
+        blended = run_report.apply_bounded_gemini_scenario(
+            "exports", current, baseline, scenario
+        )
+        self.assertEqual(blended["forecast_status"], "MODEL_ESTIMATE_GEMINI")
+        self.assertEqual(blended["forecast_1m"]["value"], 100.8)
+        self.assertEqual(blended["forecast_3m"]["value"], 121.6)
+        self.assertEqual(blended["confidence"], "LOW")
+
+        rejected = run_report.sanitize_gemini_analysis(
+            {
+                "forecast_scenarios": [{
+                    "key": "exports", "input_id": input_id,
+                    "decision": "ADJUST_WITHIN_BOUNDS",
+                    "forecast_1m": 999.0, "forecast_3m": 999.0,
+                    "sources": ["https://www.nso.gov.vn/"],
+                }]
+            },
+            set(),
+            forecast_contexts,
+        )
+        self.assertEqual(rejected["forecast_scenarios"], [])
+
+    def test_keep_baseline_needs_no_url_and_does_not_enable_gemini_badge(self) -> None:
+        current = {"value": 90.0, "unit": "tỷ USD", "date": "2026-06-30"}
+        baseline = {
+            "forecast_status": "MODEL_ESTIMATE",
+            "forecast_1m": {"value": 100.0, "low": 95.0, "high": 105.0, "as_of": "2026-07-31"},
+            "forecast_3m": {"value": 120.0, "low": 110.0, "high": 130.0, "as_of": "2026-09-30"},
+            "confidence": "LOW", "forecast_sources": [], "source_count": 1,
+        }
+        input_id = run_report.gemini_forecast_input_id(
+            "exports", current, baseline["forecast_1m"], baseline["forecast_3m"]
+        )
+        scenarios = run_report.sanitize_gemini_analysis(
+            {"forecast_scenarios": [{
+                "key": "exports", "input_id": input_id,
+                "decision": "KEEP_BASELINE", "sources": [],
+                "forecast_1m": 999.0, "forecast_3m": 999.0,
+            }]},
+            set(),
+            [{
+                "key": "exports", "input_id": input_id, "current": current,
+                "forecast_1m": baseline["forecast_1m"],
+                "forecast_3m": baseline["forecast_3m"],
+            }],
+        )["forecast_scenarios"]
+        self.assertEqual(len(scenarios), 1)
+        self.assertEqual(scenarios[0]["forecast_1m"], 100.0)
+        self.assertEqual(scenarios[0]["forecast_3m"], 120.0)
+        self.assertIs(
+            run_report.apply_bounded_gemini_scenario(
+                "exports", current, baseline, scenarios[0]
+            ),
+            baseline,
+        )
+
+    def test_gemini_candidate_allows_a_cumulative_calendar_reset(self) -> None:
+        current = {"value": 120.0, "unit": "tỷ USD", "date": "2026-12-31"}
+        baseline = {
+            "forecast_status": "MODEL_ESTIMATE",
+            "forecast_1m": {"value": 10.0, "low": 8.0, "high": 12.0, "as_of": "2027-01-31"},
+            "forecast_3m": {"value": 30.0, "low": 25.0, "high": 35.0, "as_of": "2027-03-31"},
+            "confidence": "LOW", "forecast_sources": [], "source_count": 1,
+        }
+        input_id = run_report.gemini_forecast_input_id(
+            "exports", current, baseline["forecast_1m"], baseline["forecast_3m"]
+        )
+        contexts = [{
+            "key": "exports", "input_id": input_id, "current": current,
+            "forecast_1m": baseline["forecast_1m"],
+            "forecast_3m": baseline["forecast_3m"],
+        }]
+        scenario = run_report.sanitize_gemini_analysis(
+            {"forecast_scenarios": [{
+                "key": "exports", "input_id": input_id,
+                "decision": "ADJUST_WITHIN_BOUNDS",
+                "forecast_1m": 11.0, "forecast_3m": 32.0,
+                "reason_short": "Đơn hàng có dấu hiệu cải thiện",
+                "confidence": "LOW", "sources": ["https://www.nso.gov.vn/"],
+            }]},
+            set(), contexts,
+        )["forecast_scenarios"][0]
+        blended = run_report.apply_bounded_gemini_scenario(
+            "exports", current, baseline, scenario
+        )
+        self.assertEqual(blended["forecast_status"], "MODEL_ESTIMATE_GEMINI")
+        self.assertEqual(blended["forecast_1m"]["value"], 10.2)
+        self.assertEqual(blended["forecast_3m"]["value"], 30.4)
+
+    def test_gemini_model_override_is_part_of_the_locked_input_id(self) -> None:
+        current = {"value": 90.0, "unit": "tỷ USD", "date": "2026-06-30"}
+        baseline = {
+            "forecast_status": "MODEL_ESTIMATE",
+            "forecast_1m": {"value": 100.0, "low": 95.0, "high": 105.0, "as_of": "2026-07-31"},
+            "forecast_3m": {"value": 120.0, "low": 110.0, "high": 130.0, "as_of": "2026-09-30"},
+            "confidence": "LOW", "forecast_sources": [], "source_count": 1,
+        }
+        model = "gemini-test-model"
+        input_id = run_report.gemini_forecast_input_id(
+            "exports", current, baseline["forecast_1m"], baseline["forecast_3m"],
+            model=model,
+        )
+        scenario = run_report.sanitize_gemini_analysis(
+            {"forecast_scenarios": [{
+                "key": "exports", "input_id": input_id,
+                "decision": "ADJUST_WITHIN_BOUNDS",
+                "forecast_1m": 104.0, "forecast_3m": 128.0,
+                "reason_short": "Đơn hàng có dấu hiệu cải thiện",
+                "confidence": "LOW", "sources": ["https://www.nso.gov.vn/"],
+            }]},
+            set(),
+            [{
+                "key": "exports", "input_id": input_id, "current": current,
+                "forecast_1m": baseline["forecast_1m"],
+                "forecast_3m": baseline["forecast_3m"],
+            }],
+        )["forecast_scenarios"][0]
+        scenario["model"] = model
+        blended = run_report.apply_bounded_gemini_scenario(
+            "exports", current, baseline, scenario
+        )
+        self.assertEqual(blended["forecast_status"], "MODEL_ESTIMATE_GEMINI")
+
+    def test_exact_point_forecast_gets_an_uncertainty_interval_and_bands(self) -> None:
+        forecast = run_report.with_probability_bands(
+            {"value": 80.0, "low": 80.0, "high": 80.0, "as_of": "2026-08-31"},
+            86.8,
+            confidence="LOW",
+            observations=1,
+            horizon_months=1,
+        )
+        self.assertTrue(forecast["interval_inferred"])
+        self.assertLess(forecast["low"], forecast["value"])
+        self.assertGreater(forecast["high"], forecast["value"])
+        self.assertIn(len(forecast["probability_bands"]), {2, 3})
+
     def test_cpi_probability_bands_are_ranked_contiguous_and_sum_to_100(self) -> None:
         one_month = run_report.forecast_probability_bands(
             {"value": 4.24, "low": 3.92, "high": 4.55},
@@ -941,15 +1281,125 @@ class RunReportTests(unittest.TestCase):
                 analysis = run_report.analyze_indicator_changes(memory, cards, now)
 
         self.assertEqual(analysis["status"], "success")
-        self.assertEqual(memory["events"][0]["ai_status"], "analyzed")
+        self.assertEqual(memory["events"][0]["ai_status"], "analyzed_unverified")
         indicator = analysis["analysis_data"]["indicators"][0]
         self.assertIsNone(indicator["forecast_1m"])
-        self.assertEqual(indicator["evidence_status"], "sourced")
+        self.assertEqual(indicator["evidence_status"], "url_provided")
+        self.assertEqual(
+            indicator["grounding_status"],
+            "model_provided_url_not_independently_verified",
+        )
         self.assertEqual(calls[0]["tools"], [{"type": "google_search"}])
         self.assertEqual(calls[0]["generation_config"]["thinking_level"], "high")
-        self.assertEqual(calls[0]["generation_config"]["max_output_tokens"], 4096)
+        self.assertEqual(calls[0]["generation_config"]["max_output_tokens"], 8192)
+        self.assertNotIn("temperature", calls[0]["generation_config"])
+        self.assertNotIn("top_p", calls[0]["generation_config"])
+        self.assertIs(calls[0]["store"], False)
+        self.assertEqual(calls[0]["timeout"], 60.0)
+        self.assertEqual(calls[0]["response_format"][0]["mime_type"], "application/json")
+        scenario_schema = calls[0]["response_format"][0]["schema"]["properties"]["forecast_scenarios"]["items"]
+        self.assertIn("decision", scenario_schema["required"])
         self.assertIn('"key": "cpi"', calls[0]["input"])
         self.assertNotIn('"key": "pmi_manufacturing"', calls[0]["input"])
+
+    def test_gemini_can_fill_a_missing_bounded_scenario_without_change_event(self) -> None:
+        cards = [
+            {
+                "key": "exports", "name_vi": "Xuất khẩu", "value": 266.52,
+                "unit": "tỷ USD (lũy kế kỳ báo cáo)", "as_of": "2026-06-30",
+            },
+            {
+                "key": "imports", "name_vi": "Nhập khẩu", "value": 283.17,
+                "unit": "tỷ USD (lũy kế kỳ báo cáo)", "as_of": "2026-06-30",
+            },
+        ]
+        baseline_insights = {
+            "exports": {
+                "key": "exports", "name_vi": "Xuất khẩu",
+                "forecast_status": "MODEL_ESTIMATE",
+                "current": {
+                    "value": 266.52, "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+                    "date": "2026-06-30",
+                },
+                "forecast_1m": {
+                    "value": 312.55, "low": 301.04, "high": 324.06,
+                    "as_of": "2026-07-31",
+                },
+                "forecast_3m": {
+                    "value": 404.61, "low": 384.68, "high": 424.54,
+                    "as_of": "2026-09-30",
+                },
+                "method": "baseline",
+            },
+            "imports": {
+                "key": "imports", "name_vi": "Nhập khẩu",
+                "forecast_status": "MODEL_ESTIMATE",
+                "current": {
+                    "value": 283.17, "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+                    "date": "2026-06-30",
+                },
+                "forecast_1m": {
+                    "value": 331.99, "low": 319.79, "high": 344.20,
+                    "as_of": "2026-07-31",
+                },
+                "forecast_3m": {
+                    "value": 429.64, "low": 408.50, "high": 450.78,
+                    "as_of": "2026-09-30",
+                },
+                "method": "baseline",
+            },
+        }
+        input_id = run_report.build_gemini_forecast_contexts(
+            cards, baseline_insights
+        )[0]["input_id"]
+        calls = []
+
+        class FakeInteractions:
+            def create(self, **kwargs):
+                calls.append(kwargs)
+                return types.SimpleNamespace(output_text=json.dumps({
+                    "summary_vi": "Bối cảnh thương mại còn phân hóa.",
+                    "indicators": [],
+                    "forecast_scenarios": [{
+                        "key": "exports", "input_id": input_id,
+                        "decision": "ADJUST_WITHIN_BOUNDS",
+                        "forecast_1m": 315.0, "forecast_3m": 410.0,
+                        "reason_short": "Đơn hàng có dấu hiệu cải thiện",
+                        "confidence": "LOW",
+                        "sources": ["https://www.nso.gov.vn/"],
+                    }],
+                }, ensure_ascii=False))
+
+        class FakeClient:
+            def __init__(self, api_key):
+                self.interactions = FakeInteractions()
+
+        fake_google = types.ModuleType("google")
+        fake_google.genai = types.SimpleNamespace(Client=FakeClient)
+        with patch.dict(os.environ, {"GEMINI_API_KEY": "test-secret"}, clear=True):
+            with patch.dict(sys.modules, {"google": fake_google}):
+                with patch.object(run_report, "load_previous_gemini_analysis", return_value=None):
+                    result = run_report.analyze_indicator_changes(
+                        {"states": {}, "events": []},
+                        cards,
+                        datetime(2026, 8, 3, tzinfo=timezone.utc),
+                        baseline_insights,
+                    )
+
+        self.assertEqual(result["status"], "success")
+        self.assertEqual(result["event_count"], 0)
+        self.assertEqual(result["forecast_scenario_count"], 1)
+        self.assertEqual(
+            result["analysis_data"]["forecast_scenarios"][0]["input_id"],
+            input_id,
+        )
+        self.assertNotIn("315.0", result["analysis_vi"])
+        self.assertIn('"key": "exports"', calls[0]["input"])
+        self.assertIn('"key": "imports"', calls[0]["input"])
+        self.assertNotIn(
+            "imports",
+            {item["key"] for item in result["analysis_data"]["forecast_scenarios"]},
+        )
 
 
 if __name__ == "__main__":

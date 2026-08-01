@@ -5,10 +5,10 @@
 - Headline **Lãi suất liên ngân hàng qua đêm** là mức **đóng cửa thứ Sáu của VBMA** (`VBMA Friday close`), thống nhất với `laixuat_tienVN`.
 - Không trộn mức đóng cửa VBMA với bình quân tuần SBV trong cùng chuỗi lịch sử.
 - Dự báo `LOW / SINGLE_SOURCE` chỉ được hiển thị khi một nguồn API có tối thiểu 60 quan sát/90 ngày.
-- Khi API chưa đủ nguồn nhưng chuỗi nội bộ có ít nhất 2 kỳ số cùng đơn vị, hệ thống có thể hiển thị `LOW / MODEL_ESTIMATE`: một kịch bản ngoại suy deterministic có biên bất định và cảnh báo rõ, không phải đồng thuận nguồn hay số liệu chính thức.
+- Khi API chưa đủ nguồn, hệ thống có thể hiển thị `LOW / MODEL_ESTIMATE`: chỉ tiêu thời điểm/tốc độ dùng xu hướng giảm chấn; chỉ tiêu lũy kế dùng nhịp phát sinh tháng giảm chấn về bình quân từ đầu năm. Cả hai đều có biên bất định và cảnh báo rõ, không phải đồng thuận nguồn hay số liệu chính thức.
 - Mỗi khoảng dự báo số có thể kèm 2–3 vùng xác suất liền nhau. Tỷ lệ dùng hỗn hợp phân bố đều–tam giác trên chính biên mô hình và được làm phẳng theo độ tin cậy, tự gộp vùng quá hẹp và luôn cộng thành 100%; đây là trọng số kịch bản chưa hiệu chuẩn, không phải xác suất thống kê thực nghiệm.
 - Hai nguồn lệch nhau vượt ngưỡng phải trả `DISAGREEMENT` và giữ consensus là `null`, không lấy trung bình cho có.
-- Feed dùng chung chỉ chứa facts tại `docs/api/facts.json`; Gemini nằm ở file riêng và không được ghi đè facts/dự báo.
+- Feed dùng chung chỉ chứa facts tại `docs/api/facts.json`; Gemini không bao giờ được ghi đè facts. Ứng viên Gemini chỉ được trộn 20% vào `MODEL_ESTIMATE`, phải có nguồn, đúng dấu vân tay đầu vào và nằm trong biên ViMO đã khóa.
 - Dự báo nằm riêng tại `docs/api/forecasts.json`; đây là đầu ra mô hình, không được nhập vào facts.
 - Nguyên nhân hiển thị chính được dựng từ biến động quan sát; bối cảnh Gemini được giữ ở trường `ai_context_unverified`, không thay thế nguyên nhân deterministic.
 
@@ -21,6 +21,7 @@ Auto runner for Vietnamese macro reports.
 - Fetches machine-readable daily values for USD/VND, gold, oil, DXY, US 10Y, S&P 500, and VN-Index, with Vietcap as the primary VN-Index source.
 - Builds auditable 1-month/3-month projections from Yahoo Finance and Vietcap histories, optional FRED histories, and optional official EIA STEO oil forecasts.
 - Falls back to an explicitly low-confidence `MODEL_ESTIMATE` when external sources are insufficient but at least two comparable observed periods are available; source disagreement is never overridden.
+- Forecasts cumulative exports, imports, FDI, business, visitor and budget totals from a damped monthly run-rate, including a conservative one-observation YTD fallback and calendar-year reset.
 - Shows two or three adjacent model-probability bands for each numeric horizon, with narrow display ranges merged and percentages normalized to 100%.
 - Adds `VIP` labels to monthly/yearly macro indicators.
 - Monitors the five official/free macro sources used by the reference project: PMI, NSO, Customs, VBMA, and VNBA.
@@ -32,7 +33,7 @@ Auto runner for Vietnamese macro reports.
 - Shows the data date on every dashboard card so an older verified value is never presented as today's observation.
 - Keeps official macro indicators in `awaiting_official_source` until a reliable parser/source is added, instead of inventing numbers.
 - Stores indicator state and value-change events in `output/indicator_memory.json`; unchanged monthly/quarterly observations are reused without creating new work.
-- Sends only the latest pending event for each changed indicator to Gemini with Google Search. The prompt contains no unchanged cards, batches at most 8 keys, and caps output at 4,096 tokens.
+- Sends the latest pending change events plus missing locked forecast baselines to Gemini with Google Search. Numeric candidates are validated, source-linked, input-versioned, bounded to the ViMO interval and blended at a fixed 20% weight; invalid or unavailable AI output leaves the deterministic forecast unchanged.
 - Builds the 1-3 month market stance with a conservative, transparent local score. Gemini explains individual changes but cannot overwrite the overall stance with promotional language.
 - Generates output files into `output/` and `docs/`.
 - Commits changed output back to the repository.
@@ -53,9 +54,9 @@ Do not commit the bot token into files.
 
 ## Gemini setup
 
-Add `GEMINI_API_KEY` as a repository secret. The optional repository variable `GEMINI_MODEL` can override the default `models/gemini-3-flash-preview`.
+Add `GEMINI_API_KEY` as a repository secret. The optional repository variable `GEMINI_MODEL` can override the default stable model `gemini-3.6-flash`.
 
-When the key is absent or Gemini is unavailable, report generation continues and pending events remain in the memory file for a later run. Older pending events for the same indicator are marked `superseded`, so only the newest observation is analyzed. Gemini output is published to `output/gemini_analysis.json` and `docs/api/gemini_analysis.json`; forecasts are stored as neutral scenarios, not observed facts or investment recommendations.
+When the key is absent or Gemini is unavailable, report generation continues with the deterministic baseline and pending events remain for a later run. Older pending events for the same indicator are marked `superseded`, so only the newest observation is analyzed. Only sanitized Gemini fields are published to `output/gemini_analysis.json` and `docs/api/gemini_analysis.json`; raw model output and secrets are never written. Forecasts remain neutral scenarios, not observed facts or investment recommendations.
 
 ## Forecast API setup
 

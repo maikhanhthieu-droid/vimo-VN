@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-08-01T03:58:03.680696+00:00",
-  "generated_at_bkk": "2026-08-01T10:58:03.680696+07:00",
+  "generated_at_utc": "2026-08-01T10:37:03.075908+00:00",
+  "generated_at_bkk": "2026-08-01T17:37:03.075908+07:00",
   "coverage": {
     "available_cards": 41,
     "total_cards": 41,
@@ -18,9 +18,10 @@
   },
   "gemini_analysis": {
     "status": "waiting_for_api_key",
-    "model": "models/gemini-3-flash-preview",
-    "generated_at": "2026-08-01T03:58:03.680696+00:00",
+    "model": "gemini-3.6-flash",
+    "generated_at": "2026-08-01T10:37:03.075908+00:00",
     "event_count": 9,
+    "forecast_scenario_count": 0,
     "api_url": "api/gemini_analysis.json"
   },
   "card_insights": {
@@ -58,19 +59,19 @@
           {
             "low": 1.77,
             "high": 1.97,
-            "probability": 32.1,
+            "probability": 32.0,
             "rank": 3
           },
           {
             "low": 1.97,
             "high": 2.16,
-            "probability": 35.7,
+            "probability": 35.9,
             "rank": 1
           },
           {
             "low": 2.16,
             "high": 2.36,
-            "probability": 32.2,
+            "probability": 32.1,
             "rank": 2
           }
         ],
@@ -88,19 +89,19 @@
           {
             "low": 1.23,
             "high": 1.54,
-            "probability": 31.2,
+            "probability": 31.1,
             "rank": 2
           },
           {
             "low": 1.54,
             "high": 1.86,
-            "probability": 37.6,
+            "probability": 37.8,
             "rank": 1
           },
           {
             "low": 1.86,
             "high": 2.17,
-            "probability": 31.2,
+            "probability": 31.1,
             "rank": 3
           }
         ],
@@ -129,17 +130,20 @@
             "high": 2.17,
             "as_of": "2026-10-24"
           },
-          "observations": 3,
-          "span_days": 14,
+          "observations": 4,
+          "span_days": 56,
           "method": "Damped deterministic trend scenario from dated observed history.",
           "official": false
         }
       ],
-      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn VBMA; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 4 kỳ có nguồn VBMA; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị giảm 1.44 % so với kỳ 2026-07-17. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
-      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "method": "Kịch bản xu hướng giảm chấn từ 4 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -255,6 +259,9 @@
         }
       ],
       "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn VNBA / NHNN; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 5 VND/USD so với kỳ 2026-05-22. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
@@ -288,26 +295,26 @@
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 26182.0,
-        "low": 25656.0,
-        "high": 26707.0,
-        "as_of": "2026-08-30",
+        "value": 25901.0,
+        "low": 25378.0,
+        "high": 26425.0,
+        "as_of": "2026-09-01",
         "probability_bands": [
           {
-            "low": 25656.0,
-            "high": 26006.0,
+            "low": 25378.0,
+            "high": 25727.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 26006.0,
-            "high": 26357.0,
+            "low": 25727.0,
+            "high": 26076.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26357.0,
-            "high": 26707.0,
+            "low": 26076.0,
+            "high": 26425.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -318,26 +325,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 26102.0,
-        "low": 25262.0,
-        "high": 26942.0,
-        "as_of": "2026-10-30",
+        "value": 25608.0,
+        "low": 24770.0,
+        "high": 26445.0,
+        "as_of": "2026-11-01",
         "probability_bands": [
           {
-            "low": 25262.0,
-            "high": 25822.0,
+            "low": 24770.0,
+            "high": 25328.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25822.0,
-            "high": 26382.0,
+            "low": 25328.0,
+            "high": 25887.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26382.0,
-            "high": 26942.0,
+            "low": 25887.0,
+            "high": 26445.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -354,18 +361,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-07-30",
+          "as_of": "2026-08-01",
           "forecast_1m": {
-            "value": 26182.0,
-            "low": 25656.0,
-            "high": 26707.0,
-            "as_of": "2026-08-30"
+            "value": 25901.0,
+            "low": 25378.0,
+            "high": 26425.0,
+            "as_of": "2026-09-01"
           },
           "forecast_3m": {
-            "value": 26102.0,
-            "low": 25262.0,
-            "high": 26942.0,
-            "as_of": "2026-10-30"
+            "value": 25608.0,
+            "low": 24770.0,
+            "high": 26445.0,
+            "as_of": "2026-11-01"
           },
           "observations": 6,
           "span_days": 5,
@@ -374,7 +381,10 @@
         }
       ],
       "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 6 kỳ có nguồn Open ER API; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
-      "reason_short": "Giá trị tăng 1.33 VND/USD so với kỳ 2026-07-29. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
+      "reason_short": "Giá trị giảm 15.72 VND/USD so với kỳ 2026-07-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -407,27 +417,27 @@
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 1730.0,
-        "low": 1657.0,
-        "high": 1806.0,
-        "as_of": "2026-08-30",
+        "value": 1740.0,
+        "low": 1666.0,
+        "high": 1818.0,
+        "as_of": "2026-08-31",
         "probability_bands": [
           {
-            "low": 1657.0,
-            "high": 1707.0,
+            "low": 1666.0,
+            "high": 1717.0,
             "probability": 30.9,
             "rank": 2
           },
           {
-            "low": 1707.0,
-            "high": 1756.0,
-            "probability": 38.4,
+            "low": 1717.0,
+            "high": 1767.0,
+            "probability": 38.5,
             "rank": 1
           },
           {
-            "low": 1756.0,
-            "high": 1806.0,
-            "probability": 30.7,
+            "low": 1767.0,
+            "high": 1818.0,
+            "probability": 30.6,
             "rank": 3
           }
         ],
@@ -437,27 +447,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 1734.0,
-        "low": 1610.0,
-        "high": 1868.0,
-        "as_of": "2026-10-30",
+        "value": 1743.0,
+        "low": 1617.0,
+        "high": 1880.0,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 1610.0,
-            "high": 1696.0,
-            "probability": 30.8,
+            "low": 1617.0,
+            "high": 1705.0,
+            "probability": 30.9,
             "rank": 2
           },
           {
-            "low": 1696.0,
-            "high": 1782.0,
-            "probability": 38.9,
+            "low": 1705.0,
+            "high": 1792.0,
+            "probability": 38.6,
             "rank": 1
           },
           {
-            "low": 1782.0,
-            "high": 1868.0,
-            "probability": 30.3,
+            "low": 1792.0,
+            "high": 1880.0,
+            "probability": 30.5,
             "rank": 3
           }
         ],
@@ -473,7 +483,7 @@
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
           "as_of": "2026-07-31",
-          "fetched_at": "2026-08-01T03:58:03.680696+00:00",
+          "fetched_at": "2026-08-01T10:37:03.075908+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
@@ -495,6 +505,9 @@
         }
       ],
       "forecast_warning": "NGHI NGỜ: chỉ có một nguồn API; không phải dự báo đồng thuận.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 10.7 điểm so với kỳ 2026-07-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
@@ -614,6 +627,9 @@
         }
       ],
       "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn VBMA; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 0.01 % so với kỳ 2026-07-17. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
@@ -625,7 +641,7 @@
       "key": "gold_world",
       "name_vi": "Vàng thế giới",
       "current": {
-        "value": 4098.6001,
+        "value": 4049.1001,
         "unit": "USD/oz",
         "date": "2026-07-31",
         "source": "Yahoo Finance",
@@ -642,32 +658,32 @@
         "source_note": null
       },
       "change": {
-        "absolute": -12.6997,
-        "percent": -0.3089,
+        "absolute": -62.1997,
+        "percent": -1.5129,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 4066.0,
-        "low": 3984.0,
-        "high": 4148.0,
-        "as_of": "2026-08-30",
+        "value": 4003.0,
+        "low": 3922.0,
+        "high": 4084.0,
+        "as_of": "2026-08-31",
         "probability_bands": [
           {
-            "low": 3984.0,
-            "high": 4039.0,
-            "probability": 31.5,
+            "low": 3922.0,
+            "high": 3976.0,
+            "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 4039.0,
-            "high": 4093.0,
-            "probability": 37.0,
+            "low": 3976.0,
+            "high": 4030.0,
+            "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 4093.0,
-            "high": 4148.0,
-            "probability": 31.5,
+            "low": 4030.0,
+            "high": 4084.0,
+            "probability": 31.3,
             "rank": 3
           }
         ],
@@ -677,27 +693,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 4016.0,
-        "low": 3885.0,
-        "high": 4148.0,
-        "as_of": "2026-10-30",
+        "value": 3951.0,
+        "low": 3822.0,
+        "high": 4081.0,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 3885.0,
-            "high": 3973.0,
-            "probability": 31.5,
+            "low": 3822.0,
+            "high": 3908.0,
+            "probability": 31.2,
             "rank": 2
           },
           {
-            "low": 3973.0,
-            "high": 4060.0,
-            "probability": 37.1,
+            "low": 3908.0,
+            "high": 3995.0,
+            "probability": 37.6,
             "rank": 1
           },
           {
-            "low": 4060.0,
-            "high": 4148.0,
-            "probability": 31.4,
+            "low": 3995.0,
+            "high": 4081.0,
+            "probability": 31.2,
             "rank": 3
           }
         ],
@@ -713,18 +729,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
-          "as_of": "2026-07-30",
+          "as_of": "2026-07-31",
           "forecast_1m": {
-            "value": 4066.0,
-            "low": 3984.0,
-            "high": 4148.0,
-            "as_of": "2026-08-30"
+            "value": 4003.0,
+            "low": 3922.0,
+            "high": 4084.0,
+            "as_of": "2026-08-31"
           },
           "forecast_3m": {
-            "value": 4016.0,
-            "low": 3885.0,
-            "high": 4148.0,
-            "as_of": "2026-10-30"
+            "value": 3951.0,
+            "low": 3822.0,
+            "high": 4081.0,
+            "as_of": "2026-10-31"
           },
           "observations": 6,
           "span_days": 7,
@@ -733,7 +749,10 @@
         }
       ],
       "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 6 kỳ có nguồn Yahoo Finance; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
-      "reason_short": "Giá trị tăng 85.6997 USD/oz so với kỳ 2026-07-29. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
+      "reason_short": "Giá trị giảm 62.1997 USD/oz so với kỳ 2026-07-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -765,15 +784,103 @@
         "percent": 29.7723,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 8.76,
+        "low": 8.3,
+        "high": 9.23,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 8.3,
+            "high": 8.61,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 8.61,
+            "high": 8.92,
+            "probability": 36.7,
+            "rank": 1
+          },
+          {
+            "low": 8.92,
+            "high": 9.23,
+            "probability": 31.6,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 11.46,
+        "low": 10.66,
+        "high": 12.27,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 10.66,
+            "high": 11.2,
+            "probability": 31.9,
+            "rank": 2
+          },
+          {
+            "low": 11.2,
+            "high": 11.73,
+            "probability": 36.2,
+            "rank": 1
+          },
+          {
+            "low": 11.73,
+            "high": 12.27,
+            "probability": 31.9,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 8.76,
+            "low": 8.3,
+            "high": 9.23,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 11.46,
+            "low": 10.66,
+            "high": 12.27,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 1.235,
+          "recent_monthly_flow": 1.7,
+          "shrunk_monthly_pace": 1.3513,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 1.7 % YTD so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -794,6 +901,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Dải lãi suất huy động thông thường của Big4 cho kỳ hạn từ 12 tháng; giữ dạng khoảng, không lấy trung bình giả.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -818,6 +928,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Dải lãi suất cho vay bình quân đối với dư nợ cũ và mới.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -829,7 +942,7 @@
       "key": "dxy",
       "name_vi": "DXY",
       "current": {
-        "value": 99.803,
+        "value": 99.8,
         "unit": "điểm",
         "date": "2026-07-31",
         "source": "Yahoo Finance",
@@ -846,32 +959,32 @@
         "source_note": null
       },
       "change": {
-        "absolute": -1.147,
-        "percent": -1.1362,
+        "absolute": -1.15,
+        "percent": -1.1392,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 100.9,
-        "low": 98.9,
-        "high": 102.9,
-        "as_of": "2026-08-30",
+        "value": 96.22,
+        "low": 94.23,
+        "high": 98.22,
+        "as_of": "2026-08-31",
         "probability_bands": [
           {
-            "low": 98.9,
-            "high": 100.2,
-            "probability": 30.4,
+            "low": 94.23,
+            "high": 95.56,
+            "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 100.2,
-            "high": 101.6,
-            "probability": 39.2,
+            "low": 95.56,
+            "high": 96.89,
+            "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 101.6,
-            "high": 102.9,
-            "probability": 30.4,
+            "low": 96.89,
+            "high": 98.22,
+            "probability": 31.3,
             "rank": 3
           }
         ],
@@ -881,27 +994,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 100.8,
-        "low": 97.6,
-        "high": 104.1,
-        "as_of": "2026-10-30",
+        "value": 92.28,
+        "low": 89.09,
+        "high": 95.48,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 97.6,
-            "high": 99.8,
-            "probability": 31.9,
+            "low": 89.09,
+            "high": 91.22,
+            "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 99.8,
-            "high": 101.9,
-            "probability": 36.3,
+            "low": 91.22,
+            "high": 93.35,
+            "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 101.9,
-            "high": 104.1,
-            "probability": 31.8,
+            "low": 93.35,
+            "high": 95.48,
+            "probability": 31.3,
             "rank": 3
           }
         ],
@@ -917,18 +1030,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
-          "as_of": "2026-07-30",
+          "as_of": "2026-07-31",
           "forecast_1m": {
-            "value": 100.9,
-            "low": 98.9,
-            "high": 102.9,
-            "as_of": "2026-08-30"
+            "value": 96.22,
+            "low": 94.23,
+            "high": 98.22,
+            "as_of": "2026-08-31"
           },
           "forecast_3m": {
-            "value": 100.8,
-            "low": 97.6,
-            "high": 104.1,
-            "as_of": "2026-10-30"
+            "value": 92.28,
+            "low": 89.09,
+            "high": 95.48,
+            "as_of": "2026-10-31"
           },
           "observations": 6,
           "span_days": 7,
@@ -937,7 +1050,10 @@
         }
       ],
       "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 6 kỳ có nguồn Yahoo Finance; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
-      "reason_short": "Giá trị giảm 0.357 điểm so với kỳ 2026-07-29. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
+      "reason_short": "Giá trị giảm 1.15 điểm so với kỳ 2026-07-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -961,6 +1077,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Chưa có kỳ trước cùng định nghĩa để xác định biến động.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -998,6 +1117,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 6.124 nghìn tỷ VND so với kỳ 2026-07-17. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1031,6 +1153,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Nội dung công bố đã thay đổi; dữ liệu dạng chữ nên không nội suy số.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1055,6 +1180,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Tăng trưởng kinh tế Mỹ được VNBA ghi nhận trong bản tin tháng 5.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1066,7 +1194,7 @@
       "key": "oil_prices",
       "name_vi": "Giá dầu WTI",
       "current": {
-        "value": 86.8,
+        "value": 84.67,
         "unit": "USD/thùng",
         "date": "2026-07-31",
         "source": "Yahoo Finance",
@@ -1083,21 +1211,73 @@
         "source_note": null
       },
       "change": {
-        "absolute": 3.19,
-        "percent": 3.8153,
+        "absolute": 1.06,
+        "percent": 1.2678,
         "direction": "up"
       },
       "forecast_1m": {
         "value": 68.0,
-        "low": 68.0,
-        "high": 68.0,
-        "as_of": "2026-09-01"
+        "low": 64.61,
+        "high": 71.39,
+        "as_of": "2026-09-01",
+        "interval_inferred": true,
+        "interval_method": "confidence_scaled_reference_width_v1",
+        "probability_bands": [
+          {
+            "low": 64.61,
+            "high": 66.87,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 66.87,
+            "high": 69.13,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 69.13,
+            "high": 71.39,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_3m": {
         "value": 66.0,
-        "low": 66.0,
-        "high": 66.0,
-        "as_of": "2026-11-01"
+        "low": 60.13,
+        "high": 71.87,
+        "as_of": "2026-11-01",
+        "interval_inferred": true,
+        "interval_method": "confidence_scaled_reference_width_v1",
+        "probability_bands": [
+          {
+            "low": 60.13,
+            "high": 64.04,
+            "probability": 31.6,
+            "rank": 2
+          },
+          {
+            "low": 64.04,
+            "high": 67.96,
+            "probability": 36.8,
+            "rank": 1
+          },
+          {
+            "low": 67.96,
+            "high": 71.87,
+            "probability": 31.6,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
       },
       "forecast_status": "SINGLE_SOURCE",
       "forecast_sources": [
@@ -1106,7 +1286,7 @@
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
           "as_of": "2026-08-01",
-          "fetched_at": "2026-08-01T03:58:03.680696+00:00",
+          "fetched_at": "2026-08-01T10:37:03.075908+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 68.0,
@@ -1128,7 +1308,10 @@
         }
       ],
       "forecast_warning": "NGHI NGỜ: chỉ có một nguồn API; không phải dự báo đồng thuận.",
-      "reason_short": "Giá trị tăng 3.19 USD/thùng so với kỳ 2026-07-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
+      "reason_short": "Giá trị tăng 1.06 USD/thùng so với kỳ 2026-07-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
@@ -1152,6 +1335,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Bản tin ghi nhận xung đột Trung Đông và gián đoạn tại Hormuz gây cú sốc năng lượng.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1185,27 +1371,27 @@
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 4.61,
-        "low": 4.52,
-        "high": 4.7,
-        "as_of": "2026-08-29",
+        "value": 4.82,
+        "low": 4.73,
+        "high": 4.92,
+        "as_of": "2026-08-31",
         "probability_bands": [
           {
-            "low": 4.52,
-            "high": 4.58,
-            "probability": 31.3,
+            "low": 4.73,
+            "high": 4.79,
+            "probability": 29.7,
             "rank": 2
           },
           {
-            "low": 4.58,
-            "high": 4.64,
-            "probability": 37.4,
+            "low": 4.79,
+            "high": 4.86,
+            "probability": 41.0,
             "rank": 1
           },
           {
-            "low": 4.64,
-            "high": 4.7,
-            "probability": 31.3,
+            "low": 4.86,
+            "high": 4.92,
+            "probability": 29.3,
             "rank": 3
           }
         ],
@@ -1215,26 +1401,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 4.6,
-        "low": 4.45,
-        "high": 4.75,
-        "as_of": "2026-10-29",
+        "value": 4.91,
+        "low": 4.76,
+        "high": 5.06,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 4.45,
-            "high": 4.55,
+            "low": 4.76,
+            "high": 4.86,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 4.55,
-            "high": 4.65,
+            "low": 4.86,
+            "high": 4.96,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 4.65,
-            "high": 4.75,
+            "low": 4.96,
+            "high": 5.06,
             "probability": 31.3,
             "rank": 3
           }
@@ -1251,18 +1437,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/%5ETNX",
-          "as_of": "2026-07-29",
+          "as_of": "2026-07-31",
           "forecast_1m": {
-            "value": 4.61,
-            "low": 4.52,
-            "high": 4.7,
-            "as_of": "2026-08-29"
+            "value": 4.82,
+            "low": 4.73,
+            "high": 4.92,
+            "as_of": "2026-08-31"
           },
           "forecast_3m": {
-            "value": 4.6,
-            "low": 4.45,
-            "high": 4.75,
-            "as_of": "2026-10-29"
+            "value": 4.91,
+            "low": 4.76,
+            "high": 5.06,
+            "as_of": "2026-10-31"
           },
           "observations": 6,
           "span_days": 8,
@@ -1271,7 +1457,10 @@
         }
       ],
       "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 6 kỳ có nguồn Yahoo Finance; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
-      "reason_short": "Giá trị tăng 0.018 % so với kỳ 2026-07-28. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
+      "reason_short": "Giá trị tăng 0.082 % so với kỳ 2026-07-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -1308,6 +1497,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị giảm 0.25 % lãi suất hiện áp dụng so với kỳ 2025-06-04. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1345,6 +1537,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 0.25 % lãi suất hiện áp dụng so với kỳ 2025-12-18. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1369,6 +1564,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Tăng trưởng Trung Quốc được VNBA tổng hợp trong bản tin tháng 5.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1393,6 +1591,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Bản tin VNBA liệt kê chuỗi Thông tư 11-21/2026 do NHNN ban hành trong tháng 5.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1417,6 +1618,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Chưa có kỳ trước cùng định nghĩa để xác định biến động.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -1536,6 +1740,9 @@
         }
       ],
       "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị giảm 0.91 % YoY so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
@@ -1549,7 +1756,7 @@
       "current": {
         "value": 51.8,
         "unit": "điểm",
-        "date": "2026-07-03",
+        "date": "2026-06-30",
         "source": "VGP / S&P Global",
         "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm"
       },
@@ -1568,15 +1775,100 @@
         "percent": -1.8939,
         "direction": "down"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "forecast_sources": [],
-      "forecast_warning": "Không điền số thay thế.",
+      "forecast_1m": {
+        "value": 51.3,
+        "low": 50.26,
+        "high": 52.34,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 50.26,
+            "high": 50.95,
+            "probability": 31.5,
+            "rank": 2
+          },
+          {
+            "low": 50.95,
+            "high": 51.65,
+            "probability": 37.0,
+            "rank": 1
+          },
+          {
+            "low": 51.65,
+            "high": 52.34,
+            "probability": 31.5,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 50.75,
+        "low": 49.09,
+        "high": 52.41,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 49.09,
+            "high": 50.2,
+            "probability": 31.8,
+            "rank": 2
+          },
+          {
+            "low": 50.2,
+            "high": 51.3,
+            "probability": 36.4,
+            "rank": 1
+          },
+          {
+            "low": 51.3,
+            "high": 52.41,
+            "probability": 31.8,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "VGP / S&P Global",
+          "source_kind": "local_observed_history",
+          "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 51.3,
+            "low": 50.26,
+            "high": 52.34,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 50.75,
+            "low": 49.09,
+            "high": 52.41,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "span_days": 30,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn VGP / S&P Global; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị giảm 1 điểm so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1605,15 +1897,100 @@
         "percent": 18.6813,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "forecast_sources": [],
-      "forecast_warning": "Không điền số thay thế.",
+      "forecast_1m": {
+        "value": 11.65,
+        "low": 11.06,
+        "high": 12.25,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 11.06,
+            "high": 11.46,
+            "probability": 32.0,
+            "rank": 2
+          },
+          {
+            "low": 11.46,
+            "high": 11.85,
+            "probability": 36.1,
+            "rank": 1
+          },
+          {
+            "low": 11.85,
+            "high": 12.25,
+            "probability": 31.9,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 12.59,
+        "low": 11.63,
+        "high": 13.54,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 11.63,
+            "high": 12.27,
+            "probability": 31.8,
+            "rank": 3
+          },
+          {
+            "low": 12.27,
+            "high": 12.9,
+            "probability": 36.3,
+            "rank": 1
+          },
+          {
+            "low": 12.9,
+            "high": 13.54,
+            "probability": 31.9,
+            "rank": 2
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_observed_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 11.65,
+            "low": 11.06,
+            "high": 12.25,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 12.59,
+            "low": 11.63,
+            "high": 13.54,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "span_days": 30,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 1.7 % YoY so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không đủ chuỗi API có ngày và định nghĩa phù hợp để dự báo.",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1642,17 +2019,172 @@
         "percent": -20.5648,
         "direction": "down"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": -19.44,
+        "low": -20.14,
+        "high": -18.74,
+        "as_of": "2026-07-31",
+        "derived_from": [
+          "exports",
+          "imports"
+        ],
+        "uncertainty_from": "direct_trade_balance_run_rate",
+        "probability_bands": [
+          {
+            "low": -20.14,
+            "high": -19.67,
+            "probability": 31.9,
+            "rank": 2
+          },
+          {
+            "low": -19.67,
+            "high": -19.21,
+            "probability": 36.2,
+            "rank": 1
+          },
+          {
+            "low": -19.21,
+            "high": -18.74,
+            "probability": 31.9,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": -25.03,
+        "low": -26.24,
+        "high": -23.83,
+        "as_of": "2026-09-30",
+        "derived_from": [
+          "exports",
+          "imports"
+        ],
+        "uncertainty_from": "direct_trade_balance_run_rate",
+        "probability_bands": [
+          {
+            "low": -26.24,
+            "high": -25.44,
+            "probability": 31.5,
+            "rank": 2
+          },
+          {
+            "low": -25.44,
+            "high": -24.63,
+            "probability": 37.0,
+            "rank": 1
+          },
+          {
+            "low": -24.63,
+            "high": -23.83,
+            "probability": 31.5,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "Xuất khẩu, nhập khẩu và lịch sử cán cân",
+          "source_kind": "derived_accounting_identity",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "component_source_urls": [
+            "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+            "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+          ],
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": -19.44,
+            "low": -20.14,
+            "high": -18.74,
+            "as_of": "2026-07-31",
+            "derived_from": [
+              "exports",
+              "imports"
+            ],
+            "uncertainty_from": "direct_trade_balance_run_rate",
+            "probability_bands": [
+              {
+                "low": -20.14,
+                "high": -19.67,
+                "probability": 31.9,
+                "rank": 2
+              },
+              {
+                "low": -19.67,
+                "high": -19.21,
+                "probability": 36.2,
+                "rank": 1
+              },
+              {
+                "low": -19.21,
+                "high": -18.74,
+                "probability": 31.9,
+                "rank": 3
+              }
+            ],
+            "probability_kind": "heuristic_scenario_weight",
+            "probability_method": "confidence_weighted_triangular_scenario_v1",
+            "probability_total": 100.0,
+            "probability_calibrated": false
+          },
+          "forecast_3m": {
+            "value": -25.03,
+            "low": -26.24,
+            "high": -23.83,
+            "as_of": "2026-09-30",
+            "derived_from": [
+              "exports",
+              "imports"
+            ],
+            "uncertainty_from": "direct_trade_balance_run_rate",
+            "probability_bands": [
+              {
+                "low": -26.24,
+                "high": -25.44,
+                "probability": 31.5,
+                "rank": 2
+              },
+              {
+                "low": -25.44,
+                "high": -24.63,
+                "probability": 37.0,
+                "rank": 1
+              },
+              {
+                "low": -24.63,
+                "high": -23.83,
+                "probability": 31.5,
+                "rank": 3
+              }
+            ],
+            "probability_kind": "heuristic_scenario_weight",
+            "probability_method": "confidence_weighted_triangular_scenario_v1",
+            "probability_total": 100.0,
+            "probability_calibrated": false
+          },
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: kết quả phụ thuộc trực tiếp vào hai kịch bản xuất khẩu và nhập khẩu, không phải số công bố chính thức.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị giảm 2.84 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Đồng nhất kế toán: cán cân thương mại dự báo bằng xuất khẩu trừ nhập khẩu ở từng kỳ; độ rộng bất định giữ theo mô hình cán cân trực tiếp để tránh coi hai cực trị xuất/nhập khẩu là độc lập.",
       "ai_sources": [],
-      "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
+      "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư.",
+      "gemini_components": []
     },
     "exports": {
       "key": "exports",
@@ -1679,15 +2211,103 @@
         "percent": 23.5834,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 312.55,
+        "low": 301.04,
+        "high": 324.06,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 301.04,
+            "high": 308.71,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 308.71,
+            "high": 316.39,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 316.39,
+            "high": 324.06,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 404.61,
+        "low": 384.68,
+        "high": 424.54,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 384.68,
+            "high": 397.97,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 397.97,
+            "high": 411.25,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 411.25,
+            "high": 424.54,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 312.55,
+            "low": 301.04,
+            "high": 324.06,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 404.61,
+            "low": 384.68,
+            "high": 424.54,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 44.42,
+          "recent_monthly_flow": 50.86,
+          "shrunk_monthly_pace": 46.03,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 50.86 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1716,15 +2336,103 @@
         "percent": 23.4071,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 331.99,
+        "low": 319.79,
+        "high": 344.2,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 319.79,
+            "high": 327.93,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 327.93,
+            "high": 336.06,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 336.06,
+            "high": 344.2,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 429.64,
+        "low": 408.5,
+        "high": 450.78,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 408.5,
+            "high": 422.59,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 422.59,
+            "high": 436.69,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 436.69,
+            "high": 450.78,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 331.99,
+            "low": 319.79,
+            "high": 344.2,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 429.64,
+            "low": 408.5,
+            "high": 450.78,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 47.195,
+          "recent_monthly_flow": 53.71,
+          "shrunk_monthly_pace": 48.8238,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 53.71 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1753,15 +2461,103 @@
         "percent": 33.641,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 15.48,
+        "low": 14.37,
+        "high": 16.59,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 14.37,
+            "high": 15.11,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 15.11,
+            "high": 15.85,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 15.85,
+            "high": 16.59,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 20.38,
+        "low": 18.46,
+        "high": 22.3,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 18.46,
+            "high": 19.74,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 19.74,
+            "high": 21.02,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 21.02,
+            "high": 22.3,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 15.48,
+            "low": 14.37,
+            "high": 16.59,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 20.38,
+            "low": 18.46,
+            "high": 22.3,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 2.1717,
+          "recent_monthly_flow": 3.28,
+          "shrunk_monthly_pace": 2.4487,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 3.28 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1790,15 +2586,103 @@
         "percent": 39.6614,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 41.44,
+        "low": 35.34,
+        "high": 47.54,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 35.34,
+            "high": 39.41,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 39.41,
+            "high": 43.47,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 43.47,
+            "high": 47.54,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 55.02,
+        "low": 44.46,
+        "high": 65.58,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 44.46,
+            "high": 51.5,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 51.5,
+            "high": 58.54,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 58.54,
+            "high": 65.58,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 41.44,
+            "low": 35.34,
+            "high": 47.54,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 55.02,
+            "low": 44.46,
+            "high": 65.58,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 5.775,
+          "recent_monthly_flow": 9.84,
+          "shrunk_monthly_pace": 6.7912,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 9.84 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1827,15 +2711,100 @@
         "percent": 15.1786,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 13.75,
+        "low": 13.15,
+        "high": 14.35,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 13.15,
+            "high": 13.55,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 13.55,
+            "high": 13.95,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 13.95,
+            "high": 14.35,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 14.69,
+        "low": 13.73,
+        "high": 15.64,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 13.73,
+            "high": 14.37,
+            "probability": 31.8,
+            "rank": 3
+          },
+          {
+            "low": 14.37,
+            "high": 15.0,
+            "probability": 36.3,
+            "rank": 1
+          },
+          {
+            "low": 15.0,
+            "high": 15.64,
+            "probability": 31.9,
+            "rank": 2
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_observed_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 13.75,
+            "low": 13.15,
+            "high": 14.35,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 14.69,
+            "low": 13.73,
+            "high": 15.64,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "span_days": 30,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 1.7 % YoY lũy kế kỳ báo cáo so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1851,15 +2820,103 @@
       },
       "previous": null,
       "change": null,
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 130317.0,
+        "low": 123801.0,
+        "high": 136832.0,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 123801.0,
+            "high": 128145.0,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 128145.0,
+            "high": 132488.0,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 132488.0,
+            "high": 136832.0,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 167550.0,
+        "low": 156264.0,
+        "high": 178836.0,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 156264.0,
+            "high": 163788.0,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 163788.0,
+            "high": 171312.0,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 171312.0,
+            "high": 178836.0,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 130317.0,
+            "low": 123801.0,
+            "high": 136832.0,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 167550.0,
+            "low": 156264.0,
+            "high": 178836.0,
+            "as_of": "2026-09-30"
+          },
+          "observations": 1,
+          "effective_increments": 0,
+          "average_monthly_flow": 18616.67,
+          "recent_monthly_flow": 18616.67,
+          "shrunk_monthly_pace": 18616.67,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Chưa có kỳ trước cùng định nghĩa để xác định biến động.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng một mức lũy kế và nhịp bình quân từ đầu năm, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1888,15 +2945,103 @@
         "percent": 16.86,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 175438.0,
+        "low": 169353.0,
+        "high": 181522.0,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 169353.0,
+            "high": 173409.0,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 173409.0,
+            "high": 177466.0,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 177466.0,
+            "high": 181522.0,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 224112.0,
+        "low": 213574.0,
+        "high": 234651.0,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 213574.0,
+            "high": 220600.0,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 220600.0,
+            "high": 227625.0,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 227625.0,
+            "high": 234651.0,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 175438.0,
+            "low": 169353.0,
+            "high": 181522.0,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 224112.0,
+            "low": 213574.0,
+            "high": 234651.0,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 25183.33,
+          "recent_monthly_flow": 21800.0,
+          "shrunk_monthly_pace": 24337.5,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 21800 doanh nghiệp (6T/2026) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1925,15 +3070,103 @@
         "percent": 16.0377,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 14.26,
+        "low": 13.77,
+        "high": 14.75,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 13.77,
+            "high": 14.1,
+            "probability": 32.0,
+            "rank": 2
+          },
+          {
+            "low": 14.1,
+            "high": 14.42,
+            "probability": 36.0,
+            "rank": 1
+          },
+          {
+            "low": 14.42,
+            "high": 14.75,
+            "probability": 32.0,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 18.19,
+        "low": 17.34,
+        "high": 19.04,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 17.34,
+            "high": 17.91,
+            "probability": 31.9,
+            "rank": 2
+          },
+          {
+            "low": 17.91,
+            "high": 18.47,
+            "probability": 36.2,
+            "rank": 1
+          },
+          {
+            "low": 18.47,
+            "high": 19.04,
+            "probability": 31.9,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 14.26,
+            "low": 13.77,
+            "high": 14.75,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 18.19,
+            "low": 17.34,
+            "high": 19.04,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 2.05,
+          "recent_monthly_flow": 1.7,
+          "shrunk_monthly_pace": 1.9625,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 1.7 triệu lượt (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1962,15 +3195,100 @@
         "percent": 11.6071,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 13.15,
+        "low": 12.7,
+        "high": 13.61,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 12.7,
+            "high": 13.0,
+            "probability": 31.3,
+            "rank": 2
+          },
+          {
+            "low": 13.0,
+            "high": 13.31,
+            "probability": 37.5,
+            "rank": 1
+          },
+          {
+            "low": 13.31,
+            "high": 13.61,
+            "probability": 31.2,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 13.87,
+        "low": 13.14,
+        "high": 14.59,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 13.14,
+            "high": 13.62,
+            "probability": 31.4,
+            "rank": 2
+          },
+          {
+            "low": 13.62,
+            "high": 14.11,
+            "probability": 37.2,
+            "rank": 1
+          },
+          {
+            "low": 14.11,
+            "high": 14.59,
+            "probability": 31.4,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_observed_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 13.15,
+            "low": 12.7,
+            "high": 13.61,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 13.87,
+            "low": 13.14,
+            "high": 14.59,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "span_days": 30,
+          "method": "Damped deterministic trend scenario from dated observed history.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 1.3 % YoY vốn khu vực Nhà nước so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1999,15 +3317,103 @@
         "percent": 17.0299,
         "direction": "up"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "NOT_FORECASTABLE",
-      "forecast_sources": [],
-      "forecast_warning": null,
+      "forecast_1m": {
+        "value": 1821.3,
+        "low": 1758.0,
+        "high": 1884.5,
+        "as_of": "2026-07-31",
+        "probability_bands": [
+          {
+            "low": 1758.0,
+            "high": 1800.2,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 1800.2,
+            "high": 1842.3,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 1842.3,
+            "high": 1884.5,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 2327.4,
+        "low": 2217.8,
+        "high": 2437.0,
+        "as_of": "2026-09-30",
+        "probability_bands": [
+          {
+            "low": 2217.8,
+            "high": 2290.9,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 2290.9,
+            "high": 2363.9,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 2363.9,
+            "high": 2437.0,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "forecast_sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "as_of": "2026-06-30",
+          "forecast_1m": {
+            "value": 1821.3,
+            "low": 1758.0,
+            "high": 1884.5,
+            "as_of": "2026-07-31"
+          },
+          "forecast_3m": {
+            "value": 2327.4,
+            "low": 2217.8,
+            "high": 2437.0,
+            "as_of": "2026-09-30"
+          },
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 261.367,
+          "recent_monthly_flow": 228.2,
+          "shrunk_monthly_pace": 253.075,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Giá trị tăng 228.2 nghìn tỷ VND thu NSNN so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -2037,6 +3443,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Nội dung công bố đã thay đổi; dữ liệu dạng chữ nên không nội suy số.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -2061,6 +3470,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Tỷ trọng xuất khẩu của khu vực có vốn đầu tư nước ngoài, kể cả dầu thô.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -2085,6 +3497,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Mỹ là thị trường xuất khẩu lớn nhất; Trung Quốc là thị trường nhập khẩu lớn nhất.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -2109,6 +3524,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Máy tính, sản phẩm điện tử và linh kiện xuất sang Mỹ; nguồn Chính phủ dẫn số liệu thương mại.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -2133,6 +3551,9 @@
       "forecast_status": "NOT_FORECASTABLE",
       "forecast_sources": [],
       "forecast_warning": null,
+      "gemini_assisted": false,
+      "gemini_input_id": null,
+      "gemini_grounding_status": null,
       "reason_short": "Tổng FDI đăng ký vào ngành chế biến, chế tạo năm 2025; dùng số cũ gần nhất có phân ngành rõ.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
@@ -2214,8 +3635,8 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-08-01T03:58:22.685119+00:00",
-      "bytes": 95538
+      "checked_at": "2026-08-01T10:37:12.153473+00:00",
+      "bytes": 95644
     },
     "nso": {
       "name": "NSO/GSO Việt Nam",
@@ -2223,8 +3644,8 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": true,
-      "checked_at": "2026-08-01T03:58:25.673126+00:00",
-      "bytes": 114427
+      "checked_at": "2026-08-01T10:37:13.525851+00:00",
+      "bytes": 114428
     },
     "customs": {
       "name": "Tổng cục Hải quan",
@@ -2232,7 +3653,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-08-01T03:58:26.790297+00:00",
+      "checked_at": "2026-08-01T10:37:13.624539+00:00",
       "bytes": 14038
     },
     "vbma": {
@@ -2241,7 +3662,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-08-01T03:58:27.449048+00:00",
+      "checked_at": "2026-08-01T10:37:14.219011+00:00",
       "bytes": 39678
     },
     "vnba": {
@@ -2250,8 +3671,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-08-01T03:58:29.675973+00:00",
-      "bytes": 221187
+      "checked_at": "2026-08-01T10:37:14.371604+00:00",
+      "bytes": 220999
     },
     "market": {
       "name": "Public market APIs / Vietcap",
@@ -2259,7 +3680,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-08-01T03:58:30.885372+00:00",
+      "checked_at": "2026-08-01T10:37:14.519208+00:00",
       "bytes": 8036
     }
   },
@@ -2304,7 +3725,8 @@
           "source": "VBMA",
           "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
           "source_quality": "AUTO_VBMA_PDF",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "interbank_overnight_rate"
         }
       ],
       "fx_central_rate": [
@@ -2326,7 +3748,8 @@
           "source": "VNBA / NHNN",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Tỷ giá trung tâm chốt tuần cuối tháng 5 theo bản tin VNBA tổng hợp từ NHNN."
+          "source_note": "Tỷ giá trung tâm chốt tuần cuối tháng 5 theo bản tin VNBA tổng hợp từ NHNN.",
+          "forecast_definition_id": "sbv_central_vnd_usd"
         }
       ],
       "fx_market_usd_vnd": [
@@ -2540,7 +3963,8 @@
           "source": "Open ER API",
           "source_url": "https://open.er-api.com/",
           "source_quality": "AUTO",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "market_vnd_usd"
         }
       ],
       "stock_market": [
@@ -2662,7 +4086,8 @@
           "source": "Vietcap",
           "source_url": "https://trading.vietcap.com.vn/",
           "source_quality": "AUTO",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "vnindex_close"
         }
       ],
       "govt_bond_yield": [
@@ -2694,7 +4119,8 @@
           "source": "VBMA",
           "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
           "source_quality": "AUTO_VBMA_PDF",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "vn_government_bond_10y_yield"
         }
       ],
       "gold_world": [
@@ -2853,12 +4279,13 @@
         {
           "date": "2026-07-31",
           "bucket": "2026-07-31",
-          "value": 4098.6001,
+          "value": 4049.1001,
           "unit": "USD/oz",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
           "source_quality": "AUTO",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "world_gold_usd_oz"
         }
       ],
       "credit": [
@@ -2880,7 +4307,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "credit_growth_ytd"
         }
       ],
       "deposit_rate": [
@@ -2892,7 +4320,8 @@
           "source": "VNBA",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Dải lãi suất huy động thông thường của Big4 cho kỳ hạn từ 12 tháng; giữ dạng khoảng, không lấy trung bình giả."
+          "source_note": "Dải lãi suất huy động thông thường của Big4 cho kỳ hạn từ 12 tháng; giữ dạng khoảng, không lấy trung bình giả.",
+          "forecast_definition_id": null
         }
       ],
       "lending_rate": [
@@ -2904,7 +4333,8 @@
           "source": "VNBA / NHNN",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Dải lãi suất cho vay bình quân đối với dư nợ cũ và mới."
+          "source_note": "Dải lãi suất cho vay bình quân đối với dư nợ cũ và mới.",
+          "forecast_definition_id": null
         }
       ],
       "dxy": [
@@ -3063,12 +4493,13 @@
         {
           "date": "2026-07-31",
           "bucket": "2026-07-31",
-          "value": 99.803,
+          "value": 99.8,
           "unit": "điểm",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
           "source_quality": "AUTO",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "dxy_index"
         }
       ],
       "corporate_bond_issuance": [
@@ -3080,7 +4511,8 @@
           "source": "VBMA",
           "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
           "source_quality": "AUTO_VBMA_PDF",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": null
         }
       ],
       "govt_bond_issuance": [
@@ -3112,7 +4544,8 @@
           "source": "VBMA",
           "source_url": "https://vbma.org.vn/storage/reports/July2026/20072026%20-%2024072026%20BAO%20CAO%20TUAN%20TTTP.pdf",
           "source_quality": "AUTO_VBMA_PDF",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": null
         }
       ],
       "fed_policy": [
@@ -3134,7 +4567,8 @@
           "source": "VNBA / Fed",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Dải lãi suất Fed trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
+          "source_note": "Dải lãi suất Fed trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.",
+          "forecast_definition_id": null
         }
       ],
       "us_economy": [
@@ -3146,7 +4580,8 @@
           "source": "VNBA",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Tăng trưởng kinh tế Mỹ được VNBA ghi nhận trong bản tin tháng 5."
+          "source_note": "Tăng trưởng kinh tế Mỹ được VNBA ghi nhận trong bản tin tháng 5.",
+          "forecast_definition_id": null
         }
       ],
       "oil_prices": [
@@ -3305,12 +4740,13 @@
         {
           "date": "2026-07-31",
           "bucket": "2026-07-31",
-          "value": 86.8,
+          "value": 84.67,
           "unit": "USD/thùng",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/CL%3DF",
           "source_quality": "AUTO",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "wti_usd_barrel"
         }
       ],
       "geopolitical_risk": [
@@ -3322,7 +4758,8 @@
           "source": "VNBA",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Bản tin ghi nhận xung đột Trung Đông và gián đoạn tại Hormuz gây cú sốc năng lượng."
+          "source_note": "Bản tin ghi nhận xung đột Trung Đông và gián đoạn tại Hormuz gây cú sốc năng lượng.",
+          "forecast_definition_id": null
         }
       ],
       "us_10y_yield": [
@@ -3476,7 +4913,8 @@
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/%5ETNX",
           "source_quality": "AUTO",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "us_treasury_10y_yield"
         }
       ],
       "ecb_eurozone": [
@@ -3498,7 +4936,8 @@
           "source": "VNBA / ECB",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Lãi suất ECB trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
+          "source_note": "Lãi suất ECB trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.",
+          "forecast_definition_id": null
         }
       ],
       "boj_japan": [
@@ -3520,7 +4959,8 @@
           "source": "VNBA / BOJ",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Lãi suất BOJ trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA."
+          "source_note": "Lãi suất BOJ trong bảng ngân hàng trung ương tuần 1 tháng 6 của VNBA.",
+          "forecast_definition_id": null
         }
       ],
       "china_economy": [
@@ -3532,7 +4972,8 @@
           "source": "VNBA / NBS China",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Tăng trưởng Trung Quốc được VNBA tổng hợp trong bản tin tháng 5."
+          "source_note": "Tăng trưởng Trung Quốc được VNBA tổng hợp trong bản tin tháng 5.",
+          "forecast_definition_id": null
         }
       ],
       "policy_actions_vn": [
@@ -3544,7 +4985,8 @@
           "source": "VNBA / NHNN",
           "source_url": "https://vnba.org.vn/vi/ban-tin-kinh-te-tai-chinh-tien-te-thang-5-va-tuan-1-thang-6-2026-22126.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Bản tin VNBA liệt kê chuỗi Thông tư 11-21/2026 do NHNN ban hành trong tháng 5."
+          "source_note": "Bản tin VNBA liệt kê chuỗi Thông tư 11-21/2026 do NHNN ban hành trong tháng 5.",
+          "forecast_definition_id": null
         }
       ],
       "agriculture_snapshot": [
@@ -3556,7 +4998,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": null
         }
       ],
       "cpi": [
@@ -3578,7 +5021,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "cpi_headline_yoy"
         }
       ],
       "pmi_manufacturing": [
@@ -3593,14 +5037,15 @@
           "bucket": "2026-05"
         },
         {
-          "date": "2026-07-31",
-          "bucket": "2026-07",
+          "date": "2026-06-30",
+          "bucket": "2026-06",
           "value": 51.8,
           "unit": "điểm",
           "source": "VGP / S&P Global",
           "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
           "source_quality": "AUTO_VGP_SPGLOBAL",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "pmi_manufacturing_headline"
         }
       ],
       "iip": [
@@ -3622,7 +5067,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "iip_ytd_yoy"
         }
       ],
       "trade_balance": [
@@ -3644,7 +5090,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": "Nhập siêu mang dấu âm; xuất siêu mang dấu dương."
+          "source_note": "Nhập siêu mang dấu âm; xuất siêu mang dấu dương.",
+          "forecast_definition_id": "goods_trade_balance_ytd"
         }
       ],
       "exports": [
@@ -3666,7 +5113,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "goods_exports_ytd"
         }
       ],
       "imports": [
@@ -3688,7 +5136,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "goods_imports_ytd"
         }
       ],
       "fdi_disbursed": [
@@ -3710,7 +5159,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "fdi_disbursed_ytd"
         }
       ],
       "fdi_registered": [
@@ -3732,7 +5182,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "fdi_registered_ytd"
         }
       ],
       "retail": [
@@ -3754,7 +5205,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "retail_sales_ytd_yoy"
         }
       ],
       "business_new": [
@@ -3766,7 +5218,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "new_businesses_ytd"
         }
       ],
       "business_exited": [
@@ -3788,7 +5241,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Tổng doanh nghiệp tạm ngừng, chờ giải thể và hoàn tất giải thể."
+          "source_note": "Tổng doanh nghiệp tạm ngừng, chờ giải thể và hoàn tất giải thể.",
+          "forecast_definition_id": "exited_businesses_ytd"
         }
       ],
       "international_visitors": [
@@ -3810,7 +5264,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "international_visitors_ytd"
         }
       ],
       "state_investment": [
@@ -3832,7 +5287,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch."
+          "source_note": "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch.",
+          "forecast_definition_id": "state_investment_yoy"
         }
       ],
       "state_budget": [
@@ -3854,7 +5310,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "AUTO_NSO_PARSE",
-          "source_note": null
+          "source_note": null,
+          "forecast_definition_id": "state_budget_revenue_ytd"
         }
       ],
       "pmi_sub_indices": [
@@ -3876,7 +5333,8 @@
           "source": "VGP / S&P Global",
           "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "S&P không công bố điểm số từng cấu phần miễn phí; lưu đúng mô tả hướng biến động, không tự gán điểm."
+          "source_note": "S&P không công bố điểm số từng cấu phần miễn phí; lưu đúng mô tả hướng biến động, không tự gán điểm.",
+          "forecast_definition_id": null
         }
       ],
       "trade_by_sector": [
@@ -3888,7 +5346,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Tỷ trọng xuất khẩu của khu vực có vốn đầu tư nước ngoài, kể cả dầu thô."
+          "source_note": "Tỷ trọng xuất khẩu của khu vực có vốn đầu tư nước ngoài, kể cả dầu thô.",
+          "forecast_definition_id": null
         }
       ],
       "trade_by_market": [
@@ -3900,7 +5359,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/bai-top/2026/07/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Mỹ là thị trường xuất khẩu lớn nhất; Trung Quốc là thị trường nhập khẩu lớn nhất."
+          "source_note": "Mỹ là thị trường xuất khẩu lớn nhất; Trung Quốc là thị trường nhập khẩu lớn nhất.",
+          "forecast_definition_id": null
         }
       ],
       "trade_by_commodity": [
@@ -3912,7 +5372,8 @@
           "source": "VGP / số liệu thương mại",
           "source_url": "https://en.baochinhphu.vn/viet-nams-exports-to-us-up-nearly-22-in-five-months-111260616101850643.htm",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_MEDQ",
-          "source_note": "Máy tính, sản phẩm điện tử và linh kiện xuất sang Mỹ; nguồn Chính phủ dẫn số liệu thương mại."
+          "source_note": "Máy tính, sản phẩm điện tử và linh kiện xuất sang Mỹ; nguồn Chính phủ dẫn số liệu thương mại.",
+          "forecast_definition_id": null
         }
       ],
       "fdi_by_sector": [
@@ -3924,7 +5385,8 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/01/nganh-cong-nghiep-che-bien-che-tao-thu-hut-manh-me-nhat-dong-von-dau-tu-truc-tiep-nuoc-ngoai-nam-2025/",
           "source_quality": "STALE_CACHE_VERIFIED_BASELINE_HIGHQ",
-          "source_note": "Tổng FDI đăng ký vào ngành chế biến, chế tạo năm 2025; dùng số cũ gần nhất có phân ngành rõ."
+          "source_note": "Tổng FDI đăng ký vào ngành chế biến, chế tạo năm 2025; dùng số cũ gần nhất có phân ngành rõ.",
+          "forecast_definition_id": null
         }
       ]
     },
@@ -4003,6 +5465,7 @@
       "as_of": "2026-07-24",
       "frequency": "weekly_snapshot",
       "vip": false,
+      "forecast_definition_id": "interbank_overnight_rate",
       "direction": "up",
       "narrative": "Lãi suất liên ngân hàng qua đêm hiện có dữ liệu tự động từ VBMA/VNBA. Giá trị mới nhất là 2.43 %, dùng để theo dõi lãi suất liên ngân hàng đo thanh khoản hệ thống."
     },
@@ -4025,6 +5488,7 @@
       "as_of": "2026-05-29",
       "frequency": "daily",
       "vip": false,
+      "forecast_definition_id": "sbv_central_vnd_usd",
       "direction": "flat",
       "narrative": "Tỷ giá trung tâm hiện có dữ liệu tự động từ SBV. Giá trị mới nhất là 25139 VND/USD, dùng để theo dõi tỷ giá trung tâm là neo chính sách ngoại hối."
     },
@@ -4047,6 +5511,7 @@
       "as_of": "Sat, 01 Aug 2026 00:02:31 +0000",
       "frequency": "daily",
       "vip": false,
+      "forecast_definition_id": "market_vnd_usd",
       "direction": "flat",
       "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 26167.86 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
     },
@@ -4069,6 +5534,7 @@
       "as_of": "2026-07-31",
       "frequency": "daily",
       "vip": false,
+      "forecast_definition_id": "vnindex_close",
       "direction": "flat",
       "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1735.78 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
     },
@@ -4091,6 +5557,7 @@
       "as_of": "2026-07-24",
       "frequency": "weekly_snapshot",
       "vip": false,
+      "forecast_definition_id": "vn_government_bond_10y_yield",
       "direction": "flat",
       "narrative": "Lợi suất TPCP Việt Nam 10Y hiện có dữ liệu tự động từ VBMA. Giá trị mới nhất là 4.41 %, dùng để theo dõi tpcp 10y là benchmark chi phí vốn dài hạn."
     },
@@ -4102,7 +5569,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4098.6001,
+      "value": 4049.1001,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -4113,8 +5580,9 @@
       "as_of": "2026-07-31",
       "frequency": "daily",
       "vip": false,
+      "forecast_definition_id": "world_gold_usd_oz",
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4098.6001 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4049.1001 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -4135,6 +5603,7 @@
       "as_of": "2026-06-26",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "credit_growth_ytd",
       "direction": "flat",
       "narrative": "Tăng trưởng tín dụng hiện có dữ liệu tự động từ SBV/VNBA. Giá trị mới nhất là 7.41 % YTD, dùng để theo dõi tín dụng là dòng vốn chính của nền kinh tế."
     },
@@ -4157,6 +5626,7 @@
       "as_of": "2026-05-31",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Lãi suất huy động hiện có dữ liệu tự động từ VNBA. Giá trị mới nhất là 5,9-6,0 %/năm Big4 kỳ hạn 12T, dùng để theo dõi huy động đo chi phí vốn của ngân hàng."
     },
@@ -4179,6 +5649,7 @@
       "as_of": "2026-05-31",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Lãi suất cho vay hiện có dữ liệu tự động từ VNBA. Giá trị mới nhất là 7,1-9,4 %/năm bình quân VND, dùng để theo dõi lãi vay là chi phí vốn của doanh nghiệp và hộ gia đình."
     },
@@ -4190,7 +5661,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 99.803,
+      "value": 99.8,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -4201,8 +5672,9 @@
       "as_of": "2026-07-31",
       "frequency": "daily",
       "vip": false,
+      "forecast_definition_id": "dxy_index",
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 99.803 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 99.8 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -4223,6 +5695,7 @@
       "as_of": "2026-07-24",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Phát hành TPDN hiện có dữ liệu tự động từ VBMA. Giá trị mới nhất là 8.939 nghìn tỷ VND, dùng để theo dõi tpdn phản ánh kênh vốn ngoài ngân hàng."
     },
@@ -4245,6 +5718,7 @@
       "as_of": "2026-07-24",
       "frequency": "weekly_snapshot",
       "vip": false,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Phát hành TPCP hiện có dữ liệu tự động từ VBMA. Giá trị mới nhất là 194.565 nghìn tỷ VND, dùng để theo dõi tpcp đo huy động ngân sách và cung trái phiếu."
     },
@@ -4267,6 +5741,7 @@
       "as_of": "2026-06-06",
       "frequency": "meeting",
       "vip": false,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Fed policy rate hiện có dữ liệu tự động từ FRED. Giá trị mới nhất là 3,50-3,75 % lãi suất hiện áp dụng, dùng để theo dõi fed là neo lãi suất usd và dòng vốn toàn cầu."
     },
@@ -4289,6 +5764,7 @@
       "as_of": "2026-05-31",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Kinh tế Mỹ hiện có dữ liệu tự động từ FRED/BEA. Giá trị mới nhất là 1.6 % GDP YoY, dùng để theo dõi mỹ là thị trường xuất khẩu lớn và neo usd."
     },
@@ -4300,7 +5776,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 86.8,
+      "value": 84.67,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -4311,8 +5787,9 @@
       "as_of": "2026-07-31",
       "frequency": "daily",
       "vip": false,
+      "forecast_definition_id": "wti_usd_barrel",
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 86.8 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 84.67 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
@@ -4333,6 +5810,7 @@
       "as_of": "2026-05-31",
       "frequency": "daily_monitor",
       "vip": false,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Rủi ro địa chính trị hiện có dữ liệu tự động từ News. Giá trị mới nhất là Trung Đông/Hormuz: cú sốc năng lượng ghi nhận tháng 5/2026, dùng để theo dõi cú sốc địa chính trị ảnh hưởng dầu, logistics và usd."
     },
@@ -4355,6 +5833,7 @@
       "as_of": "2026-07-31",
       "frequency": "daily",
       "vip": false,
+      "forecast_definition_id": "us_treasury_10y_yield",
       "direction": "up",
       "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.745 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
     },
@@ -4377,6 +5856,7 @@
       "as_of": "2026-06-06",
       "frequency": "meeting",
       "vip": false,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "ECB/Eurozone hiện có dữ liệu tự động từ ECB. Giá trị mới nhất là 2.0 % lãi suất hiện áp dụng, dùng để theo dõi eu là đối tác thương mại và nguồn fdi quan trọng."
     },
@@ -4399,6 +5879,7 @@
       "as_of": "2026-06-06",
       "frequency": "meeting",
       "vip": false,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "BOJ/Japan hiện có dữ liệu tự động từ BOJ. Giá trị mới nhất là 0.75 % lãi suất hiện áp dụng, dùng để theo dõi nhật là nguồn fdi và đối tác tài chính lớn."
     },
@@ -4421,6 +5902,7 @@
       "as_of": "2026-05-31",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Kinh tế Trung Quốc hiện có dữ liệu tự động từ NBS China. Giá trị mới nhất là 5.0 % tăng trưởng YoY, dùng để theo dõi trung quốc là đối tác thương mại lớn nhất của việt nam."
     },
@@ -4443,6 +5925,7 @@
       "as_of": "2026-05-31",
       "frequency": "event",
       "vip": false,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Chính sách Việt Nam hiện có dữ liệu tự động từ Government/SBV. Giá trị mới nhất là Thông tư NHNN 11-21/2026 ban hành trong tháng 5/2026, dùng để theo dõi chính sách nội địa là biến số trực tiếp cho thị trường."
     },
@@ -4465,6 +5948,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "Nông nghiệp hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 3.87 % YoY khu vực I, dùng để theo dõi nông nghiệp ảnh hưởng lương thực, xuất khẩu và cpi."
     },
@@ -4487,6 +5971,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "cpi_headline_yoy",
       "direction": "down",
       "narrative": "CPI hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 4.69 % YoY, dùng để theo dõi lạm phát là biến số nền cho lãi suất, tỷ giá và sức mua."
     },
@@ -4506,9 +5991,10 @@
       "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
       "source_quality": "AUTO_VGP_SPGLOBAL",
       "source_note": null,
-      "as_of": "2026-07-03",
+      "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "pmi_manufacturing_headline",
       "direction": "flat",
       "narrative": "PMI sản xuất hiện có dữ liệu tự động từ S&P Global. Giá trị mới nhất là 51.8 điểm, dùng để theo dõi pmi là tín hiệu sớm của chu kỳ đơn hàng và sản xuất."
     },
@@ -4531,6 +6017,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "iip_ytd_yoy",
       "direction": "flat",
       "narrative": "IIP hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 10.8 % YoY, dùng để theo dõi iip cho thấy nhịp sản xuất chính thức."
     },
@@ -4553,6 +6040,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "goods_trade_balance_ytd",
       "direction": "flat",
       "narrative": "Cán cân thương mại hiện có dữ liệu tự động từ Customs. Giá trị mới nhất là -16.65 tỷ USD (lũy kế kỳ báo cáo), dùng để theo dõi cán cân thương mại tác động tới tỷ giá và thanh khoản ngoại tệ."
     },
@@ -4575,6 +6063,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "goods_exports_ytd",
       "direction": "flat",
       "narrative": "Xuất khẩu hiện có dữ liệu tự động từ Customs. Giá trị mới nhất là 266.52 tỷ USD (lũy kế kỳ báo cáo), dùng để theo dõi xuất khẩu là động lực tăng trưởng và dòng usd."
     },
@@ -4597,6 +6086,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "goods_imports_ytd",
       "direction": "flat",
       "narrative": "Nhập khẩu hiện có dữ liệu tự động từ Customs. Giá trị mới nhất là 283.17 tỷ USD (lũy kế kỳ báo cáo), dùng để theo dõi nhập khẩu phản ánh nhu cầu nguyên liệu và đầu tư."
     },
@@ -4619,6 +6109,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "fdi_disbursed_ytd",
       "direction": "flat",
       "narrative": "FDI giải ngân hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 13.03 tỷ USD (lũy kế kỳ báo cáo), dùng để theo dõi fdi giải ngân cho thấy vốn thật vào nền kinh tế."
     },
@@ -4641,6 +6132,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "fdi_registered_ytd",
       "direction": "flat",
       "narrative": "FDI đăng ký hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 34.65 tỷ USD (lũy kế kỳ báo cáo), dùng để theo dõi fdi đăng ký phản ánh kỳ vọng đầu tư tương lai."
     },
@@ -4663,6 +6155,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "retail_sales_ytd_yoy",
       "direction": "flat",
       "narrative": "Bán lẻ hàng hóa và dịch vụ hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 12.9 % YoY lũy kế kỳ báo cáo, dùng để theo dõi bán lẻ là nhiệt kế tiêu dùng nội địa."
     },
@@ -4685,6 +6178,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "new_businesses_ytd",
       "direction": "flat",
       "narrative": "Doanh nghiệp thành lập mới hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 111700.0 doanh nghiệp (lũy kế kỳ báo cáo), dùng để theo dõi số doanh nghiệp mới phản ánh khẩu vị mở rộng kinh doanh."
     },
@@ -4707,6 +6201,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "exited_businesses_ytd",
       "direction": "flat",
       "narrative": "Doanh nghiệp rút lui hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 151100 doanh nghiệp (6T/2026), dùng để theo dõi doanh nghiệp rút lui đo áp lực vận hành."
     },
@@ -4729,6 +6224,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "international_visitors_ytd",
       "direction": "flat",
       "narrative": "Khách quốc tế hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 12.3 triệu lượt (lũy kế kỳ báo cáo), dùng để theo dõi du lịch là cấu phần quan trọng của dịch vụ và ngoại tệ."
     },
@@ -4751,6 +6247,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "state_investment_yoy",
       "direction": "flat",
       "narrative": "Đầu tư công hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 12.5 % YoY vốn khu vực Nhà nước, dùng để theo dõi đầu tư công là lực kéo tài khóa."
     },
@@ -4773,6 +6270,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": "state_budget_revenue_ytd",
       "direction": "flat",
       "narrative": "Ngân sách nhà nước hiện có dữ liệu tự động từ MOF/NSO. Giá trị mới nhất là 1568.2 nghìn tỷ VND thu NSNN, dùng để theo dõi ngân sách cho thấy sức khỏe tài khóa."
     },
@@ -4795,6 +6293,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "PMI cấu phần hiện có dữ liệu tự động từ S&P Global. Giá trị mới nhất là Đơn hàng và sản lượng tăng; việc làm giảm ghi nhận tháng 6/2026, dùng để theo dõi cấu phần pmi kể rõ sức khỏe sản xuất bên trong."
     },
@@ -4817,6 +6316,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "XNK theo khu vực hiện có dữ liệu tự động từ Customs. Giá trị mới nhất là 79.9 % xuất khẩu thuộc khu vực FDI (6T/2026), dùng để theo dõi phân rã xnk giúp nhìn động lực fdi/nội địa."
     },
@@ -4839,6 +6339,7 @@
       "as_of": "2026-06-30",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "XNK theo thị trường hiện có dữ liệu tự động từ Customs. Giá trị mới nhất là Mỹ XK 86,5; Trung Quốc NK 115,2 tỷ USD (6T/2026), dùng để theo dõi thị trường lớn cho thấy rủi ro tập trung thương mại."
     },
@@ -4861,6 +6362,7 @@
       "as_of": "2026-05-31",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "XNK theo mặt hàng hiện có dữ liệu tự động từ Customs. Giá trị mới nhất là 22.5 tỷ USD điện tử sang Mỹ (5T/2026), dùng để theo dõi mặt hàng chủ lực cho thấy chu kỳ ngành."
     },
@@ -4883,6 +6385,7 @@
       "as_of": "2025-12-31",
       "frequency": "monthly",
       "vip": true,
+      "forecast_definition_id": null,
       "direction": "flat",
       "narrative": "FDI theo ngành hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 21.01 tỷ USD chế biến, chế tạo (2025), dùng để theo dõi fdi theo ngành cho thấy vốn đang chọn khu vực nào."
     }

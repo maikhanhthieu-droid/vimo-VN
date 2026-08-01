@@ -1,2 +1,2 @@
 pypdf>=6.0,<7.0
-google-genai>=1.75,<2.0
+google-genai>=2.16,<3.0

@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-08-01T03:58:03.680696+00:00",
+  "generated_at": "2026-08-01T10:37:03.075908+00:00",
   "as_of": "2026-07-31",
   "facts": [
     {
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 4098.6001,
+      "value": 4049.1001,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-07-31",
@@ -105,7 +105,7 @@
     },
     {
       "id": "dxy",
-      "value": 99.803,
+      "value": 99.8,
       "unit": "điểm",
       "definition": "US Dollar Index.",
       "as_of": "2026-07-31",
@@ -160,7 +160,7 @@
     },
     {
       "id": "oil_prices",
-      "value": 86.8,
+      "value": 84.67,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
       "as_of": "2026-07-31",
@@ -262,7 +262,7 @@
       "value": 51.8,
       "unit": "điểm",
       "definition": "PMI sản xuất Việt Nam.",
-      "as_of": "2026-07-03",
+      "as_of": "2026-06-30",
       "source": "VGP / S&P Global",
       "source_url": "https://en.baochinhphu.vn/viet-nams-manufacturing-pmi-posts-518-in-june-111260703104749914.htm",
       "source_quality": "AUTO_VGP_SPGLOBAL",
