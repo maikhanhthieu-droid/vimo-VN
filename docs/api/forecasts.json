@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.forecasts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-07-31T03:57:58.468996+00:00",
-  "as_of": "2026-07-31",
+  "generated_at": "2026-08-01T03:58:03.680696+00:00",
+  "as_of": "2026-08-01",
   "status": "ok",
   "horizons": [
     "1_month",
@@ -48,9 +48,9 @@
     {
       "id": "fx_market_usd_vnd",
       "current": {
-        "value": 26183.58,
+        "value": 26167.86,
         "unit": "VND/USD",
-        "date": "2026-07-31",
+        "date": "2026-08-01",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
@@ -66,22 +66,22 @@
     {
       "id": "stock_market",
       "current": {
-        "value": 1750.33,
+        "value": 1735.78,
         "unit": "điểm",
         "date": "2026-07-31",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/"
       },
       "forecast_1m": {
-        "value": 1755.0,
-        "low": 1681.0,
-        "high": 1832.0,
+        "value": 1740.0,
+        "low": 1666.0,
+        "high": 1818.0,
         "as_of": "2026-08-31"
       },
       "forecast_3m": {
-        "value": 1758.0,
-        "low": 1631.0,
-        "high": 1894.0,
+        "value": 1743.0,
+        "low": 1617.0,
+        "high": 1880.0,
         "as_of": "2026-10-31"
       },
       "forecast_status": "SINGLE_SOURCE",
@@ -94,19 +94,19 @@
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
           "as_of": "2026-07-31",
-          "fetched_at": "2026-07-31T03:57:58.468996+00:00",
+          "fetched_at": "2026-08-01T03:58:03.680696+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
-            "value": 1755.0,
-            "low": 1681.0,
-            "high": 1832.0,
+            "value": 1740.0,
+            "low": 1666.0,
+            "high": 1818.0,
             "as_of": "2026-08-31"
           },
           "forecast_3m": {
-            "value": 1758.0,
-            "low": 1631.0,
-            "high": 1894.0,
+            "value": 1743.0,
+            "low": 1617.0,
+            "high": 1880.0,
             "as_of": "2026-10-31"
           },
           "observations": 180,
@@ -138,7 +138,7 @@
     {
       "id": "gold_world",
       "current": {
-        "value": 4134.5,
+        "value": 4098.6001,
         "unit": "USD/oz",
         "date": "2026-07-31",
         "source": "Yahoo Finance",
@@ -156,7 +156,7 @@
     {
       "id": "dxy",
       "current": {
-        "value": 100.192,
+        "value": 99.803,
         "unit": "điểm",
         "date": "2026-07-31",
         "source": "Yahoo Finance",
@@ -174,23 +174,23 @@
     {
       "id": "oil_prices",
       "current": {
-        "value": 82.42,
+        "value": 86.8,
         "unit": "USD/thùng",
         "date": "2026-07-31",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF"
       },
       "forecast_1m": {
-        "value": 72.0,
-        "low": 72.0,
-        "high": 72.0,
-        "as_of": "2026-08-01"
+        "value": 68.0,
+        "low": 68.0,
+        "high": 68.0,
+        "as_of": "2026-09-01"
       },
       "forecast_3m": {
-        "value": 67.0,
-        "low": 67.0,
-        "high": 67.0,
-        "as_of": "2026-10-01"
+        "value": 66.0,
+        "low": 66.0,
+        "high": 66.0,
+        "as_of": "2026-11-01"
       },
       "forecast_status": "SINGLE_SOURCE",
       "confidence": "LOW",
@@ -201,20 +201,20 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-07-31",
-          "fetched_at": "2026-07-31T03:57:58.468996+00:00",
+          "as_of": "2026-08-01",
+          "fetched_at": "2026-08-01T03:58:03.680696+00:00",
           "cache_status": "live",
           "forecast_1m": {
-            "value": 72.0,
-            "low": 72.0,
-            "high": 72.0,
-            "as_of": "2026-08-01"
+            "value": 68.0,
+            "low": 68.0,
+            "high": 68.0,
+            "as_of": "2026-09-01"
           },
           "forecast_3m": {
-            "value": 67.0,
-            "low": 67.0,
-            "high": 67.0,
-            "as_of": "2026-10-01"
+            "value": 66.0,
+            "low": 66.0,
+            "high": 66.0,
+            "as_of": "2026-11-01"
           },
           "observations": 2,
           "span_days": 0,
@@ -228,9 +228,9 @@
     {
       "id": "us_10y_yield",
       "current": {
-        "value": 4.663,
+        "value": 4.745,
         "unit": "%",
-        "date": "2026-07-30",
+        "date": "2026-07-31",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
