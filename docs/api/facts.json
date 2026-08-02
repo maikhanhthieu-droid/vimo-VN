@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-08-01T10:39:10.840765+00:00",
+  "generated_at": "2026-08-02T04:01:41.746521+00:00",
   "as_of": "2026-07-31",
   "facts": [
     {
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 26167.86,
+      "value": 26190.99,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Sat, 01 Aug 2026 00:02:31 +0000",
+      "as_of": "Sun, 02 Aug 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 4049.1001,
+      "value": 4107.0,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-07-31",
