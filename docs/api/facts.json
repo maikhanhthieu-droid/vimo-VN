@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-08-02T04:01:41.746521+00:00",
-  "as_of": "2026-07-31",
+  "generated_at": "2026-08-03T04:03:33.919327+00:00",
+  "as_of": "2026-08-03",
   "facts": [
     {
       "id": "interbank_rate",
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 26190.99,
+      "value": 26179.98,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Sun, 02 Aug 2026 00:02:31 +0000",
+      "as_of": "Mon, 03 Aug 2026 00:02:32 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -39,10 +39,10 @@
     },
     {
       "id": "stock_market",
-      "value": 1735.78,
+      "value": 1752.23,
       "unit": "điểm",
       "definition": "Chỉ số VN-Index.",
-      "as_of": "2026-07-31",
+      "as_of": "2026-08-03",
       "source": "Vietcap",
       "source_url": "https://trading.vietcap.com.vn/",
       "source_quality": "AUTO",
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 4107.0,
+      "value": 4049.1001,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-07-31",
