@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-08-03T04:03:33.919327+00:00",
-  "as_of": "2026-08-03",
+  "generated_at": "2026-08-04T03:44:36.272985+00:00",
+  "as_of": "2026-08-04",
   "facts": [
     {
       "id": "interbank_rate",
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 26179.98,
+      "value": 26160.64,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Mon, 03 Aug 2026 00:02:32 +0000",
+      "as_of": "Tue, 04 Aug 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -39,10 +39,10 @@
     },
     {
       "id": "stock_market",
-      "value": 1752.23,
+      "value": 1773.13,
       "unit": "điểm",
       "definition": "Chỉ số VN-Index.",
-      "as_of": "2026-08-03",
+      "as_of": "2026-08-04",
       "source": "Vietcap",
       "source_url": "https://trading.vietcap.com.vn/",
       "source_quality": "AUTO",
@@ -61,10 +61,10 @@
     },
     {
       "id": "gold_world",
-      "value": 4049.1001,
+      "value": 4112.1001,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
-      "as_of": "2026-07-31",
+      "as_of": "2026-08-04",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/GC%3DF",
       "source_quality": "AUTO",
@@ -78,7 +78,7 @@
       "as_of": "2026-06-26",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -105,10 +105,10 @@
     },
     {
       "id": "dxy",
-      "value": 99.8,
+      "value": 99.977,
       "unit": "điểm",
       "definition": "US Dollar Index.",
-      "as_of": "2026-07-31",
+      "as_of": "2026-08-04",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
       "source_quality": "AUTO",
@@ -160,10 +160,10 @@
     },
     {
       "id": "oil_prices",
-      "value": 84.67,
+      "value": 81.0,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
-      "as_of": "2026-07-31",
+      "as_of": "2026-08-04",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/CL%3DF",
       "source_quality": "AUTO",
@@ -182,10 +182,10 @@
     },
     {
       "id": "us_10y_yield",
-      "value": 4.745,
+      "value": 4.686,
       "unit": "%",
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
-      "as_of": "2026-07-31",
+      "as_of": "2026-08-03",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
       "source_quality": "AUTO",
@@ -243,7 +243,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -254,7 +254,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -276,7 +276,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -287,7 +287,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -298,7 +298,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -309,7 +309,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -320,7 +320,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -331,7 +331,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -342,7 +342,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -353,7 +353,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -375,7 +375,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -386,7 +386,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -397,7 +397,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
