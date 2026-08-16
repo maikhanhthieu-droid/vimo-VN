@@ -455,6 +455,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-08-16",
+        "bucket": "2026-08-16",
+        "value": 26072.47,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -1000,7 +1011,7 @@
       {
         "date": "2026-08-14",
         "bucket": "2026-08-14",
-        "value": 4432.0,
+        "value": 4380.3999,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -1313,7 +1324,7 @@
       {
         "date": "2026-08-14",
         "bucket": "2026-08-14",
-        "value": 99.636,
+        "value": 99.67,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
