@@ -248,16 +248,16 @@
     "key": "fx_market_usd_vnd",
     "name_vi": "USD/VND thị trường",
     "current": {
-      "value": 26126.87,
+      "value": 26053.43,
       "unit": "VND/USD",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/"
     },
     "previous": {
-      "date": "2026-08-19",
-      "bucket": "2026-08-19",
-      "value": 26119.07,
+      "date": "2026-08-20",
+      "bucket": "2026-08-20",
+      "value": 26126.87,
       "unit": "VND/USD",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
@@ -266,31 +266,31 @@
       "forecast_definition_id": "market_vnd_usd"
     },
     "change": {
-      "absolute": 7.8,
-      "percent": 0.0299,
-      "direction": "up"
+      "absolute": -73.44,
+      "percent": -0.2811,
+      "direction": "down"
     },
     "forecast_1m": {
-      "value": 26214.0,
-      "low": 25691.0,
-      "high": 26736.0,
-      "as_of": "2026-09-20",
+      "value": 25996.0,
+      "low": 25475.0,
+      "high": 26517.0,
+      "as_of": "2026-09-21",
       "probability_bands": [
         {
-          "low": 25691.0,
-          "high": 26039.0,
+          "low": 25475.0,
+          "high": 25822.0,
           "probability": 31.3,
           "rank": 2
         },
         {
-          "low": 26039.0,
-          "high": 26388.0,
+          "low": 25822.0,
+          "high": 26170.0,
           "probability": 37.4,
           "rank": 1
         },
         {
-          "low": 26388.0,
-          "high": 26736.0,
+          "low": 26170.0,
+          "high": 26517.0,
           "probability": 31.3,
           "rank": 3
         }
@@ -301,26 +301,26 @@
       "probability_calibrated": false
     },
     "forecast_3m": {
-      "value": 26309.0,
-      "low": 25473.0,
-      "high": 27145.0,
-      "as_of": "2026-11-20",
+      "value": 25933.0,
+      "low": 25100.0,
+      "high": 26767.0,
+      "as_of": "2026-11-21",
       "probability_bands": [
         {
-          "low": 25473.0,
-          "high": 26030.0,
+          "low": 25100.0,
+          "high": 25656.0,
           "probability": 31.3,
           "rank": 2
         },
         {
-          "low": 26030.0,
-          "high": 26588.0,
+          "low": 25656.0,
+          "high": 26211.0,
           "probability": 37.4,
           "rank": 1
         },
         {
-          "low": 26588.0,
-          "high": 27145.0,
+          "low": 26211.0,
+          "high": 26767.0,
           "probability": 31.3,
           "rank": 3
         }
@@ -337,18 +337,18 @@
         "input_provider": "Open ER API",
         "source_kind": "local_observed_history",
         "source_url": "https://open.er-api.com/",
-        "as_of": "2026-08-20",
+        "as_of": "2026-08-21",
         "forecast_1m": {
-          "value": 26214.0,
-          "low": 25691.0,
-          "high": 26736.0,
-          "as_of": "2026-09-20"
+          "value": 25996.0,
+          "low": 25475.0,
+          "high": 26517.0,
+          "as_of": "2026-09-21"
         },
         "forecast_3m": {
-          "value": 26309.0,
-          "low": 25473.0,
-          "high": 27145.0,
-          "as_of": "2026-11-20"
+          "value": 25933.0,
+          "low": 25100.0,
+          "high": 26767.0,
+          "as_of": "2026-11-21"
         },
         "observations": 6,
         "span_days": 5,
@@ -360,7 +360,7 @@
     "gemini_assisted": false,
     "gemini_input_id": null,
     "gemini_grounding_status": null,
-    "reason_short": "Giá trị tăng 7.8 VND/USD so với kỳ 2026-08-19. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị giảm 73.44 VND/USD so với kỳ 2026-08-20. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "ai_context_unverified": null,
     "confidence": "LOW",
     "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -371,16 +371,16 @@
     "key": "stock_market",
     "name_vi": "VN-Index",
     "current": {
-      "value": 1726.69,
+      "value": 1734.24,
       "unit": "điểm",
-      "date": "2026-08-19",
+      "date": "2026-08-20",
       "source": "Vietcap",
       "source_url": "https://trading.vietcap.com.vn/"
     },
     "previous": {
-      "date": "2026-08-18",
-      "bucket": "2026-08-18",
-      "value": 1732.02,
+      "date": "2026-08-19",
+      "bucket": "2026-08-19",
+      "value": 1726.69,
       "unit": "điểm",
       "source": "Vietcap",
       "source_url": "https://trading.vietcap.com.vn/",
@@ -389,32 +389,32 @@
       "forecast_definition_id": "vnindex_close"
     },
     "change": {
-      "absolute": -5.33,
-      "percent": -0.3077,
-      "direction": "down"
+      "absolute": 7.55,
+      "percent": 0.4373,
+      "direction": "up"
     },
     "forecast_1m": {
-      "value": 1728.0,
-      "low": 1656.0,
-      "high": 1803.0,
-      "as_of": "2026-09-19",
+      "value": 1736.0,
+      "low": 1663.0,
+      "high": 1811.0,
+      "as_of": "2026-09-20",
       "probability_bands": [
         {
-          "low": 1656.0,
-          "high": 1705.0,
-          "probability": 30.7,
+          "low": 1663.0,
+          "high": 1712.0,
+          "probability": 30.4,
           "rank": 2
         },
         {
-          "low": 1705.0,
-          "high": 1754.0,
-          "probability": 38.9,
+          "low": 1712.0,
+          "high": 1762.0,
+          "probability": 39.4,
           "rank": 1
         },
         {
-          "low": 1754.0,
-          "high": 1803.0,
-          "probability": 30.4,
+          "low": 1762.0,
+          "high": 1811.0,
+          "probability": 30.2,
           "rank": 3
         }
       ],
@@ -424,27 +424,27 @@
       "probability_calibrated": false
     },
     "forecast_3m": {
-      "value": 1729.0,
-      "low": 1606.0,
-      "high": 1861.0,
-      "as_of": "2026-11-19",
+      "value": 1737.0,
+      "low": 1613.0,
+      "high": 1869.0,
+      "as_of": "2026-11-20",
       "probability_bands": [
         {
-          "low": 1606.0,
-          "high": 1691.0,
-          "probability": 30.8,
+          "low": 1613.0,
+          "high": 1698.0,
+          "probability": 30.6,
           "rank": 2
         },
         {
-          "low": 1691.0,
-          "high": 1776.0,
-          "probability": 38.8,
+          "low": 1698.0,
+          "high": 1784.0,
+          "probability": 39.2,
           "rank": 1
         },
         {
-          "low": 1776.0,
-          "high": 1861.0,
-          "probability": 30.4,
+          "low": 1784.0,
+          "high": 1869.0,
+          "probability": 30.2,
           "rank": 3
         }
       ],
@@ -459,21 +459,21 @@
         "provider": "Vietcap",
         "source_kind": "observed_history",
         "source_url": "https://trading.vietcap.com.vn/",
-        "as_of": "2026-08-19",
-        "fetched_at": "2026-08-20T01:55:52.081116+00:00",
+        "as_of": "2026-08-20",
+        "fetched_at": "2026-08-21T02:02:41.023859+00:00",
         "cache_status": "live",
         "cache_age_days": 0,
         "forecast_1m": {
-          "value": 1728.0,
-          "low": 1656.0,
-          "high": 1803.0,
-          "as_of": "2026-09-19"
+          "value": 1736.0,
+          "low": 1663.0,
+          "high": 1811.0,
+          "as_of": "2026-09-20"
         },
         "forecast_3m": {
-          "value": 1729.0,
-          "low": 1606.0,
-          "high": 1861.0,
-          "as_of": "2026-11-19"
+          "value": 1737.0,
+          "low": 1613.0,
+          "high": 1869.0,
+          "as_of": "2026-11-20"
         },
         "observations": 180,
         "span_days": 265,
@@ -485,7 +485,7 @@
     "gemini_assisted": false,
     "gemini_input_id": null,
     "gemini_grounding_status": null,
-    "reason_short": "Giá trị giảm 5.33 điểm so với kỳ 2026-08-18. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị tăng 7.55 điểm so với kỳ 2026-08-19. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "ai_context_unverified": null,
     "confidence": "LOW",
     "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
@@ -619,16 +619,16 @@
     "key": "gold_world",
     "name_vi": "Vàng thế giới",
     "current": {
-      "value": 4550.3999,
+      "value": 4583.6001,
       "unit": "USD/oz",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/GC%3DF"
     },
     "previous": {
-      "date": "2026-08-19",
-      "bucket": "2026-08-19",
-      "value": 4405.8999,
+      "date": "2026-08-20",
+      "bucket": "2026-08-20",
+      "value": 4550.3999,
       "unit": "USD/oz",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -637,32 +637,32 @@
       "forecast_definition_id": "world_gold_usd_oz"
     },
     "change": {
-      "absolute": 144.5,
-      "percent": 3.2797,
+      "absolute": 33.2002,
+      "percent": 0.7296,
       "direction": "up"
     },
     "forecast_1m": {
-      "value": 4730.0,
-      "low": 4639.0,
-      "high": 4821.0,
-      "as_of": "2026-09-20",
+      "value": 5019.0,
+      "low": 4927.0,
+      "high": 5111.0,
+      "as_of": "2026-09-21",
       "probability_bands": [
         {
-          "low": 4639.0,
-          "high": 4700.0,
-          "probability": 31.5,
+          "low": 4927.0,
+          "high": 4988.0,
+          "probability": 31.1,
           "rank": 2
         },
         {
-          "low": 4700.0,
-          "high": 4760.0,
-          "probability": 37.0,
+          "low": 4988.0,
+          "high": 5050.0,
+          "probability": 37.8,
           "rank": 1
         },
         {
-          "low": 4760.0,
-          "high": 4821.0,
-          "probability": 31.5,
+          "low": 5050.0,
+          "high": 5111.0,
+          "probability": 31.1,
           "rank": 3
         }
       ],
@@ -672,27 +672,27 @@
       "probability_calibrated": false
     },
     "forecast_3m": {
-      "value": 4928.0,
-      "low": 4782.0,
-      "high": 5074.0,
-      "as_of": "2026-11-20",
+      "value": 5498.0,
+      "low": 5351.0,
+      "high": 5645.0,
+      "as_of": "2026-11-21",
       "probability_bands": [
         {
-          "low": 4782.0,
-          "high": 4879.0,
-          "probability": 31.2,
+          "low": 5351.0,
+          "high": 5449.0,
+          "probability": 31.3,
           "rank": 2
         },
         {
-          "low": 4879.0,
-          "high": 4977.0,
-          "probability": 37.6,
+          "low": 5449.0,
+          "high": 5547.0,
+          "probability": 37.4,
           "rank": 1
         },
         {
-          "low": 4977.0,
-          "high": 5074.0,
-          "probability": 31.2,
+          "low": 5547.0,
+          "high": 5645.0,
+          "probability": 31.3,
           "rank": 3
         }
       ],
@@ -708,18 +708,18 @@
         "input_provider": "Yahoo Finance",
         "source_kind": "local_observed_history",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
-        "as_of": "2026-08-20",
+        "as_of": "2026-08-21",
         "forecast_1m": {
-          "value": 4730.0,
-          "low": 4639.0,
-          "high": 4821.0,
-          "as_of": "2026-09-20"
+          "value": 5019.0,
+          "low": 4927.0,
+          "high": 5111.0,
+          "as_of": "2026-09-21"
         },
         "forecast_3m": {
-          "value": 4928.0,
-          "low": 4782.0,
-          "high": 5074.0,
-          "as_of": "2026-11-20"
+          "value": 5498.0,
+          "low": 5351.0,
+          "high": 5645.0,
+          "as_of": "2026-11-21"
         },
         "observations": 6,
         "span_days": 7,
@@ -731,7 +731,7 @@
     "gemini_assisted": false,
     "gemini_input_id": null,
     "gemini_grounding_status": null,
-    "reason_short": "Giá trị tăng 144.5 USD/oz so với kỳ 2026-08-19. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị tăng 33.2002 USD/oz so với kỳ 2026-08-20. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "ai_context_unverified": null,
     "confidence": "LOW",
     "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -921,16 +921,16 @@
     "key": "dxy",
     "name_vi": "DXY",
     "current": {
-      "value": 98.851,
+      "value": 98.778,
       "unit": "điểm",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB"
     },
     "previous": {
-      "date": "2026-08-19",
-      "bucket": "2026-08-19",
-      "value": 99.641,
+      "date": "2026-08-20",
+      "bucket": "2026-08-20",
+      "value": 98.851,
       "unit": "điểm",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -939,31 +939,31 @@
       "forecast_definition_id": "dxy_index"
     },
     "change": {
-      "absolute": -0.79,
-      "percent": -0.7928,
+      "absolute": -0.073,
+      "percent": -0.0738,
       "direction": "down"
     },
     "forecast_1m": {
-      "value": 96.38,
-      "low": 94.41,
-      "high": 98.36,
-      "as_of": "2026-09-20",
+      "value": 96.87,
+      "low": 94.89,
+      "high": 98.84,
+      "as_of": "2026-09-21",
       "probability_bands": [
         {
-          "low": 94.41,
-          "high": 95.73,
+          "low": 94.89,
+          "high": 96.21,
           "probability": 31.4,
           "rank": 2
         },
         {
-          "low": 95.73,
-          "high": 97.04,
+          "low": 96.21,
+          "high": 97.52,
           "probability": 37.2,
           "rank": 1
         },
         {
-          "low": 97.04,
-          "high": 98.36,
+          "low": 97.52,
+          "high": 98.84,
           "probability": 31.4,
           "rank": 3
         }
@@ -974,26 +974,26 @@
       "probability_calibrated": false
     },
     "forecast_3m": {
-      "value": 93.67,
-      "low": 90.51,
-      "high": 96.83,
-      "as_of": "2026-11-20",
+      "value": 94.76,
+      "low": 91.6,
+      "high": 97.92,
+      "as_of": "2026-11-21",
       "probability_bands": [
         {
-          "low": 90.51,
-          "high": 92.62,
+          "low": 91.6,
+          "high": 93.71,
           "probability": 31.4,
           "rank": 2
         },
         {
-          "low": 92.62,
-          "high": 94.72,
+          "low": 93.71,
+          "high": 95.81,
           "probability": 37.2,
           "rank": 1
         },
         {
-          "low": 94.72,
-          "high": 96.83,
+          "low": 95.81,
+          "high": 97.92,
           "probability": 31.4,
           "rank": 3
         }
@@ -1010,18 +1010,18 @@
         "input_provider": "Yahoo Finance",
         "source_kind": "local_observed_history",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
-        "as_of": "2026-08-20",
+        "as_of": "2026-08-21",
         "forecast_1m": {
-          "value": 96.38,
-          "low": 94.41,
-          "high": 98.36,
-          "as_of": "2026-09-20"
+          "value": 96.87,
+          "low": 94.89,
+          "high": 98.84,
+          "as_of": "2026-09-21"
         },
         "forecast_3m": {
-          "value": 93.67,
-          "low": 90.51,
-          "high": 96.83,
-          "as_of": "2026-11-20"
+          "value": 94.76,
+          "low": 91.6,
+          "high": 97.92,
+          "as_of": "2026-11-21"
         },
         "observations": 6,
         "span_days": 7,
@@ -1033,7 +1033,7 @@
     "gemini_assisted": false,
     "gemini_input_id": null,
     "gemini_grounding_status": null,
-    "reason_short": "Giá trị giảm 0.79 điểm so với kỳ 2026-08-19. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị giảm 0.073 điểm so với kỳ 2026-08-20. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "ai_context_unverified": null,
     "confidence": "LOW",
     "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -1189,16 +1189,16 @@
     "key": "oil_prices",
     "name_vi": "Giá dầu WTI",
     "current": {
-      "value": 84.68,
+      "value": 86.69,
       "unit": "USD/thùng",
-      "date": "2026-08-20",
+      "date": "2026-08-21",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/CL%3DF"
     },
     "previous": {
-      "date": "2026-08-19",
-      "bucket": "2026-08-19",
-      "value": 85.05,
+      "date": "2026-08-20",
+      "bucket": "2026-08-20",
+      "value": 84.68,
       "unit": "USD/thùng",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -1207,34 +1207,34 @@
       "forecast_definition_id": "wti_usd_barrel"
     },
     "change": {
-      "absolute": -0.37,
-      "percent": -0.435,
-      "direction": "down"
+      "absolute": 2.01,
+      "percent": 2.3736,
+      "direction": "up"
     },
     "forecast_1m": {
       "value": 81.0,
-      "low": 77.61,
-      "high": 84.39,
+      "low": 77.53,
+      "high": 84.47,
       "as_of": "2026-09-01",
       "interval_inferred": true,
       "interval_method": "confidence_scaled_reference_width_v1",
       "probability_bands": [
         {
-          "low": 77.61,
-          "high": 79.87,
-          "probability": 31.7,
+          "low": 77.53,
+          "high": 79.84,
+          "probability": 31.6,
           "rank": 2
         },
         {
-          "low": 79.87,
-          "high": 82.13,
-          "probability": 36.6,
+          "low": 79.84,
+          "high": 82.16,
+          "probability": 36.8,
           "rank": 1
         },
         {
-          "low": 82.13,
-          "high": 84.39,
-          "probability": 31.7,
+          "low": 82.16,
+          "high": 84.47,
+          "probability": 31.6,
           "rank": 3
         }
       ],
@@ -1245,28 +1245,28 @@
     },
     "forecast_3m": {
       "value": 74.0,
-      "low": 68.13,
-      "high": 79.87,
+      "low": 67.99,
+      "high": 80.01,
       "as_of": "2026-11-01",
       "interval_inferred": true,
       "interval_method": "confidence_scaled_reference_width_v1",
       "probability_bands": [
         {
-          "low": 68.13,
-          "high": 72.04,
-          "probability": 31.6,
+          "low": 67.99,
+          "high": 72.0,
+          "probability": 31.7,
           "rank": 2
         },
         {
-          "low": 72.04,
-          "high": 75.96,
-          "probability": 36.8,
+          "low": 72.0,
+          "high": 76.0,
+          "probability": 36.6,
           "rank": 1
         },
         {
-          "low": 75.96,
-          "high": 79.87,
-          "probability": 31.6,
+          "low": 76.0,
+          "high": 80.01,
+          "probability": 31.7,
           "rank": 3
         }
       ],
@@ -1281,8 +1281,8 @@
         "provider": "EIA STEO",
         "source_kind": "official_forecast",
         "source_url": "https://www.eia.gov/outlooks/steo/",
-        "as_of": "2026-08-20",
-        "fetched_at": "2026-08-20T01:55:52.081116+00:00",
+        "as_of": "2026-08-21",
+        "fetched_at": "2026-08-21T02:02:41.023859+00:00",
         "cache_status": "live",
         "forecast_1m": {
           "value": 81.0,
@@ -1307,7 +1307,7 @@
     "gemini_assisted": false,
     "gemini_input_id": null,
     "gemini_grounding_status": null,
-    "reason_short": "Giá trị giảm 0.37 USD/thùng so với kỳ 2026-08-19. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị tăng 2.01 USD/thùng so với kỳ 2026-08-20. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "ai_context_unverified": null,
     "confidence": "LOW",
     "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
@@ -1345,16 +1345,16 @@
     "key": "us_10y_yield",
     "name_vi": "US 10Y yield",
     "current": {
-      "value": 4.653,
+      "value": 4.696,
       "unit": "%",
-      "date": "2026-08-19",
+      "date": "2026-08-20",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/%5ETNX"
     },
     "previous": {
-      "date": "2026-08-18",
-      "bucket": "2026-08-18",
-      "value": 4.706,
+      "date": "2026-08-19",
+      "bucket": "2026-08-19",
+      "value": 4.653,
       "unit": "%",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
@@ -1363,32 +1363,32 @@
       "forecast_definition_id": "us_treasury_10y_yield"
     },
     "change": {
-      "absolute": -0.053,
-      "percent": -1.1262,
-      "direction": "down"
+      "absolute": 0.043,
+      "percent": 0.9241,
+      "direction": "up"
     },
     "forecast_1m": {
-      "value": 4.59,
-      "low": 4.5,
-      "high": 4.68,
-      "as_of": "2026-09-19",
+      "value": 4.81,
+      "low": 4.72,
+      "high": 4.91,
+      "as_of": "2026-09-20",
       "probability_bands": [
         {
-          "low": 4.5,
-          "high": 4.56,
-          "probability": 31.3,
+          "low": 4.72,
+          "high": 4.78,
+          "probability": 29.7,
           "rank": 2
         },
         {
-          "low": 4.56,
-          "high": 4.62,
-          "probability": 37.4,
+          "low": 4.78,
+          "high": 4.85,
+          "probability": 41.0,
           "rank": 1
         },
         {
-          "low": 4.62,
-          "high": 4.68,
-          "probability": 31.3,
+          "low": 4.85,
+          "high": 4.91,
+          "probability": 29.3,
           "rank": 3
         }
       ],
@@ -1398,26 +1398,26 @@
       "probability_calibrated": false
     },
     "forecast_3m": {
-      "value": 4.52,
-      "low": 4.37,
-      "high": 4.67,
-      "as_of": "2026-11-19",
+      "value": 4.94,
+      "low": 4.79,
+      "high": 5.09,
+      "as_of": "2026-11-20",
       "probability_bands": [
         {
-          "low": 4.37,
-          "high": 4.47,
+          "low": 4.79,
+          "high": 4.89,
           "probability": 31.3,
           "rank": 2
         },
         {
-          "low": 4.47,
-          "high": 4.57,
+          "low": 4.89,
+          "high": 4.99,
           "probability": 37.4,
           "rank": 1
         },
         {
-          "low": 4.57,
-          "high": 4.67,
+          "low": 4.99,
+          "high": 5.09,
           "probability": 31.3,
           "rank": 3
         }
@@ -1434,18 +1434,18 @@
         "input_provider": "Yahoo Finance",
         "source_kind": "local_observed_history",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
-        "as_of": "2026-08-19",
+        "as_of": "2026-08-20",
         "forecast_1m": {
-          "value": 4.59,
-          "low": 4.5,
-          "high": 4.68,
-          "as_of": "2026-09-19"
+          "value": 4.81,
+          "low": 4.72,
+          "high": 4.91,
+          "as_of": "2026-09-20"
         },
         "forecast_3m": {
-          "value": 4.52,
-          "low": 4.37,
-          "high": 4.67,
-          "as_of": "2026-11-19"
+          "value": 4.94,
+          "low": 4.79,
+          "high": 5.09,
+          "as_of": "2026-11-20"
         },
         "observations": 6,
         "span_days": 7,
@@ -1457,7 +1457,7 @@
     "gemini_assisted": false,
     "gemini_input_id": null,
     "gemini_grounding_status": null,
-    "reason_short": "Giá trị giảm 0.053 % so với kỳ 2026-08-18. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+    "reason_short": "Giá trị tăng 0.043 % so với kỳ 2026-08-19. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
     "ai_context_unverified": null,
     "confidence": "LOW",
     "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",

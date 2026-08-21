@@ -521,6 +521,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-08-21",
+        "bucket": "2026-08-21",
+        "value": 26053.43,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -781,6 +792,17 @@
         "date": "2026-08-19",
         "bucket": "2026-08-19",
         "value": 1726.69,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "vnindex_close"
+      },
+      {
+        "date": "2026-08-20",
+        "bucket": "2026-08-20",
+        "value": 1734.24,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -1161,6 +1183,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "world_gold_usd_oz"
+      },
+      {
+        "date": "2026-08-21",
+        "bucket": "2026-08-21",
+        "value": 4583.6001,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "world_gold_usd_oz"
       }
     ],
     "credit": [
@@ -1181,7 +1214,7 @@
         "unit": "% YTD",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "credit_growth_ytd"
       }
@@ -1512,6 +1545,17 @@
         "date": "2026-08-20",
         "bucket": "2026-08-20",
         "value": 98.851,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "dxy_index"
+      },
+      {
+        "date": "2026-08-21",
+        "bucket": "2026-08-21",
+        "value": 98.778,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -1952,6 +1996,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "wti_usd_barrel"
+      },
+      {
+        "date": "2026-08-21",
+        "bucket": "2026-08-21",
+        "value": 86.69,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "wti_usd_barrel"
       }
     ],
     "geopolitical_risk": [
@@ -2263,6 +2318,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "us_treasury_10y_yield"
+      },
+      {
+        "date": "2026-08-20",
+        "bucket": "2026-08-20",
+        "value": 4.696,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "us_treasury_10y_yield"
       }
     ],
     "ecb_eurozone": [
@@ -2345,7 +2411,7 @@
         "unit": "% YoY khu vực I",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": null
       }
@@ -2368,7 +2434,7 @@
         "unit": "% YoY",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "cpi_headline_yoy"
       }
@@ -2414,7 +2480,7 @@
         "unit": "% YoY",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "iip_ytd_yoy"
       }
@@ -2437,7 +2503,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": "Nhập siêu mang dấu âm; xuất siêu mang dấu dương.",
         "forecast_definition_id": "goods_trade_balance_ytd"
       }
@@ -2460,7 +2526,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "goods_exports_ytd"
       }
@@ -2483,7 +2549,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "goods_imports_ytd"
       }
@@ -2506,7 +2572,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "fdi_disbursed_ytd"
       }
@@ -2529,7 +2595,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "fdi_registered_ytd"
       }
@@ -2552,7 +2618,7 @@
         "unit": "% YoY lũy kế kỳ báo cáo",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "retail_sales_ytd_yoy"
       }
@@ -2565,7 +2631,7 @@
         "unit": "doanh nghiệp (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "new_businesses_ytd"
       }
@@ -2611,7 +2677,7 @@
         "unit": "triệu lượt (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "international_visitors_ytd"
       }
@@ -2634,7 +2700,7 @@
         "unit": "% YoY vốn khu vực Nhà nước",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": "Tốc độ tăng vốn đầu tư khu vực Nhà nước, không phải tỷ lệ giải ngân kế hoạch.",
         "forecast_definition_id": "state_investment_yoy"
       }
@@ -2657,7 +2723,7 @@
         "unit": "nghìn tỷ VND thu NSNN",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "state_budget_revenue_ytd"
       }
