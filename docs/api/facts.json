@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-08-28T11:33:15.741631+00:00",
+  "generated_at": "2026-08-29T07:11:52.037672+00:00",
   "as_of": "2026-08-28",
   "facts": [
     {
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 26044.82,
+      "value": 26056.97,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Fri, 28 Aug 2026 00:02:31 +0000",
+      "as_of": "Sat, 29 Aug 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -61,10 +61,10 @@
     },
     {
       "id": "gold_world",
-      "value": 4652.6001,
+      "value": 4609.7002,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
-      "as_of": "2026-08-28",
+      "as_of": "2026-08-27",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/GC%3DF",
       "source_quality": "AUTO",
@@ -105,10 +105,10 @@
     },
     {
       "id": "dxy",
-      "value": 99.18,
+      "value": 99.16,
       "unit": "điểm",
       "definition": "US Dollar Index.",
-      "as_of": "2026-08-28",
+      "as_of": "2026-08-27",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
       "source_quality": "AUTO",
@@ -160,10 +160,10 @@
     },
     {
       "id": "oil_prices",
-      "value": 83.11,
+      "value": 83.53,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
-      "as_of": "2026-08-28",
+      "as_of": "2026-08-27",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/CL%3DF",
       "source_quality": "AUTO",
