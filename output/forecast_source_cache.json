@@ -727,7 +727,7 @@
             "value": 1832.12
           }
         ],
-        "fetched_at": "2026-09-01T05:21:37.702693+00:00",
+        "fetched_at": "2026-09-02T04:47:31.462713+00:00",
         "cache_status": "live"
       }
     ],
@@ -739,8 +739,8 @@
         "provider": "EIA STEO",
         "source_kind": "official_forecast",
         "source_url": "https://www.eia.gov/outlooks/steo/",
-        "as_of": "2026-09-01",
-        "fetched_at": "2026-09-01T05:21:37.702693+00:00",
+        "as_of": "2026-09-02",
+        "fetched_at": "2026-09-02T04:47:31.462713+00:00",
         "cache_status": "live",
         "forecast_1m": {
           "value": 76.0,
@@ -803,5 +803,5 @@
       "credential_mode": "shared_demo"
     }
   ],
-  "generated_at": "2026-09-01T05:21:37.702693+00:00"
+  "generated_at": "2026-09-02T04:47:31.462713+00:00"
 }
