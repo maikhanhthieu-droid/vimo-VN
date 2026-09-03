@@ -81,7 +81,7 @@
         "value": 3.28,
         "unit": "%",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/August2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_url": "https://vbma.org.vn/storage/reports/September2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP%20-1.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": "interbank_overnight_rate"
@@ -675,6 +675,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-09-03",
+        "bucket": "2026-09-03",
+        "value": 26015.67,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -1001,6 +1012,17 @@
         "date": "2026-08-28",
         "bucket": "2026-08-28",
         "value": 1832.12,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "vnindex_close"
+      },
+      {
+        "date": "2026-09-03",
+        "bucket": "2026-09-03",
+        "value": 1821.61,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -1480,6 +1502,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "world_gold_usd_oz"
+      },
+      {
+        "date": "2026-09-03",
+        "bucket": "2026-09-03",
+        "value": 4482.3999,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "world_gold_usd_oz"
       }
     ],
     "credit": [
@@ -1936,6 +1969,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "dxy_index"
+      },
+      {
+        "date": "2026-09-03",
+        "bucket": "2026-09-03",
+        "value": 99.384,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "dxy_index"
       }
     ],
     "corporate_bond_issuance": [
@@ -1956,7 +2000,7 @@
         "value": 17.264,
         "unit": "nghìn tỷ VND",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/August2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_url": "https://vbma.org.vn/storage/reports/September2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP%20-1.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": null
@@ -2033,7 +2077,7 @@
         "value": 216.415,
         "unit": "nghìn tỷ VND",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/August2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_url": "https://vbma.org.vn/storage/reports/September2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP%20-1.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": null
@@ -2480,6 +2524,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "wti_usd_barrel"
+      },
+      {
+        "date": "2026-09-03",
+        "bucket": "2026-09-03",
+        "value": 90.77,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "wti_usd_barrel"
       }
     ],
     "geopolitical_risk": [
@@ -2883,6 +2938,17 @@
       {
         "date": "2026-09-01",
         "bucket": "2026-09-01",
+        "value": 4.796,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "us_treasury_10y_yield"
+      },
+      {
+        "date": "2026-09-02",
+        "bucket": "2026-09-02",
         "value": 4.796,
         "unit": "%",
         "source": "Yahoo Finance",

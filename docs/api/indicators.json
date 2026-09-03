@@ -8,7 +8,7 @@
     "change_label": "weekly_snapshot · AUTO_VBMA_PDF · OK",
     "direction": "up",
     "source": "VBMA",
-    "source_url": "https://vbma.org.vn/storage/reports/August2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+    "source_url": "https://vbma.org.vn/storage/reports/September2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP%20-1.pdf",
     "source_quality": "AUTO_VBMA_PDF",
     "source_note": null,
     "schedule": "weekly_snapshot",
@@ -37,7 +37,7 @@
     "id": "fx_market_usd_vnd",
     "group": "financial",
     "name": "USD/VND thị trường",
-    "value": 26007.44,
+    "value": 26015.67,
     "unit": "VND/USD",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -48,13 +48,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "Wed, 02 Sep 2026 00:02:31 +0000"
+    "updated_at": "Thu, 03 Sep 2026 00:02:31 +0000"
   },
   {
     "id": "stock_market",
     "group": "financial",
     "name": "VN-Index",
-    "value": 1832.12,
+    "value": 1821.61,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -65,7 +65,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-08-28"
+    "updated_at": "2026-09-03"
   },
   {
     "id": "govt_bond_yield",
@@ -88,7 +88,7 @@
     "id": "gold_world",
     "group": "financial",
     "name": "Vàng thế giới",
-    "value": 4352.3999,
+    "value": 4482.3999,
     "unit": "USD/oz",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -99,7 +99,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-09-02"
+    "updated_at": "2026-09-03"
   },
   {
     "id": "credit",
@@ -156,7 +156,7 @@
     "id": "dxy",
     "group": "financial",
     "name": "DXY",
-    "value": 99.79,
+    "value": 99.384,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -167,7 +167,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-09-02"
+    "updated_at": "2026-09-03"
   },
   {
     "id": "corporate_bond_issuance",
@@ -178,7 +178,7 @@
     "change_label": "VIP · monthly · AUTO_VBMA_PDF · OK",
     "direction": "flat",
     "source": "VBMA",
-    "source_url": "https://vbma.org.vn/storage/reports/August2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+    "source_url": "https://vbma.org.vn/storage/reports/September2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP%20-1.pdf",
     "source_quality": "AUTO_VBMA_PDF",
     "source_note": null,
     "schedule": "monthly",
@@ -195,7 +195,7 @@
     "change_label": "weekly_snapshot · AUTO_VBMA_PDF · OK",
     "direction": "flat",
     "source": "VBMA",
-    "source_url": "https://vbma.org.vn/storage/reports/August2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+    "source_url": "https://vbma.org.vn/storage/reports/September2026/17082026%20-%2022082026%20BAO%20CAO%20TUAN%20TTTP%20-1.pdf",
     "source_quality": "AUTO_VBMA_PDF",
     "source_note": null,
     "schedule": "weekly_snapshot",
@@ -241,7 +241,7 @@
     "id": "oil_prices",
     "group": "global",
     "name": "Giá dầu WTI",
-    "value": 90.59,
+    "value": 90.77,
     "unit": "USD/thùng",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -252,7 +252,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-09-02"
+    "updated_at": "2026-09-03"
   },
   {
     "id": "geopolitical_risk",
@@ -286,7 +286,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-09-01"
+    "updated_at": "2026-09-02"
   },
   {
     "id": "ecb_eurozone",
