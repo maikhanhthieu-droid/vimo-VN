@@ -719,6 +719,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-09-06",
+        "bucket": "2026-09-06",
+        "value": 26006.49,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -1572,7 +1583,7 @@
       {
         "date": "2026-09-04",
         "bucket": "2026-09-04",
-        "value": 4429.7998,
+        "value": 4476.6001,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -3227,8 +3238,8 @@
         "value": 10.8,
         "unit": "% YoY",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "iip_ytd_yoy"
       }
@@ -3342,8 +3353,8 @@
         "value": 34.65,
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "fdi_registered_ytd"
       }

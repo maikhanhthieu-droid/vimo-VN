@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-09-05T04:41:21.191696+00:00",
+  "generated_at": "2026-09-06T04:50:58.345007+00:00",
   "as_of": "2026-09-04",
   "facts": [
     {
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 26025.12,
+      "value": 26006.49,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Sat, 05 Sep 2026 00:02:32 +0000",
+      "as_of": "Sun, 06 Sep 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 4429.7998,
+      "value": 4476.6001,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-09-04",
@@ -275,8 +275,8 @@
       "definition": "Chỉ số sản xuất công nghiệp.",
       "as_of": "2026-06-30",
       "source": "NSO",
-      "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -330,8 +330,8 @@
       "definition": "Vốn FDI đăng ký mới và điều chỉnh.",
       "as_of": "2026-06-30",
       "source": "NSO",
-      "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
