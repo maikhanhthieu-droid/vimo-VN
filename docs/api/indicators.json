@@ -37,7 +37,7 @@
     "id": "fx_market_usd_vnd",
     "group": "financial",
     "name": "USD/VND thị trường",
-    "value": 26006.49,
+    "value": 25999.42,
     "unit": "VND/USD",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -48,13 +48,13 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "Sun, 06 Sep 2026 00:02:31 +0000"
+    "updated_at": "Mon, 07 Sep 2026 00:02:31 +0000"
   },
   {
     "id": "stock_market",
     "group": "financial",
     "name": "VN-Index",
-    "value": 1853.08,
+    "value": 1839.16,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -65,7 +65,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-09-04"
+    "updated_at": "2026-09-07"
   },
   {
     "id": "govt_bond_yield",
@@ -99,7 +99,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-09-04"
+    "updated_at": "2026-09-07"
   },
   {
     "id": "credit",
@@ -156,7 +156,7 @@
     "id": "dxy",
     "group": "financial",
     "name": "DXY",
-    "value": 99.16,
+    "value": 99.173,
     "unit": "điểm",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
@@ -167,7 +167,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-09-04"
+    "updated_at": "2026-09-07"
   },
   {
     "id": "corporate_bond_issuance",
@@ -252,7 +252,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "2026-09-04"
+    "updated_at": "2026-09-07"
   },
   {
     "id": "geopolitical_risk",
@@ -413,11 +413,11 @@
     "name": "IIP",
     "value": 10.8,
     "unit": "% YoY",
-    "change_label": "VIP · monthly · AUTO_NSO_PARSE · OK",
+    "change_label": "VIP · monthly · STALE_CACHE_AUTO_NSO_PARSE · OK",
     "direction": "flat",
     "source": "NSO",
     "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-    "source_quality": "AUTO_NSO_PARSE",
+    "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
     "source_note": null,
     "schedule": "monthly",
     "health": "OK",
@@ -498,11 +498,11 @@
     "name": "FDI đăng ký",
     "value": 34.65,
     "unit": "tỷ USD (lũy kế kỳ báo cáo)",
-    "change_label": "VIP · monthly · AUTO_NSO_PARSE · OK",
+    "change_label": "VIP · monthly · STALE_CACHE_AUTO_NSO_PARSE · OK",
     "direction": "flat",
     "source": "NSO",
     "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-    "source_quality": "AUTO_NSO_PARSE",
+    "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
     "source_note": null,
     "schedule": "monthly",
     "health": "OK",

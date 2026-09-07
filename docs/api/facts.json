@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-09-06T04:50:58.345007+00:00",
-  "as_of": "2026-09-04",
+  "generated_at": "2026-09-07T04:57:02.907705+00:00",
+  "as_of": "2026-09-07",
   "facts": [
     {
       "id": "interbank_rate",
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 26006.49,
+      "value": 25999.42,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Sun, 06 Sep 2026 00:02:31 +0000",
+      "as_of": "Mon, 07 Sep 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -39,10 +39,10 @@
     },
     {
       "id": "stock_market",
-      "value": 1853.08,
+      "value": 1839.16,
       "unit": "điểm",
       "definition": "Chỉ số VN-Index.",
-      "as_of": "2026-09-04",
+      "as_of": "2026-09-07",
       "source": "Vietcap",
       "source_url": "https://trading.vietcap.com.vn/",
       "source_quality": "AUTO",
@@ -64,7 +64,7 @@
       "value": 4476.6001,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
-      "as_of": "2026-09-04",
+      "as_of": "2026-09-07",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/GC%3DF",
       "source_quality": "AUTO",
@@ -105,10 +105,10 @@
     },
     {
       "id": "dxy",
-      "value": 99.16,
+      "value": 99.173,
       "unit": "điểm",
       "definition": "US Dollar Index.",
-      "as_of": "2026-09-04",
+      "as_of": "2026-09-07",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
       "source_quality": "AUTO",
@@ -163,7 +163,7 @@
       "value": 91.48,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
-      "as_of": "2026-09-04",
+      "as_of": "2026-09-07",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/CL%3DF",
       "source_quality": "AUTO",
@@ -276,7 +276,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -331,7 +331,7 @@
       "as_of": "2026-06-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-      "source_quality": "AUTO_NSO_PARSE",
+      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
       "status": "ok"
     },
     {

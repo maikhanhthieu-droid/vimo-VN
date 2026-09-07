@@ -730,6 +730,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-09-07",
+        "bucket": "2026-09-07",
+        "value": 25999.42,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -1078,6 +1089,17 @@
         "date": "2026-09-04",
         "bucket": "2026-09-04",
         "value": 1853.08,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "vnindex_close"
+      },
+      {
+        "date": "2026-09-07",
+        "bucket": "2026-09-07",
+        "value": 1839.16,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -1590,6 +1612,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "world_gold_usd_oz"
+      },
+      {
+        "date": "2026-09-07",
+        "bucket": "2026-09-07",
+        "value": 4476.6001,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "world_gold_usd_oz"
       }
     ],
     "credit": [
@@ -2062,6 +2095,17 @@
         "date": "2026-09-04",
         "bucket": "2026-09-04",
         "value": 99.16,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "dxy_index"
+      },
+      {
+        "date": "2026-09-07",
+        "bucket": "2026-09-07",
+        "value": 99.173,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -2638,6 +2682,17 @@
       {
         "date": "2026-09-04",
         "bucket": "2026-09-04",
+        "value": 91.48,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "wti_usd_barrel"
+      },
+      {
+        "date": "2026-09-07",
+        "bucket": "2026-09-07",
         "value": 91.48,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
@@ -3239,7 +3294,7 @@
         "unit": "% YoY",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "iip_ytd_yoy"
       }
@@ -3354,7 +3409,7 @@
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-        "source_quality": "AUTO_NSO_PARSE",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "fdi_registered_ytd"
       }
