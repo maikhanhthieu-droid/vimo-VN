@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-09-11T04:53:23.462151+00:00",
+  "generated_at": "2026-09-12T04:45:50.348579+00:00",
   "as_of": "2026-09-11",
   "facts": [
     {
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 25879.19,
+      "value": 25887.1,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Fri, 11 Sep 2026 00:02:31 +0000",
+      "as_of": "Sat, 12 Sep 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -39,7 +39,7 @@
     },
     {
       "id": "stock_market",
-      "value": 1813.28,
+      "value": 1795.21,
       "unit": "điểm",
       "definition": "Chỉ số VN-Index.",
       "as_of": "2026-09-11",
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 4372.7002,
+      "value": 4366.2002,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-09-11",
@@ -105,7 +105,7 @@
     },
     {
       "id": "dxy",
-      "value": 99.103,
+      "value": 99.12,
       "unit": "điểm",
       "definition": "US Dollar Index.",
       "as_of": "2026-09-11",
@@ -160,7 +160,7 @@
     },
     {
       "id": "oil_prices",
-      "value": 102.57,
+      "value": 100.05,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
       "as_of": "2026-09-11",
@@ -182,10 +182,10 @@
     },
     {
       "id": "us_10y_yield",
-      "value": 4.944,
+      "value": 4.975,
       "unit": "%",
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
-      "as_of": "2026-09-10",
+      "as_of": "2026-09-11",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
       "source_quality": "AUTO",
