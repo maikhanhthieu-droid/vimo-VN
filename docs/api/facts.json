@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-09-12T04:45:50.348579+00:00",
+  "generated_at": "2026-09-13T05:00:21.287643+00:00",
   "as_of": "2026-09-11",
   "facts": [
     {
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 25887.1,
+      "value": 25876.38,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Sat, 12 Sep 2026 00:02:31 +0000",
+      "as_of": "Sun, 13 Sep 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 4366.2002,
+      "value": 4408.8999,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-09-11",
@@ -248,13 +248,13 @@
     },
     {
       "id": "cpi",
-      "value": 4.69,
+      "value": 4.89,
       "unit": "% YoY",
       "definition": "Chỉ số giá tiêu dùng so với cùng kỳ.",
-      "as_of": "2026-06-30",
+      "as_of": "2026-08-31",
       "source": "NSO",
-      "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -270,13 +270,13 @@
     },
     {
       "id": "iip",
-      "value": 10.8,
+      "value": 14.0,
       "unit": "% YoY",
       "definition": "Chỉ số sản xuất công nghiệp.",
-      "as_of": "2026-06-30",
+      "as_of": "2026-08-31",
       "source": "NSO",
-      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -325,13 +325,13 @@
     },
     {
       "id": "fdi_registered",
-      "value": 34.65,
+      "value": 40.63,
       "unit": "tỷ USD (lũy kế kỳ báo cáo)",
       "definition": "Vốn FDI đăng ký mới và điều chỉnh.",
-      "as_of": "2026-06-30",
+      "as_of": "2026-08-31",
       "source": "NSO",
-      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {

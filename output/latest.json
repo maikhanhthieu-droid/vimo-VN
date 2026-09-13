@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-09-12T04:45:50.348579+00:00",
-  "generated_at_bkk": "2026-09-12T11:45:50.348579+07:00",
+  "generated_at_utc": "2026-09-13T05:00:21.287643+00:00",
+  "generated_at_bkk": "2026-09-13T12:00:21.287643+07:00",
   "coverage": {
     "available_cards": 41,
     "total_cards": 41,
@@ -13,14 +13,14 @@
   },
   "change_memory": {
     "state_count": 41,
-    "event_count": 240,
-    "pending_ai_events": 9
+    "event_count": 243,
+    "pending_ai_events": 12
   },
   "gemini_analysis": {
     "status": "waiting_for_api_key",
     "model": "gemini-3.6-flash",
-    "generated_at": "2026-09-12T04:45:50.348579+00:00",
-    "event_count": 9,
+    "generated_at": "2026-09-13T05:00:21.287643+00:00",
+    "event_count": 12,
     "forecast_scenario_count": 0,
     "api_url": "api/gemini_analysis.json"
   },
@@ -274,16 +274,16 @@
       "key": "fx_market_usd_vnd",
       "name_vi": "USD/VND thị trường",
       "current": {
-        "value": 25887.1,
+        "value": 25876.38,
         "unit": "VND/USD",
-        "date": "2026-09-12",
+        "date": "2026-09-13",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "previous": {
-        "date": "2026-09-11",
-        "bucket": "2026-09-11",
-        "value": 25879.19,
+        "date": "2026-09-12",
+        "bucket": "2026-09-12",
+        "value": 25887.1,
         "unit": "VND/USD",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/",
@@ -292,31 +292,31 @@
         "forecast_definition_id": "market_vnd_usd"
       },
       "change": {
-        "absolute": 7.91,
-        "percent": 0.0306,
-        "direction": "up"
+        "absolute": -10.72,
+        "percent": -0.0414,
+        "direction": "down"
       },
       "forecast_1m": {
-        "value": 25550.0,
-        "low": 25032.0,
-        "high": 26068.0,
-        "as_of": "2026-10-12",
+        "value": 25597.0,
+        "low": 25080.0,
+        "high": 26115.0,
+        "as_of": "2026-10-13",
         "probability_bands": [
           {
-            "low": 25032.0,
-            "high": 25377.0,
+            "low": 25080.0,
+            "high": 25425.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25377.0,
-            "high": 25723.0,
+            "low": 25425.0,
+            "high": 25770.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 25723.0,
-            "high": 26068.0,
+            "low": 25770.0,
+            "high": 26115.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -327,26 +327,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 25179.0,
-        "low": 24351.0,
-        "high": 26008.0,
-        "as_of": "2026-12-12",
+        "value": 25290.0,
+        "low": 24462.0,
+        "high": 26118.0,
+        "as_of": "2026-12-13",
         "probability_bands": [
           {
-            "low": 24351.0,
-            "high": 24903.0,
+            "low": 24462.0,
+            "high": 25014.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 24903.0,
-            "high": 25456.0,
+            "low": 25014.0,
+            "high": 25566.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 25456.0,
-            "high": 26008.0,
+            "low": 25566.0,
+            "high": 26118.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -363,18 +363,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-09-12",
+          "as_of": "2026-09-13",
           "forecast_1m": {
-            "value": 25550.0,
-            "low": 25032.0,
-            "high": 26068.0,
-            "as_of": "2026-10-12"
+            "value": 25597.0,
+            "low": 25080.0,
+            "high": 26115.0,
+            "as_of": "2026-10-13"
           },
           "forecast_3m": {
-            "value": 25179.0,
-            "low": 24351.0,
-            "high": 26008.0,
-            "as_of": "2026-12-12"
+            "value": 25290.0,
+            "low": 24462.0,
+            "high": 26118.0,
+            "as_of": "2026-12-13"
           },
           "observations": 6,
           "span_days": 5,
@@ -386,7 +386,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 7.91 VND/USD so với kỳ 2026-09-11. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 10.72 VND/USD so với kỳ 2026-09-12. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -486,7 +486,7 @@
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
           "as_of": "2026-09-11",
-          "fetched_at": "2026-09-12T04:45:50.348579+00:00",
+          "fetched_at": "2026-09-13T05:00:21.287643+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
@@ -645,7 +645,7 @@
       "key": "gold_world",
       "name_vi": "Vàng thế giới",
       "current": {
-        "value": 4366.2002,
+        "value": 4408.8999,
         "unit": "USD/oz",
         "date": "2026-09-11",
         "source": "Yahoo Finance",
@@ -663,32 +663,32 @@
         "forecast_definition_id": "world_gold_usd_oz"
       },
       "change": {
-        "absolute": -84.2998,
-        "percent": -1.8942,
+        "absolute": -41.6001,
+        "percent": -0.9347,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 4130.0,
-        "low": 4042.0,
-        "high": 4217.0,
+        "value": 4264.0,
+        "low": 4176.0,
+        "high": 4352.0,
         "as_of": "2026-10-11",
         "probability_bands": [
           {
-            "low": 4042.0,
-            "high": 4100.0,
-            "probability": 31.1,
+            "low": 4176.0,
+            "high": 4235.0,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 4100.0,
-            "high": 4159.0,
-            "probability": 37.8,
+            "low": 4235.0,
+            "high": 4293.0,
+            "probability": 37.0,
             "rank": 1
           },
           {
-            "low": 4159.0,
-            "high": 4217.0,
-            "probability": 31.1,
+            "low": 4293.0,
+            "high": 4352.0,
+            "probability": 31.5,
             "rank": 3
           }
         ],
@@ -698,26 +698,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 3869.0,
-        "low": 3730.0,
-        "high": 4009.0,
+        "value": 4104.0,
+        "low": 3963.0,
+        "high": 4245.0,
         "as_of": "2026-12-11",
         "probability_bands": [
           {
-            "low": 3730.0,
-            "high": 3823.0,
+            "low": 3963.0,
+            "high": 4057.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 3823.0,
-            "high": 3916.0,
+            "low": 4057.0,
+            "high": 4151.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 3916.0,
-            "high": 4009.0,
+            "low": 4151.0,
+            "high": 4245.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -736,15 +736,15 @@
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
           "as_of": "2026-09-11",
           "forecast_1m": {
-            "value": 4130.0,
-            "low": 4042.0,
-            "high": 4217.0,
+            "value": 4264.0,
+            "low": 4176.0,
+            "high": 4352.0,
             "as_of": "2026-10-11"
           },
           "forecast_3m": {
-            "value": 3869.0,
-            "low": 3730.0,
-            "high": 4009.0,
+            "value": 4104.0,
+            "low": 3963.0,
+            "high": 4245.0,
             "as_of": "2026-12-11"
           },
           "observations": 6,
@@ -757,7 +757,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 84.2998 USD/oz so với kỳ 2026-09-10. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 41.6001 USD/oz so với kỳ 2026-09-10. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -1307,8 +1307,8 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-09-12",
-          "fetched_at": "2026-09-12T04:45:50.348579+00:00",
+          "as_of": "2026-09-13",
+          "fetched_at": "2026-09-13T05:00:21.287643+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 87.0,
@@ -1655,50 +1655,51 @@
       "key": "cpi",
       "name_vi": "CPI",
       "current": {
-        "value": 4.69,
+        "value": 4.89,
         "unit": "% YoY",
-        "date": "2026-06-30",
+        "date": "2026-08-31",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/"
       },
       "previous": {
-        "date": "2026-05-31",
-        "value": 5.6,
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 4.69,
         "unit": "% YoY",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
-        "source_quality": "VERIFIED_HISTORY_HIGHQ",
-        "source_note": "CPI tháng 5/2026 tăng 5,60% so với cùng kỳ năm trước.",
-        "bucket": "2026-05"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_note": null,
+        "forecast_definition_id": "cpi_headline_yoy"
       },
       "change": {
-        "absolute": -0.91,
-        "percent": -16.25,
-        "direction": "down"
+        "absolute": 0.2,
+        "percent": 4.2644,
+        "direction": "up"
       },
       "forecast_1m": {
-        "value": 4.24,
-        "low": 3.92,
-        "high": 4.55,
-        "as_of": "2026-07-31",
+        "value": 4.77,
+        "low": 4.68,
+        "high": 4.87,
+        "as_of": "2026-09-30",
         "probability_bands": [
           {
-            "low": 3.92,
-            "high": 4.13,
-            "probability": 31.6,
-            "rank": 3
+            "low": 4.68,
+            "high": 4.74,
+            "probability": 29.9,
+            "rank": 2
           },
           {
-            "low": 4.13,
-            "high": 4.34,
-            "probability": 36.7,
+            "low": 4.74,
+            "high": 4.81,
+            "probability": 40.6,
             "rank": 1
           },
           {
-            "low": 4.34,
-            "high": 4.55,
-            "probability": 31.7,
-            "rank": 2
+            "low": 4.81,
+            "high": 4.87,
+            "probability": 29.5,
+            "rank": 3
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1707,28 +1708,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 3.73,
-        "low": 3.22,
-        "high": 4.24,
-        "as_of": "2026-09-30",
+        "value": 4.65,
+        "low": 4.49,
+        "high": 4.8,
+        "as_of": "2026-11-30",
         "probability_bands": [
           {
-            "low": 3.22,
-            "high": 3.56,
-            "probability": 31.7,
-            "rank": 2
+            "low": 4.49,
+            "high": 4.59,
+            "probability": 30.3,
+            "rank": 3
           },
           {
-            "low": 3.56,
-            "high": 3.9,
-            "probability": 36.6,
+            "low": 4.59,
+            "high": 4.7,
+            "probability": 39.2,
             "rank": 1
           },
           {
-            "low": 3.9,
-            "high": 4.24,
-            "probability": 31.7,
-            "rank": 3
+            "low": 4.7,
+            "high": 4.8,
+            "probability": 30.5,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1742,34 +1743,34 @@
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_observed_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
+          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+          "as_of": "2026-08-31",
           "forecast_1m": {
-            "value": 4.24,
-            "low": 3.92,
-            "high": 4.55,
-            "as_of": "2026-07-31"
-          },
-          "forecast_3m": {
-            "value": 3.73,
-            "low": 3.22,
-            "high": 4.24,
+            "value": 4.77,
+            "low": 4.68,
+            "high": 4.87,
             "as_of": "2026-09-30"
           },
-          "observations": 2,
-          "span_days": 30,
+          "forecast_3m": {
+            "value": 4.65,
+            "low": 4.49,
+            "high": 4.8,
+            "as_of": "2026-11-30"
+          },
+          "observations": 3,
+          "span_days": 92,
           "method": "Damped deterministic trend scenario from dated observed history.",
           "official": false
         }
       ],
-      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 0.91 % YoY so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 0.2 % YoY so với kỳ 2026-06-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
-      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -1899,49 +1900,50 @@
       "key": "iip",
       "name_vi": "IIP",
       "current": {
-        "value": 10.8,
+        "value": 14.0,
         "unit": "% YoY",
-        "date": "2026-06-30",
+        "date": "2026-08-31",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/"
       },
       "previous": {
-        "date": "2026-05-31",
-        "value": 9.1,
-        "unit": "% YoY lũy kế 5T/2026",
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 10.8,
+        "unit": "% YoY",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
-        "source_quality": "VERIFIED_HISTORY_HIGHQ",
-        "source_note": "IIP lũy kế 5 tháng đầu năm 2026 tăng 9,1% so với cùng kỳ.",
-        "bucket": "2026-05"
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_note": null,
+        "forecast_definition_id": "iip_ytd_yoy"
       },
       "change": {
-        "absolute": 1.7,
-        "percent": 18.6813,
+        "absolute": 3.2,
+        "percent": 29.6296,
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 11.65,
-        "low": 11.06,
-        "high": 12.25,
-        "as_of": "2026-07-31",
+        "value": 14.8,
+        "low": 13.68,
+        "high": 15.92,
+        "as_of": "2026-09-30",
         "probability_bands": [
           {
-            "low": 11.06,
-            "high": 11.46,
-            "probability": 32.0,
+            "low": 13.68,
+            "high": 14.43,
+            "probability": 31.7,
             "rank": 2
           },
           {
-            "low": 11.46,
-            "high": 11.85,
-            "probability": 36.1,
+            "low": 14.43,
+            "high": 15.17,
+            "probability": 36.6,
             "rank": 1
           },
           {
-            "low": 11.85,
-            "high": 12.25,
-            "probability": 31.9,
+            "low": 15.17,
+            "high": 15.92,
+            "probability": 31.7,
             "rank": 3
           }
         ],
@@ -1951,28 +1953,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 12.59,
-        "low": 11.63,
-        "high": 13.54,
-        "as_of": "2026-09-30",
+        "value": 15.68,
+        "low": 13.89,
+        "high": 17.47,
+        "as_of": "2026-11-30",
         "probability_bands": [
           {
-            "low": 11.63,
-            "high": 12.27,
-            "probability": 31.8,
-            "rank": 3
+            "low": 13.89,
+            "high": 15.08,
+            "probability": 31.4,
+            "rank": 2
           },
           {
-            "low": 12.27,
-            "high": 12.9,
-            "probability": 36.3,
+            "low": 15.08,
+            "high": 16.28,
+            "probability": 37.2,
             "rank": 1
           },
           {
-            "low": 12.9,
-            "high": 13.54,
-            "probability": 31.9,
-            "rank": 2
+            "low": 16.28,
+            "high": 17.47,
+            "probability": 31.4,
+            "rank": 3
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1986,34 +1988,34 @@
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_observed_history",
-          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
+          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+          "as_of": "2026-08-31",
           "forecast_1m": {
-            "value": 11.65,
-            "low": 11.06,
-            "high": 12.25,
-            "as_of": "2026-07-31"
-          },
-          "forecast_3m": {
-            "value": 12.59,
-            "low": 11.63,
-            "high": 13.54,
+            "value": 14.8,
+            "low": 13.68,
+            "high": 15.92,
             "as_of": "2026-09-30"
           },
-          "observations": 2,
-          "span_days": 30,
+          "forecast_3m": {
+            "value": 15.68,
+            "low": 13.89,
+            "high": 17.47,
+            "as_of": "2026-11-30"
+          },
+          "observations": 3,
+          "span_days": 92,
           "method": "Damped deterministic trend scenario from dated observed history.",
           "official": false
         }
       ],
-      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "forecast_warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 1.7 % YoY so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 3.2 % YoY so với kỳ 2026-06-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
-      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -2588,49 +2590,50 @@
       "key": "fdi_registered",
       "name_vi": "FDI đăng ký",
       "current": {
-        "value": 34.65,
+        "value": 40.63,
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
-        "date": "2026-06-30",
+        "date": "2026-08-31",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/"
       },
       "previous": {
-        "date": "2026-05-31",
-        "value": 24.81,
-        "unit": "tỷ USD (đến 31/05/2026)",
+        "date": "2026-06-30",
+        "bucket": "2026-06",
+        "value": 34.65,
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/06/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-nam-va-5-thang-dau-nam-2026/",
-        "source_quality": "VERIFIED_HISTORY_HIGHQ",
-        "source_note": "Tổng vốn FDI đăng ký tính đến cuối tháng 5/2026.",
-        "bucket": "2026-05"
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
+        "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_note": null,
+        "forecast_definition_id": "fdi_registered_ytd"
       },
       "change": {
-        "absolute": 9.84,
-        "percent": 39.6614,
+        "absolute": 5.98,
+        "percent": 17.2583,
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 41.44,
-        "low": 35.34,
-        "high": 47.54,
-        "as_of": "2026-07-31",
+        "value": 46.24,
+        "low": 44.14,
+        "high": 48.35,
+        "as_of": "2026-09-30",
         "probability_bands": [
           {
-            "low": 35.34,
-            "high": 39.41,
-            "probability": 31.7,
+            "low": 44.14,
+            "high": 45.54,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 39.41,
-            "high": 43.47,
-            "probability": 36.6,
+            "low": 45.54,
+            "high": 46.95,
+            "probability": 37.1,
             "rank": 1
           },
           {
-            "low": 43.47,
-            "high": 47.54,
-            "probability": 31.7,
+            "low": 46.95,
+            "high": 48.35,
+            "probability": 31.4,
             "rank": 3
           }
         ],
@@ -2640,27 +2643,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 55.02,
-        "low": 44.46,
-        "high": 65.58,
-        "as_of": "2026-09-30",
+        "value": 57.47,
+        "low": 53.82,
+        "high": 61.12,
+        "as_of": "2026-11-30",
         "probability_bands": [
           {
-            "low": 44.46,
-            "high": 51.5,
-            "probability": 31.7,
+            "low": 53.82,
+            "high": 56.25,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 51.5,
-            "high": 58.54,
-            "probability": 36.6,
+            "low": 56.25,
+            "high": 58.69,
+            "probability": 37.0,
             "rank": 1
           },
           {
-            "low": 58.54,
-            "high": 65.58,
-            "probability": 31.7,
+            "low": 58.69,
+            "high": 61.12,
+            "probability": 31.5,
             "rank": 3
           }
         ],
@@ -2675,25 +2678,25 @@
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_cumulative_history",
-          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
+          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+          "as_of": "2026-08-31",
           "forecast_1m": {
-            "value": 41.44,
-            "low": 35.34,
-            "high": 47.54,
-            "as_of": "2026-07-31"
-          },
-          "forecast_3m": {
-            "value": 55.02,
-            "low": 44.46,
-            "high": 65.58,
+            "value": 46.24,
+            "low": 44.14,
+            "high": 48.35,
             "as_of": "2026-09-30"
           },
-          "observations": 2,
-          "effective_increments": 1,
-          "average_monthly_flow": 5.775,
-          "recent_monthly_flow": 9.84,
-          "shrunk_monthly_pace": 6.7912,
+          "forecast_3m": {
+            "value": 57.47,
+            "low": 53.82,
+            "high": 61.12,
+            "as_of": "2026-11-30"
+          },
+          "observations": 3,
+          "effective_increments": 2,
+          "average_monthly_flow": 5.0788,
+          "recent_monthly_flow": 6.415,
+          "shrunk_monthly_pace": 5.6133,
           "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
           "official": false
         }
@@ -2702,10 +2705,10 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 9.84 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-05-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 5.98 tỷ USD (lũy kế kỳ báo cáo) so với kỳ 2026-06-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
-      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
+      "method": "Kịch bản lũy kế dùng 2 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "ai_sources": [],
       "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
     },
@@ -3631,11 +3634,11 @@
     "score": -3,
     "reason_short": "Tín hiệu thuận và bất lợi đang đan xen; chưa đủ cơ sở để nâng tỷ trọng trên diện rộng.",
     "positive_drivers": [
-      "IIP tăng 10.8% YoY",
+      "IIP tăng 14% YoY",
       "Bán lẻ tăng 12.9% YoY"
     ],
     "risk_drivers": [
-      "CPI 4.69% YoY tạo áp lực lãi suất",
+      "CPI 4.89% YoY tạo áp lực lãi suất",
       "Cán cân thương mại âm 16.65 tỷ USD",
       "Lợi suất Mỹ 10Y 4.975% làm tăng chi phí vốn toàn cầu",
       "Dầu 100.05 USD/thùng làm tăng rủi ro chi phí"
@@ -3659,17 +3662,17 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-09-12T04:46:29.681193+00:00",
-      "bytes": 96022
+      "checked_at": "2026-09-13T05:00:42.517054+00:00",
+      "bytes": 96104
     },
     "nso": {
       "name": "NSO/GSO Việt Nam",
       "url": "https://www.nso.gov.vn/",
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
-      "available": false,
-      "checked_at": "2026-09-12T04:46:40.667181+00:00",
-      "error": "<urlopen error [Errno 104] Connection reset by peer>"
+      "available": true,
+      "checked_at": "2026-09-13T05:00:45.572332+00:00",
+      "bytes": 116642
     },
     "customs": {
       "name": "Tổng cục Hải quan",
@@ -3677,7 +3680,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-09-12T04:46:42.302394+00:00",
+      "checked_at": "2026-09-13T05:00:46.853065+00:00",
       "bytes": 14038
     },
     "vbma": {
@@ -3686,7 +3689,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-09-12T04:46:43.085271+00:00",
+      "checked_at": "2026-09-13T05:00:47.917959+00:00",
       "bytes": 39735
     },
     "vnba": {
@@ -3695,8 +3698,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-09-12T04:46:45.480009+00:00",
-      "bytes": 251788
+      "checked_at": "2026-09-13T05:00:49.817967+00:00",
+      "bytes": 224168
     },
     "market": {
       "name": "Public market APIs / Vietcap",
@@ -3704,7 +3707,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-09-12T04:46:46.346389+00:00",
+      "checked_at": "2026-09-13T05:00:50.773314+00:00",
       "bytes": 9053
     }
   },
@@ -4511,6 +4514,17 @@
           "date": "2026-09-12",
           "bucket": "2026-09-12",
           "value": 25887.1,
+          "unit": "VND/USD",
+          "source": "Open ER API",
+          "source_url": "https://open.er-api.com/",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "market_vnd_usd"
+        },
+        {
+          "date": "2026-09-13",
+          "bucket": "2026-09-13",
+          "value": 25876.38,
           "unit": "VND/USD",
           "source": "Open ER API",
           "source_url": "https://open.er-api.com/",
@@ -5491,7 +5505,7 @@
         {
           "date": "2026-09-11",
           "bucket": "2026-09-11",
-          "value": 4366.2002,
+          "value": 4408.8999,
           "unit": "USD/oz",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -7280,6 +7294,17 @@
           "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
           "source_note": null,
           "forecast_definition_id": "cpi_headline_yoy"
+        },
+        {
+          "date": "2026-08-31",
+          "bucket": "2026-08",
+          "value": 4.89,
+          "unit": "% YoY",
+          "source": "NSO",
+          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+          "source_quality": "AUTO_NSO_PARSE",
+          "source_note": null,
+          "forecast_definition_id": "cpi_headline_yoy"
         }
       ],
       "pmi_manufacturing": [
@@ -7324,6 +7349,17 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
           "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+          "source_note": null,
+          "forecast_definition_id": "iip_ytd_yoy"
+        },
+        {
+          "date": "2026-08-31",
+          "bucket": "2026-08",
+          "value": 14.0,
+          "unit": "% YoY",
+          "source": "NSO",
+          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+          "source_quality": "AUTO_NSO_PARSE",
           "source_note": null,
           "forecast_definition_id": "iip_ytd_yoy"
         }
@@ -7439,6 +7475,17 @@
           "source": "NSO",
           "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
           "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+          "source_note": null,
+          "forecast_definition_id": "fdi_registered_ytd"
+        },
+        {
+          "date": "2026-08-31",
+          "bucket": "2026-08",
+          "value": 40.63,
+          "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+          "source": "NSO",
+          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+          "source_quality": "AUTO_NSO_PARSE",
           "source_note": null,
           "forecast_definition_id": "fdi_registered_ytd"
         }
@@ -7757,7 +7804,7 @@
       "priority": 3,
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
       "why_it_matters": "USD/VND cho thấy áp lực ngoại hối cập nhật hằng ngày.",
-      "value": 25887.1,
+      "value": 25876.38,
       "unit": "VND/USD",
       "status": "available",
       "signal": "GREEN",
@@ -7765,12 +7812,12 @@
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "Sat, 12 Sep 2026 00:02:31 +0000",
+      "as_of": "Sun, 13 Sep 2026 00:02:31 +0000",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "market_vnd_usd",
       "direction": "flat",
-      "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 25887.1 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
+      "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 25876.38 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
     },
     {
       "key": "stock_market",
@@ -7826,7 +7873,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4366.2002,
+      "value": 4408.8999,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -7839,7 +7886,7 @@
       "vip": false,
       "forecast_definition_id": "world_gold_usd_oz",
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4366.2002 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4408.8999 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -8217,20 +8264,20 @@
       "priority": 1,
       "definition": "Chỉ số giá tiêu dùng so với cùng kỳ.",
       "why_it_matters": "Lạm phát là biến số nền cho lãi suất, tỷ giá và sức mua.",
-      "value": 4.69,
+      "value": 4.89,
       "unit": "% YoY",
       "status": "available",
       "signal": "YELLOW",
       "source_primary": "NSO",
-      "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
       "source_note": null,
-      "as_of": "2026-06-30",
+      "as_of": "2026-08-31",
       "frequency": "monthly",
       "vip": true,
       "forecast_definition_id": "cpi_headline_yoy",
       "direction": "down",
-      "narrative": "CPI hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 4.69 % YoY, dùng để theo dõi lạm phát là biến số nền cho lãi suất, tỷ giá và sức mua."
+      "narrative": "CPI hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 4.89 % YoY, dùng để theo dõi lạm phát là biến số nền cho lãi suất, tỷ giá và sức mua."
     },
     {
       "key": "pmi_manufacturing",
@@ -8263,20 +8310,20 @@
       "priority": 3,
       "definition": "Chỉ số sản xuất công nghiệp.",
       "why_it_matters": "IIP cho thấy nhịp sản xuất chính thức.",
-      "value": 10.8,
+      "value": 14.0,
       "unit": "% YoY",
       "status": "available",
       "signal": "GREEN",
       "source_primary": "NSO",
-      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
       "source_note": null,
-      "as_of": "2026-06-30",
+      "as_of": "2026-08-31",
       "frequency": "monthly",
       "vip": true,
       "forecast_definition_id": "iip_ytd_yoy",
       "direction": "flat",
-      "narrative": "IIP hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 10.8 % YoY, dùng để theo dõi iip cho thấy nhịp sản xuất chính thức."
+      "narrative": "IIP hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 14.0 % YoY, dùng để theo dõi iip cho thấy nhịp sản xuất chính thức."
     },
     {
       "key": "trade_balance",
@@ -8378,20 +8425,20 @@
       "priority": 8,
       "definition": "Vốn FDI đăng ký mới và điều chỉnh.",
       "why_it_matters": "FDI đăng ký phản ánh kỳ vọng đầu tư tương lai.",
-      "value": 34.65,
+      "value": 40.63,
       "unit": "tỷ USD (lũy kế kỳ báo cáo)",
       "status": "available",
       "signal": "GREEN",
       "source_primary": "NSO",
-      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+      "source_quality": "AUTO_NSO_PARSE",
       "source_note": null,
-      "as_of": "2026-06-30",
+      "as_of": "2026-08-31",
       "frequency": "monthly",
       "vip": true,
       "forecast_definition_id": "fdi_registered_ytd",
       "direction": "flat",
-      "narrative": "FDI đăng ký hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 34.65 tỷ USD (lũy kế kỳ báo cáo), dùng để theo dõi fdi đăng ký phản ánh kỳ vọng đầu tư tương lai."
+      "narrative": "FDI đăng ký hiện có dữ liệu tự động từ NSO. Giá trị mới nhất là 40.63 tỷ USD (lũy kế kỳ báo cáo), dùng để theo dõi fdi đăng ký phản ánh kỳ vọng đầu tư tương lai."
     },
     {
       "key": "retail",

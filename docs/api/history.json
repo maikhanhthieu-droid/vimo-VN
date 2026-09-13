@@ -807,6 +807,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-09-13",
+        "bucket": "2026-09-13",
+        "value": 25876.38,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -1781,7 +1792,7 @@
       {
         "date": "2026-09-11",
         "bucket": "2026-09-11",
-        "value": 4366.2002,
+        "value": 4408.8999,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -3570,6 +3581,17 @@
         "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "cpi_headline_yoy"
+      },
+      {
+        "date": "2026-08-31",
+        "bucket": "2026-08",
+        "value": 4.89,
+        "unit": "% YoY",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
+        "source_note": null,
+        "forecast_definition_id": "cpi_headline_yoy"
       }
     ],
     "pmi_manufacturing": [
@@ -3614,6 +3636,17 @@
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
         "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_note": null,
+        "forecast_definition_id": "iip_ytd_yoy"
+      },
+      {
+        "date": "2026-08-31",
+        "bucket": "2026-08",
+        "value": 14.0,
+        "unit": "% YoY",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "iip_ytd_yoy"
       }
@@ -3729,6 +3762,17 @@
         "source": "NSO",
         "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/07/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-6-thang-dau-nam-2026/",
         "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+        "source_note": null,
+        "forecast_definition_id": "fdi_registered_ytd"
+      },
+      {
+        "date": "2026-08-31",
+        "bucket": "2026-08",
+        "value": 40.63,
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
+        "source_quality": "AUTO_NSO_PARSE",
         "source_note": null,
         "forecast_definition_id": "fdi_registered_ytd"
       }
