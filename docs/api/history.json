@@ -895,6 +895,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-09-20",
+        "bucket": "2026-09-20",
+        "value": 26127.62,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -3298,7 +3309,7 @@
       {
         "date": "2026-09-18",
         "bucket": "2026-09-18",
-        "value": 100.3,
+        "value": 96.08,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",

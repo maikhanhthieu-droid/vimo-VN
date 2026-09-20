@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-09-19T04:46:25.098992+00:00",
+  "generated_at": "2026-09-20T05:03:46.658814+00:00",
   "as_of": "2026-09-18",
   "facts": [
     {
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 26002.27,
+      "value": 26127.62,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Sat, 19 Sep 2026 00:02:31 +0000",
+      "as_of": "Sun, 20 Sep 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -160,7 +160,7 @@
     },
     {
       "id": "oil_prices",
-      "value": 100.3,
+      "value": 96.08,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
       "as_of": "2026-09-18",

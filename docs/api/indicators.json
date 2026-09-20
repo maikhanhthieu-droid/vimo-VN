@@ -37,7 +37,7 @@
     "id": "fx_market_usd_vnd",
     "group": "financial",
     "name": "USD/VND thị trường",
-    "value": 26002.27,
+    "value": 26127.62,
     "unit": "VND/USD",
     "change_label": "daily · AUTO · OK",
     "direction": "flat",
@@ -48,7 +48,7 @@
     "schedule": "daily",
     "health": "OK",
     "vip": false,
-    "updated_at": "Sat, 19 Sep 2026 00:02:31 +0000"
+    "updated_at": "Sun, 20 Sep 2026 00:02:31 +0000"
   },
   {
     "id": "stock_market",
@@ -241,7 +241,7 @@
     "id": "oil_prices",
     "group": "global",
     "name": "Giá dầu WTI",
-    "value": 100.3,
+    "value": 96.08,
     "unit": "USD/thùng",
     "change_label": "daily · AUTO · OK",
     "direction": "up",
