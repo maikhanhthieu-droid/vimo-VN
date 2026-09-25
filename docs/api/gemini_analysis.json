@@ -1,7 +1,7 @@
 {
   "status": "waiting_for_api_key",
   "model": "gemini-3.6-flash",
-  "generated_at": "2026-09-24T05:04:59.698703+00:00",
+  "generated_at": "2026-09-25T05:08:11.749697+00:00",
   "event_count": 12,
   "forecast_scenario_count": 0,
   "analysis_vi": "Da luu bien dong; dang cho GEMINI_API_KEY de phan tich.",
