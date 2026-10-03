@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.forecasts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-10-02T05:54:32.176281+00:00",
-  "as_of": "2026-10-02",
+  "generated_at": "2026-10-03T05:29:32.113669+00:00",
+  "as_of": "2026-10-03",
   "status": "ok",
   "horizons": [
     "1_month",
@@ -220,33 +220,33 @@
     {
       "id": "fx_market_usd_vnd",
       "current": {
-        "value": 25941.35,
+        "value": 25953.96,
         "unit": "VND/USD",
-        "date": "2026-10-02",
+        "date": "2026-10-03",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "forecast_1m": {
-        "value": 25909.0,
-        "low": 25390.0,
-        "high": 26428.0,
-        "as_of": "2026-11-02",
+        "value": 26006.0,
+        "low": 25487.0,
+        "high": 26525.0,
+        "as_of": "2026-11-03",
         "probability_bands": [
           {
-            "low": 25390.0,
-            "high": 25736.0,
+            "low": 25487.0,
+            "high": 25833.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25736.0,
-            "high": 26082.0,
+            "low": 25833.0,
+            "high": 26179.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26082.0,
-            "high": 26428.0,
+            "low": 26179.0,
+            "high": 26525.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -257,26 +257,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 25874.0,
-        "low": 25043.0,
-        "high": 26704.0,
-        "as_of": "2027-01-02",
+        "value": 26064.0,
+        "low": 25233.0,
+        "high": 26894.0,
+        "as_of": "2027-01-03",
         "probability_bands": [
           {
-            "low": 25043.0,
-            "high": 25597.0,
+            "low": 25233.0,
+            "high": 25787.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25597.0,
-            "high": 26150.0,
+            "low": 25787.0,
+            "high": 26340.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26150.0,
-            "high": 26704.0,
+            "low": 26340.0,
+            "high": 26894.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -296,18 +296,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-10-02",
+          "as_of": "2026-10-03",
           "forecast_1m": {
-            "value": 25909.0,
-            "low": 25390.0,
-            "high": 26428.0,
-            "as_of": "2026-11-02"
+            "value": 26006.0,
+            "low": 25487.0,
+            "high": 26525.0,
+            "as_of": "2026-11-03"
           },
           "forecast_3m": {
-            "value": 25874.0,
-            "low": 25043.0,
-            "high": 26704.0,
-            "as_of": "2027-01-02"
+            "value": 26064.0,
+            "low": 25233.0,
+            "high": 26894.0,
+            "as_of": "2027-01-03"
           },
           "observations": 6,
           "span_days": 5,
@@ -324,33 +324,33 @@
     {
       "id": "stock_market",
       "current": {
-        "value": 1739.5,
+        "value": 1737.71,
         "unit": "điểm",
         "date": "2026-10-02",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/"
       },
       "forecast_1m": {
-        "value": 1737.0,
-        "low": 1670.0,
-        "high": 1807.0,
+        "value": 1735.0,
+        "low": 1665.0,
+        "high": 1808.0,
         "as_of": "2026-11-02",
         "probability_bands": [
           {
-            "low": 1670.0,
-            "high": 1716.0,
+            "low": 1665.0,
+            "high": 1713.0,
             "probability": 30.9,
             "rank": 2
           },
           {
-            "low": 1716.0,
-            "high": 1761.0,
+            "low": 1713.0,
+            "high": 1760.0,
             "probability": 38.4,
             "rank": 1
           },
           {
-            "low": 1761.0,
-            "high": 1807.0,
+            "low": 1760.0,
+            "high": 1808.0,
             "probability": 30.7,
             "rank": 3
           }
@@ -361,27 +361,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 1735.0,
-        "low": 1620.0,
-        "high": 1859.0,
+        "value": 1734.0,
+        "low": 1615.0,
+        "high": 1862.0,
         "as_of": "2027-01-02",
         "probability_bands": [
           {
-            "low": 1620.0,
-            "high": 1700.0,
-            "probability": 30.9,
+            "low": 1615.0,
+            "high": 1697.0,
+            "probability": 30.6,
             "rank": 2
           },
           {
-            "low": 1700.0,
-            "high": 1779.0,
-            "probability": 38.6,
+            "low": 1697.0,
+            "high": 1780.0,
+            "probability": 39.2,
             "rank": 1
           },
           {
-            "low": 1779.0,
-            "high": 1859.0,
-            "probability": 30.5,
+            "low": 1780.0,
+            "high": 1862.0,
+            "probability": 30.2,
             "rank": 3
           }
         ],
@@ -400,19 +400,19 @@
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
           "as_of": "2026-10-02",
-          "fetched_at": "2026-10-02T05:54:32.176281+00:00",
+          "fetched_at": "2026-10-03T05:29:32.113669+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
-            "value": 1737.0,
-            "low": 1670.0,
-            "high": 1807.0,
+            "value": 1735.0,
+            "low": 1665.0,
+            "high": 1808.0,
             "as_of": "2026-11-02"
           },
           "forecast_3m": {
-            "value": 1735.0,
-            "low": 1620.0,
-            "high": 1859.0,
+            "value": 1734.0,
+            "low": 1615.0,
+            "high": 1862.0,
             "as_of": "2027-01-02"
           },
           "observations": 180,
@@ -534,34 +534,34 @@
     {
       "id": "gold_world",
       "current": {
-        "value": 4217.7002,
+        "value": 4162.2998,
         "unit": "USD/oz",
         "date": "2026-10-02",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF"
       },
       "forecast_1m": {
-        "value": 3996.0,
-        "low": 3912.0,
-        "high": 4080.0,
+        "value": 3822.0,
+        "low": 3739.0,
+        "high": 3905.0,
         "as_of": "2026-11-02",
         "probability_bands": [
           {
-            "low": 3912.0,
-            "high": 3968.0,
-            "probability": 31.3,
+            "low": 3739.0,
+            "high": 3794.0,
+            "probability": 31.1,
             "rank": 2
           },
           {
-            "low": 3968.0,
-            "high": 4024.0,
-            "probability": 37.4,
+            "low": 3794.0,
+            "high": 3850.0,
+            "probability": 37.8,
             "rank": 1
           },
           {
-            "low": 4024.0,
-            "high": 4080.0,
-            "probability": 31.3,
+            "low": 3850.0,
+            "high": 3905.0,
+            "probability": 31.1,
             "rank": 3
           }
         ],
@@ -571,27 +571,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 3752.0,
-        "low": 3617.0,
-        "high": 3887.0,
+        "value": 3447.0,
+        "low": 3314.0,
+        "high": 3580.0,
         "as_of": "2027-01-02",
         "probability_bands": [
           {
-            "low": 3617.0,
-            "high": 3707.0,
-            "probability": 31.3,
+            "low": 3314.0,
+            "high": 3403.0,
+            "probability": 31.4,
             "rank": 2
           },
           {
-            "low": 3707.0,
-            "high": 3797.0,
-            "probability": 37.4,
+            "low": 3403.0,
+            "high": 3491.0,
+            "probability": 37.2,
             "rank": 1
           },
           {
-            "low": 3797.0,
-            "high": 3887.0,
-            "probability": 31.3,
+            "low": 3491.0,
+            "high": 3580.0,
+            "probability": 31.4,
             "rank": 3
           }
         ],
@@ -612,15 +612,15 @@
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
           "as_of": "2026-10-02",
           "forecast_1m": {
-            "value": 3996.0,
-            "low": 3912.0,
-            "high": 4080.0,
+            "value": 3822.0,
+            "low": 3739.0,
+            "high": 3905.0,
             "as_of": "2026-11-02"
           },
           "forecast_3m": {
-            "value": 3752.0,
-            "low": 3617.0,
-            "high": 3887.0,
+            "value": 3447.0,
+            "low": 3314.0,
+            "high": 3580.0,
             "as_of": "2027-01-02"
           },
           "observations": 6,
@@ -638,35 +638,35 @@
     {
       "id": "credit",
       "current": {
-        "value": 7.41,
+        "value": 10.89,
         "unit": "% YTD",
-        "date": "2026-06-26",
+        "date": "2026-09-28",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": 8.76,
-        "low": 8.3,
-        "high": 9.23,
-        "as_of": "2026-07-31",
+        "value": 12.19,
+        "low": 11.86,
+        "high": 12.51,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 8.3,
-            "high": 8.61,
-            "probability": 31.7,
-            "rank": 2
+            "low": 11.86,
+            "high": 12.08,
+            "probability": 32.0,
+            "rank": 3
           },
           {
-            "low": 8.61,
-            "high": 8.92,
-            "probability": 36.7,
+            "low": 12.08,
+            "high": 12.29,
+            "probability": 35.9,
             "rank": 1
           },
           {
-            "low": 8.92,
-            "high": 9.23,
-            "probability": 31.6,
-            "rank": 3
+            "low": 12.29,
+            "high": 12.51,
+            "probability": 32.1,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -675,27 +675,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 11.46,
-        "low": 10.66,
-        "high": 12.27,
-        "as_of": "2026-09-30",
+        "value": 14.78,
+        "low": 14.22,
+        "high": 15.35,
+        "as_of": "2026-12-31",
         "probability_bands": [
           {
-            "low": 10.66,
-            "high": 11.2,
+            "low": 14.22,
+            "high": 14.6,
             "probability": 31.9,
             "rank": 2
           },
           {
-            "low": 11.2,
-            "high": 11.73,
-            "probability": 36.2,
+            "low": 14.6,
+            "high": 14.97,
+            "probability": 36.3,
             "rank": 1
           },
           {
-            "low": 11.73,
-            "high": 12.27,
-            "probability": 31.9,
+            "low": 14.97,
+            "high": 15.35,
+            "probability": 31.8,
             "rank": 3
           }
         ],
@@ -706,32 +706,32 @@
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
-      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
+      "method": "Kịch bản lũy kế dùng 2 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
       "sources": [
         {
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_cumulative_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": 8.76,
-            "low": 8.3,
-            "high": 9.23,
-            "as_of": "2026-07-31"
+            "value": 12.19,
+            "low": 11.86,
+            "high": 12.51,
+            "as_of": "2026-10-31"
           },
           "forecast_3m": {
-            "value": 11.46,
-            "low": 10.66,
-            "high": 12.27,
-            "as_of": "2026-09-30"
+            "value": 14.78,
+            "low": 14.22,
+            "high": 15.35,
+            "as_of": "2026-12-31"
           },
-          "observations": 2,
-          "effective_increments": 1,
-          "average_monthly_flow": 1.235,
-          "recent_monthly_flow": 1.7,
-          "shrunk_monthly_pace": 1.3513,
+          "observations": 3,
+          "effective_increments": 2,
+          "average_monthly_flow": 1.21,
+          "recent_monthly_flow": 1.43,
+          "shrunk_monthly_pace": 1.298,
           "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
           "official": false
         }
@@ -745,7 +745,7 @@
     {
       "id": "dxy",
       "current": {
-        "value": 101.935,
+        "value": 101.93,
         "unit": "điểm",
         "date": "2026-10-02",
         "source": "Yahoo Finance",
@@ -753,27 +753,27 @@
       },
       "forecast_1m": {
         "value": 104.0,
-        "low": 102.0,
+        "low": 101.9,
         "high": 106.0,
         "as_of": "2026-11-02",
         "probability_bands": [
           {
-            "low": 102.0,
+            "low": 101.9,
             "high": 103.3,
-            "probability": 30.4,
-            "rank": 2
+            "probability": 32.1,
+            "rank": 3
           },
           {
             "low": 103.3,
-            "high": 104.7,
-            "probability": 39.2,
+            "high": 104.6,
+            "probability": 35.6,
             "rank": 1
           },
           {
-            "low": 104.7,
+            "low": 104.6,
             "high": 106.0,
-            "probability": 30.4,
-            "rank": 3
+            "probability": 32.3,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -824,7 +824,7 @@
           "as_of": "2026-10-02",
           "forecast_1m": {
             "value": 104.0,
-            "low": 102.0,
+            "low": 101.9,
             "high": 106.0,
             "as_of": "2026-11-02"
           },
@@ -849,7 +849,7 @@
     {
       "id": "oil_prices",
       "current": {
-        "value": 92.47,
+        "value": 91.11,
         "unit": "USD/thùng",
         "date": "2026-10-02",
         "source": "Yahoo Finance",
@@ -857,27 +857,27 @@
       },
       "forecast_1m": {
         "value": 86.5,
-        "low": 82.8,
-        "high": 90.2,
+        "low": 82.86,
+        "high": 90.14,
         "as_of": "2026-11-01",
         "interval_inferred": true,
         "interval_method": "confidence_scaled_reference_width_v1",
         "probability_bands": [
           {
-            "low": 82.8,
-            "high": 85.27,
+            "low": 82.86,
+            "high": 85.29,
             "probability": 31.7,
             "rank": 2
           },
           {
-            "low": 85.27,
-            "high": 87.73,
+            "low": 85.29,
+            "high": 87.71,
             "probability": 36.6,
             "rank": 1
           },
           {
-            "low": 87.73,
-            "high": 90.2,
+            "low": 87.71,
+            "high": 90.14,
             "probability": 31.7,
             "rank": 3
           }
@@ -889,28 +889,28 @@
       },
       "forecast_3m": {
         "value": 83.0,
-        "low": 76.59,
-        "high": 89.41,
+        "low": 76.69,
+        "high": 89.31,
         "as_of": "2027-01-01",
         "interval_inferred": true,
         "interval_method": "confidence_scaled_reference_width_v1",
         "probability_bands": [
           {
-            "low": 76.59,
-            "high": 80.86,
-            "probability": 31.6,
+            "low": 76.69,
+            "high": 80.9,
+            "probability": 31.7,
             "rank": 2
           },
           {
-            "low": 80.86,
-            "high": 85.14,
-            "probability": 36.8,
+            "low": 80.9,
+            "high": 85.1,
+            "probability": 36.6,
             "rank": 1
           },
           {
-            "low": 85.14,
-            "high": 89.41,
-            "probability": 31.6,
+            "low": 85.1,
+            "high": 89.31,
+            "probability": 31.7,
             "rank": 3
           }
         ],
@@ -928,8 +928,8 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-10-02",
-          "fetched_at": "2026-10-02T05:54:32.176281+00:00",
+          "as_of": "2026-10-03",
+          "fetched_at": "2026-10-03T05:29:32.113669+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 86.5,
@@ -959,33 +959,33 @@
     {
       "id": "us_10y_yield",
       "current": {
-        "value": 5.237,
+        "value": 5.277,
         "unit": "%",
-        "date": "2026-10-01",
+        "date": "2026-10-02",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
       "forecast_1m": {
-        "value": 5.4,
-        "low": 5.29,
-        "high": 5.5,
-        "as_of": "2026-11-01",
+        "value": 5.48,
+        "low": 5.37,
+        "high": 5.58,
+        "as_of": "2026-11-02",
         "probability_bands": [
           {
-            "low": 5.29,
-            "high": 5.36,
+            "low": 5.37,
+            "high": 5.44,
             "probability": 31.1,
             "rank": 3
           },
           {
-            "low": 5.36,
-            "high": 5.43,
+            "low": 5.44,
+            "high": 5.51,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 5.43,
-            "high": 5.5,
+            "low": 5.51,
+            "high": 5.58,
             "probability": 31.5,
             "rank": 2
           }
@@ -996,28 +996,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 5.57,
-        "low": 5.41,
-        "high": 5.74,
-        "as_of": "2027-01-01",
+        "value": 5.7,
+        "low": 5.53,
+        "high": 5.86,
+        "as_of": "2027-01-02",
         "probability_bands": [
           {
-            "low": 5.41,
-            "high": 5.52,
-            "probability": 31.4,
-            "rank": 2
+            "low": 5.53,
+            "high": 5.64,
+            "probability": 31.2,
+            "rank": 3
           },
           {
-            "low": 5.52,
-            "high": 5.63,
+            "low": 5.64,
+            "high": 5.75,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 5.63,
-            "high": 5.74,
-            "probability": 31.2,
-            "rank": 3
+            "low": 5.75,
+            "high": 5.86,
+            "probability": 31.4,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1035,18 +1035,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/%5ETNX",
-          "as_of": "2026-10-01",
+          "as_of": "2026-10-02",
           "forecast_1m": {
-            "value": 5.4,
-            "low": 5.29,
-            "high": 5.5,
-            "as_of": "2026-11-01"
+            "value": 5.48,
+            "low": 5.37,
+            "high": 5.58,
+            "as_of": "2026-11-02"
           },
           "forecast_3m": {
-            "value": 5.57,
-            "low": 5.41,
-            "high": 5.74,
-            "as_of": "2027-01-01"
+            "value": 5.7,
+            "low": 5.53,
+            "high": 5.86,
+            "as_of": "2027-01-02"
           },
           "observations": 6,
           "span_days": 7,
@@ -1063,35 +1063,35 @@
     {
       "id": "cpi",
       "current": {
-        "value": 4.89,
+        "value": 5.08,
         "unit": "% YoY",
-        "date": "2026-08-31",
+        "date": "2026-09-30",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": 4.77,
-        "low": 4.68,
-        "high": 4.87,
-        "as_of": "2026-09-30",
+        "value": 5.02,
+        "low": 4.91,
+        "high": 5.12,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 4.68,
-            "high": 4.74,
-            "probability": 29.9,
-            "rank": 2
+            "low": 4.91,
+            "high": 4.98,
+            "probability": 31.3,
+            "rank": 3
           },
           {
-            "low": 4.74,
-            "high": 4.81,
-            "probability": 40.6,
+            "low": 4.98,
+            "high": 5.05,
+            "probability": 37.1,
             "rank": 1
           },
           {
-            "low": 4.81,
-            "high": 4.87,
-            "probability": 29.5,
-            "rank": 3
+            "low": 5.05,
+            "high": 5.12,
+            "probability": 31.6,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1100,27 +1100,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 4.65,
-        "low": 4.49,
-        "high": 4.8,
-        "as_of": "2026-11-30",
+        "value": 4.95,
+        "low": 4.78,
+        "high": 5.11,
+        "as_of": "2026-12-31",
         "probability_bands": [
           {
-            "low": 4.49,
-            "high": 4.59,
-            "probability": 30.3,
+            "low": 4.78,
+            "high": 4.89,
+            "probability": 31.3,
             "rank": 3
           },
           {
-            "low": 4.59,
-            "high": 4.7,
-            "probability": 39.2,
+            "low": 4.89,
+            "high": 5.0,
+            "probability": 37.1,
             "rank": 1
           },
           {
-            "low": 4.7,
-            "high": 4.8,
-            "probability": 30.5,
+            "low": 5.0,
+            "high": 5.11,
+            "probability": 31.6,
             "rank": 2
           }
         ],
@@ -1131,29 +1131,29 @@
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
-      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
-      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "method": "Kịch bản xu hướng giảm chấn từ 4 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 4 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
       "sources": [
         {
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_observed_history",
-          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
-          "as_of": "2026-08-31",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": 4.77,
-            "low": 4.68,
-            "high": 4.87,
-            "as_of": "2026-09-30"
+            "value": 5.02,
+            "low": 4.91,
+            "high": 5.12,
+            "as_of": "2026-10-31"
           },
           "forecast_3m": {
-            "value": 4.65,
-            "low": 4.49,
-            "high": 4.8,
-            "as_of": "2026-11-30"
+            "value": 4.95,
+            "low": 4.78,
+            "high": 5.11,
+            "as_of": "2026-12-31"
           },
-          "observations": 3,
-          "span_days": 92,
+          "observations": 4,
+          "span_days": 122,
           "method": "Damped deterministic trend scenario from dated observed history.",
           "official": false
         }
@@ -1271,33 +1271,33 @@
     {
       "id": "iip",
       "current": {
-        "value": 14.0,
+        "value": 12.3,
         "unit": "% YoY",
-        "date": "2026-08-31",
+        "date": "2026-09-30",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": 14.8,
-        "low": 13.68,
-        "high": 15.92,
-        "as_of": "2026-09-30",
+        "value": 12.69,
+        "low": 12.1,
+        "high": 13.29,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 13.68,
-            "high": 14.43,
-            "probability": 31.7,
+            "low": 12.1,
+            "high": 12.5,
+            "probability": 31.8,
             "rank": 2
           },
           {
-            "low": 14.43,
-            "high": 15.17,
-            "probability": 36.6,
+            "low": 12.5,
+            "high": 12.89,
+            "probability": 36.5,
             "rank": 1
           },
           {
-            "low": 15.17,
-            "high": 15.92,
+            "low": 12.89,
+            "high": 13.29,
             "probability": 31.7,
             "rank": 3
           }
@@ -1308,27 +1308,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 15.68,
-        "low": 13.89,
-        "high": 17.47,
-        "as_of": "2026-11-30",
+        "value": 13.13,
+        "low": 12.17,
+        "high": 14.08,
+        "as_of": "2026-12-31",
         "probability_bands": [
           {
-            "low": 13.89,
-            "high": 15.08,
-            "probability": 31.4,
+            "low": 12.17,
+            "high": 12.81,
+            "probability": 31.6,
             "rank": 2
           },
           {
-            "low": 15.08,
-            "high": 16.28,
-            "probability": 37.2,
+            "low": 12.81,
+            "high": 13.44,
+            "probability": 36.8,
             "rank": 1
           },
           {
-            "low": 16.28,
-            "high": 17.47,
-            "probability": 31.4,
+            "low": 13.44,
+            "high": 14.08,
+            "probability": 31.6,
             "rank": 3
           }
         ],
@@ -1339,29 +1339,29 @@
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
-      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
-      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "method": "Kịch bản xu hướng giảm chấn từ 4 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 4 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
       "sources": [
         {
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_observed_history",
-          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
-          "as_of": "2026-08-31",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": 14.8,
-            "low": 13.68,
-            "high": 15.92,
-            "as_of": "2026-09-30"
+            "value": 12.69,
+            "low": 12.1,
+            "high": 13.29,
+            "as_of": "2026-10-31"
           },
           "forecast_3m": {
-            "value": 15.68,
-            "low": 13.89,
-            "high": 17.47,
-            "as_of": "2026-11-30"
+            "value": 13.13,
+            "low": 12.17,
+            "high": 14.08,
+            "as_of": "2026-12-31"
           },
-          "observations": 3,
-          "span_days": 92,
+          "observations": 4,
+          "span_days": 122,
           "method": "Damped deterministic trend scenario from dated observed history.",
           "official": false
         }
@@ -1375,17 +1375,17 @@
     {
       "id": "trade_balance",
       "current": {
-        "value": -16.65,
+        "value": -19.42,
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
-        "date": "2026-06-30",
+        "date": "2026-09-30",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": -19.44,
-        "low": -20.14,
-        "high": -18.74,
-        "as_of": "2026-07-31",
+        "value": -21.47,
+        "low": -21.98,
+        "high": -20.96,
+        "as_of": "2026-10-31",
         "derived_from": [
           "exports",
           "imports"
@@ -1393,21 +1393,21 @@
         "uncertainty_from": "direct_trade_balance_run_rate",
         "probability_bands": [
           {
-            "low": -20.14,
-            "high": -19.67,
-            "probability": 31.9,
+            "low": -21.98,
+            "high": -21.64,
+            "probability": 31.7,
             "rank": 2
           },
           {
-            "low": -19.67,
-            "high": -19.21,
-            "probability": 36.2,
+            "low": -21.64,
+            "high": -21.3,
+            "probability": 36.6,
             "rank": 1
           },
           {
-            "low": -19.21,
-            "high": -18.74,
-            "probability": 31.9,
+            "low": -21.3,
+            "high": -20.96,
+            "probability": 31.7,
             "rank": 3
           }
         ],
@@ -1417,10 +1417,10 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": -25.03,
-        "low": -26.24,
-        "high": -23.83,
-        "as_of": "2026-09-30",
+        "value": -25.57,
+        "low": -26.46,
+        "high": -24.69,
+        "as_of": "2026-12-31",
         "derived_from": [
           "exports",
           "imports"
@@ -1428,22 +1428,22 @@
         "uncertainty_from": "direct_trade_balance_run_rate",
         "probability_bands": [
           {
-            "low": -26.24,
-            "high": -25.44,
-            "probability": 31.5,
-            "rank": 2
+            "low": -26.46,
+            "high": -25.87,
+            "probability": 31.6,
+            "rank": 3
           },
           {
-            "low": -25.44,
-            "high": -24.63,
-            "probability": 37.0,
+            "low": -25.87,
+            "high": -25.28,
+            "probability": 36.7,
             "rank": 1
           },
           {
-            "low": -24.63,
-            "high": -23.83,
-            "probability": 31.5,
-            "rank": 3
+            "low": -25.28,
+            "high": -24.69,
+            "probability": 31.7,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1460,17 +1460,17 @@
           "provider": "Mô hình ViMO",
           "input_provider": "Xuất khẩu, nhập khẩu và lịch sử cán cân",
           "source_kind": "derived_accounting_identity",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
           "component_source_urls": [
-            "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-            "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+            "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+            "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
           ],
-          "as_of": "2026-06-30",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": -19.44,
-            "low": -20.14,
-            "high": -18.74,
-            "as_of": "2026-07-31",
+            "value": -21.47,
+            "low": -21.98,
+            "high": -20.96,
+            "as_of": "2026-10-31",
             "derived_from": [
               "exports",
               "imports"
@@ -1478,21 +1478,21 @@
             "uncertainty_from": "direct_trade_balance_run_rate",
             "probability_bands": [
               {
-                "low": -20.14,
-                "high": -19.67,
-                "probability": 31.9,
+                "low": -21.98,
+                "high": -21.64,
+                "probability": 31.7,
                 "rank": 2
               },
               {
-                "low": -19.67,
-                "high": -19.21,
-                "probability": 36.2,
+                "low": -21.64,
+                "high": -21.3,
+                "probability": 36.6,
                 "rank": 1
               },
               {
-                "low": -19.21,
-                "high": -18.74,
-                "probability": 31.9,
+                "low": -21.3,
+                "high": -20.96,
+                "probability": 31.7,
                 "rank": 3
               }
             ],
@@ -1502,10 +1502,10 @@
             "probability_calibrated": false
           },
           "forecast_3m": {
-            "value": -25.03,
-            "low": -26.24,
-            "high": -23.83,
-            "as_of": "2026-09-30",
+            "value": -25.57,
+            "low": -26.46,
+            "high": -24.69,
+            "as_of": "2026-12-31",
             "derived_from": [
               "exports",
               "imports"
@@ -1513,22 +1513,22 @@
             "uncertainty_from": "direct_trade_balance_run_rate",
             "probability_bands": [
               {
-                "low": -26.24,
-                "high": -25.44,
-                "probability": 31.5,
-                "rank": 2
+                "low": -26.46,
+                "high": -25.87,
+                "probability": 31.6,
+                "rank": 3
               },
               {
-                "low": -25.44,
-                "high": -24.63,
-                "probability": 37.0,
+                "low": -25.87,
+                "high": -25.28,
+                "probability": 36.7,
                 "rank": 1
               },
               {
-                "low": -24.63,
-                "high": -23.83,
-                "probability": 31.5,
-                "rank": 3
+                "low": -25.28,
+                "high": -24.69,
+                "probability": 31.7,
+                "rank": 2
               }
             ],
             "probability_kind": "heuristic_scenario_weight",
@@ -1548,384 +1548,63 @@
     {
       "id": "exports",
       "current": {
-        "value": 266.52,
+        "value": 434.3,
         "unit": "tỷ USD (lũy kế kỳ báo cáo)",
-        "date": "2026-06-30",
+        "date": "2026-09-30",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": 312.55,
-        "low": 301.04,
-        "high": 324.06,
-        "as_of": "2026-07-31",
+        "value": 484.61,
+        "low": 472.03,
+        "high": 497.19,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 301.04,
-            "high": 308.71,
-            "probability": 31.7,
-            "rank": 2
-          },
-          {
-            "low": 308.71,
-            "high": 316.39,
-            "probability": 36.6,
-            "rank": 1
-          },
-          {
-            "low": 316.39,
-            "high": 324.06,
-            "probability": 31.7,
-            "rank": 3
-          }
-        ],
-        "probability_kind": "heuristic_scenario_weight",
-        "probability_method": "confidence_weighted_triangular_scenario_v1",
-        "probability_total": 100.0,
-        "probability_calibrated": false
-      },
-      "forecast_3m": {
-        "value": 404.61,
-        "low": 384.68,
-        "high": 424.54,
-        "as_of": "2026-09-30",
-        "probability_bands": [
-          {
-            "low": 384.68,
-            "high": 397.97,
-            "probability": 31.7,
-            "rank": 2
-          },
-          {
-            "low": 397.97,
-            "high": 411.25,
-            "probability": 36.6,
-            "rank": 1
-          },
-          {
-            "low": 411.25,
-            "high": 424.54,
-            "probability": 31.7,
-            "rank": 3
-          }
-        ],
-        "probability_kind": "heuristic_scenario_weight",
-        "probability_method": "confidence_weighted_triangular_scenario_v1",
-        "probability_total": 100.0,
-        "probability_calibrated": false
-      },
-      "forecast_status": "MODEL_ESTIMATE",
-      "confidence": "LOW",
-      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
-      "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
-      "sources": [
-        {
-          "provider": "Mô hình ViMO",
-          "input_provider": "NSO",
-          "source_kind": "local_cumulative_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
-          "forecast_1m": {
-            "value": 312.55,
-            "low": 301.04,
-            "high": 324.06,
-            "as_of": "2026-07-31"
-          },
-          "forecast_3m": {
-            "value": 404.61,
-            "low": 384.68,
-            "high": 424.54,
-            "as_of": "2026-09-30"
-          },
-          "observations": 2,
-          "effective_increments": 1,
-          "average_monthly_flow": 44.42,
-          "recent_monthly_flow": 50.86,
-          "shrunk_monthly_pace": 46.03,
-          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
-          "official": false
-        }
-      ],
-      "gemini_assisted": false,
-      "gemini_context": null,
-      "gemini_sources": [],
-      "gemini_grounding_status": null,
-      "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
-    },
-    {
-      "id": "imports",
-      "current": {
-        "value": 283.17,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
-        "date": "2026-06-30",
-        "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
-      },
-      "forecast_1m": {
-        "value": 331.99,
-        "low": 319.79,
-        "high": 344.2,
-        "as_of": "2026-07-31",
-        "probability_bands": [
-          {
-            "low": 319.79,
-            "high": 327.93,
-            "probability": 31.7,
-            "rank": 2
-          },
-          {
-            "low": 327.93,
-            "high": 336.06,
-            "probability": 36.6,
-            "rank": 1
-          },
-          {
-            "low": 336.06,
-            "high": 344.2,
-            "probability": 31.7,
-            "rank": 3
-          }
-        ],
-        "probability_kind": "heuristic_scenario_weight",
-        "probability_method": "confidence_weighted_triangular_scenario_v1",
-        "probability_total": 100.0,
-        "probability_calibrated": false
-      },
-      "forecast_3m": {
-        "value": 429.64,
-        "low": 408.5,
-        "high": 450.78,
-        "as_of": "2026-09-30",
-        "probability_bands": [
-          {
-            "low": 408.5,
-            "high": 422.59,
-            "probability": 31.7,
-            "rank": 2
-          },
-          {
-            "low": 422.59,
-            "high": 436.69,
-            "probability": 36.6,
-            "rank": 1
-          },
-          {
-            "low": 436.69,
-            "high": 450.78,
-            "probability": 31.7,
-            "rank": 3
-          }
-        ],
-        "probability_kind": "heuristic_scenario_weight",
-        "probability_method": "confidence_weighted_triangular_scenario_v1",
-        "probability_total": 100.0,
-        "probability_calibrated": false
-      },
-      "forecast_status": "MODEL_ESTIMATE",
-      "confidence": "LOW",
-      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
-      "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
-      "sources": [
-        {
-          "provider": "Mô hình ViMO",
-          "input_provider": "NSO",
-          "source_kind": "local_cumulative_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
-          "forecast_1m": {
-            "value": 331.99,
-            "low": 319.79,
-            "high": 344.2,
-            "as_of": "2026-07-31"
-          },
-          "forecast_3m": {
-            "value": 429.64,
-            "low": 408.5,
-            "high": 450.78,
-            "as_of": "2026-09-30"
-          },
-          "observations": 2,
-          "effective_increments": 1,
-          "average_monthly_flow": 47.195,
-          "recent_monthly_flow": 53.71,
-          "shrunk_monthly_pace": 48.8238,
-          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
-          "official": false
-        }
-      ],
-      "gemini_assisted": false,
-      "gemini_context": null,
-      "gemini_sources": [],
-      "gemini_grounding_status": null,
-      "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
-    },
-    {
-      "id": "fdi_disbursed",
-      "current": {
-        "value": 13.03,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
-        "date": "2026-06-30",
-        "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
-      },
-      "forecast_1m": {
-        "value": 15.48,
-        "low": 14.37,
-        "high": 16.59,
-        "as_of": "2026-07-31",
-        "probability_bands": [
-          {
-            "low": 14.37,
-            "high": 15.11,
-            "probability": 31.7,
-            "rank": 2
-          },
-          {
-            "low": 15.11,
-            "high": 15.85,
-            "probability": 36.6,
-            "rank": 1
-          },
-          {
-            "low": 15.85,
-            "high": 16.59,
-            "probability": 31.7,
-            "rank": 3
-          }
-        ],
-        "probability_kind": "heuristic_scenario_weight",
-        "probability_method": "confidence_weighted_triangular_scenario_v1",
-        "probability_total": 100.0,
-        "probability_calibrated": false
-      },
-      "forecast_3m": {
-        "value": 20.38,
-        "low": 18.46,
-        "high": 22.3,
-        "as_of": "2026-09-30",
-        "probability_bands": [
-          {
-            "low": 18.46,
-            "high": 19.74,
-            "probability": 31.7,
-            "rank": 2
-          },
-          {
-            "low": 19.74,
-            "high": 21.02,
-            "probability": 36.6,
-            "rank": 1
-          },
-          {
-            "low": 21.02,
-            "high": 22.3,
-            "probability": 31.7,
-            "rank": 3
-          }
-        ],
-        "probability_kind": "heuristic_scenario_weight",
-        "probability_method": "confidence_weighted_triangular_scenario_v1",
-        "probability_total": 100.0,
-        "probability_calibrated": false
-      },
-      "forecast_status": "MODEL_ESTIMATE",
-      "confidence": "LOW",
-      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
-      "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
-      "sources": [
-        {
-          "provider": "Mô hình ViMO",
-          "input_provider": "NSO",
-          "source_kind": "local_cumulative_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
-          "forecast_1m": {
-            "value": 15.48,
-            "low": 14.37,
-            "high": 16.59,
-            "as_of": "2026-07-31"
-          },
-          "forecast_3m": {
-            "value": 20.38,
-            "low": 18.46,
-            "high": 22.3,
-            "as_of": "2026-09-30"
-          },
-          "observations": 2,
-          "effective_increments": 1,
-          "average_monthly_flow": 2.1717,
-          "recent_monthly_flow": 3.28,
-          "shrunk_monthly_pace": 2.4487,
-          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
-          "official": false
-        }
-      ],
-      "gemini_assisted": false,
-      "gemini_context": null,
-      "gemini_sources": [],
-      "gemini_grounding_status": null,
-      "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
-    },
-    {
-      "id": "fdi_registered",
-      "current": {
-        "value": 40.63,
-        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
-        "date": "2026-08-31",
-        "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/"
-      },
-      "forecast_1m": {
-        "value": 46.24,
-        "low": 44.14,
-        "high": 48.35,
-        "as_of": "2026-09-30",
-        "probability_bands": [
-          {
-            "low": 44.14,
-            "high": 45.54,
+            "low": 472.03,
+            "high": 480.42,
             "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 45.54,
-            "high": 46.95,
-            "probability": 37.1,
-            "rank": 1
-          },
-          {
-            "low": 46.95,
-            "high": 48.35,
-            "probability": 31.4,
-            "rank": 3
-          }
-        ],
-        "probability_kind": "heuristic_scenario_weight",
-        "probability_method": "confidence_weighted_triangular_scenario_v1",
-        "probability_total": 100.0,
-        "probability_calibrated": false
-      },
-      "forecast_3m": {
-        "value": 57.47,
-        "low": 53.82,
-        "high": 61.12,
-        "as_of": "2026-11-30",
-        "probability_bands": [
-          {
-            "low": 53.82,
-            "high": 56.25,
-            "probability": 31.5,
-            "rank": 2
-          },
-          {
-            "low": 56.25,
-            "high": 58.69,
+            "low": 480.42,
+            "high": 488.8,
             "probability": 37.0,
             "rank": 1
           },
           {
-            "low": 58.69,
-            "high": 61.12,
+            "low": 488.8,
+            "high": 497.19,
+            "probability": 31.5,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 585.23,
+        "low": 563.45,
+        "high": 607.02,
+        "as_of": "2026-12-31",
+        "probability_bands": [
+          {
+            "low": 563.45,
+            "high": 577.97,
+            "probability": 31.5,
+            "rank": 2
+          },
+          {
+            "low": 577.97,
+            "high": 592.5,
+            "probability": 37.0,
+            "rank": 1
+          },
+          {
+            "low": 592.5,
+            "high": 607.02,
             "probability": 31.5,
             "rank": 3
           }
@@ -1944,25 +1623,346 @@
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_cumulative_history",
-          "source_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/09/mot-so-net-chinh-tinh-hinh-kinh-te-xa-hoi-thang-tam-va-8-thang-nam-2026/",
-          "as_of": "2026-08-31",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": 46.24,
-            "low": 44.14,
-            "high": 48.35,
-            "as_of": "2026-09-30"
+            "value": 484.61,
+            "low": 472.03,
+            "high": 497.19,
+            "as_of": "2026-10-31"
           },
           "forecast_3m": {
-            "value": 57.47,
-            "low": 53.82,
-            "high": 61.12,
-            "as_of": "2026-11-30"
+            "value": 585.23,
+            "low": 563.45,
+            "high": 607.02,
+            "as_of": "2026-12-31"
           },
           "observations": 3,
           "effective_increments": 2,
-          "average_monthly_flow": 5.0788,
-          "recent_monthly_flow": 6.415,
-          "shrunk_monthly_pace": 5.6133,
+          "average_monthly_flow": 48.2556,
+          "recent_monthly_flow": 53.3933,
+          "shrunk_monthly_pace": 50.3107,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "gemini_assisted": false,
+      "gemini_context": null,
+      "gemini_sources": [],
+      "gemini_grounding_status": null,
+      "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
+    },
+    {
+      "id": "imports",
+      "current": {
+        "value": 453.72,
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "date": "2026-09-30",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+      },
+      "forecast_1m": {
+        "value": 506.08,
+        "low": 492.99,
+        "high": 519.17,
+        "as_of": "2026-10-31",
+        "probability_bands": [
+          {
+            "low": 492.99,
+            "high": 501.72,
+            "probability": 31.5,
+            "rank": 2
+          },
+          {
+            "low": 501.72,
+            "high": 510.44,
+            "probability": 37.0,
+            "rank": 1
+          },
+          {
+            "low": 510.44,
+            "high": 519.17,
+            "probability": 31.5,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 610.8,
+        "low": 588.13,
+        "high": 633.47,
+        "as_of": "2026-12-31",
+        "probability_bands": [
+          {
+            "low": 588.13,
+            "high": 603.24,
+            "probability": 31.5,
+            "rank": 2
+          },
+          {
+            "low": 603.24,
+            "high": 618.36,
+            "probability": 37.0,
+            "rank": 1
+          },
+          {
+            "low": 618.36,
+            "high": 633.47,
+            "probability": 31.5,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 2 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
+          "forecast_1m": {
+            "value": 506.08,
+            "low": 492.99,
+            "high": 519.17,
+            "as_of": "2026-10-31"
+          },
+          "forecast_3m": {
+            "value": 610.8,
+            "low": 588.13,
+            "high": 633.47,
+            "as_of": "2026-12-31"
+          },
+          "observations": 3,
+          "effective_increments": 2,
+          "average_monthly_flow": 50.4133,
+          "recent_monthly_flow": 55.28,
+          "shrunk_monthly_pace": 52.36,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "gemini_assisted": false,
+      "gemini_context": null,
+      "gemini_sources": [],
+      "gemini_grounding_status": null,
+      "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
+    },
+    {
+      "id": "fdi_disbursed",
+      "current": {
+        "value": 21.07,
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "date": "2026-09-30",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+      },
+      "forecast_1m": {
+        "value": 23.67,
+        "low": 23.02,
+        "high": 24.32,
+        "as_of": "2026-10-31",
+        "probability_bands": [
+          {
+            "low": 23.02,
+            "high": 23.45,
+            "probability": 31.3,
+            "rank": 2
+          },
+          {
+            "low": 23.45,
+            "high": 23.89,
+            "probability": 37.4,
+            "rank": 1
+          },
+          {
+            "low": 23.89,
+            "high": 24.32,
+            "probability": 31.3,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 28.86,
+        "low": 27.74,
+        "high": 29.98,
+        "as_of": "2026-12-31",
+        "probability_bands": [
+          {
+            "low": 27.74,
+            "high": 28.49,
+            "probability": 31.7,
+            "rank": 2
+          },
+          {
+            "low": 28.49,
+            "high": 29.23,
+            "probability": 36.6,
+            "rank": 1
+          },
+          {
+            "low": 29.23,
+            "high": 29.98,
+            "probability": 31.7,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 2 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
+          "forecast_1m": {
+            "value": 23.67,
+            "low": 23.02,
+            "high": 24.32,
+            "as_of": "2026-10-31"
+          },
+          "forecast_3m": {
+            "value": 28.86,
+            "low": 27.74,
+            "high": 29.98,
+            "as_of": "2026-12-31"
+          },
+          "observations": 3,
+          "effective_increments": 2,
+          "average_monthly_flow": 2.3411,
+          "recent_monthly_flow": 2.98,
+          "shrunk_monthly_pace": 2.5967,
+          "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
+          "official": false
+        }
+      ],
+      "gemini_assisted": false,
+      "gemini_context": null,
+      "gemini_sources": [],
+      "gemini_grounding_status": null,
+      "disclaimer": "Dự báo chỉ mang tính tham khảo, không phải số liệu chính thức hay khuyến nghị đầu tư."
+    },
+    {
+      "id": "fdi_registered",
+      "current": {
+        "value": 50.36,
+        "unit": "tỷ USD (lũy kế kỳ báo cáo)",
+        "date": "2026-09-30",
+        "source": "NSO",
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
+      },
+      "forecast_1m": {
+        "value": 58.02,
+        "low": 51.82,
+        "high": 64.22,
+        "as_of": "2026-10-31",
+        "probability_bands": [
+          {
+            "low": 51.82,
+            "high": 55.95,
+            "probability": 31.4,
+            "rank": 2
+          },
+          {
+            "low": 55.95,
+            "high": 60.09,
+            "probability": 37.2,
+            "rank": 1
+          },
+          {
+            "low": 60.09,
+            "high": 64.22,
+            "probability": 31.4,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 73.35,
+        "low": 62.61,
+        "high": 84.09,
+        "as_of": "2026-12-31",
+        "probability_bands": [
+          {
+            "low": 62.61,
+            "high": 69.77,
+            "probability": 31.4,
+            "rank": 2
+          },
+          {
+            "low": 69.77,
+            "high": 76.93,
+            "probability": 37.2,
+            "rank": 1
+          },
+          {
+            "low": 76.93,
+            "high": 84.09,
+            "probability": 31.4,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "MODEL_ESTIMATE",
+      "confidence": "LOW",
+      "method": "Kịch bản lũy kế dùng 3 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
+      "sources": [
+        {
+          "provider": "Mô hình ViMO",
+          "input_provider": "NSO",
+          "source_kind": "local_cumulative_history",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
+          "forecast_1m": {
+            "value": 58.02,
+            "low": 51.82,
+            "high": 64.22,
+            "as_of": "2026-10-31"
+          },
+          "forecast_3m": {
+            "value": 73.35,
+            "low": 62.61,
+            "high": 84.09,
+            "as_of": "2026-12-31"
+          },
+          "observations": 4,
+          "effective_increments": 3,
+          "average_monthly_flow": 5.5956,
+          "recent_monthly_flow": 9.73,
+          "shrunk_monthly_pace": 7.6628,
           "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
           "official": false
         }
@@ -1976,34 +1976,34 @@
     {
       "id": "retail",
       "current": {
-        "value": 12.9,
+        "value": 13.4,
         "unit": "% YoY lũy kế kỳ báo cáo",
-        "date": "2026-06-30",
+        "date": "2026-09-30",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": 13.75,
-        "low": 13.15,
-        "high": 14.35,
-        "as_of": "2026-07-31",
+        "value": 13.67,
+        "low": 13.4,
+        "high": 13.94,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 13.15,
-            "high": 13.55,
-            "probability": 31.7,
+            "low": 13.4,
+            "high": 13.58,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 13.55,
-            "high": 13.95,
-            "probability": 36.6,
+            "low": 13.58,
+            "high": 13.76,
+            "probability": 37.0,
             "rank": 1
           },
           {
-            "low": 13.95,
-            "high": 14.35,
-            "probability": 31.7,
+            "low": 13.76,
+            "high": 13.94,
+            "probability": 31.5,
             "rank": 3
           }
         ],
@@ -2013,28 +2013,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 14.69,
-        "low": 13.73,
-        "high": 15.64,
-        "as_of": "2026-09-30",
+        "value": 13.97,
+        "low": 13.54,
+        "high": 14.4,
+        "as_of": "2026-12-31",
         "probability_bands": [
           {
-            "low": 13.73,
-            "high": 14.37,
-            "probability": 31.8,
-            "rank": 3
+            "low": 13.54,
+            "high": 13.83,
+            "probability": 31.9,
+            "rank": 2
           },
           {
-            "low": 14.37,
-            "high": 15.0,
-            "probability": 36.3,
+            "low": 13.83,
+            "high": 14.11,
+            "probability": 36.2,
             "rank": 1
           },
           {
-            "low": 15.0,
-            "high": 15.64,
+            "low": 14.11,
+            "high": 14.4,
             "probability": 31.9,
-            "rank": 2
+            "rank": 3
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -2044,29 +2044,29 @@
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
-      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
-      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
       "sources": [
         {
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_observed_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": 13.75,
-            "low": 13.15,
-            "high": 14.35,
-            "as_of": "2026-07-31"
+            "value": 13.67,
+            "low": 13.4,
+            "high": 13.94,
+            "as_of": "2026-10-31"
           },
           "forecast_3m": {
-            "value": 14.69,
-            "low": 13.73,
-            "high": 15.64,
-            "as_of": "2026-09-30"
+            "value": 13.97,
+            "low": 13.54,
+            "high": 14.4,
+            "as_of": "2026-12-31"
           },
-          "observations": 2,
-          "span_days": 30,
+          "observations": 3,
+          "span_days": 122,
           "method": "Damped deterministic trend scenario from dated observed history.",
           "official": false
         }
@@ -2080,33 +2080,33 @@
     {
       "id": "business_new",
       "current": {
-        "value": 111700.0,
+        "value": 149700.0,
         "unit": "doanh nghiệp (lũy kế kỳ báo cáo)",
-        "date": "2026-06-30",
+        "date": "2026-09-30",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": 130317.0,
-        "low": 123801.0,
-        "high": 136832.0,
-        "as_of": "2026-07-31",
+        "value": 165342.0,
+        "low": 161375.0,
+        "high": 169308.0,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 123801.0,
-            "high": 128145.0,
+            "low": 161375.0,
+            "high": 164019.0,
             "probability": 31.7,
             "rank": 2
           },
           {
-            "low": 128145.0,
-            "high": 132488.0,
+            "low": 164019.0,
+            "high": 166664.0,
             "probability": 36.6,
             "rank": 1
           },
           {
-            "low": 132488.0,
-            "high": 136832.0,
+            "low": 166664.0,
+            "high": 169308.0,
             "probability": 31.7,
             "rank": 3
           }
@@ -2117,26 +2117,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 167550.0,
-        "low": 156264.0,
-        "high": 178836.0,
-        "as_of": "2026-09-30",
+        "value": 196625.0,
+        "low": 189755.0,
+        "high": 203495.0,
+        "as_of": "2026-12-31",
         "probability_bands": [
           {
-            "low": 156264.0,
-            "high": 163788.0,
+            "low": 189755.0,
+            "high": 194335.0,
             "probability": 31.7,
             "rank": 2
           },
           {
-            "low": 163788.0,
-            "high": 171312.0,
+            "low": 194335.0,
+            "high": 198915.0,
             "probability": 36.6,
             "rank": 1
           },
           {
-            "low": 171312.0,
-            "high": 178836.0,
+            "low": 198915.0,
+            "high": 203495.0,
             "probability": 31.7,
             "rank": 3
           }
@@ -2148,32 +2148,32 @@
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
-      "method": "Kịch bản lũy kế dùng một mức lũy kế và nhịp bình quân từ đầu năm, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
+      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
       "sources": [
         {
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_cumulative_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": 130317.0,
-            "low": 123801.0,
-            "high": 136832.0,
-            "as_of": "2026-07-31"
+            "value": 165342.0,
+            "low": 161375.0,
+            "high": 169308.0,
+            "as_of": "2026-10-31"
           },
           "forecast_3m": {
-            "value": 167550.0,
-            "low": 156264.0,
-            "high": 178836.0,
-            "as_of": "2026-09-30"
+            "value": 196625.0,
+            "low": 189755.0,
+            "high": 203495.0,
+            "as_of": "2026-12-31"
           },
-          "observations": 1,
-          "effective_increments": 0,
-          "average_monthly_flow": 18616.67,
-          "recent_monthly_flow": 18616.67,
-          "shrunk_monthly_pace": 18616.67,
+          "observations": 2,
+          "effective_increments": 1,
+          "average_monthly_flow": 16633.33,
+          "recent_monthly_flow": 12666.67,
+          "shrunk_monthly_pace": 15641.67,
           "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
           "official": false
         }
@@ -2401,34 +2401,34 @@
     {
       "id": "state_investment",
       "current": {
-        "value": 12.5,
+        "value": 17.3,
         "unit": "% YoY vốn khu vực Nhà nước",
-        "date": "2026-06-30",
+        "date": "2026-09-30",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": 13.15,
-        "low": 12.7,
-        "high": 13.61,
-        "as_of": "2026-07-31",
+        "value": 18.05,
+        "low": 16.37,
+        "high": 19.73,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 12.7,
-            "high": 13.0,
-            "probability": 31.3,
+            "low": 16.37,
+            "high": 17.49,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 13.0,
-            "high": 13.31,
-            "probability": 37.5,
+            "low": 17.49,
+            "high": 18.61,
+            "probability": 37.0,
             "rank": 1
           },
           {
-            "low": 13.31,
-            "high": 13.61,
-            "probability": 31.2,
+            "low": 18.61,
+            "high": 19.73,
+            "probability": 31.5,
             "rank": 3
           }
         ],
@@ -2438,27 +2438,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 13.87,
-        "low": 13.14,
-        "high": 14.59,
-        "as_of": "2026-09-30",
+        "value": 18.88,
+        "low": 16.19,
+        "high": 21.56,
+        "as_of": "2026-12-31",
         "probability_bands": [
           {
-            "low": 13.14,
-            "high": 13.62,
-            "probability": 31.4,
+            "low": 16.19,
+            "high": 17.98,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 13.62,
-            "high": 14.11,
-            "probability": 37.2,
+            "low": 17.98,
+            "high": 19.77,
+            "probability": 37.0,
             "rank": 1
           },
           {
-            "low": 14.11,
-            "high": 14.59,
-            "probability": 31.4,
+            "low": 19.77,
+            "high": 21.56,
+            "probability": 31.5,
             "rank": 3
           }
         ],
@@ -2469,29 +2469,29 @@
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
-      "method": "Kịch bản xu hướng giảm chấn từ 2 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
-      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 2 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
+      "method": "Kịch bản xu hướng giảm chấn từ 3 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
+      "warning": "ƯỚC TÍNH MÔ HÌNH: ngoại suy từ 3 kỳ có nguồn NSO; độ bất định cao, không phải dự báo chính thức hay đồng thuận nguồn.",
       "sources": [
         {
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_observed_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": 13.15,
-            "low": 12.7,
-            "high": 13.61,
-            "as_of": "2026-07-31"
+            "value": 18.05,
+            "low": 16.37,
+            "high": 19.73,
+            "as_of": "2026-10-31"
           },
           "forecast_3m": {
-            "value": 13.87,
-            "low": 13.14,
-            "high": 14.59,
-            "as_of": "2026-09-30"
+            "value": 18.88,
+            "low": 16.19,
+            "high": 21.56,
+            "as_of": "2026-12-31"
           },
-          "observations": 2,
-          "span_days": 30,
+          "observations": 3,
+          "span_days": 122,
           "method": "Damped deterministic trend scenario from dated observed history.",
           "official": false
         }
@@ -2505,34 +2505,34 @@
     {
       "id": "state_budget",
       "current": {
-        "value": 1568.2,
+        "value": 2187.3,
         "unit": "nghìn tỷ VND thu NSNN",
-        "date": "2026-06-30",
+        "date": "2026-09-30",
         "source": "NSO",
-        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/"
+        "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/"
       },
       "forecast_1m": {
-        "value": 1821.3,
-        "low": 1758.0,
-        "high": 1884.5,
-        "as_of": "2026-07-31",
+        "value": 2420.0,
+        "low": 2361.9,
+        "high": 2478.2,
+        "as_of": "2026-10-31",
         "probability_bands": [
           {
-            "low": 1758.0,
-            "high": 1800.2,
-            "probability": 31.7,
+            "low": 2361.9,
+            "high": 2400.7,
+            "probability": 31.6,
             "rank": 2
           },
           {
-            "low": 1800.2,
-            "high": 1842.3,
-            "probability": 36.6,
+            "low": 2400.7,
+            "high": 2439.4,
+            "probability": 36.8,
             "rank": 1
           },
           {
-            "low": 1842.3,
-            "high": 1884.5,
-            "probability": 31.7,
+            "low": 2439.4,
+            "high": 2478.2,
+            "probability": 31.6,
             "rank": 3
           }
         ],
@@ -2542,27 +2542,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 2327.4,
-        "low": 2217.8,
-        "high": 2437.0,
-        "as_of": "2026-09-30",
+        "value": 2885.5,
+        "low": 2784.7,
+        "high": 2986.3,
+        "as_of": "2026-12-31",
         "probability_bands": [
           {
-            "low": 2217.8,
-            "high": 2290.9,
-            "probability": 31.7,
+            "low": 2784.7,
+            "high": 2851.9,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 2290.9,
-            "high": 2363.9,
-            "probability": 36.6,
+            "low": 2851.9,
+            "high": 2919.1,
+            "probability": 37.0,
             "rank": 1
           },
           {
-            "low": 2363.9,
-            "high": 2437.0,
-            "probability": 31.7,
+            "low": 2919.1,
+            "high": 2986.3,
+            "probability": 31.5,
             "rank": 3
           }
         ],
@@ -2573,32 +2573,32 @@
       },
       "forecast_status": "MODEL_ESTIMATE",
       "confidence": "LOW",
-      "method": "Kịch bản lũy kế dùng 1 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
+      "method": "Kịch bản lũy kế dùng 2 mức phát sinh quan sát được, giảm chấn về nhịp bình quân; tự đặt lại mức lũy kế khi sang năm mới.",
       "warning": "ƯỚC TÍNH MÔ HÌNH: số lũy kế được kéo dài bằng nhịp phát sinh theo tháng; chưa phản ánh mùa vụ, điều chỉnh số liệu hoặc cú sốc chính sách.",
       "sources": [
         {
           "provider": "Mô hình ViMO",
           "input_provider": "NSO",
           "source_kind": "local_cumulative_history",
-          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/07/thong-cao-bao-chi-ve-tinh-hinh-kinh-te-xa-hoi-quy-ii-va-sau-thang-dau-nam-2026/",
-          "as_of": "2026-06-30",
+          "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+          "as_of": "2026-09-30",
           "forecast_1m": {
-            "value": 1821.3,
-            "low": 1758.0,
-            "high": 1884.5,
-            "as_of": "2026-07-31"
+            "value": 2420.0,
+            "low": 2361.9,
+            "high": 2478.2,
+            "as_of": "2026-10-31"
           },
           "forecast_3m": {
-            "value": 2327.4,
-            "low": 2217.8,
-            "high": 2437.0,
-            "as_of": "2026-09-30"
+            "value": 2885.5,
+            "low": 2784.7,
+            "high": 2986.3,
+            "as_of": "2026-12-31"
           },
-          "observations": 2,
-          "effective_increments": 1,
-          "average_monthly_flow": 261.367,
-          "recent_monthly_flow": 228.2,
-          "shrunk_monthly_pace": 253.075,
+          "observations": 3,
+          "effective_increments": 2,
+          "average_monthly_flow": 243.033,
+          "recent_monthly_flow": 217.283,
+          "shrunk_monthly_pace": 232.733,
           "method": "Shrunk YTD monthly-flow scenario with calendar-year reset.",
           "official": false
         }
