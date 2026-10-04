@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-10-03T05:29:32.113669+00:00",
-  "generated_at_bkk": "2026-10-03T12:29:32.113669+07:00",
+  "generated_at_utc": "2026-10-04T06:04:06.332178+00:00",
+  "generated_at_bkk": "2026-10-04T13:04:06.332178+07:00",
   "coverage": {
     "available_cards": 41,
     "total_cards": 41,
@@ -19,7 +19,7 @@
   "gemini_analysis": {
     "status": "waiting_for_api_key",
     "model": "gemini-3.6-flash",
-    "generated_at": "2026-10-03T05:29:32.113669+00:00",
+    "generated_at": "2026-10-04T06:04:06.332178+00:00",
     "event_count": 21,
     "forecast_scenario_count": 0,
     "api_url": "api/gemini_analysis.json"
@@ -274,16 +274,16 @@
       "key": "fx_market_usd_vnd",
       "name_vi": "USD/VND thị trường",
       "current": {
-        "value": 25953.96,
+        "value": 25939.86,
         "unit": "VND/USD",
-        "date": "2026-10-03",
+        "date": "2026-10-04",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "previous": {
-        "date": "2026-10-02",
-        "bucket": "2026-10-02",
-        "value": 25941.35,
+        "date": "2026-10-03",
+        "bucket": "2026-10-03",
+        "value": 25953.96,
         "unit": "VND/USD",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/",
@@ -292,31 +292,31 @@
         "forecast_definition_id": "market_vnd_usd"
       },
       "change": {
-        "absolute": 12.61,
-        "percent": 0.0486,
-        "direction": "up"
+        "absolute": -14.1,
+        "percent": -0.0543,
+        "direction": "down"
       },
       "forecast_1m": {
-        "value": 26006.0,
-        "low": 25487.0,
-        "high": 26525.0,
-        "as_of": "2026-11-03",
+        "value": 26007.0,
+        "low": 25488.0,
+        "high": 26526.0,
+        "as_of": "2026-11-04",
         "probability_bands": [
           {
-            "low": 25487.0,
-            "high": 25833.0,
+            "low": 25488.0,
+            "high": 25834.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25833.0,
-            "high": 26179.0,
+            "low": 25834.0,
+            "high": 26180.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26179.0,
-            "high": 26525.0,
+            "low": 26180.0,
+            "high": 26526.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -327,26 +327,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 26064.0,
-        "low": 25233.0,
-        "high": 26894.0,
-        "as_of": "2027-01-03",
+        "value": 26081.0,
+        "low": 25251.0,
+        "high": 26911.0,
+        "as_of": "2027-01-04",
         "probability_bands": [
           {
-            "low": 25233.0,
-            "high": 25787.0,
+            "low": 25251.0,
+            "high": 25804.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25787.0,
-            "high": 26340.0,
+            "low": 25804.0,
+            "high": 26358.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26340.0,
-            "high": 26894.0,
+            "low": 26358.0,
+            "high": 26911.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -363,18 +363,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-10-03",
+          "as_of": "2026-10-04",
           "forecast_1m": {
-            "value": 26006.0,
-            "low": 25487.0,
-            "high": 26525.0,
-            "as_of": "2026-11-03"
+            "value": 26007.0,
+            "low": 25488.0,
+            "high": 26526.0,
+            "as_of": "2026-11-04"
           },
           "forecast_3m": {
-            "value": 26064.0,
-            "low": 25233.0,
-            "high": 26894.0,
-            "as_of": "2027-01-03"
+            "value": 26081.0,
+            "low": 25251.0,
+            "high": 26911.0,
+            "as_of": "2027-01-04"
           },
           "observations": 6,
           "span_days": 5,
@@ -386,7 +386,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 12.61 VND/USD so với kỳ 2026-10-02. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 14.1 VND/USD so với kỳ 2026-10-03. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -486,7 +486,7 @@
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
           "as_of": "2026-10-02",
-          "fetched_at": "2026-10-03T05:29:32.113669+00:00",
+          "fetched_at": "2026-10-04T06:04:06.332178+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
@@ -1308,8 +1308,8 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-10-03",
-          "fetched_at": "2026-10-03T05:29:32.113669+00:00",
+          "as_of": "2026-10-04",
+          "fetched_at": "2026-10-04T06:04:06.332178+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 86.5,
@@ -3684,8 +3684,8 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-10-03T05:29:54.961070+00:00",
-      "bytes": 95708
+      "checked_at": "2026-10-04T06:04:27.159698+00:00",
+      "bytes": 95694
     },
     "nso": {
       "name": "NSO/GSO Việt Nam",
@@ -3693,8 +3693,8 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": true,
-      "checked_at": "2026-10-03T05:29:57.480682+00:00",
-      "bytes": 116496
+      "checked_at": "2026-10-04T06:04:30.323609+00:00",
+      "bytes": 116495
     },
     "customs": {
       "name": "Tổng cục Hải quan",
@@ -3702,7 +3702,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": true,
-      "checked_at": "2026-10-03T05:29:58.877940+00:00",
+      "checked_at": "2026-10-04T06:04:31.494677+00:00",
       "bytes": 13973
     },
     "vbma": {
@@ -3711,7 +3711,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-10-03T05:30:00.219513+00:00",
+      "checked_at": "2026-10-04T06:04:32.164063+00:00",
       "bytes": 39761
     },
     "vnba": {
@@ -3720,8 +3720,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-10-03T05:30:04.468409+00:00",
-      "bytes": 214045
+      "checked_at": "2026-10-04T06:04:36.227696+00:00",
+      "bytes": 225091
     },
     "market": {
       "name": "Public market APIs / Vietcap",
@@ -3729,7 +3729,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-10-03T05:30:05.915161+00:00",
+      "checked_at": "2026-10-04T06:04:37.745241+00:00",
       "bytes": 8519
     }
   },
@@ -4800,6 +4800,17 @@
           "date": "2026-10-03",
           "bucket": "2026-10-03",
           "value": 25953.96,
+          "unit": "VND/USD",
+          "source": "Open ER API",
+          "source_url": "https://open.er-api.com/",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "market_vnd_usd"
+        },
+        {
+          "date": "2026-10-04",
+          "bucket": "2026-10-04",
+          "value": 25939.86,
           "unit": "VND/USD",
           "source": "Open ER API",
           "source_url": "https://open.er-api.com/",
@@ -9102,7 +9113,7 @@
       "priority": 3,
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
       "why_it_matters": "USD/VND cho thấy áp lực ngoại hối cập nhật hằng ngày.",
-      "value": 25953.96,
+      "value": 25939.86,
       "unit": "VND/USD",
       "status": "available",
       "signal": "GREEN",
@@ -9110,12 +9121,12 @@
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "Sat, 03 Oct 2026 00:02:32 +0000",
+      "as_of": "Sun, 04 Oct 2026 00:02:32 +0000",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "market_vnd_usd",
       "direction": "flat",
-      "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 25953.96 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
+      "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 25939.86 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
     },
     {
       "key": "stock_market",
