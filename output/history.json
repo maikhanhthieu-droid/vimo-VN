@@ -1082,6 +1082,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-10-05",
+        "bucket": "2026-10-05",
+        "value": 25949.12,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -1650,6 +1661,17 @@
         "date": "2026-10-02",
         "bucket": "2026-10-02",
         "value": 1737.71,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "vnindex_close"
+      },
+      {
+        "date": "2026-10-05",
+        "bucket": "2026-10-05",
+        "value": 1752.97,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -2426,6 +2448,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "world_gold_usd_oz"
+      },
+      {
+        "date": "2026-10-05",
+        "bucket": "2026-10-05",
+        "value": 4167.2998,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "world_gold_usd_oz"
       }
     ],
     "credit": [
@@ -3129,6 +3162,17 @@
         "date": "2026-10-02",
         "bucket": "2026-10-02",
         "value": 101.93,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "dxy_index"
+      },
+      {
+        "date": "2026-10-05",
+        "bucket": "2026-10-05",
+        "value": 102.341,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -3981,6 +4025,17 @@
         "date": "2026-10-02",
         "bucket": "2026-10-02",
         "value": 91.11,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "wti_usd_barrel"
+      },
+      {
+        "date": "2026-10-05",
+        "bucket": "2026-10-05",
+        "value": 89.96,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
