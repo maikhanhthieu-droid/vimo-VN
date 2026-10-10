@@ -1148,6 +1148,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-10-10",
+        "bucket": "2026-10-10",
+        "value": 25862.65,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -1770,7 +1781,7 @@
       {
         "date": "2026-10-09",
         "bucket": "2026-10-09",
-        "value": 1732.28,
+        "value": 1735.09,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -2606,7 +2617,7 @@
       {
         "date": "2026-10-09",
         "bucket": "2026-10-09",
-        "value": 4215.7998,
+        "value": 4216.2998,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -3370,7 +3381,7 @@
       {
         "date": "2026-10-09",
         "bucket": "2026-10-09",
-        "value": 102.048,
+        "value": 102.21,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -4299,7 +4310,7 @@
       {
         "date": "2026-10-09",
         "bucket": "2026-10-09",
-        "value": 90.59,
+        "value": 91.85,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -4996,6 +5007,17 @@
         "date": "2026-10-08",
         "bucket": "2026-10-08",
         "value": 5.231,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "us_treasury_10y_yield"
+      },
+      {
+        "date": "2026-10-09",
+        "bucket": "2026-10-09",
+        "value": 5.244,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
