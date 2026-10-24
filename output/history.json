@@ -200,16 +200,6 @@
     ],
     "fx_market_usd_vnd": [
       {
-        "date": "2026-07-16",
-        "bucket": "2026-07-16",
-        "value": 26176.94,
-        "unit": "VND/USD",
-        "source": "Open ER API",
-        "source_url": "https://open.er-api.com/",
-        "source_quality": "AUTO",
-        "source_note": null
-      },
-      {
         "date": "2026-07-17",
         "bucket": "2026-07-17",
         "value": 26178.22,
@@ -1282,6 +1272,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-10-24",
+        "bucket": "2026-10-24",
+        "value": 25822.18,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -2014,7 +2015,7 @@
       {
         "date": "2026-10-23",
         "bucket": "2026-10-23",
-        "value": 1756.13,
+        "value": 1774.15,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -2982,7 +2983,7 @@
       {
         "date": "2026-10-23",
         "bucket": "2026-10-23",
-        "value": 4018.1001,
+        "value": 4007.8999,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -3856,7 +3857,7 @@
       {
         "date": "2026-10-23",
         "bucket": "2026-10-23",
-        "value": 101.695,
+        "value": 101.81,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -4917,7 +4918,7 @@
       {
         "date": "2026-10-23",
         "bucket": "2026-10-23",
-        "value": 100.3,
+        "value": 103.27,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -5724,6 +5725,17 @@
         "date": "2026-10-22",
         "bucket": "2026-10-22",
         "value": 4.953,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "us_treasury_10y_yield"
+      },
+      {
+        "date": "2026-10-23",
+        "bucket": "2026-10-23",
+        "value": 4.988,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
