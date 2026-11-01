@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-10-31T05:58:52.967747+00:00",
+  "generated_at": "2026-11-01T06:28:02.093018+00:00",
   "as_of": "2026-10-30",
   "facts": [
     {
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 25802.15,
+      "value": 25795.63,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Sat, 31 Oct 2026 00:02:31 +0000",
+      "as_of": "Sun, 01 Nov 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",

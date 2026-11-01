@@ -211,16 +211,6 @@
     ],
     "fx_market_usd_vnd": [
       {
-        "date": "2026-07-24",
-        "bucket": "2026-07-24",
-        "value": 26250.54,
-        "unit": "VND/USD",
-        "source": "Open ER API",
-        "source_url": "https://open.er-api.com/",
-        "source_quality": "AUTO",
-        "source_note": null
-      },
-      {
         "date": "2026-07-25",
         "bucket": "2026-07-25",
         "value": 26278.14,
@@ -1295,6 +1285,17 @@
         "date": "2026-10-31",
         "bucket": "2026-10-31",
         "value": 25802.15,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-11-01",
+        "bucket": "2026-11-01",
+        "value": 25795.63,
         "unit": "VND/USD",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/",
