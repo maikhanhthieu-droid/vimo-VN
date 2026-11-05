@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-11-04T06:43:46.272917+00:00",
-  "generated_at_bkk": "2026-11-04T13:43:46.272917+07:00",
+  "generated_at_utc": "2026-11-05T07:03:22.959597+00:00",
+  "generated_at_bkk": "2026-11-05T14:03:22.959597+07:00",
   "coverage": {
     "available_cards": 41,
     "total_cards": 41,
@@ -13,13 +13,13 @@
   },
   "change_memory": {
     "state_count": 41,
-    "event_count": 476,
+    "event_count": 481,
     "pending_ai_events": 21
   },
   "gemini_analysis": {
     "status": "waiting_for_api_key",
     "model": "gemini-3.6-flash",
-    "generated_at": "2026-11-04T06:43:46.272917+00:00",
+    "generated_at": "2026-11-05T07:03:22.959597+00:00",
     "event_count": 21,
     "forecast_scenario_count": 0,
     "api_url": "api/gemini_analysis.json"
@@ -274,16 +274,16 @@
       "key": "fx_market_usd_vnd",
       "name_vi": "USD/VND thị trường",
       "current": {
-        "value": 25769.07,
+        "value": 25701.38,
         "unit": "VND/USD",
-        "date": "2026-11-04",
+        "date": "2026-11-05",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "previous": {
-        "date": "2026-11-03",
-        "bucket": "2026-11-03",
-        "value": 25743.91,
+        "date": "2026-11-04",
+        "bucket": "2026-11-04",
+        "value": 25769.07,
         "unit": "VND/USD",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/",
@@ -292,31 +292,31 @@
         "forecast_definition_id": "market_vnd_usd"
       },
       "change": {
-        "absolute": 25.16,
-        "percent": 0.0977,
-        "direction": "up"
+        "absolute": -67.69,
+        "percent": -0.2627,
+        "direction": "down"
       },
       "forecast_1m": {
-        "value": 25699.0,
-        "low": 25184.0,
-        "high": 26214.0,
-        "as_of": "2026-12-04",
+        "value": 25399.0,
+        "low": 24885.0,
+        "high": 25913.0,
+        "as_of": "2026-12-05",
         "probability_bands": [
           {
-            "low": 25184.0,
-            "high": 25527.0,
+            "low": 24885.0,
+            "high": 25228.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25527.0,
-            "high": 25871.0,
+            "low": 25228.0,
+            "high": 25570.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 25871.0,
-            "high": 26214.0,
+            "low": 25570.0,
+            "high": 25913.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -327,26 +327,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 25622.0,
-        "low": 24798.0,
-        "high": 26447.0,
-        "as_of": "2027-02-04",
+        "value": 25067.0,
+        "low": 24244.0,
+        "high": 25889.0,
+        "as_of": "2027-02-05",
         "probability_bands": [
           {
-            "low": 24798.0,
-            "high": 25348.0,
+            "low": 24244.0,
+            "high": 24792.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25348.0,
-            "high": 25897.0,
+            "low": 24792.0,
+            "high": 25341.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 25897.0,
-            "high": 26447.0,
+            "low": 25341.0,
+            "high": 25889.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -363,18 +363,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-05",
           "forecast_1m": {
-            "value": 25699.0,
-            "low": 25184.0,
-            "high": 26214.0,
-            "as_of": "2026-12-04"
+            "value": 25399.0,
+            "low": 24885.0,
+            "high": 25913.0,
+            "as_of": "2026-12-05"
           },
           "forecast_3m": {
-            "value": 25622.0,
-            "low": 24798.0,
-            "high": 26447.0,
-            "as_of": "2027-02-04"
+            "value": 25067.0,
+            "low": 24244.0,
+            "high": 25889.0,
+            "as_of": "2027-02-05"
           },
           "observations": 6,
           "span_days": 5,
@@ -386,7 +386,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 25.16 VND/USD so với kỳ 2026-11-03. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 67.69 VND/USD so với kỳ 2026-11-04. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -397,16 +397,16 @@
       "key": "stock_market",
       "name_vi": "VN-Index",
       "current": {
-        "value": 1729.87,
+        "value": 1740.55,
         "unit": "điểm",
-        "date": "2026-11-04",
+        "date": "2026-11-05",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/"
       },
       "previous": {
-        "date": "2026-11-03",
-        "bucket": "2026-11-03",
-        "value": 1704.88,
+        "date": "2026-11-04",
+        "bucket": "2026-11-04",
+        "value": 1729.87,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -415,31 +415,31 @@
         "forecast_definition_id": "vnindex_close"
       },
       "change": {
-        "absolute": 24.99,
-        "percent": 1.4658,
+        "absolute": 10.68,
+        "percent": 0.6174,
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 1727.0,
-        "low": 1660.0,
-        "high": 1797.0,
-        "as_of": "2026-12-04",
+        "value": 1738.0,
+        "low": 1671.0,
+        "high": 1808.0,
+        "as_of": "2026-12-05",
         "probability_bands": [
           {
-            "low": 1660.0,
-            "high": 1706.0,
+            "low": 1671.0,
+            "high": 1717.0,
             "probability": 30.9,
             "rank": 2
           },
           {
-            "low": 1706.0,
-            "high": 1751.0,
+            "low": 1717.0,
+            "high": 1762.0,
             "probability": 38.4,
             "rank": 1
           },
           {
-            "low": 1751.0,
-            "high": 1797.0,
+            "low": 1762.0,
+            "high": 1808.0,
             "probability": 30.7,
             "rank": 3
           }
@@ -450,27 +450,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 1725.0,
-        "low": 1610.0,
-        "high": 1847.0,
-        "as_of": "2027-02-04",
+        "value": 1737.0,
+        "low": 1623.0,
+        "high": 1859.0,
+        "as_of": "2027-02-05",
         "probability_bands": [
           {
-            "low": 1610.0,
-            "high": 1689.0,
-            "probability": 30.7,
+            "low": 1623.0,
+            "high": 1702.0,
+            "probability": 30.9,
             "rank": 2
           },
           {
-            "low": 1689.0,
-            "high": 1768.0,
-            "probability": 38.9,
+            "low": 1702.0,
+            "high": 1780.0,
+            "probability": 38.6,
             "rank": 1
           },
           {
-            "low": 1768.0,
-            "high": 1847.0,
-            "probability": 30.4,
+            "low": 1780.0,
+            "high": 1859.0,
+            "probability": 30.5,
             "rank": 3
           }
         ],
@@ -485,21 +485,21 @@
           "provider": "Vietcap",
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
-          "as_of": "2026-11-04",
-          "fetched_at": "2026-11-04T06:43:46.272917+00:00",
+          "as_of": "2026-11-05",
+          "fetched_at": "2026-11-05T07:03:22.959597+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
-            "value": 1727.0,
-            "low": 1660.0,
-            "high": 1797.0,
-            "as_of": "2026-12-04"
+            "value": 1738.0,
+            "low": 1671.0,
+            "high": 1808.0,
+            "as_of": "2026-12-05"
           },
           "forecast_3m": {
-            "value": 1725.0,
-            "low": 1610.0,
-            "high": 1847.0,
-            "as_of": "2027-02-04"
+            "value": 1737.0,
+            "low": 1623.0,
+            "high": 1859.0,
+            "as_of": "2027-02-05"
           },
           "observations": 180,
           "span_days": 266,
@@ -511,7 +511,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 24.99 điểm so với kỳ 2026-11-03. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 10.68 điểm so với kỳ 2026-11-04. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
@@ -645,16 +645,16 @@
       "key": "gold_world",
       "name_vi": "Vàng thế giới",
       "current": {
-        "value": 4025.2,
+        "value": 4135.6001,
         "unit": "USD/oz",
-        "date": "2026-11-04",
+        "date": "2026-11-05",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF"
       },
       "previous": {
-        "date": "2026-11-03",
-        "bucket": "2026-11-03",
-        "value": 3925.6001,
+        "date": "2026-11-04",
+        "bucket": "2026-11-04",
+        "value": 4025.2,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -663,32 +663,32 @@
         "forecast_definition_id": "world_gold_usd_oz"
       },
       "change": {
-        "absolute": 99.5999,
-        "percent": 2.5372,
+        "absolute": 110.4001,
+        "percent": 2.7427,
         "direction": "up"
       },
       "forecast_1m": {
-        "value": 3975.0,
-        "low": 3895.0,
-        "high": 4056.0,
-        "as_of": "2026-12-04",
+        "value": 4340.0,
+        "low": 4258.0,
+        "high": 4423.0,
+        "as_of": "2026-12-05",
         "probability_bands": [
           {
-            "low": 3895.0,
-            "high": 3949.0,
-            "probability": 31.6,
+            "low": 4258.0,
+            "high": 4313.0,
+            "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 3949.0,
-            "high": 4002.0,
-            "probability": 36.9,
+            "low": 4313.0,
+            "high": 4368.0,
+            "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 4002.0,
-            "high": 4056.0,
-            "probability": 31.5,
+            "low": 4368.0,
+            "high": 4423.0,
+            "probability": 31.3,
             "rank": 3
           }
         ],
@@ -698,27 +698,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 3921.0,
-        "low": 3792.0,
-        "high": 4050.0,
-        "as_of": "2027-02-04",
+        "value": 4565.0,
+        "low": 4433.0,
+        "high": 4698.0,
+        "as_of": "2027-02-05",
         "probability_bands": [
           {
-            "low": 3792.0,
-            "high": 3878.0,
-            "probability": 31.3,
+            "low": 4433.0,
+            "high": 4521.0,
+            "probability": 31.2,
             "rank": 2
           },
           {
-            "low": 3878.0,
-            "high": 3964.0,
-            "probability": 37.4,
+            "low": 4521.0,
+            "high": 4610.0,
+            "probability": 37.6,
             "rank": 1
           },
           {
-            "low": 3964.0,
-            "high": 4050.0,
-            "probability": 31.3,
+            "low": 4610.0,
+            "high": 4698.0,
+            "probability": 31.2,
             "rank": 3
           }
         ],
@@ -734,18 +734,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-05",
           "forecast_1m": {
-            "value": 3975.0,
-            "low": 3895.0,
-            "high": 4056.0,
-            "as_of": "2026-12-04"
+            "value": 4340.0,
+            "low": 4258.0,
+            "high": 4423.0,
+            "as_of": "2026-12-05"
           },
           "forecast_3m": {
-            "value": 3921.0,
-            "low": 3792.0,
-            "high": 4050.0,
-            "as_of": "2027-02-04"
+            "value": 4565.0,
+            "low": 4433.0,
+            "high": 4698.0,
+            "as_of": "2027-02-05"
           },
           "observations": 6,
           "span_days": 7,
@@ -757,7 +757,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 99.5999 USD/oz so với kỳ 2026-11-03. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 110.4 USD/oz so với kỳ 2026-11-04. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -948,16 +948,16 @@
       "key": "dxy",
       "name_vi": "DXY",
       "current": {
-        "value": 101.514,
+        "value": 101.226,
         "unit": "điểm",
-        "date": "2026-11-04",
+        "date": "2026-11-05",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB"
       },
       "previous": {
-        "date": "2026-11-03",
-        "bucket": "2026-11-03",
-        "value": 101.763,
+        "date": "2026-11-04",
+        "bucket": "2026-11-04",
+        "value": 101.514,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -966,31 +966,31 @@
         "forecast_definition_id": "dxy_index"
       },
       "change": {
-        "absolute": -0.249,
-        "percent": -0.2447,
+        "absolute": -0.288,
+        "percent": -0.2837,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 99.6,
-        "low": 97.5,
-        "high": 101.6,
-        "as_of": "2026-12-04",
+        "value": 99.1,
+        "low": 97.0,
+        "high": 101.1,
+        "as_of": "2026-12-05",
         "probability_bands": [
           {
-            "low": 97.5,
-            "high": 98.9,
+            "low": 97.0,
+            "high": 98.4,
             "probability": 32.1,
             "rank": 3
           },
           {
-            "low": 98.9,
-            "high": 100.2,
+            "low": 98.4,
+            "high": 99.7,
             "probability": 35.6,
             "rank": 1
           },
           {
-            "low": 100.2,
-            "high": 101.6,
+            "low": 99.7,
+            "high": 101.1,
             "probability": 32.3,
             "rank": 2
           }
@@ -1001,28 +1001,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 97.4,
-        "low": 94.2,
-        "high": 100.7,
-        "as_of": "2027-02-04",
+        "value": 96.7,
+        "low": 93.4,
+        "high": 99.9,
+        "as_of": "2027-02-05",
         "probability_bands": [
           {
-            "low": 94.2,
-            "high": 96.4,
-            "probability": 31.9,
-            "rank": 2
+            "low": 93.4,
+            "high": 95.6,
+            "probability": 31.8,
+            "rank": 3
           },
           {
-            "low": 96.4,
-            "high": 98.5,
+            "low": 95.6,
+            "high": 97.7,
             "probability": 36.3,
             "rank": 1
           },
           {
-            "low": 98.5,
-            "high": 100.7,
-            "probability": 31.8,
-            "rank": 3
+            "low": 97.7,
+            "high": 99.9,
+            "probability": 31.9,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1037,18 +1037,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-05",
           "forecast_1m": {
-            "value": 99.6,
-            "low": 97.5,
-            "high": 101.6,
-            "as_of": "2026-12-04"
+            "value": 99.1,
+            "low": 97.0,
+            "high": 101.1,
+            "as_of": "2026-12-05"
           },
           "forecast_3m": {
-            "value": 97.4,
-            "low": 94.2,
-            "high": 100.7,
-            "as_of": "2027-02-04"
+            "value": 96.7,
+            "low": 93.4,
+            "high": 99.9,
+            "as_of": "2027-02-05"
           },
           "observations": 6,
           "span_days": 7,
@@ -1060,7 +1060,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 0.249 điểm so với kỳ 2026-11-03. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 0.288 điểm so với kỳ 2026-11-04. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -1216,16 +1216,16 @@
       "key": "oil_prices",
       "name_vi": "Giá dầu WTI",
       "current": {
-        "value": 96.5,
+        "value": 87.15,
         "unit": "USD/thùng",
-        "date": "2026-11-04",
+        "date": "2026-11-05",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF"
       },
       "previous": {
-        "date": "2026-11-03",
-        "bucket": "2026-11-03",
-        "value": 98.03,
+        "date": "2026-11-04",
+        "bucket": "2026-11-04",
+        "value": 96.5,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -1234,34 +1234,34 @@
         "forecast_definition_id": "wti_usd_barrel"
       },
       "change": {
-        "absolute": -1.53,
-        "percent": -1.5607,
+        "absolute": -9.35,
+        "percent": -9.6891,
         "direction": "down"
       },
       "forecast_1m": {
         "value": 94.0,
-        "low": 90.14,
-        "high": 97.86,
+        "low": 90.24,
+        "high": 97.76,
         "as_of": "2026-12-01",
         "interval_inferred": true,
         "interval_method": "confidence_scaled_reference_width_v1",
         "probability_bands": [
           {
-            "low": 90.14,
-            "high": 92.71,
-            "probability": 31.6,
+            "low": 90.24,
+            "high": 92.75,
+            "probability": 31.7,
             "rank": 2
           },
           {
-            "low": 92.71,
-            "high": 95.29,
-            "probability": 36.8,
+            "low": 92.75,
+            "high": 95.25,
+            "probability": 36.6,
             "rank": 1
           },
           {
-            "low": 95.29,
-            "high": 97.86,
-            "probability": 31.6,
+            "low": 95.25,
+            "high": 97.76,
+            "probability": 31.7,
             "rank": 3
           }
         ],
@@ -1272,27 +1272,27 @@
       },
       "forecast_3m": {
         "value": 91.0,
-        "low": 84.31,
-        "high": 97.69,
+        "low": 84.7,
+        "high": 97.3,
         "as_of": "2027-02-01",
         "interval_inferred": true,
         "interval_method": "confidence_scaled_reference_width_v1",
         "probability_bands": [
           {
-            "low": 84.31,
-            "high": 88.77,
+            "low": 84.7,
+            "high": 88.9,
             "probability": 31.7,
             "rank": 2
           },
           {
-            "low": 88.77,
-            "high": 93.23,
+            "low": 88.9,
+            "high": 93.1,
             "probability": 36.6,
             "rank": 1
           },
           {
-            "low": 93.23,
-            "high": 97.69,
+            "low": 93.1,
+            "high": 97.3,
             "probability": 31.7,
             "rank": 3
           }
@@ -1308,8 +1308,8 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-11-04",
-          "fetched_at": "2026-11-04T06:43:46.272917+00:00",
+          "as_of": "2026-11-05",
+          "fetched_at": "2026-11-05T07:03:22.959597+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 94.0,
@@ -1334,7 +1334,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 1.53 USD/thùng so với kỳ 2026-11-03. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 9.35 USD/thùng so với kỳ 2026-11-04. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
@@ -1372,16 +1372,16 @@
       "key": "us_10y_yield",
       "name_vi": "US 10Y yield",
       "current": {
-        "value": 4.952,
+        "value": 4.894,
         "unit": "%",
-        "date": "2026-11-03",
+        "date": "2026-11-04",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
       "previous": {
-        "date": "2026-11-02",
-        "bucket": "2026-11-02",
-        "value": 4.894,
+        "date": "2026-11-03",
+        "bucket": "2026-11-03",
+        "value": 4.952,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
@@ -1390,32 +1390,32 @@
         "forecast_definition_id": "us_treasury_10y_yield"
       },
       "change": {
-        "absolute": 0.058,
-        "percent": 1.1851,
-        "direction": "up"
+        "absolute": -0.058,
+        "percent": -1.1712,
+        "direction": "down"
       },
       "forecast_1m": {
-        "value": 4.86,
-        "low": 4.77,
-        "high": 4.96,
-        "as_of": "2026-12-03",
+        "value": 4.57,
+        "low": 4.47,
+        "high": 4.67,
+        "as_of": "2026-12-04",
         "probability_bands": [
           {
-            "low": 4.77,
-            "high": 4.83,
-            "probability": 29.7,
+            "low": 4.47,
+            "high": 4.54,
+            "probability": 33.1,
             "rank": 2
           },
           {
-            "low": 4.83,
-            "high": 4.9,
-            "probability": 41.0,
+            "low": 4.54,
+            "high": 4.6,
+            "probability": 33.8,
             "rank": 1
           },
           {
-            "low": 4.9,
-            "high": 4.96,
-            "probability": 29.3,
+            "low": 4.6,
+            "high": 4.67,
+            "probability": 33.1,
             "rank": 3
           }
         ],
@@ -1425,27 +1425,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 4.77,
-        "low": 4.61,
-        "high": 4.93,
-        "as_of": "2027-02-03",
+        "value": 4.21,
+        "low": 4.06,
+        "high": 4.37,
+        "as_of": "2027-02-04",
         "probability_bands": [
           {
-            "low": 4.61,
-            "high": 4.72,
-            "probability": 32.4,
+            "low": 4.06,
+            "high": 4.16,
+            "probability": 30.3,
             "rank": 2
           },
           {
-            "low": 4.72,
-            "high": 4.82,
-            "probability": 35.2,
+            "low": 4.16,
+            "high": 4.27,
+            "probability": 39.6,
             "rank": 1
           },
           {
-            "low": 4.82,
-            "high": 4.93,
-            "probability": 32.4,
+            "low": 4.27,
+            "high": 4.37,
+            "probability": 30.1,
             "rank": 3
           }
         ],
@@ -1461,18 +1461,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/%5ETNX",
-          "as_of": "2026-11-03",
+          "as_of": "2026-11-04",
           "forecast_1m": {
-            "value": 4.86,
-            "low": 4.77,
-            "high": 4.96,
-            "as_of": "2026-12-03"
+            "value": 4.57,
+            "low": 4.47,
+            "high": 4.67,
+            "as_of": "2026-12-04"
           },
           "forecast_3m": {
-            "value": 4.77,
-            "low": 4.61,
-            "high": 4.93,
-            "as_of": "2027-02-03"
+            "value": 4.21,
+            "low": 4.06,
+            "high": 4.37,
+            "as_of": "2027-02-04"
           },
           "observations": 6,
           "span_days": 7,
@@ -1484,7 +1484,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 0.058 % so với kỳ 2026-11-02. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 0.058 % so với kỳ 2026-11-03. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -3653,7 +3653,7 @@
   ],
   "macro_strategy": {
     "stance": "PHÒNG THỦ / HẠN CHẾ TĂNG TỶ TRỌNG",
-    "score": -4,
+    "score": -3,
     "reason_short": "Tín hiệu thuận và bất lợi đang đan xen; chưa đủ cơ sở để nâng tỷ trọng trên diện rộng.",
     "positive_drivers": [
       "IIP tăng 12.3% YoY",
@@ -3663,8 +3663,7 @@
       "Tín dụng tăng thấp 10.89% YTD",
       "CPI 5.08% YoY tạo áp lực lãi suất",
       "Cán cân thương mại âm 19.42 tỷ USD",
-      "Lợi suất Mỹ 10Y 4.952% làm tăng chi phí vốn toàn cầu",
-      "Dầu 96.5 USD/thùng làm tăng rủi ro chi phí"
+      "Lợi suất Mỹ 10Y 4.894% làm tăng chi phí vốn toàn cầu"
     ],
     "neutral_drivers": [
       "PMI 51.8 chỉ nhỉnh hơn ngưỡng 50, cần thêm kỳ xác nhận"
@@ -3684,8 +3683,8 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-11-04T06:44:07.201780+00:00",
-      "bytes": 96003
+      "checked_at": "2026-11-05T07:03:45.070597+00:00",
+      "bytes": 95639
     },
     "nso": {
       "name": "NSO/GSO Việt Nam",
@@ -3693,7 +3692,7 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": true,
-      "checked_at": "2026-11-04T06:44:09.964315+00:00",
+      "checked_at": "2026-11-05T07:03:48.200207+00:00",
       "bytes": 117470
     },
     "customs": {
@@ -3702,7 +3701,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": false,
-      "checked_at": "2026-11-04T06:45:06.781927+00:00",
+      "checked_at": "2026-11-05T07:04:44.220957+00:00",
       "error": "<urlopen error timed out>"
     },
     "vbma": {
@@ -3711,7 +3710,7 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-11-04T06:45:08.026840+00:00",
+      "checked_at": "2026-11-05T07:04:45.436644+00:00",
       "bytes": 40069
     },
     "vnba": {
@@ -3720,8 +3719,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-11-04T06:45:10.130170+00:00",
-      "bytes": 214940
+      "checked_at": "2026-11-05T07:04:47.319588+00:00",
+      "bytes": 220587
     },
     "market": {
       "name": "Public market APIs / Vietcap",
@@ -3729,7 +3728,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-11-04T06:45:11.330710+00:00",
+      "checked_at": "2026-11-05T07:04:48.182140+00:00",
       "bytes": 9130
     }
   },
@@ -3956,16 +3955,6 @@
         }
       ],
       "fx_market_usd_vnd": [
-        {
-          "date": "2026-07-28",
-          "bucket": "2026-07-28",
-          "value": 26235.49,
-          "unit": "VND/USD",
-          "source": "Open ER API",
-          "source_url": "https://open.er-api.com/",
-          "source_quality": "AUTO",
-          "source_note": null
-        },
         {
           "date": "2026-07-29",
           "bucket": "2026-07-29",
@@ -5051,6 +5040,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "market_vnd_usd"
+        },
+        {
+          "date": "2026-11-05",
+          "bucket": "2026-11-05",
+          "value": 25701.38,
+          "unit": "VND/USD",
+          "source": "Open ER API",
+          "source_url": "https://open.er-api.com/",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "market_vnd_usd"
         }
       ],
       "stock_market": [
@@ -5872,6 +5872,17 @@
           "date": "2026-11-04",
           "bucket": "2026-11-04",
           "value": 1729.87,
+          "unit": "điểm",
+          "source": "Vietcap",
+          "source_url": "https://trading.vietcap.com.vn/",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "vnindex_close"
+        },
+        {
+          "date": "2026-11-05",
+          "bucket": "2026-11-05",
+          "value": 1740.55,
           "unit": "điểm",
           "source": "Vietcap",
           "source_url": "https://trading.vietcap.com.vn/",
@@ -6956,6 +6967,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "world_gold_usd_oz"
+        },
+        {
+          "date": "2026-11-05",
+          "bucket": "2026-11-05",
+          "value": 4135.6001,
+          "unit": "USD/oz",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "world_gold_usd_oz"
         }
       ],
       "credit": [
@@ -7912,6 +7934,17 @@
           "date": "2026-11-04",
           "bucket": "2026-11-04",
           "value": 101.514,
+          "unit": "điểm",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "dxy_index"
+        },
+        {
+          "date": "2026-11-05",
+          "bucket": "2026-11-05",
+          "value": 101.226,
           "unit": "điểm",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -9089,6 +9122,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "wti_usd_barrel"
+        },
+        {
+          "date": "2026-11-05",
+          "bucket": "2026-11-05",
+          "value": 87.15,
+          "unit": "USD/thùng",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "wti_usd_barrel"
         }
       ],
       "geopolitical_risk": [
@@ -9983,6 +10027,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "us_treasury_10y_yield"
+        },
+        {
+          "date": "2026-11-04",
+          "bucket": "2026-11-04",
+          "value": 4.894,
+          "unit": "%",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "us_treasury_10y_yield"
         }
       ],
       "ecb_eurozone": [
@@ -10722,7 +10777,7 @@
       "priority": 3,
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
       "why_it_matters": "USD/VND cho thấy áp lực ngoại hối cập nhật hằng ngày.",
-      "value": 25769.07,
+      "value": 25701.38,
       "unit": "VND/USD",
       "status": "available",
       "signal": "GREEN",
@@ -10730,12 +10785,12 @@
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "Wed, 04 Nov 2026 00:02:31 +0000",
+      "as_of": "Thu, 05 Nov 2026 00:02:31 +0000",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "market_vnd_usd",
       "direction": "flat",
-      "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 25769.07 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
+      "narrative": "USD/VND thị trường hiện có dữ liệu tự động từ Open ER API. Giá trị mới nhất là 25701.38 VND/USD, dùng để theo dõi usd/vnd cho thấy áp lực ngoại hối cập nhật hằng ngày."
     },
     {
       "key": "stock_market",
@@ -10745,7 +10800,7 @@
       "priority": 4,
       "definition": "Chỉ số VN-Index.",
       "why_it_matters": "VN-Index là thước đo sentiment tài sản rủi ro nội địa.",
-      "value": 1729.87,
+      "value": 1740.55,
       "unit": "điểm",
       "status": "available",
       "signal": "GREEN",
@@ -10753,12 +10808,12 @@
       "source_url": "https://trading.vietcap.com.vn/",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-04",
+      "as_of": "2026-11-05",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "vnindex_close",
       "direction": "flat",
-      "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1729.87 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
+      "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1740.55 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
     },
     {
       "key": "govt_bond_yield",
@@ -10791,7 +10846,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 4025.2,
+      "value": 4135.6001,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -10799,12 +10854,12 @@
       "source_url": "https://finance.yahoo.com/quote/GC%3DF",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-04",
+      "as_of": "2026-11-05",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "world_gold_usd_oz",
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4025.2 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 4135.6001 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -10883,7 +10938,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 101.514,
+      "value": 101.226,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -10891,12 +10946,12 @@
       "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-04",
+      "as_of": "2026-11-05",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "dxy_index",
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 101.514 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 101.226 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -10998,7 +11053,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 96.5,
+      "value": 87.15,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -11006,12 +11061,12 @@
       "source_url": "https://finance.yahoo.com/quote/CL%3DF",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-04",
+      "as_of": "2026-11-05",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "wti_usd_barrel",
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 96.5 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 87.15 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
@@ -11044,7 +11099,7 @@
       "priority": 5,
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
       "why_it_matters": "US10Y là benchmark định giá tài sản toàn cầu.",
-      "value": 4.952,
+      "value": 4.894,
       "unit": "%",
       "status": "available",
       "signal": "YELLOW",
@@ -11052,12 +11107,12 @@
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-03",
+      "as_of": "2026-11-04",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "us_treasury_10y_yield",
       "direction": "up",
-      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.952 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
+      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.894 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
     },
     {
       "key": "ecb_eurozone",
