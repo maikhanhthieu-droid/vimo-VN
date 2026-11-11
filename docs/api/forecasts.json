@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.forecasts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-11-10T07:31:58.860302+00:00",
-  "as_of": "2026-11-10",
+  "generated_at": "2026-11-11T06:49:23.920408+00:00",
+  "as_of": "2026-11-11",
   "status": "ok",
   "horizons": [
     "1_month",
@@ -220,33 +220,33 @@
     {
       "id": "fx_market_usd_vnd",
       "current": {
-        "value": 25527.69,
+        "value": 25608.24,
         "unit": "VND/USD",
-        "date": "2026-11-10",
+        "date": "2026-11-11",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "forecast_1m": {
-        "value": 25007.0,
-        "low": 24496.0,
-        "high": 25517.0,
-        "as_of": "2026-12-10",
+        "value": 25356.0,
+        "low": 24843.0,
+        "high": 25868.0,
+        "as_of": "2026-12-11",
         "probability_bands": [
           {
-            "low": 24496.0,
-            "high": 24836.0,
+            "low": 24843.0,
+            "high": 25185.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 24836.0,
-            "high": 25177.0,
+            "low": 25185.0,
+            "high": 25526.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 25177.0,
-            "high": 25517.0,
+            "low": 25526.0,
+            "high": 25868.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -257,26 +257,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 24433.0,
-        "low": 23617.0,
-        "high": 25250.0,
-        "as_of": "2027-02-10",
+        "value": 25078.0,
+        "low": 24258.0,
+        "high": 25897.0,
+        "as_of": "2027-02-11",
         "probability_bands": [
           {
-            "low": 23617.0,
-            "high": 24161.0,
+            "low": 24258.0,
+            "high": 24804.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 24161.0,
-            "high": 24706.0,
+            "low": 24804.0,
+            "high": 25351.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 24706.0,
-            "high": 25250.0,
+            "low": 25351.0,
+            "high": 25897.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -296,18 +296,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-11-10",
+          "as_of": "2026-11-11",
           "forecast_1m": {
-            "value": 25007.0,
-            "low": 24496.0,
-            "high": 25517.0,
-            "as_of": "2026-12-10"
+            "value": 25356.0,
+            "low": 24843.0,
+            "high": 25868.0,
+            "as_of": "2026-12-11"
           },
           "forecast_3m": {
-            "value": 24433.0,
-            "low": 23617.0,
-            "high": 25250.0,
-            "as_of": "2027-02-10"
+            "value": 25078.0,
+            "low": 24258.0,
+            "high": 25897.0,
+            "as_of": "2027-02-11"
           },
           "observations": 6,
           "span_days": 5,
@@ -324,33 +324,33 @@
     {
       "id": "stock_market",
       "current": {
-        "value": 1739.7,
+        "value": 1738.59,
         "unit": "điểm",
-        "date": "2026-11-10",
+        "date": "2026-11-11",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/"
       },
       "forecast_1m": {
-        "value": 1737.0,
-        "low": 1670.0,
-        "high": 1806.0,
-        "as_of": "2026-12-10",
+        "value": 1735.0,
+        "low": 1668.0,
+        "high": 1804.0,
+        "as_of": "2026-12-11",
         "probability_bands": [
           {
-            "low": 1670.0,
-            "high": 1715.0,
+            "low": 1668.0,
+            "high": 1713.0,
             "probability": 30.4,
             "rank": 2
           },
           {
-            "low": 1715.0,
-            "high": 1761.0,
+            "low": 1713.0,
+            "high": 1759.0,
             "probability": 39.4,
             "rank": 1
           },
           {
-            "low": 1761.0,
-            "high": 1806.0,
+            "low": 1759.0,
+            "high": 1804.0,
             "probability": 30.2,
             "rank": 3
           }
@@ -361,26 +361,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 1734.0,
-        "low": 1621.0,
-        "high": 1856.0,
-        "as_of": "2027-02-10",
+        "value": 1732.0,
+        "low": 1619.0,
+        "high": 1854.0,
+        "as_of": "2027-02-11",
         "probability_bands": [
           {
-            "low": 1621.0,
-            "high": 1699.0,
+            "low": 1619.0,
+            "high": 1697.0,
             "probability": 30.6,
             "rank": 2
           },
           {
-            "low": 1699.0,
-            "high": 1778.0,
+            "low": 1697.0,
+            "high": 1776.0,
             "probability": 39.2,
             "rank": 1
           },
           {
-            "low": 1778.0,
-            "high": 1856.0,
+            "low": 1776.0,
+            "high": 1854.0,
             "probability": 30.2,
             "rank": 3
           }
@@ -399,21 +399,21 @@
           "provider": "Vietcap",
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
-          "as_of": "2026-11-10",
-          "fetched_at": "2026-11-10T07:31:58.860302+00:00",
+          "as_of": "2026-11-11",
+          "fetched_at": "2026-11-11T06:49:23.920408+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
-            "value": 1737.0,
-            "low": 1670.0,
-            "high": 1806.0,
-            "as_of": "2026-12-10"
+            "value": 1735.0,
+            "low": 1668.0,
+            "high": 1804.0,
+            "as_of": "2026-12-11"
           },
           "forecast_3m": {
-            "value": 1734.0,
-            "low": 1621.0,
-            "high": 1856.0,
-            "as_of": "2027-02-10"
+            "value": 1732.0,
+            "low": 1619.0,
+            "high": 1854.0,
+            "as_of": "2027-02-11"
           },
           "observations": 180,
           "span_days": 259,
@@ -432,15 +432,15 @@
       "current": {
         "value": 4.47,
         "unit": "%",
-        "date": "2026-10-30",
+        "date": "2026-11-06",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/26102026%20-%2030102026%20BAO%20CAO%20TUAN%20TTTP1.pdf"
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/02112026%20-%2006112026%20BAO%20CAO%20TUAN%20TTTP%20-%20Copy.pdf"
       },
       "forecast_1m": {
         "value": 4.47,
         "low": 4.38,
         "high": 4.56,
-        "as_of": "2026-11-30",
+        "as_of": "2026-12-06",
         "probability_bands": [
           {
             "low": 4.38,
@@ -470,7 +470,7 @@
         "value": 4.47,
         "low": 4.33,
         "high": 4.61,
-        "as_of": "2027-01-30",
+        "as_of": "2027-02-06",
         "probability_bands": [
           {
             "low": 4.33,
@@ -505,19 +505,19 @@
           "provider": "Mô hình ViMO",
           "input_provider": "VBMA",
           "source_kind": "local_observed_history",
-          "source_url": "https://vbma.org.vn/storage/reports/November2026/26102026%20-%2030102026%20BAO%20CAO%20TUAN%20TTTP1.pdf",
-          "as_of": "2026-10-30",
+          "source_url": "https://vbma.org.vn/storage/reports/November2026/02112026%20-%2006112026%20BAO%20CAO%20TUAN%20TTTP%20-%20Copy.pdf",
+          "as_of": "2026-11-06",
           "forecast_1m": {
             "value": 4.47,
             "low": 4.38,
             "high": 4.56,
-            "as_of": "2026-11-30"
+            "as_of": "2026-12-06"
           },
           "forecast_3m": {
             "value": 4.47,
             "low": 4.33,
             "high": 4.61,
-            "as_of": "2027-01-30"
+            "as_of": "2027-02-06"
           },
           "observations": 6,
           "span_days": 35,
@@ -534,33 +534,33 @@
     {
       "id": "gold_world",
       "current": {
-        "value": 4127.2002,
+        "value": 4062.8999,
         "unit": "USD/oz",
-        "date": "2026-11-10",
+        "date": "2026-11-11",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF"
       },
       "forecast_1m": {
-        "value": 4106.0,
-        "low": 3920.0,
-        "high": 4301.0,
+        "value": 4042.0,
+        "low": 3859.0,
+        "high": 4234.0,
         "as_of": "2026-12-09",
         "probability_bands": [
           {
-            "low": 3920.0,
-            "high": 4047.0,
+            "low": 3859.0,
+            "high": 3984.0,
             "probability": 30.7,
             "rank": 2
           },
           {
-            "low": 4047.0,
-            "high": 4174.0,
+            "low": 3984.0,
+            "high": 4109.0,
             "probability": 38.9,
             "rank": 1
           },
           {
-            "low": 4174.0,
-            "high": 4301.0,
+            "low": 4109.0,
+            "high": 4234.0,
             "probability": 30.4,
             "rank": 3
           }
@@ -571,27 +571,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 4091.0,
-        "low": 3775.0,
-        "high": 4434.0,
+        "value": 4027.0,
+        "low": 3716.0,
+        "high": 4365.0,
         "as_of": "2027-02-09",
         "probability_bands": [
           {
-            "low": 3775.0,
-            "high": 3995.0,
-            "probability": 30.8,
+            "low": 3716.0,
+            "high": 3932.0,
+            "probability": 30.7,
             "rank": 2
           },
           {
-            "low": 3995.0,
-            "high": 4214.0,
-            "probability": 38.8,
+            "low": 3932.0,
+            "high": 4149.0,
+            "probability": 39.0,
             "rank": 1
           },
           {
-            "low": 4214.0,
-            "high": 4434.0,
-            "probability": 30.4,
+            "low": 4149.0,
+            "high": 4365.0,
+            "probability": 30.3,
             "rank": 3
           }
         ],
@@ -614,15 +614,15 @@
           "cache_status": "stale",
           "cache_age_days": 1,
           "forecast_1m": {
-            "value": 4106.0,
-            "low": 3920.0,
-            "high": 4301.0,
+            "value": 4042.0,
+            "low": 3859.0,
+            "high": 4234.0,
             "as_of": "2026-12-09"
           },
           "forecast_3m": {
-            "value": 4091.0,
-            "low": 3775.0,
-            "high": 4434.0,
+            "value": 4027.0,
+            "low": 3716.0,
+            "high": 4365.0,
             "as_of": "2027-02-09"
           },
           "observations": 127,
@@ -747,33 +747,33 @@
     {
       "id": "dxy",
       "current": {
-        "value": 101.576,
+        "value": 102.358,
         "unit": "điểm",
-        "date": "2026-11-10",
+        "date": "2026-11-11",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB"
       },
       "forecast_1m": {
-        "value": 101.2,
-        "low": 99.1,
-        "high": 103.2,
-        "as_of": "2026-12-10",
+        "value": 104.2,
+        "low": 102.1,
+        "high": 106.2,
+        "as_of": "2026-12-11",
         "probability_bands": [
           {
-            "low": 99.1,
-            "high": 100.5,
+            "low": 102.1,
+            "high": 103.5,
             "probability": 32.1,
             "rank": 3
           },
           {
-            "low": 100.5,
-            "high": 101.8,
+            "low": 103.5,
+            "high": 104.8,
             "probability": 35.6,
             "rank": 1
           },
           {
-            "low": 101.8,
-            "high": 103.2,
+            "low": 104.8,
+            "high": 106.2,
             "probability": 32.3,
             "rank": 2
           }
@@ -784,28 +784,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 100.7,
-        "low": 97.5,
-        "high": 104.0,
-        "as_of": "2027-02-10",
+        "value": 106.2,
+        "low": 102.9,
+        "high": 109.4,
+        "as_of": "2027-02-11",
         "probability_bands": [
           {
-            "low": 97.5,
-            "high": 99.7,
-            "probability": 31.9,
-            "rank": 2
+            "low": 102.9,
+            "high": 105.1,
+            "probability": 31.8,
+            "rank": 3
           },
           {
-            "low": 99.7,
-            "high": 101.8,
+            "low": 105.1,
+            "high": 107.2,
             "probability": 36.3,
             "rank": 1
           },
           {
-            "low": 101.8,
-            "high": 104.0,
-            "probability": 31.8,
-            "rank": 3
+            "low": 107.2,
+            "high": 109.4,
+            "probability": 31.9,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -823,18 +823,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
-          "as_of": "2026-11-10",
+          "as_of": "2026-11-11",
           "forecast_1m": {
-            "value": 101.2,
-            "low": 99.1,
-            "high": 103.2,
-            "as_of": "2026-12-10"
+            "value": 104.2,
+            "low": 102.1,
+            "high": 106.2,
+            "as_of": "2026-12-11"
           },
           "forecast_3m": {
-            "value": 100.7,
-            "low": 97.5,
-            "high": 104.0,
-            "as_of": "2027-02-10"
+            "value": 106.2,
+            "low": 102.9,
+            "high": 109.4,
+            "as_of": "2027-02-11"
           },
           "observations": 6,
           "span_days": 7,
@@ -851,36 +851,36 @@
     {
       "id": "oil_prices",
       "current": {
-        "value": 85.61,
+        "value": 86.62,
         "unit": "USD/thùng",
-        "date": "2026-11-10",
+        "date": "2026-11-11",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF"
       },
       "forecast_1m": {
-        "value": 94.0,
-        "low": 90.24,
-        "high": 97.76,
+        "value": 92.0,
+        "low": 88.32,
+        "high": 95.68,
         "as_of": "2026-12-01",
         "interval_inferred": true,
         "interval_method": "confidence_scaled_reference_width_v1",
         "probability_bands": [
           {
-            "low": 90.24,
-            "high": 92.75,
-            "probability": 31.7,
+            "low": 88.32,
+            "high": 90.77,
+            "probability": 31.6,
             "rank": 2
           },
           {
-            "low": 92.75,
-            "high": 95.25,
-            "probability": 36.6,
+            "low": 90.77,
+            "high": 93.23,
+            "probability": 36.8,
             "rank": 1
           },
           {
-            "low": 95.25,
-            "high": 97.76,
-            "probability": 31.7,
+            "low": 93.23,
+            "high": 95.68,
+            "probability": 31.6,
             "rank": 3
           }
         ],
@@ -890,29 +890,29 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 91.0,
-        "low": 84.7,
-        "high": 97.3,
+        "value": 89.0,
+        "low": 82.83,
+        "high": 95.17,
         "as_of": "2027-02-01",
         "interval_inferred": true,
         "interval_method": "confidence_scaled_reference_width_v1",
         "probability_bands": [
           {
-            "low": 84.7,
-            "high": 88.9,
-            "probability": 31.7,
+            "low": 82.83,
+            "high": 86.94,
+            "probability": 31.6,
             "rank": 2
           },
           {
-            "low": 88.9,
-            "high": 93.1,
-            "probability": 36.6,
+            "low": 86.94,
+            "high": 91.06,
+            "probability": 36.8,
             "rank": 1
           },
           {
-            "low": 93.1,
-            "high": 97.3,
-            "probability": 31.7,
+            "low": 91.06,
+            "high": 95.17,
+            "probability": 31.6,
             "rank": 3
           }
         ],
@@ -930,19 +930,19 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-11-10",
-          "fetched_at": "2026-11-10T07:31:58.860302+00:00",
+          "as_of": "2026-11-11",
+          "fetched_at": "2026-11-11T06:49:23.920408+00:00",
           "cache_status": "live",
           "forecast_1m": {
-            "value": 94.0,
-            "low": 94.0,
-            "high": 94.0,
+            "value": 92.0,
+            "low": 92.0,
+            "high": 92.0,
             "as_of": "2026-12-01"
           },
           "forecast_3m": {
-            "value": 91.0,
-            "low": 91.0,
-            "high": 91.0,
+            "value": 89.0,
+            "low": 89.0,
+            "high": 89.0,
             "as_of": "2027-02-01"
           },
           "observations": 2,
@@ -961,33 +961,33 @@
     {
       "id": "us_10y_yield",
       "current": {
-        "value": 4.864,
+        "value": 4.983,
         "unit": "%",
-        "date": "2026-11-09",
+        "date": "2026-11-10",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
       "forecast_1m": {
-        "value": 4.8,
-        "low": 4.7,
-        "high": 4.9,
-        "as_of": "2026-12-09",
+        "value": 5.05,
+        "low": 4.95,
+        "high": 5.15,
+        "as_of": "2026-12-10",
         "probability_bands": [
           {
-            "low": 4.7,
-            "high": 4.77,
+            "low": 4.95,
+            "high": 5.02,
             "probability": 33.1,
             "rank": 2
           },
           {
-            "low": 4.77,
-            "high": 4.83,
+            "low": 5.02,
+            "high": 5.08,
             "probability": 33.8,
             "rank": 1
           },
           {
-            "low": 4.83,
-            "high": 4.9,
+            "low": 5.08,
+            "high": 5.15,
             "probability": 33.1,
             "rank": 3
           }
@@ -998,28 +998,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 4.73,
-        "low": 4.57,
-        "high": 4.88,
-        "as_of": "2027-02-09",
+        "value": 5.12,
+        "low": 4.96,
+        "high": 5.28,
+        "as_of": "2027-02-10",
         "probability_bands": [
           {
-            "low": 4.57,
-            "high": 4.67,
-            "probability": 30.1,
-            "rank": 3
+            "low": 4.96,
+            "high": 5.07,
+            "probability": 32.4,
+            "rank": 2
           },
           {
-            "low": 4.67,
-            "high": 4.78,
-            "probability": 39.6,
+            "low": 5.07,
+            "high": 5.17,
+            "probability": 35.2,
             "rank": 1
           },
           {
-            "low": 4.78,
-            "high": 4.88,
-            "probability": 30.3,
-            "rank": 2
+            "low": 5.17,
+            "high": 5.28,
+            "probability": 32.4,
+            "rank": 3
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1037,18 +1037,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/%5ETNX",
-          "as_of": "2026-11-09",
+          "as_of": "2026-11-10",
           "forecast_1m": {
-            "value": 4.8,
-            "low": 4.7,
-            "high": 4.9,
-            "as_of": "2026-12-09"
+            "value": 5.05,
+            "low": 4.95,
+            "high": 5.15,
+            "as_of": "2026-12-10"
           },
           "forecast_3m": {
-            "value": 4.73,
-            "low": 4.57,
-            "high": 4.88,
-            "as_of": "2027-02-09"
+            "value": 5.12,
+            "low": 4.96,
+            "high": 5.28,
+            "as_of": "2027-02-10"
           },
           "observations": 6,
           "span_days": 7,

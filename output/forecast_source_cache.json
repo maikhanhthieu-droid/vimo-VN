@@ -7,10 +7,6 @@
         "source_url": "https://trading.vietcap.com.vn/",
         "points": [
           {
-            "date": "2026-02-24",
-            "value": 1867.62
-          },
-          {
             "date": "2026-02-25",
             "value": 1860.91
           },
@@ -724,10 +720,14 @@
           },
           {
             "date": "2026-11-10",
-            "value": 1739.7
+            "value": 1743.07
+          },
+          {
+            "date": "2026-11-11",
+            "value": 1739.22
           }
         ],
-        "fetched_at": "2026-11-10T07:31:58.860302+00:00",
+        "fetched_at": "2026-11-11T06:49:23.920408+00:00",
         "cache_status": "live"
       }
     ],
@@ -1259,19 +1259,19 @@
         "provider": "EIA STEO",
         "source_kind": "official_forecast",
         "source_url": "https://www.eia.gov/outlooks/steo/",
-        "as_of": "2026-11-10",
-        "fetched_at": "2026-11-10T07:31:58.860302+00:00",
+        "as_of": "2026-11-11",
+        "fetched_at": "2026-11-11T06:49:23.920408+00:00",
         "cache_status": "live",
         "forecast_1m": {
-          "value": 94.0,
-          "low": 94.0,
-          "high": 94.0,
+          "value": 92.0,
+          "low": 92.0,
+          "high": 92.0,
           "as_of": "2026-12-01"
         },
         "forecast_3m": {
-          "value": 91.0,
-          "low": 91.0,
-          "high": 91.0,
+          "value": 89.0,
+          "low": 89.0,
+          "high": 89.0,
           "as_of": "2027-02-01"
         },
         "observations": 2,
@@ -1325,5 +1325,5 @@
       "credential_mode": "shared_demo"
     }
   ],
-  "generated_at": "2026-11-10T07:31:58.860302+00:00"
+  "generated_at": "2026-11-11T06:49:23.920408+00:00"
 }
