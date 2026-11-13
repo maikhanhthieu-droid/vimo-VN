@@ -7,10 +7,6 @@
         "source_url": "https://trading.vietcap.com.vn/",
         "points": [
           {
-            "date": "2026-02-26",
-            "value": 1879.64
-          },
-          {
             "date": "2026-02-27",
             "value": 1880.33
           },
@@ -724,10 +720,14 @@
           },
           {
             "date": "2026-11-12",
-            "value": 1738.69
+            "value": 1734.75
+          },
+          {
+            "date": "2026-11-13",
+            "value": 1732.87
           }
         ],
-        "fetched_at": "2026-11-12T07:27:19.028322+00:00",
+        "fetched_at": "2026-11-13T06:58:35.795941+00:00",
         "cache_status": "live"
       }
     ],
@@ -1248,7 +1248,7 @@
         ],
         "fetched_at": "2026-11-09T06:55:24.446833+00:00",
         "cache_status": "stale",
-        "cache_age_days": 3
+        "cache_age_days": 4
       }
     ],
     "us_10y_yield": []
@@ -1261,7 +1261,7 @@
         "source_url": "https://www.eia.gov/outlooks/steo/",
         "as_of": "2026-11-12",
         "fetched_at": "2026-11-12T07:27:19.028322+00:00",
-        "cache_status": "live",
+        "cache_status": "stale",
         "forecast_1m": {
           "value": 92.0,
           "low": 92.0,
@@ -1278,7 +1278,8 @@
         "span_days": 0,
         "method": "EIA Short-Term Energy Outlook monthly projection.",
         "official": true,
-        "credential_mode": "shared_demo"
+        "credential_mode": "shared_demo",
+        "cache_age_days": 0
       }
     ]
   },
@@ -1316,14 +1317,16 @@
     },
     {
       "provider": "EIA STEO",
-      "status": "demo",
+      "status": "stale_cache",
       "series": [
         "oil_prices"
       ],
-      "errors": {},
+      "errors": {
+        "oil_prices": "NETWORK_ERROR"
+      },
       "key_required": true,
       "credential_mode": "shared_demo"
     }
   ],
-  "generated_at": "2026-11-12T07:27:19.028322+00:00"
+  "generated_at": "2026-11-13T06:58:35.795941+00:00"
 }
