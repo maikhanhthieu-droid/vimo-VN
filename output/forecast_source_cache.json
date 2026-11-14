@@ -724,10 +724,10 @@
           },
           {
             "date": "2026-11-13",
-            "value": 1732.87
+            "value": 1734.93
           }
         ],
-        "fetched_at": "2026-11-13T06:58:35.795941+00:00",
+        "fetched_at": "2026-11-14T06:46:47.587407+00:00",
         "cache_status": "live"
       }
     ],
@@ -1259,9 +1259,9 @@
         "provider": "EIA STEO",
         "source_kind": "official_forecast",
         "source_url": "https://www.eia.gov/outlooks/steo/",
-        "as_of": "2026-11-12",
-        "fetched_at": "2026-11-12T07:27:19.028322+00:00",
-        "cache_status": "stale",
+        "as_of": "2026-11-14",
+        "fetched_at": "2026-11-14T06:46:47.587407+00:00",
+        "cache_status": "live",
         "forecast_1m": {
           "value": 92.0,
           "low": 92.0,
@@ -1278,8 +1278,7 @@
         "span_days": 0,
         "method": "EIA Short-Term Energy Outlook monthly projection.",
         "official": true,
-        "credential_mode": "shared_demo",
-        "cache_age_days": 0
+        "credential_mode": "shared_demo"
       }
     ]
   },
@@ -1317,16 +1316,14 @@
     },
     {
       "provider": "EIA STEO",
-      "status": "stale_cache",
+      "status": "demo",
       "series": [
         "oil_prices"
       ],
-      "errors": {
-        "oil_prices": "NETWORK_ERROR"
-      },
+      "errors": {},
       "key_required": true,
       "credential_mode": "shared_demo"
     }
   ],
-  "generated_at": "2026-11-13T06:58:35.795941+00:00"
+  "generated_at": "2026-11-14T06:46:47.587407+00:00"
 }
