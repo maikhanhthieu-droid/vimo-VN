@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.forecasts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-11-14T06:46:47.587407+00:00",
-  "as_of": "2026-11-14",
+  "generated_at": "2026-11-15T06:51:35.379588+00:00",
+  "as_of": "2026-11-15",
   "status": "ok",
   "horizons": [
     "1_month",
@@ -220,33 +220,33 @@
     {
       "id": "fx_market_usd_vnd",
       "current": {
-        "value": 25735.19,
+        "value": 25729.33,
         "unit": "VND/USD",
-        "date": "2026-11-14",
+        "date": "2026-11-15",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "forecast_1m": {
-        "value": 26106.0,
-        "low": 25591.0,
-        "high": 26621.0,
-        "as_of": "2026-12-14",
+        "value": 26334.0,
+        "low": 25820.0,
+        "high": 26849.0,
+        "as_of": "2026-12-15",
         "probability_bands": [
           {
-            "low": 25591.0,
-            "high": 25934.0,
+            "low": 25820.0,
+            "high": 26163.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25934.0,
-            "high": 26278.0,
+            "low": 26163.0,
+            "high": 26506.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26278.0,
-            "high": 26621.0,
+            "low": 26506.0,
+            "high": 26849.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -257,26 +257,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 26514.0,
-        "low": 25690.0,
-        "high": 27338.0,
-        "as_of": "2027-02-14",
+        "value": 27000.0,
+        "low": 26176.0,
+        "high": 27823.0,
+        "as_of": "2027-02-15",
         "probability_bands": [
           {
-            "low": 25690.0,
-            "high": 26239.0,
+            "low": 26176.0,
+            "high": 26725.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 26239.0,
-            "high": 26789.0,
+            "low": 26725.0,
+            "high": 27274.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26789.0,
-            "high": 27338.0,
+            "low": 27274.0,
+            "high": 27823.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -296,18 +296,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-11-14",
+          "as_of": "2026-11-15",
           "forecast_1m": {
-            "value": 26106.0,
-            "low": 25591.0,
-            "high": 26621.0,
-            "as_of": "2026-12-14"
+            "value": 26334.0,
+            "low": 25820.0,
+            "high": 26849.0,
+            "as_of": "2026-12-15"
           },
           "forecast_3m": {
-            "value": 26514.0,
-            "low": 25690.0,
-            "high": 27338.0,
-            "as_of": "2027-02-14"
+            "value": 27000.0,
+            "low": 26176.0,
+            "high": 27823.0,
+            "as_of": "2027-02-15"
           },
           "observations": 6,
           "span_days": 5,
@@ -400,7 +400,7 @@
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
           "as_of": "2026-11-13",
-          "fetched_at": "2026-11-14T06:46:47.587407+00:00",
+          "fetched_at": "2026-11-15T06:51:35.379588+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
@@ -612,7 +612,7 @@
           "as_of": "2026-11-09",
           "fetched_at": "2026-11-09T06:55:24.446833+00:00",
           "cache_status": "stale",
-          "cache_age_days": 4,
+          "cache_age_days": 5,
           "forecast_1m": {
             "value": 3866.0,
             "low": 3691.0,
@@ -930,8 +930,8 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-11-14",
-          "fetched_at": "2026-11-14T06:46:47.587407+00:00",
+          "as_of": "2026-11-15",
+          "fetched_at": "2026-11-15T06:51:35.379588+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 92.0,

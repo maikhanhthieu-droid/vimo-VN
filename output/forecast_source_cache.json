@@ -727,7 +727,7 @@
             "value": 1734.93
           }
         ],
-        "fetched_at": "2026-11-14T06:46:47.587407+00:00",
+        "fetched_at": "2026-11-15T06:51:35.379588+00:00",
         "cache_status": "live"
       }
     ],
@@ -1248,7 +1248,7 @@
         ],
         "fetched_at": "2026-11-09T06:55:24.446833+00:00",
         "cache_status": "stale",
-        "cache_age_days": 4
+        "cache_age_days": 5
       }
     ],
     "us_10y_yield": []
@@ -1259,8 +1259,8 @@
         "provider": "EIA STEO",
         "source_kind": "official_forecast",
         "source_url": "https://www.eia.gov/outlooks/steo/",
-        "as_of": "2026-11-14",
-        "fetched_at": "2026-11-14T06:46:47.587407+00:00",
+        "as_of": "2026-11-15",
+        "fetched_at": "2026-11-15T06:51:35.379588+00:00",
         "cache_status": "live",
         "forecast_1m": {
           "value": 92.0,
@@ -1325,5 +1325,5 @@
       "credential_mode": "shared_demo"
     }
   ],
-  "generated_at": "2026-11-14T06:46:47.587407+00:00"
+  "generated_at": "2026-11-15T06:51:35.379588+00:00"
 }
