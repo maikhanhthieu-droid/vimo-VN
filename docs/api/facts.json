@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-11-20T07:31:35.247151+00:00",
+  "generated_at": "2026-11-21T07:27:21.458400+00:00",
   "as_of": "2026-11-20",
   "facts": [
     {
@@ -38,17 +38,6 @@
       "status": "ok"
     },
     {
-      "id": "stock_market",
-      "value": 1685.16,
-      "unit": "điểm",
-      "definition": "Chỉ số VN-Index.",
-      "as_of": "2026-11-20",
-      "source": "Vietcap",
-      "source_url": "https://trading.vietcap.com.vn/",
-      "source_quality": "AUTO",
-      "status": "ok"
-    },
-    {
       "id": "govt_bond_yield",
       "value": 4.46,
       "unit": "%",
@@ -61,7 +50,7 @@
     },
     {
       "id": "gold_world",
-      "value": 3553.3,
+      "value": 3515.3999,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-11-20",
@@ -78,7 +67,7 @@
       "as_of": "2026-09-28",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -105,7 +94,7 @@
     },
     {
       "id": "dxy",
-      "value": 103.75,
+      "value": 103.81,
       "unit": "điểm",
       "definition": "US Dollar Index.",
       "as_of": "2026-11-20",
@@ -160,7 +149,7 @@
     },
     {
       "id": "oil_prices",
-      "value": 83.02,
+      "value": 83.98,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
       "as_of": "2026-11-20",
@@ -182,10 +171,10 @@
     },
     {
       "id": "us_10y_yield",
-      "value": 5.052,
+      "value": 4.912,
       "unit": "%",
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
-      "as_of": "2026-11-19",
+      "as_of": "2026-11-20",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
       "source_quality": "AUTO",
@@ -254,7 +243,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -276,7 +265,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -287,7 +276,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -298,7 +287,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -309,7 +298,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -320,7 +309,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -331,7 +320,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -342,7 +331,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -353,7 +342,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -386,7 +375,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
@@ -397,7 +386,7 @@
       "as_of": "2026-09-30",
       "source": "NSO",
       "source_url": "https://www.nso.gov.vn/du-lieu-va-so-lieu-thong-ke/2026/10/thong-cao-bao-chi-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
-      "source_quality": "STALE_CACHE_AUTO_NSO_PARSE",
+      "source_quality": "AUTO_NSO_PARSE",
       "status": "ok"
     },
     {
