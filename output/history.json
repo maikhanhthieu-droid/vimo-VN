@@ -233,17 +233,6 @@
     ],
     "fx_market_usd_vnd": [
       {
-        "date": "2026-08-14",
-        "bucket": "2026-08-14",
-        "value": 26033.66,
-        "unit": "VND/USD",
-        "source": "Open ER API",
-        "source_url": "https://open.er-api.com/",
-        "source_quality": "AUTO",
-        "source_note": null,
-        "forecast_definition_id": "market_vnd_usd"
-      },
-      {
         "date": "2026-08-15",
         "bucket": "2026-08-15",
         "value": 26097.99,
@@ -1331,6 +1320,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-11-22",
+        "bucket": "2026-11-22",
+        "value": 25783.12,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -2283,7 +2283,7 @@
       {
         "date": "2026-11-20",
         "bucket": "2026-11-20",
-        "value": 1685.16,
+        "value": 1688.79,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -5945,7 +5945,7 @@
       {
         "date": "2026-11-20",
         "bucket": "2026-11-20",
-        "value": 83.98,
+        "value": 83.41,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",

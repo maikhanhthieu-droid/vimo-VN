@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-11-21T07:27:21.458400+00:00",
+  "generated_at": "2026-11-22T07:08:57.573458+00:00",
   "as_of": "2026-11-20",
   "facts": [
     {
@@ -28,12 +28,23 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 25729.72,
+      "value": 25783.12,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Fri, 20 Nov 2026 00:02:32 +0000",
+      "as_of": "Sun, 22 Nov 2026 00:02:32 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
+      "source_quality": "AUTO",
+      "status": "ok"
+    },
+    {
+      "id": "stock_market",
+      "value": 1688.79,
+      "unit": "điểm",
+      "definition": "Chỉ số VN-Index.",
+      "as_of": "2026-11-20",
+      "source": "Vietcap",
+      "source_url": "https://trading.vietcap.com.vn/",
       "source_quality": "AUTO",
       "status": "ok"
     },
@@ -149,7 +160,7 @@
     },
     {
       "id": "oil_prices",
-      "value": 83.98,
+      "value": 83.41,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
       "as_of": "2026-11-20",

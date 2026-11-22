@@ -724,12 +724,11 @@
           },
           {
             "date": "2026-11-20",
-            "value": 1685.16
+            "value": 1688.79
           }
         ],
-        "fetched_at": "2026-11-20T07:31:35.247151+00:00",
-        "cache_status": "stale",
-        "cache_age_days": 0
+        "fetched_at": "2026-11-22T07:08:57.573458+00:00",
+        "cache_status": "live"
       }
     ],
     "gold_world": [],
@@ -741,8 +740,8 @@
         "provider": "EIA STEO",
         "source_kind": "official_forecast",
         "source_url": "https://www.eia.gov/outlooks/steo/",
-        "as_of": "2026-11-21",
-        "fetched_at": "2026-11-21T07:27:21.458400+00:00",
+        "as_of": "2026-11-22",
+        "fetched_at": "2026-11-22T07:08:57.573458+00:00",
         "cache_status": "live",
         "forecast_1m": {
           "value": 92.0,
@@ -780,13 +779,11 @@
     },
     {
       "provider": "Vietcap",
-      "status": "stale_cache",
+      "status": "ok",
       "series": [
         "stock_market"
       ],
-      "errors": {
-        "stock_market": "INVALID_RESPONSE"
-      },
+      "errors": {},
       "key_required": false
     },
     {
@@ -807,5 +804,5 @@
       "credential_mode": "shared_demo"
     }
   ],
-  "generated_at": "2026-11-21T07:27:21.458400+00:00"
+  "generated_at": "2026-11-22T07:08:57.573458+00:00"
 }

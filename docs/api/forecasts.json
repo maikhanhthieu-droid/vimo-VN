@@ -1,8 +1,8 @@
 {
   "schema_version": "vimo.forecasts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-11-21T07:27:21.458400+00:00",
-  "as_of": "2026-11-21",
+  "generated_at": "2026-11-22T07:08:57.573458+00:00",
+  "as_of": "2026-11-22",
   "status": "ok",
   "horizons": [
     "1_month",
@@ -220,33 +220,33 @@
     {
       "id": "fx_market_usd_vnd",
       "current": {
-        "value": 25729.72,
+        "value": 25783.12,
         "unit": "VND/USD",
-        "date": "2026-11-21",
+        "date": "2026-11-22",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "forecast_1m": {
-        "value": 25772.0,
-        "low": 25257.0,
-        "high": 26286.0,
-        "as_of": "2026-12-21",
+        "value": 25891.0,
+        "low": 25376.0,
+        "high": 26407.0,
+        "as_of": "2026-12-22",
         "probability_bands": [
           {
-            "low": 25257.0,
-            "high": 25600.0,
+            "low": 25376.0,
+            "high": 25720.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25600.0,
-            "high": 25943.0,
+            "low": 25720.0,
+            "high": 26063.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 25943.0,
-            "high": 26286.0,
+            "low": 26063.0,
+            "high": 26407.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -257,26 +257,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 25818.0,
-        "low": 24994.0,
-        "high": 26641.0,
-        "as_of": "2027-02-21",
+        "value": 26010.0,
+        "low": 25185.0,
+        "high": 26835.0,
+        "as_of": "2027-02-22",
         "probability_bands": [
           {
-            "low": 24994.0,
-            "high": 25543.0,
+            "low": 25185.0,
+            "high": 25735.0,
             "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 25543.0,
-            "high": 26092.0,
+            "low": 25735.0,
+            "high": 26285.0,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 26092.0,
-            "high": 26641.0,
+            "low": 26285.0,
+            "high": 26835.0,
             "probability": 31.3,
             "rank": 3
           }
@@ -296,18 +296,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-11-21",
+          "as_of": "2026-11-22",
           "forecast_1m": {
-            "value": 25772.0,
-            "low": 25257.0,
-            "high": 26286.0,
-            "as_of": "2026-12-21"
+            "value": 25891.0,
+            "low": 25376.0,
+            "high": 26407.0,
+            "as_of": "2026-12-22"
           },
           "forecast_3m": {
-            "value": 25818.0,
-            "low": 24994.0,
-            "high": 26641.0,
-            "as_of": "2027-02-21"
+            "value": 26010.0,
+            "low": 25185.0,
+            "high": 26835.0,
+            "as_of": "2027-02-22"
           },
           "observations": 6,
           "span_days": 5,
@@ -324,19 +324,103 @@
     {
       "id": "stock_market",
       "current": {
-        "value": null,
+        "value": 1688.79,
         "unit": "điểm",
-        "date": "2026-11-21",
-        "source": "Stooq/Yahoo",
-        "source_url": "https://stooq.com/"
+        "date": "2026-11-20",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/"
       },
-      "forecast_1m": null,
-      "forecast_3m": null,
-      "forecast_status": "INSUFFICIENT_SOURCES",
-      "confidence": "WAITING_FOR_DATA",
-      "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
-      "warning": null,
-      "sources": [],
+      "forecast_1m": {
+        "value": 1685.0,
+        "low": 1621.0,
+        "high": 1753.0,
+        "as_of": "2026-12-20",
+        "probability_bands": [
+          {
+            "low": 1621.0,
+            "high": 1665.0,
+            "probability": 30.7,
+            "rank": 2
+          },
+          {
+            "low": 1665.0,
+            "high": 1709.0,
+            "probability": 38.9,
+            "rank": 1
+          },
+          {
+            "low": 1709.0,
+            "high": 1753.0,
+            "probability": 30.4,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_3m": {
+        "value": 1683.0,
+        "low": 1573.0,
+        "high": 1801.0,
+        "as_of": "2027-02-20",
+        "probability_bands": [
+          {
+            "low": 1573.0,
+            "high": 1649.0,
+            "probability": 30.8,
+            "rank": 2
+          },
+          {
+            "low": 1649.0,
+            "high": 1725.0,
+            "probability": 38.8,
+            "rank": 1
+          },
+          {
+            "low": 1725.0,
+            "high": 1801.0,
+            "probability": 30.4,
+            "rank": 3
+          }
+        ],
+        "probability_kind": "heuristic_scenario_weight",
+        "probability_method": "confidence_weighted_triangular_scenario_v1",
+        "probability_total": 100.0,
+        "probability_calibrated": false
+      },
+      "forecast_status": "SINGLE_SOURCE",
+      "confidence": "LOW",
+      "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
+      "warning": "NGHI NGỜ: chỉ có một nguồn API; không phải dự báo đồng thuận.",
+      "sources": [
+        {
+          "provider": "Vietcap",
+          "source_kind": "observed_history",
+          "source_url": "https://trading.vietcap.com.vn/",
+          "as_of": "2026-11-20",
+          "fetched_at": "2026-11-22T07:08:57.573458+00:00",
+          "cache_status": "live",
+          "cache_age_days": 0,
+          "forecast_1m": {
+            "value": 1685.0,
+            "low": 1621.0,
+            "high": 1753.0,
+            "as_of": "2026-12-20"
+          },
+          "forecast_3m": {
+            "value": 1683.0,
+            "low": 1573.0,
+            "high": 1801.0,
+            "as_of": "2027-02-20"
+          },
+          "observations": 180,
+          "span_days": 259,
+          "method": "Damped robust median-slope projection from dated API history.",
+          "official": false
+        }
+      ],
       "gemini_assisted": false,
       "gemini_context": null,
       "gemini_sources": [],
@@ -765,7 +849,7 @@
     {
       "id": "oil_prices",
       "current": {
-        "value": 83.98,
+        "value": 83.41,
         "unit": "USD/thùng",
         "date": "2026-11-20",
         "source": "Yahoo Finance",
@@ -844,8 +928,8 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-11-21",
-          "fetched_at": "2026-11-21T07:27:21.458400+00:00",
+          "as_of": "2026-11-22",
+          "fetched_at": "2026-11-22T07:08:57.573458+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 92.0,
@@ -2542,13 +2626,11 @@
     },
     {
       "provider": "Vietcap",
-      "status": "stale_cache",
+      "status": "ok",
       "series": [
         "stock_market"
       ],
-      "errors": {
-        "stock_market": "INVALID_RESPONSE"
-      },
+      "errors": {},
       "key_required": false
     },
     {
