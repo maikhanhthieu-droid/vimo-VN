@@ -1,8 +1,8 @@
 {
   "project": "vimo-VN",
   "status": "ok",
-  "generated_at_utc": "2026-11-25T08:54:01.517748+00:00",
-  "generated_at_bkk": "2026-11-25T15:54:01.517748+07:00",
+  "generated_at_utc": "2026-11-26T08:39:23.283659+00:00",
+  "generated_at_bkk": "2026-11-26T15:39:23.283659+07:00",
   "coverage": {
     "available_cards": 41,
     "total_cards": 41,
@@ -19,7 +19,7 @@
   "gemini_analysis": {
     "status": "waiting_for_api_key",
     "model": "gemini-3.6-flash",
-    "generated_at": "2026-11-25T08:54:01.517748+00:00",
+    "generated_at": "2026-11-26T08:39:23.283659+00:00",
     "event_count": 21,
     "forecast_scenario_count": 0,
     "api_url": "api/gemini_analysis.json"
@@ -29,50 +29,50 @@
       "key": "interbank_rate",
       "name_vi": "Lãi suất liên ngân hàng qua đêm",
       "current": {
-        "value": 5.54,
+        "value": 5.26,
         "unit": "%",
-        "date": "2026-11-13",
+        "date": "2026-11-20",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf"
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf"
       },
       "previous": {
-        "date": "2026-10-30",
-        "bucket": "2026-W44",
-        "value": 5.79,
+        "date": "2026-11-13",
+        "bucket": "2026-W46",
+        "value": 5.54,
         "unit": "%",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/26102026%20-%2030102026%20BAO%20CAO%20TUAN%20TTTP1.pdf",
-        "source_quality": "STALE_CACHE_AUTO_VBMA_PDF",
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": "interbank_overnight_rate"
       },
       "change": {
-        "absolute": -0.25,
-        "percent": -4.3178,
+        "absolute": -0.28,
+        "percent": -5.0542,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 6.37,
-        "low": 6.26,
-        "high": 6.48,
-        "as_of": "2026-12-13",
+        "value": 5.52,
+        "low": 5.42,
+        "high": 5.63,
+        "as_of": "2026-12-20",
         "probability_bands": [
           {
-            "low": 6.26,
-            "high": 6.33,
-            "probability": 29.7,
+            "low": 5.42,
+            "high": 5.49,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 6.33,
-            "high": 6.41,
-            "probability": 40.6,
+            "low": 5.49,
+            "high": 5.56,
+            "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 6.41,
-            "high": 6.48,
-            "probability": 29.7,
+            "low": 5.56,
+            "high": 5.63,
+            "probability": 31.1,
             "rank": 3
           }
         ],
@@ -82,27 +82,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 7.2,
-        "low": 7.02,
-        "high": 7.38,
-        "as_of": "2027-02-13",
+        "value": 5.81,
+        "low": 5.65,
+        "high": 5.98,
+        "as_of": "2027-02-20",
         "probability_bands": [
           {
-            "low": 7.02,
-            "high": 7.14,
-            "probability": 31.3,
+            "low": 5.65,
+            "high": 5.76,
+            "probability": 31.4,
             "rank": 2
           },
           {
-            "low": 7.14,
-            "high": 7.26,
+            "low": 5.76,
+            "high": 5.87,
             "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 7.26,
-            "high": 7.38,
-            "probability": 31.3,
+            "low": 5.87,
+            "high": 5.98,
+            "probability": 31.2,
             "rank": 3
           }
         ],
@@ -117,19 +117,19 @@
           "provider": "Mô hình ViMO",
           "input_provider": "VBMA",
           "source_kind": "local_observed_history",
-          "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
-          "as_of": "2026-11-13",
+          "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+          "as_of": "2026-11-20",
           "forecast_1m": {
-            "value": 6.37,
-            "low": 6.26,
-            "high": 6.48,
-            "as_of": "2026-12-13"
+            "value": 5.52,
+            "low": 5.42,
+            "high": 5.63,
+            "as_of": "2026-12-20"
           },
           "forecast_3m": {
-            "value": 7.2,
-            "low": 7.02,
-            "high": 7.38,
-            "as_of": "2027-02-13"
+            "value": 5.81,
+            "low": 5.65,
+            "high": 5.98,
+            "as_of": "2027-02-20"
           },
           "observations": 6,
           "span_days": 42,
@@ -141,7 +141,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 0.25 % so với kỳ 2026-10-30. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 0.28 % so với kỳ 2026-11-13. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -276,14 +276,14 @@
       "current": {
         "value": 25765.94,
         "unit": "VND/USD",
-        "date": "2026-11-25",
+        "date": "2026-11-26",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/"
       },
       "previous": {
-        "date": "2026-11-24",
-        "bucket": "2026-11-24",
-        "value": 25800.61,
+        "date": "2026-11-25",
+        "bucket": "2026-11-25",
+        "value": 25765.94,
         "unit": "VND/USD",
         "source": "Open ER API",
         "source_url": "https://open.er-api.com/",
@@ -292,15 +292,15 @@
         "forecast_definition_id": "market_vnd_usd"
       },
       "change": {
-        "absolute": -34.67,
-        "percent": -0.1344,
-        "direction": "down"
+        "absolute": 0.0,
+        "percent": 0.0,
+        "direction": "flat"
       },
       "forecast_1m": {
         "value": 25875.0,
         "low": 25359.0,
         "high": 26390.0,
-        "as_of": "2026-12-25",
+        "as_of": "2026-12-26",
         "probability_bands": [
           {
             "low": 25359.0,
@@ -330,7 +330,7 @@
         "value": 25994.0,
         "low": 25170.0,
         "high": 26819.0,
-        "as_of": "2027-02-25",
+        "as_of": "2027-02-26",
         "probability_bands": [
           {
             "low": 25170.0,
@@ -363,18 +363,18 @@
           "input_provider": "Open ER API",
           "source_kind": "local_observed_history",
           "source_url": "https://open.er-api.com/",
-          "as_of": "2026-11-25",
+          "as_of": "2026-11-26",
           "forecast_1m": {
             "value": 25875.0,
             "low": 25359.0,
             "high": 26390.0,
-            "as_of": "2026-12-25"
+            "as_of": "2026-12-26"
           },
           "forecast_3m": {
             "value": 25994.0,
             "low": 25170.0,
             "high": 26819.0,
-            "as_of": "2027-02-25"
+            "as_of": "2027-02-26"
           },
           "observations": 6,
           "span_days": 5,
@@ -386,7 +386,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 34.67 VND/USD so với kỳ 2026-11-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị không đổi so với kỳ 2026-11-25. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -397,16 +397,16 @@
       "key": "stock_market",
       "name_vi": "VN-Index",
       "current": {
-        "value": 1687.45,
+        "value": 1629.68,
         "unit": "điểm",
-        "date": "2026-11-25",
+        "date": "2026-11-26",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/"
       },
       "previous": {
-        "date": "2026-11-23",
-        "bucket": "2026-11-23",
-        "value": 1697.14,
+        "date": "2026-11-25",
+        "bucket": "2026-11-25",
+        "value": 1687.45,
         "unit": "điểm",
         "source": "Vietcap",
         "source_url": "https://trading.vietcap.com.vn/",
@@ -415,32 +415,32 @@
         "forecast_definition_id": "vnindex_close"
       },
       "change": {
-        "absolute": -9.69,
-        "percent": -0.571,
+        "absolute": -57.77,
+        "percent": -3.4235,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 1684.0,
-        "low": 1620.0,
-        "high": 1751.0,
-        "as_of": "2026-12-25",
+        "value": 1626.0,
+        "low": 1564.0,
+        "high": 1691.0,
+        "as_of": "2026-12-26",
         "probability_bands": [
           {
-            "low": 1620.0,
-            "high": 1664.0,
-            "probability": 31.0,
+            "low": 1564.0,
+            "high": 1606.0,
+            "probability": 30.4,
             "rank": 2
           },
           {
-            "low": 1664.0,
-            "high": 1707.0,
-            "probability": 38.3,
+            "low": 1606.0,
+            "high": 1649.0,
+            "probability": 39.5,
             "rank": 1
           },
           {
-            "low": 1707.0,
-            "high": 1751.0,
-            "probability": 30.7,
+            "low": 1649.0,
+            "high": 1691.0,
+            "probability": 30.1,
             "rank": 3
           }
         ],
@@ -450,26 +450,26 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 1681.0,
-        "low": 1572.0,
-        "high": 1798.0,
-        "as_of": "2027-02-25",
+        "value": 1623.0,
+        "low": 1517.0,
+        "high": 1737.0,
+        "as_of": "2027-02-26",
         "probability_bands": [
           {
-            "low": 1572.0,
-            "high": 1647.0,
+            "low": 1517.0,
+            "high": 1590.0,
             "probability": 30.6,
             "rank": 2
           },
           {
-            "low": 1647.0,
-            "high": 1723.0,
+            "low": 1590.0,
+            "high": 1664.0,
             "probability": 39.2,
             "rank": 1
           },
           {
-            "low": 1723.0,
-            "high": 1798.0,
+            "low": 1664.0,
+            "high": 1737.0,
             "probability": 30.2,
             "rank": 3
           }
@@ -485,21 +485,21 @@
           "provider": "Vietcap",
           "source_kind": "observed_history",
           "source_url": "https://trading.vietcap.com.vn/",
-          "as_of": "2026-11-25",
-          "fetched_at": "2026-11-25T08:54:01.517748+00:00",
+          "as_of": "2026-11-26",
+          "fetched_at": "2026-11-26T08:39:23.283659+00:00",
           "cache_status": "live",
           "cache_age_days": 0,
           "forecast_1m": {
-            "value": 1684.0,
-            "low": 1620.0,
-            "high": 1751.0,
-            "as_of": "2026-12-25"
+            "value": 1626.0,
+            "low": 1564.0,
+            "high": 1691.0,
+            "as_of": "2026-12-26"
           },
           "forecast_3m": {
-            "value": 1681.0,
-            "low": 1572.0,
-            "high": 1798.0,
-            "as_of": "2027-02-25"
+            "value": 1623.0,
+            "low": 1517.0,
+            "high": 1737.0,
+            "as_of": "2027-02-26"
           },
           "observations": 180,
           "span_days": 260,
@@ -511,7 +511,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 9.69 điểm so với kỳ 2026-11-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 57.77 điểm so với kỳ 2026-11-25. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
@@ -524,31 +524,31 @@
       "current": {
         "value": 4.46,
         "unit": "%",
-        "date": "2026-11-13",
+        "date": "2026-11-20",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf"
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf"
       },
       "previous": {
-        "date": "2026-11-06",
-        "bucket": "2026-W45",
-        "value": 4.47,
+        "date": "2026-11-13",
+        "bucket": "2026-W46",
+        "value": 4.46,
         "unit": "%",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/02112026%20-%2006112026%20BAO%20CAO%20TUAN%20TTTP%20-%20Copy.pdf",
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": "vn_government_bond_10y_yield"
       },
       "change": {
-        "absolute": -0.01,
-        "percent": -0.2237,
-        "direction": "down"
+        "absolute": 0.0,
+        "percent": 0.0,
+        "direction": "flat"
       },
       "forecast_1m": {
         "value": 4.46,
         "low": 4.37,
         "high": 4.55,
-        "as_of": "2026-12-13",
+        "as_of": "2026-12-20",
         "probability_bands": [
           {
             "low": 4.37,
@@ -578,7 +578,7 @@
         "value": 4.46,
         "low": 4.32,
         "high": 4.6,
-        "as_of": "2027-02-13",
+        "as_of": "2027-02-20",
         "probability_bands": [
           {
             "low": 4.32,
@@ -610,19 +610,19 @@
           "provider": "Mô hình ViMO",
           "input_provider": "VBMA",
           "source_kind": "local_observed_history",
-          "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
-          "as_of": "2026-11-13",
+          "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+          "as_of": "2026-11-20",
           "forecast_1m": {
             "value": 4.46,
             "low": 4.37,
             "high": 4.55,
-            "as_of": "2026-12-13"
+            "as_of": "2026-12-20"
           },
           "forecast_3m": {
             "value": 4.46,
             "low": 4.32,
             "high": 4.6,
-            "as_of": "2027-02-13"
+            "as_of": "2027-02-20"
           },
           "observations": 6,
           "span_days": 35,
@@ -634,7 +634,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 0.01 % so với kỳ 2026-11-06. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị không đổi so với kỳ 2026-11-13. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -645,16 +645,16 @@
       "key": "gold_world",
       "name_vi": "Vàng thế giới",
       "current": {
-        "value": 3563.5,
+        "value": 3593.3,
         "unit": "USD/oz",
-        "date": "2026-11-25",
+        "date": "2026-11-26",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF"
       },
       "previous": {
-        "date": "2026-11-24",
-        "bucket": "2026-11-24",
-        "value": 3620.8999,
+        "date": "2026-11-25",
+        "bucket": "2026-11-25",
+        "value": 3563.5,
         "unit": "USD/oz",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/GC%3DF",
@@ -663,32 +663,32 @@
         "forecast_definition_id": "world_gold_usd_oz"
       },
       "change": {
-        "absolute": -57.3999,
-        "percent": -1.5852,
-        "direction": "down"
+        "absolute": 29.8,
+        "percent": 0.8363,
+        "direction": "up"
       },
       "forecast_1m": {
-        "value": 3116.0,
-        "low": 3045.0,
-        "high": 3187.0,
-        "as_of": "2026-12-25",
+        "value": 3285.0,
+        "low": 3213.0,
+        "high": 3357.0,
+        "as_of": "2026-12-26",
         "probability_bands": [
           {
-            "low": 3045.0,
-            "high": 3092.0,
-            "probability": 31.1,
+            "low": 3213.0,
+            "high": 3261.0,
+            "probability": 31.3,
             "rank": 2
           },
           {
-            "low": 3092.0,
-            "high": 3140.0,
-            "probability": 37.8,
+            "low": 3261.0,
+            "high": 3309.0,
+            "probability": 37.4,
             "rank": 1
           },
           {
-            "low": 3140.0,
-            "high": 3187.0,
-            "probability": 31.1,
+            "low": 3309.0,
+            "high": 3357.0,
+            "probability": 31.3,
             "rank": 3
           }
         ],
@@ -698,27 +698,27 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 2623.0,
-        "low": 2509.0,
-        "high": 2737.0,
-        "as_of": "2027-02-25",
+        "value": 2946.0,
+        "low": 2831.0,
+        "high": 3061.0,
+        "as_of": "2027-02-26",
         "probability_bands": [
           {
-            "low": 2509.0,
-            "high": 2585.0,
-            "probability": 31.3,
+            "low": 2831.0,
+            "high": 2908.0,
+            "probability": 31.5,
             "rank": 2
           },
           {
-            "low": 2585.0,
-            "high": 2661.0,
-            "probability": 37.4,
+            "low": 2908.0,
+            "high": 2984.0,
+            "probability": 37.0,
             "rank": 1
           },
           {
-            "low": 2661.0,
-            "high": 2737.0,
-            "probability": 31.3,
+            "low": 2984.0,
+            "high": 3061.0,
+            "probability": 31.5,
             "rank": 3
           }
         ],
@@ -734,18 +734,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/GC%3DF",
-          "as_of": "2026-11-25",
+          "as_of": "2026-11-26",
           "forecast_1m": {
-            "value": 3116.0,
-            "low": 3045.0,
-            "high": 3187.0,
-            "as_of": "2026-12-25"
+            "value": 3285.0,
+            "low": 3213.0,
+            "high": 3357.0,
+            "as_of": "2026-12-26"
           },
           "forecast_3m": {
-            "value": 2623.0,
-            "low": 2509.0,
-            "high": 2737.0,
-            "as_of": "2027-02-25"
+            "value": 2946.0,
+            "low": 2831.0,
+            "high": 3061.0,
+            "as_of": "2027-02-26"
           },
           "observations": 6,
           "span_days": 7,
@@ -757,7 +757,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 57.3999 USD/oz so với kỳ 2026-11-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 29.8 USD/oz so với kỳ 2026-11-25. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -948,16 +948,16 @@
       "key": "dxy",
       "name_vi": "DXY",
       "current": {
-        "value": 104.013,
+        "value": 103.753,
         "unit": "điểm",
-        "date": "2026-11-25",
+        "date": "2026-11-26",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB"
       },
       "previous": {
-        "date": "2026-11-24",
-        "bucket": "2026-11-24",
-        "value": 104.15,
+        "date": "2026-11-25",
+        "bucket": "2026-11-25",
+        "value": 104.013,
         "unit": "điểm",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
@@ -966,33 +966,33 @@
         "forecast_definition_id": "dxy_index"
       },
       "change": {
-        "absolute": -0.137,
-        "percent": -0.1315,
+        "absolute": -0.26,
+        "percent": -0.25,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 104.7,
-        "low": 102.6,
-        "high": 106.8,
-        "as_of": "2026-12-25",
+        "value": 103.7,
+        "low": 101.6,
+        "high": 105.7,
+        "as_of": "2026-12-26",
         "probability_bands": [
           {
-            "low": 102.6,
-            "high": 104.0,
-            "probability": 31.3,
-            "rank": 2
+            "low": 101.6,
+            "high": 103.0,
+            "probability": 32.1,
+            "rank": 3
           },
           {
-            "low": 104.0,
-            "high": 105.4,
-            "probability": 37.4,
+            "low": 103.0,
+            "high": 104.3,
+            "probability": 35.6,
             "rank": 1
           },
           {
-            "low": 105.4,
-            "high": 106.8,
-            "probability": 31.3,
-            "rank": 3
+            "low": 104.3,
+            "high": 105.7,
+            "probability": 32.3,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1001,28 +1001,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 105.4,
-        "low": 102.1,
-        "high": 108.7,
-        "as_of": "2027-02-25",
+        "value": 103.6,
+        "low": 100.2,
+        "high": 106.9,
+        "as_of": "2027-02-26",
         "probability_bands": [
           {
-            "low": 102.1,
-            "high": 104.3,
-            "probability": 31.3,
-            "rank": 2
+            "low": 100.2,
+            "high": 102.4,
+            "probability": 30.7,
+            "rank": 3
           },
           {
-            "low": 104.3,
-            "high": 106.5,
-            "probability": 37.4,
+            "low": 102.4,
+            "high": 104.7,
+            "probability": 38.5,
             "rank": 1
           },
           {
-            "low": 106.5,
-            "high": 108.7,
-            "probability": 31.3,
-            "rank": 3
+            "low": 104.7,
+            "high": 106.9,
+            "probability": 30.8,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1037,18 +1037,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
-          "as_of": "2026-11-25",
+          "as_of": "2026-11-26",
           "forecast_1m": {
-            "value": 104.7,
-            "low": 102.6,
-            "high": 106.8,
-            "as_of": "2026-12-25"
+            "value": 103.7,
+            "low": 101.6,
+            "high": 105.7,
+            "as_of": "2026-12-26"
           },
           "forecast_3m": {
-            "value": 105.4,
-            "low": 102.1,
-            "high": 108.7,
-            "as_of": "2027-02-25"
+            "value": 103.6,
+            "low": 100.2,
+            "high": 106.9,
+            "as_of": "2027-02-26"
           },
           "observations": 6,
           "span_days": 7,
@@ -1060,7 +1060,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 0.137 điểm so với kỳ 2026-11-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 0.26 điểm so với kỳ 2026-11-25. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -1071,11 +1071,11 @@
       "key": "corporate_bond_issuance",
       "name_vi": "Phát hành TPDN",
       "current": {
-        "value": 24.15,
+        "value": 42.394,
         "unit": "nghìn tỷ VND",
-        "date": "2026-11-13",
+        "date": "2026-11-20",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf"
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf"
       },
       "previous": {
         "date": "2026-10-31",
@@ -1089,8 +1089,8 @@
         "forecast_definition_id": null
       },
       "change": {
-        "absolute": 4.019,
-        "percent": 19.9642,
+        "absolute": 22.263,
+        "percent": 110.5906,
         "direction": "up"
       },
       "forecast_1m": null,
@@ -1101,7 +1101,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 4.019 nghìn tỷ VND so với kỳ 2026-10-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 22.263 nghìn tỷ VND so với kỳ 2026-10-31. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
       "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
@@ -1112,26 +1112,26 @@
       "key": "govt_bond_issuance",
       "name_vi": "Phát hành TPCP",
       "current": {
-        "value": 382.393,
+        "value": 384.461,
         "unit": "nghìn tỷ VND",
-        "date": "2026-11-13",
+        "date": "2026-11-20",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf"
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf"
       },
       "previous": {
-        "date": "2026-11-06",
-        "bucket": "2026-W45",
-        "value": 376.393,
+        "date": "2026-11-13",
+        "bucket": "2026-W46",
+        "value": 382.393,
         "unit": "nghìn tỷ VND",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/02112026%20-%2006112026%20BAO%20CAO%20TUAN%20TTTP%20-%20Copy.pdf",
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": null
       },
       "change": {
-        "absolute": 6.0,
-        "percent": 1.5941,
+        "absolute": 2.068,
+        "percent": 0.5408,
         "direction": "up"
       },
       "forecast_1m": null,
@@ -1142,7 +1142,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 6 nghìn tỷ VND so với kỳ 2026-11-06. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 2.068 nghìn tỷ VND so với kỳ 2026-11-13. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "WAITING_FOR_DATA",
       "method": "Không ngoại suy: chuỗi chưa đủ kỳ cùng định nghĩa hoặc không phải chỉ tiêu thời điểm.",
@@ -1216,16 +1216,16 @@
       "key": "oil_prices",
       "name_vi": "Giá dầu WTI",
       "current": {
-        "value": 80.81,
+        "value": 83.93,
         "unit": "USD/thùng",
-        "date": "2026-11-25",
+        "date": "2026-11-26",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF"
       },
       "previous": {
-        "date": "2026-11-24",
-        "bucket": "2026-11-24",
-        "value": 80.03,
+        "date": "2026-11-25",
+        "bucket": "2026-11-25",
+        "value": 80.81,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -1234,8 +1234,8 @@
         "forecast_definition_id": "wti_usd_barrel"
       },
       "change": {
-        "absolute": 0.78,
-        "percent": 0.9746,
+        "absolute": 3.12,
+        "percent": 3.8609,
         "direction": "up"
       },
       "forecast_1m": {
@@ -1308,8 +1308,8 @@
           "provider": "EIA STEO",
           "source_kind": "official_forecast",
           "source_url": "https://www.eia.gov/outlooks/steo/",
-          "as_of": "2026-11-25",
-          "fetched_at": "2026-11-25T08:54:01.517748+00:00",
+          "as_of": "2026-11-26",
+          "fetched_at": "2026-11-26T08:39:23.283659+00:00",
           "cache_status": "live",
           "forecast_1m": {
             "value": 92.0,
@@ -1334,7 +1334,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị tăng 0.78 USD/thùng so với kỳ 2026-11-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị tăng 3.12 USD/thùng so với kỳ 2026-11-25. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Ngoại suy giảm chấn từ một nguồn API có lịch sử đủ dài; chưa có nguồn độc lập để xác nhận.",
@@ -1372,16 +1372,16 @@
       "key": "us_10y_yield",
       "name_vi": "US 10Y yield",
       "current": {
-        "value": 4.904,
+        "value": 4.848,
         "unit": "%",
-        "date": "2026-11-24",
+        "date": "2026-11-25",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX"
       },
       "previous": {
-        "date": "2026-11-23",
-        "bucket": "2026-11-23",
-        "value": 4.918,
+        "date": "2026-11-24",
+        "bucket": "2026-11-24",
+        "value": 4.904,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
@@ -1390,31 +1390,31 @@
         "forecast_definition_id": "us_treasury_10y_yield"
       },
       "change": {
-        "absolute": -0.014,
-        "percent": -0.2847,
+        "absolute": -0.056,
+        "percent": -1.1419,
         "direction": "down"
       },
       "forecast_1m": {
-        "value": 4.48,
-        "low": 4.38,
-        "high": 4.58,
-        "as_of": "2026-12-24",
+        "value": 4.38,
+        "low": 4.28,
+        "high": 4.48,
+        "as_of": "2026-12-25",
         "probability_bands": [
           {
-            "low": 4.38,
-            "high": 4.45,
+            "low": 4.28,
+            "high": 4.35,
             "probability": 33.1,
             "rank": 2
           },
           {
-            "low": 4.45,
-            "high": 4.51,
+            "low": 4.35,
+            "high": 4.41,
             "probability": 33.8,
             "rank": 1
           },
           {
-            "low": 4.51,
-            "high": 4.58,
+            "low": 4.41,
+            "high": 4.48,
             "probability": 33.1,
             "rank": 3
           }
@@ -1425,28 +1425,28 @@
         "probability_calibrated": false
       },
       "forecast_3m": {
-        "value": 4.01,
-        "low": 3.85,
-        "high": 4.17,
-        "as_of": "2027-02-24",
+        "value": 3.87,
+        "low": 3.71,
+        "high": 4.02,
+        "as_of": "2027-02-25",
         "probability_bands": [
           {
-            "low": 3.85,
-            "high": 3.96,
-            "probability": 32.4,
-            "rank": 2
+            "low": 3.71,
+            "high": 3.81,
+            "probability": 30.1,
+            "rank": 3
           },
           {
-            "low": 3.96,
-            "high": 4.06,
-            "probability": 35.2,
+            "low": 3.81,
+            "high": 3.92,
+            "probability": 39.6,
             "rank": 1
           },
           {
-            "low": 4.06,
-            "high": 4.17,
-            "probability": 32.4,
-            "rank": 3
+            "low": 3.92,
+            "high": 4.02,
+            "probability": 30.3,
+            "rank": 2
           }
         ],
         "probability_kind": "heuristic_scenario_weight",
@@ -1461,18 +1461,18 @@
           "input_provider": "Yahoo Finance",
           "source_kind": "local_observed_history",
           "source_url": "https://finance.yahoo.com/quote/%5ETNX",
-          "as_of": "2026-11-24",
+          "as_of": "2026-11-25",
           "forecast_1m": {
-            "value": 4.48,
-            "low": 4.38,
-            "high": 4.58,
-            "as_of": "2026-12-24"
+            "value": 4.38,
+            "low": 4.28,
+            "high": 4.48,
+            "as_of": "2026-12-25"
           },
           "forecast_3m": {
-            "value": 4.01,
-            "low": 3.85,
-            "high": 4.17,
-            "as_of": "2027-02-24"
+            "value": 3.87,
+            "low": 3.71,
+            "high": 4.02,
+            "as_of": "2027-02-25"
           },
           "observations": 6,
           "span_days": 7,
@@ -1484,7 +1484,7 @@
       "gemini_assisted": false,
       "gemini_input_id": null,
       "gemini_grounding_status": null,
-      "reason_short": "Giá trị giảm 0.014 % so với kỳ 2026-11-23. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
+      "reason_short": "Giá trị giảm 0.056 % so với kỳ 2026-11-24. Đây là biến động quan sát được; nguyên nhân cụ thể chờ Gemini xác minh nguồn.",
       "ai_context_unverified": null,
       "confidence": "LOW",
       "method": "Kịch bản xu hướng giảm chấn từ 6 kỳ quan sát cùng đơn vị; không phải dự báo nguồn hay số liệu chính thức.",
@@ -3663,7 +3663,7 @@
       "Tín dụng tăng thấp 10.89% YTD",
       "CPI 5.08% YoY tạo áp lực lãi suất",
       "Cán cân thương mại âm 19.42 tỷ USD",
-      "Lợi suất Mỹ 10Y 4.904% làm tăng chi phí vốn toàn cầu"
+      "Lợi suất Mỹ 10Y 4.848% làm tăng chi phí vốn toàn cầu"
     ],
     "neutral_drivers": [
       "PMI 51.8 chỉ nhỉnh hơn ngưỡng 50, cần thêm kỳ xác nhận"
@@ -3683,8 +3683,8 @@
       "role": "PMI sản xuất do S&P Global công bố",
       "release_lag": "M+1 ngày 1-3",
       "available": true,
-      "checked_at": "2026-11-25T08:54:27.785734+00:00",
-      "bytes": 96128
+      "checked_at": "2026-11-26T08:39:40.983633+00:00",
+      "bytes": 95381
     },
     "nso": {
       "name": "NSO/GSO Việt Nam",
@@ -3692,8 +3692,8 @@
       "role": "CPI, IIP, FDI, bán lẻ, doanh nghiệp, du lịch",
       "release_lag": "M+1 ngày 3-7",
       "available": true,
-      "checked_at": "2026-11-25T08:54:31.706321+00:00",
-      "bytes": 118543
+      "checked_at": "2026-11-26T08:39:43.407831+00:00",
+      "bytes": 117858
     },
     "customs": {
       "name": "Tổng cục Hải quan",
@@ -3701,7 +3701,7 @@
       "role": "Xuất nhập khẩu chính thức",
       "release_lag": "M+1 ngày 10-15",
       "available": false,
-      "checked_at": "2026-11-25T08:55:29.689622+00:00",
+      "checked_at": "2026-11-26T08:40:38.709920+00:00",
       "error": "<urlopen error timed out>"
     },
     "vbma": {
@@ -3710,8 +3710,8 @@
       "role": "Liên ngân hàng, TPCP, TPDN tuần",
       "release_lag": "hàng tuần",
       "available": true,
-      "checked_at": "2026-11-25T08:55:31.251511+00:00",
-      "bytes": 40066
+      "checked_at": "2026-11-26T08:40:40.660922+00:00",
+      "bytes": 40065
     },
     "vnba": {
       "name": "VNBA",
@@ -3719,8 +3719,8 @@
       "role": "Bản tin tiền tệ tài chính tháng",
       "release_lag": "M+1 ngày 11-13",
       "available": true,
-      "checked_at": "2026-11-25T08:55:33.487079+00:00",
-      "bytes": 225413
+      "checked_at": "2026-11-26T08:40:43.007127+00:00",
+      "bytes": 209323
     },
     "market": {
       "name": "Public market APIs / Vietcap",
@@ -3728,7 +3728,7 @@
       "role": "VN-Index, tỷ giá, vàng, dầu, DXY, US10Y",
       "release_lag": "daily",
       "available": true,
-      "checked_at": "2026-11-25T08:55:34.692880+00:00",
+      "checked_at": "2026-11-26T08:40:44.278729+00:00",
       "bytes": 9231
     }
   },
@@ -3940,6 +3940,17 @@
           "source_quality": "AUTO_VBMA_PDF",
           "source_note": null,
           "forecast_definition_id": "interbank_overnight_rate"
+        },
+        {
+          "date": "2026-11-20",
+          "bucket": "2026-W47",
+          "value": 5.26,
+          "unit": "%",
+          "source": "VBMA",
+          "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+          "source_quality": "AUTO_VBMA_PDF",
+          "source_note": null,
+          "forecast_definition_id": "interbank_overnight_rate"
         }
       ],
       "fx_central_rate": [
@@ -3966,17 +3977,6 @@
         }
       ],
       "fx_market_usd_vnd": [
-        {
-          "date": "2026-08-18",
-          "bucket": "2026-08-18",
-          "value": 26137.29,
-          "unit": "VND/USD",
-          "source": "Open ER API",
-          "source_url": "https://open.er-api.com/",
-          "source_quality": "AUTO",
-          "source_note": null,
-          "forecast_definition_id": "market_vnd_usd"
-        },
         {
           "date": "2026-08-19",
           "bucket": "2026-08-19",
@@ -5065,6 +5065,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "market_vnd_usd"
+        },
+        {
+          "date": "2026-11-26",
+          "bucket": "2026-11-26",
+          "value": 25765.94,
+          "unit": "VND/USD",
+          "source": "Open ER API",
+          "source_url": "https://open.er-api.com/",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "market_vnd_usd"
         }
       ],
       "stock_market": [
@@ -6046,6 +6057,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "vnindex_close"
+        },
+        {
+          "date": "2026-11-26",
+          "bucket": "2026-11-26",
+          "value": 1629.68,
+          "unit": "điểm",
+          "source": "Vietcap",
+          "source_url": "https://trading.vietcap.com.vn/",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "vnindex_close"
         }
       ],
       "govt_bond_yield": [
@@ -6244,15 +6266,20 @@
           "source_quality": "AUTO_VBMA_PDF",
           "source_note": null,
           "forecast_definition_id": "vn_government_bond_10y_yield"
+        },
+        {
+          "date": "2026-11-20",
+          "bucket": "2026-W47",
+          "value": 4.46,
+          "unit": "%",
+          "source": "VBMA",
+          "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+          "source_quality": "AUTO_VBMA_PDF",
+          "source_note": null,
+          "forecast_definition_id": "vn_government_bond_10y_yield"
         }
       ],
       "gold_world": [
-        {
-          "date": "2026-07-10",
-          "bucket": "2026-07-10",
-          "value": 4107.7998,
-          "unit": "USD/oz"
-        },
         {
           "date": "2026-07-11",
           "bucket": "2026-07-11",
@@ -7305,6 +7332,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "world_gold_usd_oz"
+        },
+        {
+          "date": "2026-11-26",
+          "bucket": "2026-11-26",
+          "value": 3593.3,
+          "unit": "USD/oz",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "world_gold_usd_oz"
         }
       ],
       "credit": [
@@ -7368,12 +7406,6 @@
         }
       ],
       "dxy": [
-        {
-          "date": "2026-07-10",
-          "bucket": "2026-07-10",
-          "value": 100.882,
-          "unit": "điểm"
-        },
         {
           "date": "2026-07-11",
           "bucket": "2026-07-11",
@@ -8426,6 +8458,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "dxy_index"
+        },
+        {
+          "date": "2026-11-26",
+          "bucket": "2026-11-26",
+          "value": 103.753,
+          "unit": "điểm",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "dxy_index"
         }
       ],
       "corporate_bond_issuance": [
@@ -8476,10 +8519,10 @@
         {
           "date": "2026-11-30",
           "bucket": "2026-11",
-          "value": 24.15,
+          "value": 42.394,
           "unit": "nghìn tỷ VND",
           "source": "VBMA",
-          "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+          "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
           "source_quality": "AUTO_VBMA_PDF",
           "source_note": null,
           "forecast_definition_id": null
@@ -8692,6 +8735,17 @@
           "source_quality": "AUTO_VBMA_PDF",
           "source_note": null,
           "forecast_definition_id": null
+        },
+        {
+          "date": "2026-11-20",
+          "bucket": "2026-W47",
+          "value": 384.461,
+          "unit": "nghìn tỷ VND",
+          "source": "VBMA",
+          "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+          "source_quality": "AUTO_VBMA_PDF",
+          "source_note": null,
+          "forecast_definition_id": null
         }
       ],
       "fed_policy": [
@@ -8731,12 +8785,6 @@
         }
       ],
       "oil_prices": [
-        {
-          "date": "2026-07-10",
-          "bucket": "2026-07-10",
-          "value": 71.68,
-          "unit": "USD/thùng"
-        },
         {
           "date": "2026-07-11",
           "bucket": "2026-07-11",
@@ -9783,6 +9831,17 @@
           "date": "2026-11-25",
           "bucket": "2026-11-25",
           "value": 80.81,
+          "unit": "USD/thùng",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "wti_usd_barrel"
+        },
+        {
+          "date": "2026-11-26",
+          "bucket": "2026-11-26",
+          "value": 83.93,
           "unit": "USD/thùng",
           "source": "Yahoo Finance",
           "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -10848,6 +10907,17 @@
           "source_quality": "AUTO",
           "source_note": null,
           "forecast_definition_id": "us_treasury_10y_yield"
+        },
+        {
+          "date": "2026-11-25",
+          "bucket": "2026-11-25",
+          "value": 4.848,
+          "unit": "%",
+          "source": "Yahoo Finance",
+          "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+          "source_quality": "AUTO",
+          "source_note": null,
+          "forecast_definition_id": "us_treasury_10y_yield"
         }
       ],
       "ecb_eurozone": [
@@ -11541,20 +11611,20 @@
       "priority": 1,
       "definition": "Lãi suất VND liên ngân hàng kỳ hạn qua đêm.",
       "why_it_matters": "Lãi suất liên ngân hàng đo thanh khoản hệ thống.",
-      "value": 5.54,
+      "value": 5.26,
       "unit": "%",
       "status": "available",
       "signal": "GREEN",
       "source_primary": "VBMA",
-      "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+      "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
       "source_quality": "AUTO_VBMA_PDF",
       "source_note": null,
-      "as_of": "2026-11-13",
+      "as_of": "2026-11-20",
       "frequency": "weekly_snapshot",
       "vip": false,
       "forecast_definition_id": "interbank_overnight_rate",
       "direction": "up",
-      "narrative": "Lãi suất liên ngân hàng qua đêm hiện có dữ liệu tự động từ VBMA/VNBA. Giá trị mới nhất là 5.54 %, dùng để theo dõi lãi suất liên ngân hàng đo thanh khoản hệ thống."
+      "narrative": "Lãi suất liên ngân hàng qua đêm hiện có dữ liệu tự động từ VBMA/VNBA. Giá trị mới nhất là 5.26 %, dùng để theo dõi lãi suất liên ngân hàng đo thanh khoản hệ thống."
     },
     {
       "key": "fx_central_rate",
@@ -11610,7 +11680,7 @@
       "priority": 4,
       "definition": "Chỉ số VN-Index.",
       "why_it_matters": "VN-Index là thước đo sentiment tài sản rủi ro nội địa.",
-      "value": 1687.45,
+      "value": 1629.68,
       "unit": "điểm",
       "status": "available",
       "signal": "GREEN",
@@ -11618,12 +11688,12 @@
       "source_url": "https://trading.vietcap.com.vn/",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "vnindex_close",
       "direction": "flat",
-      "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1687.45 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
+      "narrative": "VN-Index hiện có dữ liệu tự động từ Stooq/Yahoo. Giá trị mới nhất là 1629.68 điểm, dùng để theo dõi vn-index là thước đo sentiment tài sản rủi ro nội địa."
     },
     {
       "key": "govt_bond_yield",
@@ -11638,10 +11708,10 @@
       "status": "available",
       "signal": "GREEN",
       "source_primary": "VBMA",
-      "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+      "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
       "source_quality": "AUTO_VBMA_PDF",
       "source_note": null,
-      "as_of": "2026-11-13",
+      "as_of": "2026-11-20",
       "frequency": "weekly_snapshot",
       "vip": false,
       "forecast_definition_id": "vn_government_bond_10y_yield",
@@ -11656,7 +11726,7 @@
       "priority": 6,
       "definition": "Giá vàng giao ngay quốc tế.",
       "why_it_matters": "Vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất.",
-      "value": 3563.5,
+      "value": 3593.3,
       "unit": "USD/oz",
       "status": "available",
       "signal": "GREEN",
@@ -11664,12 +11734,12 @@
       "source_url": "https://finance.yahoo.com/quote/GC%3DF",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "world_gold_usd_oz",
       "direction": "flat",
-      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 3563.5 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
+      "narrative": "Vàng thế giới hiện có dữ liệu tự động từ Metals.live. Giá trị mới nhất là 3593.3 USD/oz, dùng để theo dõi vàng phản ánh phòng thủ rủi ro và kỳ vọng lãi suất."
     },
     {
       "key": "credit",
@@ -11748,7 +11818,7 @@
       "priority": 10,
       "definition": "US Dollar Index.",
       "why_it_matters": "DXY đo áp lực USD toàn cầu lên tỷ giá.",
-      "value": 104.013,
+      "value": 103.753,
       "unit": "điểm",
       "status": "available",
       "signal": "YELLOW",
@@ -11756,12 +11826,12 @@
       "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "dxy_index",
       "direction": "up",
-      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 104.013 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
+      "narrative": "DXY hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 103.753 điểm, dùng để theo dõi dxy đo áp lực usd toàn cầu lên tỷ giá."
     },
     {
       "key": "corporate_bond_issuance",
@@ -11771,20 +11841,20 @@
       "priority": 11,
       "definition": "Giá trị phát hành trái phiếu doanh nghiệp.",
       "why_it_matters": "TPDN phản ánh kênh vốn ngoài ngân hàng.",
-      "value": 24.15,
+      "value": 42.394,
       "unit": "nghìn tỷ VND",
       "status": "available",
       "signal": "GREEN",
       "source_primary": "VBMA",
-      "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+      "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
       "source_quality": "AUTO_VBMA_PDF",
       "source_note": null,
-      "as_of": "2026-11-13",
+      "as_of": "2026-11-20",
       "frequency": "monthly",
       "vip": true,
       "forecast_definition_id": null,
       "direction": "flat",
-      "narrative": "Phát hành TPDN hiện có dữ liệu tự động từ VBMA. Giá trị mới nhất là 24.15 nghìn tỷ VND, dùng để theo dõi tpdn phản ánh kênh vốn ngoài ngân hàng."
+      "narrative": "Phát hành TPDN hiện có dữ liệu tự động từ VBMA. Giá trị mới nhất là 42.394 nghìn tỷ VND, dùng để theo dõi tpdn phản ánh kênh vốn ngoài ngân hàng."
     },
     {
       "key": "govt_bond_issuance",
@@ -11794,20 +11864,20 @@
       "priority": 12,
       "definition": "Giá trị phát hành trái phiếu chính phủ.",
       "why_it_matters": "TPCP đo huy động ngân sách và cung trái phiếu.",
-      "value": 382.393,
+      "value": 384.461,
       "unit": "nghìn tỷ VND",
       "status": "available",
       "signal": "GREEN",
       "source_primary": "VBMA",
-      "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+      "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
       "source_quality": "AUTO_VBMA_PDF",
       "source_note": null,
-      "as_of": "2026-11-13",
+      "as_of": "2026-11-20",
       "frequency": "weekly_snapshot",
       "vip": false,
       "forecast_definition_id": null,
       "direction": "flat",
-      "narrative": "Phát hành TPCP hiện có dữ liệu tự động từ VBMA. Giá trị mới nhất là 382.393 nghìn tỷ VND, dùng để theo dõi tpcp đo huy động ngân sách và cung trái phiếu."
+      "narrative": "Phát hành TPCP hiện có dữ liệu tự động từ VBMA. Giá trị mới nhất là 384.461 nghìn tỷ VND, dùng để theo dõi tpcp đo huy động ngân sách và cung trái phiếu."
     },
     {
       "key": "fed_policy",
@@ -11863,7 +11933,7 @@
       "priority": 3,
       "definition": "Giá dầu WTI.",
       "why_it_matters": "Dầu ảnh hưởng chi phí năng lượng và lạm phát.",
-      "value": 80.81,
+      "value": 83.93,
       "unit": "USD/thùng",
       "status": "available",
       "signal": "YELLOW",
@@ -11871,12 +11941,12 @@
       "source_url": "https://finance.yahoo.com/quote/CL%3DF",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "wti_usd_barrel",
       "direction": "up",
-      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 80.81 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
+      "narrative": "Giá dầu WTI hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 83.93 USD/thùng, dùng để theo dõi dầu ảnh hưởng chi phí năng lượng và lạm phát."
     },
     {
       "key": "geopolitical_risk",
@@ -11909,7 +11979,7 @@
       "priority": 5,
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
       "why_it_matters": "US10Y là benchmark định giá tài sản toàn cầu.",
-      "value": 4.904,
+      "value": 4.848,
       "unit": "%",
       "status": "available",
       "signal": "YELLOW",
@@ -11917,12 +11987,12 @@
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
       "source_quality": "AUTO",
       "source_note": null,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "frequency": "daily",
       "vip": false,
       "forecast_definition_id": "us_treasury_10y_yield",
       "direction": "up",
-      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.904 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
+      "narrative": "US 10Y yield hiện có dữ liệu tự động từ Stooq. Giá trị mới nhất là 4.848 %, dùng để theo dõi us10y là benchmark định giá tài sản toàn cầu."
     },
     {
       "key": "ecb_eurozone",

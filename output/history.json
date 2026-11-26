@@ -206,6 +206,17 @@
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": "interbank_overnight_rate"
+      },
+      {
+        "date": "2026-11-20",
+        "bucket": "2026-W47",
+        "value": 5.26,
+        "unit": "%",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null,
+        "forecast_definition_id": "interbank_overnight_rate"
       }
     ],
     "fx_central_rate": [
@@ -232,17 +243,6 @@
       }
     ],
     "fx_market_usd_vnd": [
-      {
-        "date": "2026-08-18",
-        "bucket": "2026-08-18",
-        "value": 26137.29,
-        "unit": "VND/USD",
-        "source": "Open ER API",
-        "source_url": "https://open.er-api.com/",
-        "source_quality": "AUTO",
-        "source_note": null,
-        "forecast_definition_id": "market_vnd_usd"
-      },
       {
         "date": "2026-08-19",
         "bucket": "2026-08-19",
@@ -1331,6 +1331,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-11-26",
+        "bucket": "2026-11-26",
+        "value": 25765.94,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -2312,6 +2323,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "vnindex_close"
+      },
+      {
+        "date": "2026-11-26",
+        "bucket": "2026-11-26",
+        "value": 1629.68,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "vnindex_close"
       }
     ],
     "govt_bond_yield": [
@@ -2510,15 +2532,20 @@
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": "vn_government_bond_10y_yield"
+      },
+      {
+        "date": "2026-11-20",
+        "bucket": "2026-W47",
+        "value": 4.46,
+        "unit": "%",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null,
+        "forecast_definition_id": "vn_government_bond_10y_yield"
       }
     ],
     "gold_world": [
-      {
-        "date": "2026-07-10",
-        "bucket": "2026-07-10",
-        "value": 4107.7998,
-        "unit": "USD/oz"
-      },
       {
         "date": "2026-07-11",
         "bucket": "2026-07-11",
@@ -3571,6 +3598,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "world_gold_usd_oz"
+      },
+      {
+        "date": "2026-11-26",
+        "bucket": "2026-11-26",
+        "value": 3593.3,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "world_gold_usd_oz"
       }
     ],
     "credit": [
@@ -3634,12 +3672,6 @@
       }
     ],
     "dxy": [
-      {
-        "date": "2026-07-10",
-        "bucket": "2026-07-10",
-        "value": 100.882,
-        "unit": "điểm"
-      },
       {
         "date": "2026-07-11",
         "bucket": "2026-07-11",
@@ -4692,6 +4724,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "dxy_index"
+      },
+      {
+        "date": "2026-11-26",
+        "bucket": "2026-11-26",
+        "value": 103.753,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "dxy_index"
       }
     ],
     "corporate_bond_issuance": [
@@ -4742,10 +4785,10 @@
       {
         "date": "2026-11-30",
         "bucket": "2026-11",
-        "value": 24.15,
+        "value": 42.394,
         "unit": "nghìn tỷ VND",
         "source": "VBMA",
-        "source_url": "https://vbma.org.vn/storage/reports/November2026/09112026%20-%2013112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": null
@@ -4958,6 +5001,17 @@
         "source_quality": "AUTO_VBMA_PDF",
         "source_note": null,
         "forecast_definition_id": null
+      },
+      {
+        "date": "2026-11-20",
+        "bucket": "2026-W47",
+        "value": 384.461,
+        "unit": "nghìn tỷ VND",
+        "source": "VBMA",
+        "source_url": "https://vbma.org.vn/storage/reports/November2026/16112026%20-%2020112026%20BAO%20CAO%20TUAN%20TTTP.pdf",
+        "source_quality": "AUTO_VBMA_PDF",
+        "source_note": null,
+        "forecast_definition_id": null
       }
     ],
     "fed_policy": [
@@ -4997,12 +5051,6 @@
       }
     ],
     "oil_prices": [
-      {
-        "date": "2026-07-10",
-        "bucket": "2026-07-10",
-        "value": 71.68,
-        "unit": "USD/thùng"
-      },
       {
         "date": "2026-07-11",
         "bucket": "2026-07-11",
@@ -6049,6 +6097,17 @@
         "date": "2026-11-25",
         "bucket": "2026-11-25",
         "value": 80.81,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "wti_usd_barrel"
+      },
+      {
+        "date": "2026-11-26",
+        "bucket": "2026-11-26",
+        "value": 83.93,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
@@ -7108,6 +7167,17 @@
         "date": "2026-11-24",
         "bucket": "2026-11-24",
         "value": 4.904,
+        "unit": "%",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/%5ETNX",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "us_treasury_10y_yield"
+      },
+      {
+        "date": "2026-11-25",
+        "bucket": "2026-11-25",
+        "value": 4.848,
         "unit": "%",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/%5ETNX",
