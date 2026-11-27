@@ -244,17 +244,6 @@
     ],
     "fx_market_usd_vnd": [
       {
-        "date": "2026-08-19",
-        "bucket": "2026-08-19",
-        "value": 26119.07,
-        "unit": "VND/USD",
-        "source": "Open ER API",
-        "source_url": "https://open.er-api.com/",
-        "source_quality": "AUTO",
-        "source_note": null,
-        "forecast_definition_id": "market_vnd_usd"
-      },
-      {
         "date": "2026-08-20",
         "bucket": "2026-08-20",
         "value": 26126.87,
@@ -1342,6 +1331,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "market_vnd_usd"
+      },
+      {
+        "date": "2026-11-27",
+        "bucket": "2026-11-27",
+        "value": 25812.62,
+        "unit": "VND/USD",
+        "source": "Open ER API",
+        "source_url": "https://open.er-api.com/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "market_vnd_usd"
       }
     ],
     "stock_market": [
@@ -2334,6 +2334,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "vnindex_close"
+      },
+      {
+        "date": "2026-11-27",
+        "bucket": "2026-11-27",
+        "value": 1653.9,
+        "unit": "điểm",
+        "source": "Vietcap",
+        "source_url": "https://trading.vietcap.com.vn/",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "vnindex_close"
       }
     ],
     "govt_bond_yield": [
@@ -2546,12 +2557,6 @@
       }
     ],
     "gold_world": [
-      {
-        "date": "2026-07-11",
-        "bucket": "2026-07-11",
-        "value": 4128.8999,
-        "unit": "USD/oz"
-      },
       {
         "date": "2026-07-12",
         "bucket": "2026-07-12",
@@ -3609,6 +3614,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "world_gold_usd_oz"
+      },
+      {
+        "date": "2026-11-27",
+        "bucket": "2026-11-27",
+        "value": 3705.3,
+        "unit": "USD/oz",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/GC%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "world_gold_usd_oz"
       }
     ],
     "credit": [
@@ -3672,12 +3688,6 @@
       }
     ],
     "dxy": [
-      {
-        "date": "2026-07-11",
-        "bucket": "2026-07-11",
-        "value": 100.965,
-        "unit": "điểm"
-      },
       {
         "date": "2026-07-12",
         "bucket": "2026-07-12",
@@ -4735,6 +4745,17 @@
         "source_quality": "AUTO",
         "source_note": null,
         "forecast_definition_id": "dxy_index"
+      },
+      {
+        "date": "2026-11-27",
+        "bucket": "2026-11-27",
+        "value": 103.819,
+        "unit": "điểm",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/DX-Y.NYB",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "dxy_index"
       }
     ],
     "corporate_bond_issuance": [
@@ -5051,12 +5072,6 @@
       }
     ],
     "oil_prices": [
-      {
-        "date": "2026-07-11",
-        "bucket": "2026-07-11",
-        "value": 71.51,
-        "unit": "USD/thùng"
-      },
       {
         "date": "2026-07-12",
         "bucket": "2026-07-12",
@@ -6108,6 +6123,17 @@
         "date": "2026-11-26",
         "bucket": "2026-11-26",
         "value": 83.93,
+        "unit": "USD/thùng",
+        "source": "Yahoo Finance",
+        "source_url": "https://finance.yahoo.com/quote/CL%3DF",
+        "source_quality": "AUTO",
+        "source_note": null,
+        "forecast_definition_id": "wti_usd_barrel"
+      },
+      {
+        "date": "2026-11-27",
+        "bucket": "2026-11-27",
+        "value": 85.81,
         "unit": "USD/thùng",
         "source": "Yahoo Finance",
         "source_url": "https://finance.yahoo.com/quote/CL%3DF",
