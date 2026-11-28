@@ -1,7 +1,7 @@
 {
   "schema_version": "vimo.facts.v1",
   "producer": "maikhanhthieu-droid/vimo-VN",
-  "generated_at": "2026-11-27T08:50:32.614852+00:00",
+  "generated_at": "2026-11-28T08:09:20.879250+00:00",
   "as_of": "2026-11-27",
   "facts": [
     {
@@ -28,10 +28,10 @@
     },
     {
       "id": "fx_market_usd_vnd",
-      "value": 25812.62,
+      "value": 25839.82,
       "unit": "VND/USD",
       "definition": "Tỷ giá USD sang VND từ API thị trường.",
-      "as_of": "Fri, 27 Nov 2026 00:02:31 +0000",
+      "as_of": "Sat, 28 Nov 2026 00:02:31 +0000",
       "source": "Open ER API",
       "source_url": "https://open.er-api.com/",
       "source_quality": "AUTO",
@@ -61,7 +61,7 @@
     },
     {
       "id": "gold_world",
-      "value": 3705.3,
+      "value": 3639.6001,
       "unit": "USD/oz",
       "definition": "Giá vàng giao ngay quốc tế.",
       "as_of": "2026-11-27",
@@ -105,7 +105,7 @@
     },
     {
       "id": "dxy",
-      "value": 103.819,
+      "value": 104.01,
       "unit": "điểm",
       "definition": "US Dollar Index.",
       "as_of": "2026-11-27",
@@ -160,7 +160,7 @@
     },
     {
       "id": "oil_prices",
-      "value": 85.81,
+      "value": 83.08,
       "unit": "USD/thùng",
       "definition": "Giá dầu WTI.",
       "as_of": "2026-11-27",
@@ -182,10 +182,10 @@
     },
     {
       "id": "us_10y_yield",
-      "value": 4.848,
+      "value": 4.936,
       "unit": "%",
       "definition": "Lợi suất trái phiếu chính phủ Mỹ 10 năm.",
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "Yahoo Finance",
       "source_url": "https://finance.yahoo.com/quote/%5ETNX",
       "source_quality": "AUTO",
